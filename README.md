@@ -5,7 +5,7 @@ Using SUEP histograms from coffea producer
 1) Create datacards and root files to input into combine
 2) Run combine for all signal samples
 
-##Get the combine tools
+## Get the combine tools
 ```bash
 export SCRAM_ARCH=slc7_amd64_gcc700
 cmsrel CMSSW_10_2_13
@@ -18,7 +18,7 @@ git fetch origin
 git checkout v8.0.1
 ```
 
-##fetch CombineTool
+## fetch CombineTool
 ```bash
 cd $CMSSW_BASE/src
 bash <(curl -s https://raw.githubusercontent.com/cms-analysis/CombineHarvester/master/CombineTools/scripts/sparse-checkout-https.sh)
@@ -33,7 +33,7 @@ pip install uproot --user
 pip install thermcolor --user
 ```
 
-##Now get the FinalFit tools
+## Now get the FinalFit tools
 ```bash
 cd $CMSSW_BASE/src/
 git clone https://github.com/SUEPPhysics/SUEPLimits.git
