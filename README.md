@@ -5,7 +5,7 @@ Using SUEP histograms from coffea producer
 1) Create datacards and root files to input into combine
 2) Run combine for all signal samples
 
-## Get the combine tools
+## Get the combine limit tool
 ```bash
 export SCRAM_ARCH=slc7_amd64_gcc700
 cmsrel CMSSW_10_2_13
