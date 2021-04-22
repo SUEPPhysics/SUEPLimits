@@ -21,24 +21,24 @@ results = []
 for dc in dcards:
     print(" -- making :", dc)
     name= dc.replace("cards-", "")
-    if "DMSimp" not in name:
+    if "SUEP" not in name:
         continue
     print(" --- name : ", name)
     os.system("rm -rf cards-{}/combined.dat".format(name))
     os.system(
             "combineCards.py -S "
-            "cat3L2016=cards-{name}/shapes-cat3L2016.dat "
-            "cat4L2016=cards-{name}/shapes-cat4L2016.dat "
-            "chBSM2016=cards-{name}/shapes-chBSM2016.dat "
-            "catEM2016=cards-{name}/shapes-catEM2016.dat "
-            "cat3L2017=cards-{name}/shapes-cat3L2017.dat "
-            "cat4L2017=cards-{name}/shapes-cat4L2017.dat "
-            "chBSM2017=cards-{name}/shapes-chBSM2017.dat "
-            "catEM2017=cards-{name}/shapes-catEM2017.dat "
-            "cat3L2018=cards-{name}/shapes-cat3L2018.dat "
-            "cat4L2018=cards-{name}/shapes-cat4L2018.dat "
-            "chBSM2018=cards-{name}/shapes-chBSM2018.dat "
-            "catEM2018=cards-{name}/shapes-catEM2018.dat "
+            #"catCR12016=cards-{name}/shapes-catCR12016.dat "
+            #"catCR22016=cards-{name}/shapes-catCR22016.dat "
+            #"catCR32016=cards-{name}/shapes-catCR32016.dat "
+            #"catSig2016=cards-{name}/shapes-catSig2016.dat "
+            #"catCR12017=cards-{name}/shapes-catCR12017.dat "
+            #"catCR22017=cards-{name}/shapes-catCR22017.dat "
+            #"catCR32017=cards-{name}/shapes-catCR32017.dat "
+            #"catSig2017=cards-{name}/shapes-catSig2017.dat "
+            #"catCR12018=cards-{name}/shapes-catCR12018.dat "
+            #"catCR22018=cards-{name}/shapes-catCR22018.dat "
+            #"catCR32018=cards-{name}/shapes-catCR32018.dat "
+            "catSig2018=cards-{name}/shapes-catSig2018.dat "
             "> cards-{name}/combined.dat".format(name=name))
     os.system("text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root".format(name=name))
     command = (
