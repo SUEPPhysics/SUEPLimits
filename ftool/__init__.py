@@ -41,7 +41,7 @@ def draw_ratio(nom, uph, dwh, name):
 
 
 class datagroup:
-     def __init__(self, files, observable="measMET", name = "DY",
+     def __init__(self, files, observable="nCleaned_Cands", name = "QCD",
                   channel="", kfactor=1.0, ptype="background",
                   luminosity= 1.0, rebin=1, rebin_piecewise=[], normalise=True,
                   xsections=None, mergecat=True, binrange=None):
@@ -56,7 +56,7 @@ class datagroup:
           self.systvar = set()
           self.rebin   = rebin
           self.rebin_piecewise = rebin_piecewise
-          self.binrange= binrange # droping bins the same way as droping elements in numpy arrays a[1:3]
+          self.binrange= binrange # dropping bins the same way as droping elements in numpy arrays a[1:3]
 
           for fn in self._files:
                _proc = os.path.basename(fn).replace(".root","")
@@ -65,22 +65,29 @@ class datagroup:
                if not _file:
                     raise ValueError("%s is not a valid rootfile" % self.name)
 
-               _scale = 1
-               if ptype.lower() != "data":
-                    _scale  = self.xs_scale(ufile=_file, proc=_proc)
-                    _scale *= kfactor
-
                histograms = None
+
                if isinstance(channel, str):
                     histograms = _file.allitems(
                          filterclass=lambda cls: issubclass(
                               cls, uproot_methods.classes.TH1.Methods
                          ),
                          filtername =lambda name: (
-                              observable in name.decode("utf-8") and channel in name.decode("utf-8")
+                              #observable in name.decode("utf-8") and channel in name.decode("utf-8")
+                              observable in name.decode("utf-8")
                          )
                     )
                     histograms.sort(reverse=True)
+                    
+                    genhisto = _file.allitems(
+                         filterclass=lambda cls: issubclass(
+                              cls, uproot_methods.classes.TH1.Methods
+                         ),
+                         filtername =lambda name: (
+                              "genEventSumw" in name.decode("utf-8")
+                         )
+                    )
+                    
                     mergecat = False
 
                else:
@@ -95,45 +102,37 @@ class datagroup:
                          )
                     )
                     histograms.sort(reverse=True)
-                    self.channel = [
-                         "cat0Jet" if "catSignal-0jet" in n else n for n in self.channel
-                    ]
-                    self.channel = [
-                         "cat1Jet" if "catSignal-1jet" in n else n for n in self.channel
-                    ]
+ 
+               _scale = 1
+               if ptype.lower() != "data":
+                    for name, roothist in genhisto:
+                        name = name.decode("utf-8")
+                        if "genEventSumw" not in name: continue
+                        name = name.replace(";1", "")
+                        _scale = self.lumi* 1000.0 / np.abs(roothist.numpy())[0]
+
 
                for name, roothist in histograms:
                     name = name.decode("utf-8")
-                    name = name.replace(_proc, self.name)
-                    #print (name)
-                    if "ADD" in _proc:
-                        name = name.replace(";1", "")
-                    elif "ZH" in _proc:
-                        name = name.replace(";1", "")
-                    elif "DMSimp" in _proc:
-                        name = name.replace(";1", "")
-                    #elif "2HDM" in _proc:
-                    #    name = name.replace(";1", "")
-                    else:
-                        #if self.ptype != "data" and "monoZ" not in name: continue #for 2018
-                        if "monoZ" not in name: continue
-                        name = name.replace("monoZ",self.name)
-                        name = name.replace(";1", "")
-                    #print ("finale name is :",name)   
-                    if ptype.lower() == "signal":
-                         name = name.replace(self.name, "signal")
-                    if "catSignal-0jet" in name:
-                         name = name.replace("catSignal-0jet", "cat0Jet")
-                    if "catSignal-1jet" in name:
-                         name = name.replace("catSignal-1jet", "cat1Jet")
-
-                    roothist = self.check_shape(roothist)
-                    ph_hist = roothist.physt()
+                    #name = name.replace(_proc, self.name)
+                    name = name.replace(";1", "")
+                    print(roothist)
+                    #roothist = self.check_shape(roothist)
+                    
+                    #ph_hist = roothist.physt()
                     newhist = physt.histogram1d.Histogram1D(
-                        ph_hist.binning, 
-                        ph_hist.frequencies, 
+                        np.abs(roothist.numpy())[1], 
+                        np.abs(roothist.numpy())[0]*_scale, 
                         errors2=roothist.variances
-                    ) * _scale
+                    ) #* _scale
+                    
+                    #ph_hist = roothist.physt()
+                    #newhist = physt.histogram1d.Histogram1D(
+                    #    ph_hist.binning, 
+                    #    ph_hist.frequencies, 
+                    #    errors2=roothist.variances
+                    #) * _scale
+                    
                     # select bin per range   
                     if isinstance(self.binrange, list):
                         newhist = physt.histogram1d.Histogram1D(
@@ -157,13 +156,13 @@ class datagroup:
                         #self.rebin_piecewise = np.array(self.rebin_piecewise,dtype=int)
                         new_freq = self.rebin_piecewise_constant(newhist.numpy_bins, newhist.frequencies, self.rebin_piecewise)
                         new_errors2 = self.rebin_piecewise_constant(newhist.numpy_bins, newhist.errors2, self.rebin_piecewise)
-                        #print ("the new bin array is :", self.rebin_piecewise)
+                        print ("the new bin array is :", self.rebin_piecewise)
                         newhist = physt.histogram1d.Histogram1D(
                             physt.binnings.NumpyBinning(self.rebin_piecewise),
                             new_freq,
                             errors2 = new_errors2
                         )
-                    
+                    print(newhist.frequencies)
                     newhist.name = name
                     if name in self.nominal.keys():
                          self.nominal[name] += newhist
@@ -281,19 +280,19 @@ class datagroup:
                     fout[name] = uproot_methods.classes.TH1.from_numpy(hist)
                fout.close()
 
-     def xs_scale(self, ufile, proc):
-          xsec  = self.xsec[proc]["xsec"]
-          xsec *= self.xsec[proc]["kr"]
-          xsec *= self.xsec[proc]["br"]
-          xsec *= 1000.0
-          #print (proc, xsec)
-          assert xsec > 0, "{} has a null cross section!".format(proc)
-          try :
-              scale = xsec * self.lumi/ufile["Runs"].array("genEventSumw_").sum()
-          except :
-              scale = xsec * self.lumi/ufile["Runs"].array("genEventSumw").sum()
-            
-          return scale
+     #def xs_scale(self, ufile, proc):
+     #     xsec  = self.xsec[proc]["xsec"]
+     #     xsec *= self.xsec[proc]["kr"]
+     #     xsec *= self.xsec[proc]["br"]
+     #     xsec *= 1000.0
+     #     #print (proc, xsec)
+     #     assert xsec > 0, "{} has a null cross section!".format(proc)
+     #     try :
+     #         scale = xsec * self.lumi/ufile["Runs"].array("genEventSumw_").sum()
+     #     except :
+     #         scale = xsec * self.lumi/ufile["Runs"].array("genEventSumw").sum()
+     #       
+     #     return scale
      
      #for rebinning to new array. see: https://github.com/jhykes/rebin (rebin.py) 
      def rebin_piecewise_constant(self,x1, y1, x2):

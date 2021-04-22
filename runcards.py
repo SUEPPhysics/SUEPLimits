@@ -7,7 +7,7 @@ import shlex
 import numpy as np
 
 
-options_input = "config/inputs-NanoAODv5-{}.yaml"
+options_input = "config/SUEP_inputs_{}.yaml"
 
 from multiprocessing.pool import ThreadPool
 
@@ -21,9 +21,9 @@ def call_makeDataCard(cmd):
 
 pool = ThreadPool(multiprocessing.cpu_count())
 results = []
-new_bins = '0 100 200 250 300 350 400 500 600 700 1000 2000 '
-#for year in [2018]:
-for year in [2016,2017]:
+new_bins = '0 100 200 500'
+for year in [2018]:
+#for year in [2016,2017]:
     with open(options_input.format(year)) as f:
         try:
             inputs = yaml.safe_load(f.read())
@@ -31,40 +31,43 @@ for year in [2016,2017]:
             print ("failed to open the YAML ....")
             print (exc)
     for n, sam in inputs.items():
-        if "DMSimp_MonoZLL_Scalar" not in n: continue
+        if "SUEP" not in n: continue
         print(" ===== processing : ", n, sam, year)
-        cmd_sr = "python3 makeDataCard.py --channel catSignal-0jet catSignal-1jet "
-        #cmd_sr = "python3 makeDataCard.py --channel catSignal-1jet "
-        cmd_sr += "--variable MT " if "2HDM" in n else "" 
-        cmd_sr += "--stack {signal} ZZ WZ WW VVV TOP DY data "
-        cmd_sr += "--rebin_piecewise " + new_bins if "2HDM" in n else "" 
-        cmd_sr += "--input=config/inputs-NanoAODv5-{era}.yaml --era={era}"
+        cmd_sr = "python3 makeDataCard.py --channel catSig "
+        cmd_sr += "--variable nCleaned_Cands_QCD_basic "
+        cmd_sr += "--stack {signal} QCD data "
+        cmd_sr += "--rebin_piecewise " + new_bins + " "
+        cmd_sr += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_sr = cmd_sr.format(signal=n, era=year)
         
-        cmd_3l = "python3 makeDataCard.py --channel cat3L "
-        cmd_3l += "--variable MT " if "2HDM" in n else "" 
-        cmd_3l += "--stack {signal} ZZ WZ WW VVV TOP DY data --binrange 1 20 "
-        cmd_3l += "--rebin_piecewise " + new_bins if "2HDM" in n else "" 
-        cmd_3l += "--input=config/inputs-NanoAODv5-{era}.yaml --era={era}"
-        cmd_3l = cmd_3l.format(signal=n, era=year)
+        #cmd_cr1 = "python3 makeDataCard.py --channel catCR1 "
+        #cmd_cr1 += "--variable nCleaned_Cands "
+        #cmd_cr1 += "--stack {signal} QCD --binrange 1 20 "
+        ##cmd_cr1 += "--stack {signal} QCD data --binrange 1 20 "#We need data first
+        ##cmd_cr1 += "--rebin_piecewise " + new_bins 
+        #cmd_cr1 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
+        #cmd_cr1 = cmd_cr1.format(signal=n, era=year)
         
-        cmd_4l = "python3 makeDataCard.py --channel cat4L "
-        cmd_4l += "--variable MT " if "2HDM" in n else "" 
-        cmd_4l += "--stack {signal} ZZ WZ WW VVV TOP DY data --binrange 1 20 "
-        cmd_4l += "--rebin_piecewise " + new_bins  if "2HDM" in n else "" 
-        cmd_4l += "--input=config/inputs-NanoAODv5-{era}.yaml --era={era}"
-        cmd_4l = cmd_4l.format(signal=n, era=year)
+        #cmd_cr2 = "python3 makeDataCard.py --channel catCR2 "
+        #cmd_cr2 += "--variable nCleaned_Cands "
+        #cmd_cr2 += "--stack {signal} QCD --binrange 1 20 "
+        ##cmd_cr2 += "--stack {signal} QCD data --binrange 1 20 "#We need data first
+        ##cmd_cr2 += "--rebin_piecewise " + new_bins 
+        #cmd_cr2 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
+        #cmd_cr2 = cmd_cr2.format(signal=n, era=year)
         
-        cmd_em = "python3 makeDataCard.py --channel catEM "
-        cmd_em += "--variable MT " if "2HDM" in n else "" 
-        cmd_em += "--stack {signal} ZZ WZ WW VVV TOP DY data --binrange 1 20 --rebin=4 "
-        cmd_em += "--input=config/inputs-NanoAODv5-{era}.yaml --era={era}"
-        cmd_em = cmd_em.format(signal=n, era=year)
+        #cmd_cr3 = "python3 makeDataCard.py --channel catCR3 "
+        #cmd_cr3 += "--variable nCleaned_Cands "
+        #cmd_cr3 += "--stack {signal} QCD --binrange 1 20 "
+        ##cmd_cr3 += "--stack {signal} QCD data --binrange 1 20 "#We need data first
+        ##cmd_cr3 += "--rebin_piecewise " + new_bins 
+        #cmd_cr3 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
+        #cmd_cr3 = cmd_cr3.format(signal=n, era=year)
         
         results.append(pool.apply_async(call_makeDataCard, (cmd_sr,)))
-        results.append(pool.apply_async(call_makeDataCard, (cmd_3l,)))
-        results.append(pool.apply_async(call_makeDataCard, (cmd_4l,)))
-        results.append(pool.apply_async(call_makeDataCard, (cmd_em,)))
+        #results.append(pool.apply_async(call_makeDataCard, (cmd_cr1,)))
+        #results.append(pool.apply_async(call_makeDataCard, (cmd_cr2,)))
+        #results.append(pool.apply_async(call_makeDataCard, (cmd_cr3,)))
 
 # Close the pool and wait for each running task to complete
 pool.close()
