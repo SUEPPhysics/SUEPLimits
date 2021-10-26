@@ -1,6 +1,6 @@
 import numpy as np
 import uproot
-import uproot_methods
+import uproot3_methods as uproot_methods
 
 def from_physt(histogram):
     import physt.binnings
