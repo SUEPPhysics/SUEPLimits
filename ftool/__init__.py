@@ -1,8 +1,8 @@
 from __future__ import division
 
 import numpy as np
-import uproot
-import uproot_methods
+import uproot3 as uproot
+import uproot3_methods as uproot_methods
 import os
 import re
 import physt
@@ -36,9 +36,6 @@ def draw_ratio(nom, uph, dwh, name):
      #plt.ylim([-2,2])
      plt.xlim([min(nom.numpy_bins),max(nom.numpy_bins)])
      plt.savefig("plots/"+name + ".png")
-     #plt.savefig("plots/"+name + ".png")
-
-
 
 class datagroup:
      def __init__(self, files, observable="nCleaned_Cands", name = "QCD",
@@ -78,16 +75,6 @@ class datagroup:
                          )
                     )
                     histograms.sort(reverse=True)
-                    
-                    genhisto = _file.allitems(
-                         filterclass=lambda cls: issubclass(
-                              cls, uproot_methods.classes.TH1.Methods
-                         ),
-                         filtername =lambda name: (
-                              "genEventSumw" in name.decode("utf-8")
-                         )
-                    )
-                    
                     mergecat = False
 
                else:
@@ -105,33 +92,21 @@ class datagroup:
  
                _scale = 1
                if ptype.lower() != "data":
-                    for name, roothist in genhisto:
-                        name = name.decode("utf-8")
-                        if "genEventSumw" not in name: continue
-                        name = name.replace(";1", "")
-                        _scale = self.lumi* 1000.0 / np.abs(roothist.numpy())[0]
+                    _scale = self.lumi* 1000.0 #
 
 
                for name, roothist in histograms:
                     name = name.decode("utf-8")
-                    #name = name.replace(_proc, self.name)
                     name = name.replace(";1", "")
                     print(roothist)
                     #roothist = self.check_shape(roothist)
                     
-                    #ph_hist = roothist.physt()
                     newhist = physt.histogram1d.Histogram1D(
                         np.abs(roothist.numpy())[1], 
                         np.abs(roothist.numpy())[0]*_scale, 
                         errors2=roothist.variances
-                    ) #* _scale
+                    )
                     
-                    #ph_hist = roothist.physt()
-                    #newhist = physt.histogram1d.Histogram1D(
-                    #    ph_hist.binning, 
-                    #    ph_hist.frequencies, 
-                    #    errors2=roothist.variances
-                    #) * _scale
                     
                     # select bin per range   
                     if isinstance(self.binrange, list):
@@ -153,7 +128,6 @@ class datagroup:
                     #merge bins to specified array
                     self.rebin_piecewise = np.array(self.rebin_piecewise,dtype=int)
                     if len(self.rebin_piecewise)!=0:
-                        #self.rebin_piecewise = np.array(self.rebin_piecewise,dtype=int)
                         new_freq = self.rebin_piecewise_constant(newhist.numpy_bins, newhist.frequencies, self.rebin_piecewise)
                         new_errors2 = self.rebin_piecewise_constant(newhist.numpy_bins, newhist.errors2, self.rebin_piecewise)
                         print ("the new bin array is :", self.rebin_piecewise)
@@ -280,19 +254,6 @@ class datagroup:
                     fout[name] = uproot_methods.classes.TH1.from_numpy(hist)
                fout.close()
 
-     #def xs_scale(self, ufile, proc):
-     #     xsec  = self.xsec[proc]["xsec"]
-     #     xsec *= self.xsec[proc]["kr"]
-     #     xsec *= self.xsec[proc]["br"]
-     #     xsec *= 1000.0
-     #     #print (proc, xsec)
-     #     assert xsec > 0, "{} has a null cross section!".format(proc)
-     #     try :
-     #         scale = xsec * self.lumi/ufile["Runs"].array("genEventSumw_").sum()
-     #     except :
-     #         scale = xsec * self.lumi/ufile["Runs"].array("genEventSumw").sum()
-     #       
-     #     return scale
      
      #for rebinning to new array. see: https://github.com/jhykes/rebin (rebin.py) 
      def rebin_piecewise_constant(self,x1, y1, x2):
@@ -446,10 +407,6 @@ class datacard:
           ):
                if shape[0] == shape[1]:
                     shape = (2 * self.nominal_hist - shape[0], shape[1])
-               #if "ZZ" in process:
-                    #print ("the nominal hist is:   ", self.nominal_hist.frequencies)
-                    #print ("the shape[0] hist is:   ", shape[0].frequencies)
-                    #print ("the shape[1] hist is:   ", shape[1].frequencies)
                if symmetrise: 
                     uncert = np.maximum(np.abs(self.nominal_hist - shape[0]), 
                                         np.abs(self.nominal_hist - shape[1]))

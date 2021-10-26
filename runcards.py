@@ -34,7 +34,7 @@ for year in [2018]:
         if "SUEP" not in n: continue
         print(" ===== processing : ", n, sam, year)
         cmd_sr = "python3 makeDataCard.py --channel catSig "
-        cmd_sr += "--variable nCleaned_Cands_QCD_basic "
+        cmd_sr += "--variable SUEP_ch_nconst "
         cmd_sr += "--stack {signal} QCD data "
         cmd_sr += "--rebin_piecewise " + new_bins + " "
         cmd_sr += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
