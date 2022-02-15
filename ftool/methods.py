@@ -1,44 +1,19 @@
 import numpy as np
-import uproot
-import uproot3_methods as uproot_methods
 
-def from_physt(histogram):
-    import physt.binnings
-    import physt.histogram1d
+def from_boost(histogram):
+    import boost_histogram as hist
 
-    class TH1(uproot_methods.classes.TH1.Methods, list):
-        pass
+    out = hist.Histogram(hist.axis.Regular(10, 0.0, 1.0))
+    out._fXaxis = histogram.axes.centers
+    centers = histogram.axes.centers
+    content = histogram.values()
+    out._fSumw2 = list(histogram.variances())
 
-    class TAxis(object):
-        def __init__(self, fNbins, fXmin, fXmax):
-            self._fNbins = fNbins
-            self._fXmin = fXmin
-            self._fXmax = fXmax
-
-    out = TH1.__new__(TH1)
-
-    if isinstance(histogram.binning, physt.binnings.FixedWidthBinning):
-        out._fXaxis = TAxis(histogram.binning.bin_count,
-                            histogram.binning.first_edge,
-                            histogram.binning.last_edge)
-    elif isinstance(histogram.binning, physt.binnings.NumpyBinning):
-        out._fXaxis = TAxis(histogram.binning.bin_count,
-                            histogram.binning.first_edge,
-                            histogram.binning.last_edge)
-        out._fXaxis._fXbins = histogram.binning.numpy_bins.astype(">f8")
-    else:
-        raise NotImplementedError(histogram.binning)
-
-    centers = histogram.bin_centers
-    content = histogram.frequencies
-
-    out._fSumw2 = [0] + list(histogram.errors2) + [0]
-
-    mean = histogram.mean()
-    variance = histogram.variance()
+    mean = histogram.sum()["value"] / histogram.size
+    variance = histogram.variances()
     out._fEntries = content.sum()   # is there a #entries independent of weights?
     out._fTsumw = content.sum()
-    out._fTsumw2 = histogram.errors2.sum()
+    out._fTsumw2 = histogram.sum()["variance"]
     if mean is None:
         out._fTsumwx = (content * centers).sum()
     else:
@@ -53,13 +28,12 @@ def from_physt(histogram):
     else:
         out._fTitle = b""
 
-    out._classname, content = uproot_methods.classes.TH1._histtype(content)
+    #valuesarray = np.empty(len(content) + 2, dtype=content.dtype)
+    #valuesarray[1:-1] = content
+    #valuesarray[0] = histogram.underflow
+    #valuesarray[-1] = histogram.overflow
 
-    valuesarray = np.empty(len(content) + 2, dtype=content.dtype)
-    valuesarray[1:-1] = content
-    valuesarray[0] = histogram.underflow
-    valuesarray[-1] = histogram.overflow
-
-    out.extend(valuesarray)
+    #out.extend(valuesarray)
 
     return out
+
