@@ -21,7 +21,7 @@ def call_makeDataCard(cmd):
 
 pool = ThreadPool(multiprocessing.cpu_count())
 results = []
-new_bins = '0 100 200 500'
+new_bins = '0 20 50 100 600'
 for year in [2018]:
 #for year in [2016,2017]:
     with open(options_input.format(year)) as f:
@@ -37,6 +37,7 @@ for year in [2018]:
         cmd_sr += "--variable SUEP_ch_nconst "
         cmd_sr += "--stack {signal} QCD data "
         cmd_sr += "--rebin_piecewise " + new_bins + " "
+        #cmd_sr += "--rebin 4 " 
         cmd_sr += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_sr = cmd_sr.format(signal=n, era=year)
         

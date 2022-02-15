@@ -1,12 +1,12 @@
 from __future__ import division
 
 import numpy as np
-import uproot3 as uproot
-import uproot3_methods as uproot_methods
+import uproot
 import os
 import re
-import physt
+#import physt
 from . import methods
+import boost_histogram as bh
 
 __all__ = ['datacard', 'datagroup', "plot", "methods"]
 
@@ -52,7 +52,7 @@ class datagroup:
           self.nominal = {}
           self.systvar = set()
           self.rebin   = rebin
-          self.rebin_piecewise = rebin_piecewise
+          self.rebin_piecewise = np.array(rebin_piecewise).astype(np.float)
           self.binrange= binrange # dropping bins the same way as droping elements in numpy arrays a[1:3]
 
           for fn in self._files:
@@ -64,79 +64,29 @@ class datagroup:
 
                histograms = None
 
-               if isinstance(channel, str):
-                    histograms = _file.allitems(
-                         filterclass=lambda cls: issubclass(
-                              cls, uproot_methods.classes.TH1.Methods
-                         ),
-                         filtername =lambda name: (
-                              #observable in name.decode("utf-8") and channel in name.decode("utf-8")
-                              observable in name.decode("utf-8")
-                         )
-                    )
-                    histograms.sort(reverse=True)
-                    mergecat = False
-
-               else:
-                    histograms = _file.allitems(
-                         filterclass=lambda cls: issubclass(
-                              cls, uproot_methods.classes.TH1.Methods
-                         ),
-                         filtername =lambda name: (
-                              observable in name.decode("utf-8") and np.any(
-                                   [cat in name.decode("utf-8") for cat in channel]
-                              )
-                         )
-                    )
-                    histograms.sort(reverse=True)
- 
                _scale = 1
                if ptype.lower() != "data":
                     _scale = self.lumi* 1000.0 #
 
 
-               for name, roothist in histograms:
-                    name = name.decode("utf-8")
+               for name in _file.keys():
                     name = name.replace(";1", "")
-                    print(roothist)
-                    #roothist = self.check_shape(roothist)
+                    roothist = _file[name]
+                    newhist = roothist.to_boost() * _scale
                     
-                    newhist = physt.histogram1d.Histogram1D(
-                        np.abs(roothist.numpy())[1], 
-                        np.abs(roothist.numpy())[0]*_scale, 
-                        errors2=roothist.variances
-                    )
+                    #### merge bins
+                    if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
+                        newhist = newhist[::bh.rebin(self.rebin)]
                     
+                    ####merge bins to specified array
+                    if len(self.rebin_piecewise)!=0 and newhist.values().ndim == 1:#written only for 1D right now
+                         current_bins, current_edges = newhist.to_numpy()
+                         #current_bins = newhist.axes.edges #Confused Chad. This returns a 'boost_histogram.axis.ArrayTuple' which cannot be cast into np,array?
+                         new_freq = self.rebin_piecewise_constant(current_edges, newhist.values(), self.rebin_piecewise)
+                         new_variances = self.rebin_piecewise_constant(current_bins, newhist.variances(), self.rebin_piecewise)
+                         newhist = bh.Histogram(bh.axis.Variable(self.rebin_piecewise),storage=bh.storage.Weight())
+                         newhist[:] = np.stack([new_freq, new_variances], axis=-1)
                     
-                    # select bin per range   
-                    if isinstance(self.binrange, list):
-                        newhist = physt.histogram1d.Histogram1D(
-                            physt.binnings.NumpyBinning(ph_hist.numpy_bins[self.binrange[0]:self.binrange[1]]), 
-                            ph_hist.frequencies[self.binrange[0]:self.binrange[1]], 
-                            errors2=roothist.variances[self.binrange[0]:self.binrange[1]]
-                        ) * _scale
-                        
-                    # merge bins
-                    if self.rebin >= 1:
-                        rebinned_hist = newhist.merge_bins(rebin)
-                        newhist = physt.histogram1d.Histogram1D(
-                            physt.binnings.NumpyBinning(rebinned_hist.numpy_bins),
-                            rebinned_hist.frequencies,
-                            errors2=rebinned_hist.errors2
-                        )
-                    
-                    #merge bins to specified array
-                    self.rebin_piecewise = np.array(self.rebin_piecewise,dtype=int)
-                    if len(self.rebin_piecewise)!=0:
-                        new_freq = self.rebin_piecewise_constant(newhist.numpy_bins, newhist.frequencies, self.rebin_piecewise)
-                        new_errors2 = self.rebin_piecewise_constant(newhist.numpy_bins, newhist.errors2, self.rebin_piecewise)
-                        print ("the new bin array is :", self.rebin_piecewise)
-                        newhist = physt.histogram1d.Histogram1D(
-                            physt.binnings.NumpyBinning(self.rebin_piecewise),
-                            new_freq,
-                            errors2 = new_errors2
-                        )
-                    print(newhist.frequencies)
                     newhist.name = name
                     if name in self.nominal.keys():
                          self.nominal[name] += newhist
@@ -147,17 +97,18 @@ class datagroup:
                          self.systvar.add(re.search("sys_[\w.]+", name).group())
                     except:
                          pass
-
-          if mergecat:
-            # merging the nominal
-            self.merged = {}
-            for syst in self.systvar:
-                m_hist = self.merge_cat(self.nominal, lambda elem: syst in elem[0])
-                self.merged[m_hist[0]] = m_hist
-            m_hist = self.merge_cat(self.nominal, lambda elem: "sys" not in elem[0])
-            self.merged[m_hist[0]] = m_hist
-          else:
-            self.merged = {i: (i, c) for i,c  in self.nominal.items()}
+          #if mergecat:
+          #  # merging the nominal
+          self.merged = {}
+          #  for syst in self.systvar:
+          #      m_hist = self.merge_cat(self.nominal, lambda elem: syst in elem[0])
+          #      self.merged[m_hist[0]] = m_hist
+          #  print(self.nominal)
+          #  print("now elem[0]", elem[0])
+          #  m_hist = self.merge_cat(self.nominal, lambda elem: "sys" not in elem[0])
+          #  self.merged[m_hist[0]] = m_hist
+          #else:
+          self.merged = {i: (i, c) for i,c  in self.nominal.items()}
      
      def check_shape(self, histogram):
           for ibin in range(histogram.numbins+1):
@@ -165,9 +116,9 @@ class datagroup:
                     histogram[ibin] = 0
           return histogram
 
-     def merge_cat(self, hitograms, callback):
+     def merge_cat(self, histograms, callback):
           filtredhist = dict()
-          for (key, value) in hitograms.items():
+          for (key, value) in histograms.items():
                if callback((key, value)):
                     filtredhist[key] = value
           merged_hist = []
@@ -325,10 +276,12 @@ class datacard:
           self.dc_file.append(lines)
 
      def add_observation(self, shape):
-          value = shape.total
+          #value = shape.total
+          value = shape.sum()
+          print(value["value"])
           self.dc_file.append("bin          {0:>10}".format(self.channel))
-          self.dc_file.append("observation  {0:>10}".format(value))
-          self.shape_file["data_obs"] = methods.from_physt(shape)
+          self.dc_file.append("observation  {0:>10}".format(value["value"]))
+          self.shape_file["data_obs"] = methods.from_boost(shape)
 
      def add_nuisance(self, process, name, value):
           if name not in self.nuisances:
@@ -336,9 +289,11 @@ class datacard:
           self.nuisances[name][process] = value
 
      def add_nominal(self, process, shape):
-          value = shape.total
+          #value = shape.total
+          value = shape.sum()["value"]
           self.rates.append((process, value))
-          self.shape_file[process] = methods.from_physt(shape)
+          #self.shape_file[process] = methods.from_physt(shape)
+          self.shape_file[process] = methods.from_boost(shape)
           self.nominal_hist = shape
 
      def add_qcd_scales(self, process, cardname, qcd_scales):
