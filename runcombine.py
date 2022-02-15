@@ -21,24 +21,24 @@ results = []
 for dc in dcards:
     print(" -- making :", dc)
     name= dc.replace("cards-", "")
-    if "SUEP" not in name:
+    if "Graviton" not in name:
         continue
     print(" --- name : ", name)
     os.system("rm -rf cards-{}/combined.dat".format(name))
     os.system(
             "combineCards.py -S "
-            #"catCR12016=cards-{name}/shapes-catCR12016.dat "
-            #"catCR22016=cards-{name}/shapes-catCR22016.dat "
+            "catCR12016=cards-{name}/shapes-catDY2016.dat "
+            "catCR22016=cards-{name}/shapes-catTT2016.dat "
             #"catCR32016=cards-{name}/shapes-catCR32016.dat "
-            #"catSig2016=cards-{name}/shapes-catSig2016.dat "
+            "catSig2016=cards-{name}/shapes-catSig2016.dat "
             #"catCR12017=cards-{name}/shapes-catCR12017.dat "
             #"catCR22017=cards-{name}/shapes-catCR22017.dat "
             #"catCR32017=cards-{name}/shapes-catCR32017.dat "
             #"catSig2017=cards-{name}/shapes-catSig2017.dat "
-            #"catCR12018=cards-{name}/shapes-catCR12018.dat "
+            #"catCR1201=cards-{name}/shapes-catCR12018.dat "
             #"catCR22018=cards-{name}/shapes-catCR22018.dat "
             #"catCR32018=cards-{name}/shapes-catCR32018.dat "
-            "catSig2018=cards-{name}/shapes-catSig2018.dat "
+            #"catSig2018=cards-{name}/shapes-catSig2018.dat "
             "> cards-{name}/combined.dat".format(name=name))
     os.system("text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root".format(name=name))
     command = (

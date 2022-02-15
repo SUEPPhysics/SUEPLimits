@@ -58,7 +58,6 @@ class datagroup:
           for fn in self._files:
                _proc = os.path.basename(fn).replace(".root","")
                _file = uproot.open(fn)
-
                if not _file:
                     raise ValueError("%s is not a valid rootfile" % self.name)
 
@@ -66,7 +65,9 @@ class datagroup:
 
                _scale = 1
                if ptype.lower() != "data":
-                    _scale = self.lumi* 1000.0 #
+                    _scale = self.lumi / 1000000.0 #
+               if 'HIGGS' in self.name:
+                    _scale = self.lumi / 10
 
 
                for name in _file.keys():
