@@ -94,7 +94,6 @@ def main():
             signal = p.name
 
     card_name = "ch"+options.era
-    print (options.channel)
     if isinstance(options.channel, str):
         card_name = options.channel+options.era
 
@@ -116,7 +115,6 @@ def main():
         if p.ptype=="data":
             continue
         card.add_nominal(name, p.get("nom"))
-        
         card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_{}".format(options.era)), lumi_unc[options.era])
        
         #card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("jesTotal") , symmetrise=False)
