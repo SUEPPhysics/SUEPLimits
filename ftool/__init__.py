@@ -4,7 +4,6 @@ import numpy as np
 import uproot
 import os
 import re
-#import physt
 from . import methods
 import boost_histogram as bh
 
@@ -43,6 +42,7 @@ class datagroup:
                   luminosity= 1.0, rebin=1, rebin_piecewise=[], normalise=True,
                   xsections=None, mergecat=True, binrange=None):
           self._files  = files
+          self.observable = observable
           self.name    = name
           self.ptype   = ptype
           self.lumi    = luminosity
@@ -72,6 +72,7 @@ class datagroup:
 
                for name in _file.keys():
                     name = name.replace(";1", "")
+                    if name != self.observable: continue
                     roothist = _file[name]
                     newhist = roothist.to_boost() * _scale
                     
@@ -98,85 +99,16 @@ class datagroup:
                          self.systvar.add(re.search("sys_[\w.]+", name).group())
                     except:
                          pass
-          #if mergecat:
-          #  # merging the nominal
+
           self.merged = {}
-          #  for syst in self.systvar:
-          #      m_hist = self.merge_cat(self.nominal, lambda elem: syst in elem[0])
-          #      self.merged[m_hist[0]] = m_hist
-          #  print(self.nominal)
-          #  print("now elem[0]", elem[0])
-          #  m_hist = self.merge_cat(self.nominal, lambda elem: "sys" not in elem[0])
-          #  self.merged[m_hist[0]] = m_hist
-          #else:
           self.merged = {i: (i, c) for i,c  in self.nominal.items()}
+
      
      def check_shape(self, histogram):
           for ibin in range(histogram.numbins+1):
                if histogram[ibin] < 0:
                     histogram[ibin] = 0
           return histogram
-
-     def merge_cat(self, histograms, callback):
-          filtredhist = dict()
-          for (key, value) in histograms.items():
-               if callback((key, value)):
-                    filtredhist[key] = value
-          merged_hist = []
-          merged_bins = []
-          merged_cent = []
-          first=True
-          #return filtredhist
-          iteration = sorted(
-               filtredhist.items(),
-               key=lambda pair: self.channel.index(pair[0].split("_")[2])
-          )
-          #print("how many histos : ", iteration)
-          for name, h in iteration:
-               
-               if first:
-                    merged_bins = h.numpy_bins
-                    merged_cent = h.bin_centers
-                    merged_hist = h.frequencies
-                    merged_var  = h.errors2
-                    first = False
-               else:
-                    new_bins = h.numpy_bins
-                    new_bin_cent = h.bin_centers
-                    
-                    if merged_bins[-1] == new_bins[-1]:
-                        new_bins = new_bins + merged_bins[-1] + 10
-                    else:
-                        new_bins = new_bins + merged_bins[-1]
-
-                    merged_bins = np.concatenate([merged_bins, new_bins])
-                    merged_cent = np.array([0.5*(merged_bins[i+1] + merged_bins[i]) for i in range(merged_bins.shape[0]-1)])
-                    new_frequencies = h.frequencies
-                    new_frequencies = [0.0, *new_frequencies]
-                    merged_hist = np.concatenate([merged_hist, new_frequencies])
-                    new_error = h.errors2
-                    new_error = [0.0, *new_error]
-                    merged_var = np.concatenate([merged_var, new_error])
-
-          cat = re.search('cat(.*)', name).group().split("_")[0]
-          print("binning : ", merged_bins)
-          print("centers : ", merged_cent)
-          print("histogr : ", merged_hist)
-          print("var     : ", merged_var)
-          physt.binnings.NumpyBinning(merged_cent)
-          physt.binnings.NumpyBinning(merged_bins)
-          if len(merged_hist):
-               new_hist = physt.histogram1d.Histogram1D(
-                   bin_centers = physt.binnings.NumpyBinning(merged_cent),
-                   #bin_centers= merged_cent,
-                   frequencies= merged_hist, 
-                   binning = physt.binnings.NumpyBinning(merged_bins),
-                   errors2 = merged_var
-               )
-
-               return name.replace("_" + cat, ""), new_hist
-          else:
-               return
 
      def get(self, systvar, merged=True):
           shapeUp, shapeDown= None, None
@@ -189,22 +121,6 @@ class datagroup:
                     if "Down" in n:
                          shapeDown= hist[1]
           return (shapeUp, shapeDown)
-
-     def save(self, filename=None, working_dir="fitroom", force=True):
-          if not filename:
-               filename = "histograms-" + self.name + ".root"
-               if "signal" in self.ptype:
-                    filename = filename.replace(self.name, "signal")
-                    self.name = self.name.replace(self.name, "signal")
-          self.outfile = working_dir + "/" + filename
-          if os.path.isdir(self.outfile) or force:
-               fout = uproot.recreate(self.outfile, compression=uproot.ZLIB(4))
-               for name, hist in self.merged.items():
-                    name = name.replace("_sys", "")
-                    if "data" in name:
-                         name = name.replace("data", "data_obs")
-                    fout[name] = uproot_methods.classes.TH1.from_numpy(hist)
-               fout.close()
 
      
      #for rebinning to new array. see: https://github.com/jhykes/rebin (rebin.py) 
@@ -277,12 +193,11 @@ class datacard:
           self.dc_file.append(lines)
 
      def add_observation(self, shape):
-          #value = shape.total
           value = shape.sum()
           print(value["value"])
           self.dc_file.append("bin          {0:>10}".format(self.channel))
           self.dc_file.append("observation  {0:>10}".format(value["value"]))
-          self.shape_file["data_obs"] = methods.from_boost(shape)
+          self.shape_file["data_obs"] = shape
 
      def add_nuisance(self, process, name, value):
           if name not in self.nuisances:
@@ -290,11 +205,9 @@ class datacard:
           self.nuisances[name][process] = value
 
      def add_nominal(self, process, shape):
-          #value = shape.total
           value = shape.sum()["value"]
           self.rates.append((process, value))
-          #self.shape_file[process] = methods.from_physt(shape)
-          self.shape_file[process] = methods.from_boost(shape)
+          self.shape_file[process] = shape
           self.nominal_hist = shape
 
      def add_qcd_scales(self, process, cardname, qcd_scales):
@@ -325,21 +238,17 @@ class datacard:
                         out=np.zeros_like(uncert)*-1, 
                         where=self.nominal_hist.frequencies!=0
                     )
-#                     print(" ---  name : ", self.nominal_hist.name, " : ", process, " : ", cardname)
-#                     print("       up  : ", var_up)
-#                     print("       down: ", var_dw)
-#                     print("corr uncert: ", uncert_r)
                     shapes.append(uncert)
                shapes = np.array(shapes)
                uncert = shapes.max(axis=0)
-               h_uncert = physt.histogram1d.Histogram1D(
-                    self.nominal_hist.binning, uncert,
-                    errors2=np.zeros_like(uncert)
-               )
-               shape = (self.nominal_hist - h_uncert, self.nominal_hist + h_uncert)
+               #h_uncert = physt.histogram1d.Histogram1D(
+               #     self.nominal_hist.binning, uncert,
+               #     errors2=np.zeros_like(uncert)
+               #)
+               shape = (self.nominal_hist - uncert, self.nominal_hist + uncert)
                self.add_nuisance(process, nuisance, 1.0)
-               self.shape_file[process + "_" + cardname + "Up"  ] = methods.from_physt(shape[0])
-               self.shape_file[process + "_" + cardname + "Down"] = methods.from_physt(shape[1])
+               self.shape_file[process + "_" + cardname + "Up"  ] = shape[0]
+               self.shape_file[process + "_" + cardname + "Down"] = shape[1]
           else:
                raise ValueError("add_qcd_scales: the qcd_scales should be a list!")
      def add_custom_shape_nuisance(self, process, cardname, range, vmin=0.1, vmax=10):
@@ -352,8 +261,8 @@ class datacard:
         hist_dw.frequencies[mask(hist_dw)] = hist_dw.frequencies[mask(hist_dw)] * vmax
         self.add_nuisance(process, nuisance, 1.0)
         
-        self.shape_file[process + "_" + cardname + "Up"  ] = methods.from_physt(hist_up)
-        self.shape_file[process + "_" + cardname + "Down"] = methods.from_physt(hist_dw)
+        self.shape_file[process + "_" + cardname + "Up"  ] = hist_up
+        self.shape_file[process + "_" + cardname + "Down"] = hist_dw
   
      def add_shape_nuisance(self, process, cardname, shape, symmetrise=False):
           nuisance = "{:<20} shape".format(cardname)
@@ -366,13 +275,13 @@ class datacard:
                if symmetrise: 
                     uncert = np.maximum(np.abs(self.nominal_hist - shape[0]), 
                                         np.abs(self.nominal_hist - shape[1]))
-                    h_uncert = physt.histogram1d.Histogram1D(
-                         shape[0].binning, uncert, errors2=np.zeros_like(uncert)
-                    )
-                    shape = (self.nominal_hist - h_uncert, self.nominal_hist + h_uncert)
+                    #h_uncert = physt.histogram1d.Histogram1D(
+                    #     shape[0].binning, uncert, errors2=np.zeros_like(uncert)
+                    #)
+                    shape = (self.nominal_hist - uncert, self.nominal_hist + uncert)
                self.add_nuisance(process, nuisance, 1.0)
-               self.shape_file[process + "_" + cardname + "Up"  ] = methods.from_physt(shape[0])
-               self.shape_file[process + "_" + cardname + "Down"] = methods.from_physt(shape[1])
+               self.shape_file[process + "_" + cardname + "Up"  ] = shape[0]
+               self.shape_file[process + "_" + cardname + "Down"] = shape[1]
                if False:
                     draw_ratio(
                          self.nominal_hist,
