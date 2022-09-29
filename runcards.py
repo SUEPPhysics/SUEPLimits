@@ -7,8 +7,8 @@ import shlex
 import numpy as np
 
 
-options_input = "config/SUEP_inputs_{}.yaml"
-
+#options_input = "config/SUEP_inputs_{}.yaml"
+options_input = "config/test_{}.yaml"
 from multiprocessing.pool import ThreadPool
 
 def call_makeDataCard(cmd):
