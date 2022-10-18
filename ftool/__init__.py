@@ -115,15 +115,9 @@ class datagroup:
 
                     for syst in systs:
                         name = ABCD_obs+"_"+syst
-                        #exp_freq = F[syst].values() * F[syst].values().sum()**3 * (G[syst].values().sum() * C[syst].values().sum() / A[syst].values().sum()) * \
-                        #         ((H[syst].values().sum() / E[syst].values().sum())**4) \
-                        #         * (G[syst].values().sum() * F[syst].values().sum() / D[syst].values().sum())**-2 \
-                        #         * (H[syst].values().sum() * C[syst].values().sum() / B[syst].values().sum())**-2
-                        #exp_var = F[syst].variances()#Need to update this.
                         current_bins, current_edges, exp_freq, exp_var = self.ABCD_9regions_errorProp(A=A[syst],B=B[syst],C=C[syst],D=D[syst],E=E[syst],F=F[syst],G=G[syst],H=H[syst])
                         newhist = bh.Histogram(bh.axis.Variable(current_edges),storage=bh.storage.Weight())
                         newhist[:] = np.stack([exp_freq, exp_var], axis=-1)
-                        print(newhist)
 
                         #### merge bins
                         if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
