@@ -29,11 +29,9 @@ def main():
     parser.add_argument("-era", "--era"     , type=str, default="2017")
     parser.add_argument("-f"  , "--force"   , action="store_true")
     parser.add_argument("-ns" , "--nostatuncert", action="store_false")
-    parser.add_argument("--binrange" ,nargs='+', type=int, default=10)
+    parser.add_argument("--binrange" ,nargs='+', type=int, default=100)
     parser.add_argument("--rebin" ,type=int, default=1)
     parser.add_argument("--rebin_piecewise",'--list', nargs='*', help='<Required> Set flag', required=False,default=[])
-    #parser.add_argument("-xs" , "--xsection", type=str, default="config/xsections_ERA.yaml")
-    parser.add_argument("--onexsec", action="store_true")
 
     options = parser.parse_args()
     
@@ -56,14 +54,6 @@ def main():
             print (exc)
 
     xsections = None
-    #with open(options.xsection.replace("ERA", options.era)) as f:
-    #    print(" -- cross section file : ", options.xsection.replace("ERA", options.era))
-    #    try:
-    #        xsections = yaml.safe_load(f.read())
-    #    except yaml.YAMLError as exc:
-    #        print (exc)
-    #if options.onexsec:
-    #    xsections = { s: {'br': 1.0, 'kr': 1.0, 'xsec': 1.0} for s, xs in xsections.items()}
 
     if len(options.channel) == 1:
         options.channel = options.channel[0]
@@ -112,32 +102,21 @@ def main():
 
     for n, p in datasets.items():
         name = "Signal" if p.ptype=="signal" else p.name
-        if p.ptype=="data":
-            continue
+        if p.ptype=="data" and p.name == "data": continue #Skip the data_obs
         card.add_nominal(name, p.get("nom"))
+        if p.ptype=="data": continue #Now that we have expected nom we skip data
+
+        #Add lnN nuisances
         card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_{}".format(options.era)), lumi_unc[options.era])
-       
-        #card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("jesTotal") , symmetrise=False)
-        #card.add_shape_nuisance(name, "CMS_JER_{}".format(options.era), p.get("jer")      , symmetrise=False)
-        
-        if options.era in ['2016','2017']:
-            card.add_shape_nuisance(name, "CMS_pfire_{}".format(options.era), p.get("PrefireWeight"))
-           
-        card.add_shape_nuisance(name, "CMS_PU_{}".format(options.era), p.get("puWeight"  ), symmetrise=False)
-        
-        #QCD scale, PDF and other theory uncertainty
-        #if "QCD" in name:
-        #    card.add_qcd_scales(
-        #        name, "CMS_QCDScale{}_{}".format(name, options.era), 
-        #        [p.get("QCDScale0w"), p.get("QCDScale1w"), p.get("QCDScale2w")]
-        #    )
-        
-        if options.era == '2016':
-            card.add_shape_nuisance(name, "PDF_2016", p.get("PDF"), symmetrise=True)
-        else:
-            card.add_shape_nuisance(name, "PDF_1718", p.get("PDF"), symmetrise=True)
-          
-        card.add_nuisance(name, "{:<21}  lnN".format("UEPS"),  1.020) # Underlying events                         
+
+        #Shape based uncertainties
+        card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JEC_JES"))
+        card.add_shape_nuisance(name, "CMS_JER_{}".format(options.era), p.get("JEC_JER"))
+        card.add_shape_nuisance(name, "CMS_PU_{}".format(options.era), p.get("puweights"))
+        card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"))
+        card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
+        card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
+        card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"))
         
         # define rates
         if name  in ["QCD"]:

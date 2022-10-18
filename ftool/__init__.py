@@ -6,6 +6,7 @@ import os
 import re
 from . import methods
 import boost_histogram as bh
+from sympy import symbols, diff, sqrt
 
 __all__ = ['datacard', 'datagroup', "plot", "methods"]
 
@@ -37,7 +38,7 @@ def draw_ratio(nom, uph, dwh, name):
      plt.savefig("plots/"+name + ".png")
 
 class datagroup:
-     def __init__(self, files, observable="nCleaned_Cands", name = "QCD",
+     def __init__(self, files, observable="SUEP_nconst_Cluster ", name = "QCD",
                   channel="", kfactor=1.0, ptype="background",
                   luminosity= 1.0, rebin=1, rebin_piecewise=[], normalise=True,
                   xsections=None, mergecat=True, binrange=None):
@@ -68,39 +69,115 @@ class datagroup:
                if ptype.lower() != "data":
                     _scale = self.lumi* 1000.0 #
 
+               if self.name == "expected":
+                    systs = [] 
+                    A = {}
+                    B = {}
+                    C = {}
+                    D = {}
+                    E = {}
+                    F = {}
+                    G = {}
+                    H = {}
+                    for name in _file.keys():
+                        name = name.replace(";1", "")
+                        ABCD_obs = self.observable.split("I_")[1]
+                        if "2D" in name: continue
+                        if ABCD_obs not in name: continue
+                        if "up" in name:
+                            sys = name.split("Cluster_")[1]
+                            systs.append(sys)
+                        elif "down" in name: 
+                            sys = name.split("Cluster_")[1]
+                            systs.append(sys)
+                        else: 
+                            sys = ""
+                            systs.append("nom")
 
-               for name in _file.keys():
-                    name = name.replace(";1", "")
-                    if name != self.observable: continue
-                    roothist = _file[name]
-                    newhist = roothist.to_boost() * _scale
-                    
-                    #### merge bins
-                    if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
-                        newhist = newhist[::bh.rebin(self.rebin)]
-                    
-                    ####merge bins to specified array
-                    if len(self.rebin_piecewise)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                         current_bins, current_edges = newhist.to_numpy()
-                         #current_bins = newhist.axes.edges #Confused Chad. This returns a 'boost_histogram.axis.ArrayTuple' which cannot be cast into np,array?
-                         new_freq = self.rebin_piecewise_constant(current_edges, newhist.values(), self.rebin_piecewise)
-                         new_variances = self.rebin_piecewise_constant(current_bins, newhist.variances(), self.rebin_piecewise)
-                         newhist = bh.Histogram(bh.axis.Variable(self.rebin_piecewise),storage=bh.storage.Weight())
-                         newhist[:] = np.stack([new_freq, new_variances], axis=-1)
-                    
-                    newhist.name = name
-                    if name in self.nominal.keys():
-                         self.nominal[name] += newhist
-                    else:
-                         self.nominal[name] = newhist
+                        if "A_"+ABCD_obs == name: A["nom"] = _file["A_"+ABCD_obs].to_boost()
+                        if "B_"+ABCD_obs == name: B["nom"] = _file["B_"+ABCD_obs].to_boost()
+                        if "C_"+ABCD_obs == name: C["nom"] = _file["C_"+ABCD_obs].to_boost()
+                        if "D_"+ABCD_obs == name: D["nom"] = _file["D_"+ABCD_obs].to_boost()
+                        if "E_"+ABCD_obs == name: E["nom"] = _file["E_"+ABCD_obs].to_boost()
+                        if "F_"+ABCD_obs == name: F["nom"] = _file["F_"+ABCD_obs].to_boost()
+                        if "G_"+ABCD_obs == name: G["nom"] = _file["G_"+ABCD_obs].to_boost()
+                        if "H_"+ABCD_obs == name: H["nom"] = _file["H_"+ABCD_obs].to_boost()
 
-                    try:
-                         self.systvar.add(re.search("sys_[\w.]+", name).group())
-                    except:
-                         pass
+                        if "A_"+ABCD_obs+"_"+sys == name: A[sys] = _file["A_"+ABCD_obs+"_"+sys].to_boost()
+                        if "B_"+ABCD_obs+"_"+sys == name: B[sys] = _file["B_"+ABCD_obs+"_"+sys].to_boost()
+                        if "C_"+ABCD_obs+"_"+sys == name: C[sys] = _file["C_"+ABCD_obs+"_"+sys].to_boost()
+                        if "D_"+ABCD_obs+"_"+sys == name: D[sys] = _file["D_"+ABCD_obs+"_"+sys].to_boost()
+                        if "E_"+ABCD_obs+"_"+sys == name: E[sys] = _file["E_"+ABCD_obs+"_"+sys].to_boost()
+                        if "F_"+ABCD_obs+"_"+sys == name: F[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
+                        if "G_"+ABCD_obs+"_"+sys == name: G[sys] = _file["G_"+ABCD_obs+"_"+sys].to_boost()
+                        if "H_"+ABCD_obs+"_"+sys == name: H[sys] = _file["H_"+ABCD_obs+"_"+sys].to_boost()
+
+
+                    for syst in systs:
+                        name = ABCD_obs+"_"+syst
+                        current_bins, current_edges, exp_freq, exp_var = self.ABCD_9regions_errorProp(A=A[syst],B=B[syst],C=C[syst],D=D[syst],E=E[syst],F=F[syst],G=G[syst],H=H[syst])
+                        newhist = bh.Histogram(bh.axis.Variable(current_edges),storage=bh.storage.Weight())
+                        newhist[:] = np.stack([exp_freq, exp_var], axis=-1)
+
+                        #### merge bins
+                        if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
+                            newhist = newhist[::bh.rebin(self.rebin)]
+                        
+                        ####merge bins to specified array
+                        if len(self.rebin_piecewise)!=0 and newhist.values().ndim == 1:#written only for 1D right now
+                             current_bins, current_edges = newhist.to_numpy()
+                             #current_bins = newhist.axes.edges #Confused Chad. This returns a 'boost_histogram.axis.ArrayTuple' which cannot be cast into np,array?
+                             new_freq = self.rebin_piecewise_constant(current_edges, newhist.values(), self.rebin_piecewise)
+                             new_variances = self.rebin_piecewise_constant(current_bins, newhist.variances(), self.rebin_piecewise)
+                             newhist = bh.Histogram(bh.axis.Variable(self.rebin_piecewise),storage=bh.storage.Weight())
+                             newhist[:] = np.stack([new_freq, new_variances], axis=-1)
+                        
+                        newhist.name = name
+                        if name in self.nominal.keys():
+                             self.nominal[name] += newhist
+                        else:
+                             self.nominal[name] = newhist
+
+                        try:
+                             self.systvar.add(re.search("sys_[\w.]+", name).group())
+                        except:
+                             pass
+
+
+               else:
+                    for name in _file.keys():
+                        name = name.replace(";1", "")
+                        if self.observable not in name: continue
+                        roothist = _file[name]
+                        newhist = roothist.to_boost() * _scale
+                    
+                        #### merge bins
+                        if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
+                            newhist = newhist[::bh.rebin(self.rebin)]
+                        
+                        ####merge bins to specified array
+                        if len(self.rebin_piecewise)!=0 and newhist.values().ndim == 1:#written only for 1D right now
+                             current_bins, current_edges = newhist.to_numpy()
+                             #current_bins = newhist.axes.edges #Confused Chad. This returns a 'boost_histogram.axis.ArrayTuple' which cannot be cast into np,array?
+                             new_freq = self.rebin_piecewise_constant(current_edges, newhist.values(), self.rebin_piecewise)
+                             new_variances = self.rebin_piecewise_constant(current_bins, newhist.variances(), self.rebin_piecewise)
+                             newhist = bh.Histogram(bh.axis.Variable(self.rebin_piecewise),storage=bh.storage.Weight())
+                             newhist[:] = np.stack([new_freq, new_variances], axis=-1)
+                        
+                        newhist.name = name
+                        if name in self.nominal.keys():
+                             self.nominal[name] += newhist
+                        else:
+                             self.nominal[name] = newhist
+
+                        try:
+                             self.systvar.add(re.search("sys_[\w.]+", name).group())
+                        except:
+                             pass
 
           self.merged = {}
           self.merged = {i: (i, c) for i,c  in self.nominal.items()}
+
 
      
      def check_shape(self, histogram):
@@ -112,15 +189,59 @@ class datagroup:
      def get(self, systvar, merged=True):
           shapeUp, shapeDown= None, None
           for n, hist in self.merged.items():
-               if "sys" not in n and systvar=="nom":
+               #if "JEC" in n: continue
+               if "up" not in n and "down" not in n and systvar=="nom":
                     return hist[1]
                elif systvar in n:
-                    if "Up" in n:
+                    if "up" in n:
                          shapeUp = hist[1]
-                    if "Down" in n:
+                    if "down" in n:
                          shapeDown= hist[1]
           return (shapeUp, shapeDown)
 
+     def ABCD_9regions_errorProp(self, A, B, C, D, E, F, G, H):
+         """
+         Does 9 region ABCD using error propagation of the statistical
+         uncerantities of the regions. We need to scale histogram F or H
+         by some factor 'alpha' (defined in exp). For example, for F,
+         the new variance is:
+         variance = F_value**2 * sigma_alpha**2 + alpha**2 * F_variance**2
+         """
+
+         # define the scaling factor function
+         a, b, c, d, e, f, g, h = symbols('A B C D E F G H')
+         sum_var = 'x'
+         if sum_var == 'x':#currently nconst 
+              exp = f * h**2 * d**2 * b**2 * g**-1 * c**-1 * a**-1 * e**-4
+              SR_exp = F.copy()
+              current_bins, current_edges = F.to_numpy()
+         elif sum_var == 'y':#currently S1
+              exp = h * d**2 * b**2 * f**2 * g**-1 * c**-1 * a**-1 * e**-4
+              SR_exp = H.copy()
+              current_bins, current_edges = H.to_numpy()
+         # defines lists of variables (sympy symbols) and accumulators (hist.sum())
+         variables = [a, b, c, d, e, f, g, h]
+         accs = [A.sum(), B.sum(), C.sum(), D.sum(),
+                 E.sum(), F.sum(), G.sum(), H.sum()] 
+         # calculate scaling factor by substituting values of the histograms' sums for the sympy symbols
+         alpha = exp.copy()
+         for var, acc in zip(variables, accs):
+             alpha = alpha.subs(var, acc.value)
+             
+         # calculate the error on the scaling factor
+         variance = 0
+         for var, acc in zip(variables, accs):
+             der = diff(exp, var)
+             var = abs(acc.variance)
+             variance += der**2 * var
+         for var, acc in zip(variables, accs):
+             variance = variance.subs(var, acc.value)
+         sigma_alpha = sqrt(variance)
+
+         # define SR_exp and propagate the error on the scaling factor to the bin variances
+         new_val = SR_exp.values() * alpha
+         new_var = SR_exp.values()**2 * float(sigma_alpha)**2 + float(alpha)**2 * abs(SR_exp.variances())
+         return current_bins, current_edges, new_val, new_var
      
      #for rebinning to new array. see: https://github.com/jhykes/rebin (rebin.py) 
      def rebin_piecewise_constant(self,x1, y1, x2):
@@ -193,7 +314,6 @@ class datacard:
 
      def add_observation(self, shape):
           value = shape.sum()
-          print(value["value"])
           self.dc_file.append("bin          {0:>10}".format(self.channel))
           self.dc_file.append("observation  {0:>10}".format(value["value"]))
           self.shape_file["data_obs"] = shape
@@ -250,6 +370,7 @@ class datacard:
                self.shape_file[process + "_" + cardname + "Down"] = shape[1]
           else:
                raise ValueError("add_qcd_scales: the qcd_scales should be a list!")
+
      def add_custom_shape_nuisance(self, process, cardname, range, vmin=0.1, vmax=10):
         nuisance = "{:<20} shape".format(cardname)
         hist_up = self.nominal_hist.copy()
@@ -263,29 +384,17 @@ class datacard:
         self.shape_file[process + "_" + cardname + "Up"  ] = hist_up
         self.shape_file[process + "_" + cardname + "Down"] = hist_dw
   
-     def add_shape_nuisance(self, process, cardname, shape, symmetrise=False):
+     def add_shape_nuisance(self, process, cardname, shape):
           nuisance = "{:<20} shape".format(cardname)
           if shape[0] is not None and (
-                    (shape[0].frequencies[shape[0].frequencies>0].shape[0]) and
-                    (shape[1].frequencies[shape[1].frequencies>0].shape[0])
+                    (shape[0].values()[shape[0].values()>0].shape[0]) and
+                    (shape[1].values()[shape[1].values()>0].shape[0])
           ):
                if shape[0] == shape[1]:
                     shape = (2 * self.nominal_hist - shape[0], shape[1])
-               if symmetrise: 
-                    uncert = np.maximum(np.abs(self.nominal_hist - shape[0]), 
-                                        np.abs(self.nominal_hist - shape[1]))
-                    #h_uncert = physt.histogram1d.Histogram1D(
-                    #     shape[0].binning, uncert, errors2=np.zeros_like(uncert)
-                    #)
-                    shape = (self.nominal_hist - uncert, self.nominal_hist + uncert)
                self.add_nuisance(process, nuisance, 1.0)
                self.shape_file[process + "_" + cardname + "Up"  ] = shape[0]
                self.shape_file[process + "_" + cardname + "Down"] = shape[1]
-               if False:
-                    draw_ratio(
-                         self.nominal_hist,
-                         shape[0], shape[1], process + cardname
-                    )
 
      def add_rate_param(self, name, channel, process, vmin=0.1, vmax=10):
           # name rateParam bin process initial_value [min,max]
