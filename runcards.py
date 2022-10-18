@@ -8,7 +8,7 @@ import numpy as np
 
 
 #options_input = "config/SUEP_inputs_{}.yaml"
-options_input = "config/test_{}.yaml"
+options_input = "config/luca_{}.yaml"
 from multiprocessing.pool import ThreadPool
 
 def call_makeDataCard(cmd):
@@ -21,7 +21,7 @@ def call_makeDataCard(cmd):
 
 pool = ThreadPool(multiprocessing.cpu_count())
 results = []
-new_bins = '0 20 50 100 600'
+new_bins = '0.5 0.75 1'
 for year in [2018]:
 #for year in [2016,2017]:
     with open(options_input.format(year)) as f:
@@ -34,11 +34,11 @@ for year in [2018]:
         if "SUEP" not in n: continue
         print(" ===== processing : ", n, sam, year)
         cmd_sr = "python3 makeDataCard.py --channel catSig "
-        cmd_sr += "--variable SUEP_ch_nconst "
-        cmd_sr += "--stack {signal} QCD data "
-        cmd_sr += "--rebin_piecewise " + new_bins + " "
-        #cmd_sr += "--rebin 4 " 
-        cmd_sr += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
+        cmd_sr += "--variable I_SUEP_nconst_Cluster "
+        cmd_sr += "--stack {signal} expected data "
+        #cmd_sr += "--rebin_piecewise " + new_bins + " "
+        cmd_sr += "--rebin 25 " 
+        cmd_sr += "--input=config/luca_{era}.yaml --era={era}"
         cmd_sr = cmd_sr.format(signal=n, era=year)
         
         #cmd_cr1 = "python3 makeDataCard.py --channel catCR1 "

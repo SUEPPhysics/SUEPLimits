@@ -29,7 +29,7 @@ def main():
     parser.add_argument("-era", "--era"     , type=str, default="2017")
     parser.add_argument("-f"  , "--force"   , action="store_true")
     parser.add_argument("-ns" , "--nostatuncert", action="store_false")
-    parser.add_argument("--binrange" ,nargs='+', type=int, default=10)
+    parser.add_argument("--binrange" ,nargs='+', type=int, default=100)
     parser.add_argument("--rebin" ,type=int, default=1)
     parser.add_argument("--rebin_piecewise",'--list', nargs='*', help='<Required> Set flag', required=False,default=[])
 
@@ -102,21 +102,21 @@ def main():
 
     for n, p in datasets.items():
         name = "Signal" if p.ptype=="signal" else p.name
-        print("what am I looking at",p.name)
-        if p.ptype=="data" and p.name == "data":
-            continue
+        if p.ptype=="data" and p.name == "data": continue #Skip the data_obs
         card.add_nominal(name, p.get("nom"))
+        if p.ptype=="data": continue #Now that we have expected nom we skip data
+
+        #Add lnN nuisances
         card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_{}".format(options.era)), lumi_unc[options.era])
 
         #Shape based uncertainties
-        #card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JEC_JES") , symmetrise=False)
-        #card.add_shape_nuisance(name, "CMS_JER_{}".format(options.era), p.get("JEC_JER")      , symmetrise=False)
-        card.add_shape_nuisance(name, "CMS_PU_{}".format(options.era), p.get("puweights"  ), symmetrise=False)
-        card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"  ), symmetrise=False)
-        card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"  ), symmetrise=False)
-        card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"  ), symmetrise=False)
-        card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("trackDOWN"  ), symmetrise=False)
-
+        card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JEC_JES"))
+        card.add_shape_nuisance(name, "CMS_JER_{}".format(options.era), p.get("JEC_JER"))
+        card.add_shape_nuisance(name, "CMS_PU_{}".format(options.era), p.get("puweights"))
+        card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"))
+        card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
+        card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
+        card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"))
         
         # define rates
         if name  in ["QCD"]:

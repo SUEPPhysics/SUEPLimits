@@ -6,6 +6,7 @@ import os
 import re
 from . import methods
 import boost_histogram as bh
+from sympy import symbols, diff, sqrt
 
 __all__ = ['datacard', 'datagroup', "plot", "methods"]
 
@@ -65,19 +66,22 @@ class datagroup:
                histograms = None
 
                _scale = 1
-               print(self.name,ptype)
                if ptype.lower() != "data":
                     _scale = self.lumi* 1000.0 #
 
                if self.name == "expected":
                     systs = [] 
-                    A = B = C = D = E = F = G = H = {}
+                    A = {}
+                    B = {}
+                    C = {}
+                    D = {}
+                    E = {}
+                    F = {}
+                    G = {}
+                    H = {}
                     for name in _file.keys():
                         name = name.replace(";1", "")
                         ABCD_obs = self.observable.split("I_")[1]
-                        if "UP" in name: continue
-                        if "DOWN" in name: continue
-                        if "JEC" in name: continue
                         if "2D" in name: continue
                         if ABCD_obs not in name: continue
                         if "up" in name:
@@ -86,10 +90,9 @@ class datagroup:
                         elif "down" in name: 
                             sys = name.split("Cluster_")[1]
                             systs.append(sys)
-                        else: #continue 
+                        else: 
                             sys = ""
                             systs.append("nom")
-
 
                         if "A_"+ABCD_obs == name: A["nom"] = _file["A_"+ABCD_obs].to_boost()
                         if "B_"+ABCD_obs == name: B["nom"] = _file["B_"+ABCD_obs].to_boost()
@@ -100,25 +103,27 @@ class datagroup:
                         if "G_"+ABCD_obs == name: G["nom"] = _file["G_"+ABCD_obs].to_boost()
                         if "H_"+ABCD_obs == name: H["nom"] = _file["H_"+ABCD_obs].to_boost()
 
-                        if "A_"+ABCD_obs+"_"+sys in name: A[sys] = _file["A_"+ABCD_obs+"_"+sys].to_boost()
-                        if "B_"+ABCD_obs+"_"+sys in name: B[sys] = _file["B_"+ABCD_obs+"_"+sys].to_boost()                      
-                        if "C_"+ABCD_obs+"_"+sys in name: C[sys] = _file["C_"+ABCD_obs+"_"+sys].to_boost()
-                        if "D_"+ABCD_obs+"_"+sys in name: D[sys] = _file["D_"+ABCD_obs+"_"+sys].to_boost()
-                        if "E_"+ABCD_obs+"_"+sys in name: E[sys] = _file["E_"+ABCD_obs+"_"+sys].to_boost()
-                        if "F_"+ABCD_obs+"_"+sys in name: F[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
-                        if "G_"+ABCD_obs+"_"+sys in name: G[sys] = _file["G_"+ABCD_obs+"_"+sys].to_boost()
-                        if "H_"+ABCD_obs+"_"+sys in name: H[sys] = _file["H_"+ABCD_obs+"_"+sys].to_boost()
+                        if "A_"+ABCD_obs+"_"+sys == name: A[sys] = _file["A_"+ABCD_obs+"_"+sys].to_boost()
+                        if "B_"+ABCD_obs+"_"+sys == name: B[sys] = _file["B_"+ABCD_obs+"_"+sys].to_boost()
+                        if "C_"+ABCD_obs+"_"+sys == name: C[sys] = _file["C_"+ABCD_obs+"_"+sys].to_boost()
+                        if "D_"+ABCD_obs+"_"+sys == name: D[sys] = _file["D_"+ABCD_obs+"_"+sys].to_boost()
+                        if "E_"+ABCD_obs+"_"+sys == name: E[sys] = _file["E_"+ABCD_obs+"_"+sys].to_boost()
+                        if "F_"+ABCD_obs+"_"+sys == name: F[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
+                        if "G_"+ABCD_obs+"_"+sys == name: G[sys] = _file["G_"+ABCD_obs+"_"+sys].to_boost()
+                        if "H_"+ABCD_obs+"_"+sys == name: H[sys] = _file["H_"+ABCD_obs+"_"+sys].to_boost()
+
 
                     for syst in systs:
                         name = ABCD_obs+"_"+syst
-                        current_bins, current_edges = F[syst].to_numpy()
-                        exp_freq = F[syst].values() #* F[syst].values().sum()**3 * (G[syst].values().sum() * C[syst].values().sum() / A[syst].values().sum()) * \
-                                 #((H[syst].values().sum() / E[syst].values().sum())**4) \
-                                 #* (G[syst].values().sum() * F[syst].values().sum() / D[syst].values().sum())**-2 \
-                                 #* (H[syst].values().sum() * C[syst].values().sum() / B[syst].values().sum())**-2
-                        exp_var = F[syst].variances()
+                        #exp_freq = F[syst].values() * F[syst].values().sum()**3 * (G[syst].values().sum() * C[syst].values().sum() / A[syst].values().sum()) * \
+                        #         ((H[syst].values().sum() / E[syst].values().sum())**4) \
+                        #         * (G[syst].values().sum() * F[syst].values().sum() / D[syst].values().sum())**-2 \
+                        #         * (H[syst].values().sum() * C[syst].values().sum() / B[syst].values().sum())**-2
+                        #exp_var = F[syst].variances()#Need to update this.
+                        current_bins, current_edges, exp_freq, exp_var = self.ABCD_9regions_errorProp(A=A[syst],B=B[syst],C=C[syst],D=D[syst],E=E[syst],F=F[syst],G=G[syst],H=H[syst])
                         newhist = bh.Histogram(bh.axis.Variable(current_edges),storage=bh.storage.Weight())
                         newhist[:] = np.stack([exp_freq, exp_var], axis=-1)
+                        print(newhist)
 
                         #### merge bins
                         if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
@@ -190,9 +195,7 @@ class datagroup:
      def get(self, systvar, merged=True):
           shapeUp, shapeDown= None, None
           for n, hist in self.merged.items():
-               if "trackUP" in n: continue #Remove after Luca fix
-               if "trackDOWN" in n: continue #Remove after Luca fix
-               if "JEC" in n: continue
+               #if "JEC" in n: continue
                if "up" not in n and "down" not in n and systvar=="nom":
                     return hist[1]
                elif systvar in n:
@@ -202,6 +205,49 @@ class datagroup:
                          shapeDown= hist[1]
           return (shapeUp, shapeDown)
 
+     def ABCD_9regions_errorProp(self, A, B, C, D, E, F, G, H):
+         """
+         Does 9 region ABCD using error propagation of the statistical
+         uncerantities of the regions. We need to scale histogram F or H
+         by some factor 'alpha' (defined in exp). For example, for F,
+         the new variance is:
+         variance = F_value**2 * sigma_alpha**2 + alpha**2 * F_variance**2
+         """
+
+         # define the scaling factor function
+         a, b, c, d, e, f, g, h = symbols('A B C D E F G H')
+         sum_var = 'x'
+         if sum_var == 'x':#currently nconst 
+              exp = f * h**2 * d**2 * b**2 * g**-1 * c**-1 * a**-1 * e**-4
+              SR_exp = F.copy()
+              current_bins, current_edges = F.to_numpy()
+         elif sum_var == 'y':#currently S1
+              exp = h * d**2 * b**2 * f**2 * g**-1 * c**-1 * a**-1 * e**-4
+              SR_exp = H.copy()
+              current_bins, current_edges = H.to_numpy()
+         # defines lists of variables (sympy symbols) and accumulators (hist.sum())
+         variables = [a, b, c, d, e, f, g, h]
+         accs = [A.sum(), B.sum(), C.sum(), D.sum(),
+                 E.sum(), F.sum(), G.sum(), H.sum()] 
+         # calculate scaling factor by substituting values of the histograms' sums for the sympy symbols
+         alpha = exp.copy()
+         for var, acc in zip(variables, accs):
+             alpha = alpha.subs(var, acc.value)
+             
+         # calculate the error on the scaling factor
+         variance = 0
+         for var, acc in zip(variables, accs):
+             der = diff(exp, var)
+             var = abs(acc.variance)
+             variance += der**2 * var
+         for var, acc in zip(variables, accs):
+             variance = variance.subs(var, acc.value)
+         sigma_alpha = sqrt(variance)
+
+         # define SR_exp and propagate the error on the scaling factor to the bin variances
+         new_val = SR_exp.values() * alpha
+         new_var = SR_exp.values()**2 * float(sigma_alpha)**2 + float(alpha)**2 * abs(SR_exp.variances())
+         return current_bins, current_edges, new_val, new_var
      
      #for rebinning to new array. see: https://github.com/jhykes/rebin (rebin.py) 
      def rebin_piecewise_constant(self,x1, y1, x2):
@@ -344,7 +390,7 @@ class datacard:
         self.shape_file[process + "_" + cardname + "Up"  ] = hist_up
         self.shape_file[process + "_" + cardname + "Down"] = hist_dw
   
-     def add_shape_nuisance(self, process, cardname, shape, symmetrise=False):
+     def add_shape_nuisance(self, process, cardname, shape):
           nuisance = "{:<20} shape".format(cardname)
           if shape[0] is not None and (
                     (shape[0].values()[shape[0].values()>0].shape[0]) and
@@ -352,10 +398,6 @@ class datacard:
           ):
                if shape[0] == shape[1]:
                     shape = (2 * self.nominal_hist - shape[0], shape[1])
-               if symmetrise: 
-                    uncert = np.maximum(np.abs(self.nominal_hist - shape[0]), 
-                                        np.abs(self.nominal_hist - shape[1]))
-                    shape = (self.nominal_hist - uncert, self.nominal_hist + uncert)
                self.add_nuisance(process, nuisance, 1.0)
                self.shape_file[process + "_" + cardname + "Up"  ] = shape[0]
                self.shape_file[process + "_" + cardname + "Down"] = shape[1]
