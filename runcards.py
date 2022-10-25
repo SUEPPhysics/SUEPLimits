@@ -36,7 +36,7 @@ for year in [2018]:
         cmd_sr += "--stack {signal} expected data "
         #cmd_sr += "--rebin_piecewise " + new_bins + " "
         cmd_sr += "--rebin 25 " 
-        cmd_sr += "--input=config/luca_{era}.yaml --era={era}"
+        cmd_sr += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_sr = cmd_sr.format(signal=n, era=year)
         
         #cmd_cr1 = "python3 makeDataCard.py --channel catCR1 "
