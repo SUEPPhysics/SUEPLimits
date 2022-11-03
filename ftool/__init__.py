@@ -40,7 +40,7 @@ def draw_ratio(nom, uph, dwh, name):
 class datagroup:
      def __init__(self, files, observable="SUEP_nconst_Cluster ", name = "QCD",
                   channel="", kfactor=1.0, ptype="background",
-                  luminosity= 1.0, rebin=1, rebin_piecewise=[], normalise=True,
+                  luminosity= 1.0, rebin=1, bins=[], normalise=True,
                   xsections=None, mergecat=True, binrange=None):
           self._files  = files
           self.observable = observable
@@ -53,7 +53,7 @@ class datagroup:
           self.nominal = {}
           self.systvar = set()
           self.rebin   = rebin
-          self.rebin_piecewise = np.array(rebin_piecewise).astype(np.float)
+          self.bins = np.array(bins).astype(np.float)
           self.binrange= binrange # dropping bins the same way as droping elements in numpy arrays a[1:3]
 
           for fn in self._files:
@@ -124,8 +124,8 @@ class datagroup:
                             newhist = newhist[::bh.rebin(self.rebin)]
                         
                         ####merge bins to specified array
-                        if len(self.rebin_piecewise)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                            newhist = rebin(hist, self.rebin_piecewise, 'bh')
+                        if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
+                            newhist = self.rebin_piecewise(hist, self.bins, 'bh')
                         
                         newhist.name = name
                         if name in self.nominal.keys():
@@ -151,8 +151,8 @@ class datagroup:
                             newhist = newhist[::bh.rebin(self.rebin)]
                         
                         ####merge bins to specified array
-                        if len(self.rebin_piecewise)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                            newhist = rebin(hist, self.rebin_piecewise, 'bh')
+                        if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
+                            newhist = self.rebin_piecewise(hist, self.bins, 'bh')
                         
                         newhist.name = name
                         if name in self.nominal.keys():
