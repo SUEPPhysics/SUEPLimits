@@ -34,7 +34,7 @@ for year in [2018]:
         cmd_sr = "python3 makeDataCard.py --channel catSig "
         cmd_sr += "--variable I_SUEP_nconst_Cluster "
         cmd_sr += "--stack {signal} expected data "
-        #cmd_sr += "--rebin_piecewise " + new_bins + " "
+        #cmd_sr += "--bins " + new_bins + " "
         cmd_sr += "--rebin 25 " 
         cmd_sr += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_sr = cmd_sr.format(signal=n, era=year)
@@ -43,7 +43,7 @@ for year in [2018]:
         #cmd_cr1 += "--variable nCleaned_Cands "
         #cmd_cr1 += "--stack {signal} QCD --binrange 1 20 "
         ##cmd_cr1 += "--stack {signal} QCD data --binrange 1 20 "#We need data first
-        ##cmd_cr1 += "--rebin_piecewise " + new_bins 
+        ##cmd_cr1 += "--bins " + new_bins 
         #cmd_cr1 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         #cmd_cr1 = cmd_cr1.format(signal=n, era=year)
         
@@ -51,7 +51,7 @@ for year in [2018]:
         #cmd_cr2 += "--variable nCleaned_Cands "
         #cmd_cr2 += "--stack {signal} QCD --binrange 1 20 "
         ##cmd_cr2 += "--stack {signal} QCD data --binrange 1 20 "#We need data first
-        ##cmd_cr2 += "--rebin_piecewise " + new_bins 
+        ##cmd_cr2 += "--bins " + new_bins 
         #cmd_cr2 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         #cmd_cr2 = cmd_cr2.format(signal=n, era=year)
         
@@ -59,7 +59,7 @@ for year in [2018]:
         #cmd_cr3 += "--variable nCleaned_Cands "
         #cmd_cr3 += "--stack {signal} QCD --binrange 1 20 "
         ##cmd_cr3 += "--stack {signal} QCD data --binrange 1 20 "#We need data first
-        ##cmd_cr3 += "--rebin_piecewise " + new_bins 
+        ##cmd_cr3 += "--bins " + new_bins 
         #cmd_cr3 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         #cmd_cr3 = cmd_cr3.format(signal=n, era=year)
         

@@ -31,7 +31,7 @@ def main():
     parser.add_argument("-ns" , "--nostatuncert", action="store_false")
     parser.add_argument("--binrange" ,nargs='+', type=int, default=100)
     parser.add_argument("--rebin" ,type=int, default=1)
-    parser.add_argument("--rebin_piecewise",'--list', nargs='*', help='<Required> Set flag', required=False,default=[])
+    parser.add_argument("--bins",'--list', nargs='*', help='<Required> Set flag', required=False,default=[])
 
     options = parser.parse_args()
     
@@ -74,7 +74,7 @@ def main():
             xsections  = xsections,
             channel    = options.channel,
             rebin      = options.rebin,
-            rebin_piecewise = options.rebin_piecewise,
+            bins = options.bins,
             binrange   = options.binrange,
             luminosity = lumis[options.era]
         )
