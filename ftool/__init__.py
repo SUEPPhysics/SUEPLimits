@@ -233,7 +233,7 @@ class datagroup:
          new_var = SR_exp.values()**2 * float(sigma_alpha)**2 + float(alpha)**2 * abs(SR_exp.variances())
          return current_bins, current_edges, new_val, new_var
      
-    def rebin(h_in, bins, histtype='hist'):
+    def rebin_piecewise(h_in, bins, histtype='hist'):
         """
         Inputs:
             h : histogram
