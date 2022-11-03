@@ -125,12 +125,7 @@ class datagroup:
                         
                         ####merge bins to specified array
                         if len(self.rebin_piecewise)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                             current_bins, current_edges = newhist.to_numpy()
-                             #current_bins = newhist.axes.edges #Confused Chad. This returns a 'boost_histogram.axis.ArrayTuple' which cannot be cast into np,array?
-                             new_freq = self.rebin_piecewise_constant(current_edges, newhist.values(), self.rebin_piecewise)
-                             new_variances = self.rebin_piecewise_constant(current_bins, newhist.variances(), self.rebin_piecewise)
-                             newhist = bh.Histogram(bh.axis.Variable(self.rebin_piecewise),storage=bh.storage.Weight())
-                             newhist[:] = np.stack([new_freq, new_variances], axis=-1)
+                            newhist = rebin(hist, self.rebin_piecewise, 'bh')
                         
                         newhist.name = name
                         if name in self.nominal.keys():
@@ -157,12 +152,7 @@ class datagroup:
                         
                         ####merge bins to specified array
                         if len(self.rebin_piecewise)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                             current_bins, current_edges = newhist.to_numpy()
-                             #current_bins = newhist.axes.edges #Confused Chad. This returns a 'boost_histogram.axis.ArrayTuple' which cannot be cast into np,array?
-                             new_freq = self.rebin_piecewise_constant(current_edges, newhist.values(), self.rebin_piecewise)
-                             new_variances = self.rebin_piecewise_constant(current_bins, newhist.variances(), self.rebin_piecewise)
-                             newhist = bh.Histogram(bh.axis.Variable(self.rebin_piecewise),storage=bh.storage.Weight())
-                             newhist[:] = np.stack([new_freq, new_variances], axis=-1)
+                            newhist = rebin(hist, self.rebin_piecewise, 'bh')
                         
                         newhist.name = name
                         if name in self.nominal.keys():
@@ -243,43 +233,50 @@ class datagroup:
          new_var = SR_exp.values()**2 * float(sigma_alpha)**2 + float(alpha)**2 * abs(SR_exp.variances())
          return current_bins, current_edges, new_val, new_var
      
-     #for rebinning to new array. see: https://github.com/jhykes/rebin (rebin.py) 
-     def rebin_piecewise_constant(self,x1, y1, x2):
-          x1 = np.asarray(x1)
-          y1 = np.asarray(y1)
-          x2 = np.asarray(x2)
+    def rebin(h_in, bins, histtype='hist'):
+        """
+        Inputs:
+            h : histogram
+            bins: list of bins as real numbers
+            histtype: one of allowed_histtypes to return
 
-          # the fractional bin locations of the new bins in the old bins
-          i_place = np.interp(x2, x1, np.arange(len(x1)))
-          cum_sum = np.r_[[0], np.cumsum(y1)]
-            
-          # calculate bins where lower and upper bin edges span
-          # greater than or equal to one original bin.
-          # This is the contribution from the 'intact' bins (not including the
-          # fractional start and end parts.
-          whole_bins = np.floor(i_place[1:]) - np.ceil(i_place[:-1]) >= 1.
-          start = cum_sum[np.ceil(i_place[:-1]).astype(int)]
-          finish = cum_sum[np.floor(i_place[1:]).astype(int)]
-          y2 = np.where(whole_bins, finish - start, 0.)
-          bin_loc = np.clip(np.floor(i_place).astype(int), 0, len(y1) - 1)
-        
-          # fractional contribution for bins where the new bin edges are in the same
-          # original bin.
-          same_cell = np.floor(i_place[1:]) == np.floor(i_place[:-1])
-          frac = i_place[1:] - i_place[:-1]
-          contrib = (frac * y1[bin_loc[:-1]])
-          y2 += np.where(same_cell, contrib, 0.)
-        
-          # fractional contribution for bins where the left and right bin edges are in
-          # different original bins.
-          different_cell = np.floor(i_place[1:]) > np.floor(i_place[:-1])
-          frac_left = np.ceil(i_place[:-1]) - i_place[:-1]
-          contrib = (frac_left * y1[bin_loc[:-1]])
-          frac_right = i_place[1:] - np.floor(i_place[1:])
-          contrib += (frac_right * y1[bin_loc[1:]])
-          y2 += np.where(different_cell, contrib, 0.)
-        
-          return y2
+        Returns:
+            h_out: a histogram of type 'histtype', rebinned according to desired bins
+        """
+
+        # only 1D hists supported for now
+        if len(h_in.shape) != 1:
+            raise Exception("Only 1D hists supported for now")
+
+        # only hist and bh supported
+        allowed_histtypes = ['hist', 'bh']
+        if histtype not in allowed_histtypes:
+            raise Exception("histtype in not in allowed_histtypes")
+
+        # check that the bins are real numbers
+        if any([x.imag != 0 for x in bins]):
+            raise Exception("Only pass real-valued bins")
+
+        # split the histogram by the bins
+        # and for each bin, calculate total amount of events and variance
+        z_vals, z_vars = [], []
+        for iBin in range(len(bins)-1): 
+            bin_lo = bins[iBin]*1.0j
+            bin_hi = bins[iBin+1]*1.0j
+            h_fragment = h_in[bin_lo:bin_hi]
+            z_vals.append(h_fragment.sum().value)
+            z_vars.append(h_fragment.sum().variance)
+
+        # fill the histograms
+        if histtype == 'hist':
+            h_out = hist.Hist(hist.axis.Variable(bins), storage=hist.storage.Weight())
+            h_out[:] = np.stack([z_vals, np.sqrt(z_vars)], axis=-1)
+
+        elif histtype == 'bh':
+            h_out = bh.Histogram(bh.axis.Variable(bins), storage=bh.storage.Weight())
+            h_out[:] = np.stack([z_vals, np.sqrt(z_vars)], axis=-1)
+
+        return h_out
 
 
 class datacard:
