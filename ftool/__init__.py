@@ -261,20 +261,26 @@ class datagroup:
         # and for each bin, calculate total amount of events and variance
         z_vals, z_vars = [], []
         for iBin in range(len(bins)-1): 
-            bin_lo = bins[iBin]*1.0j
-            bin_hi = bins[iBin+1]*1.0j
-            h_fragment = h_in[bin_lo:bin_hi]
+            
+            if histtype == 'hist':
+                bin_lo = bins[iBin]*1.0j
+                bin_hi = bins[iBin+1]*1.0j            
+            elif histtype == 'bh':
+                bin_lo = bh.loc(bins[iBin])
+                bin_hi = bh.loc(bins[iBin+1])
+            
+            h_fragment = h_in[bin_lo:bin_hi]    
             z_vals.append(h_fragment.sum().value)
             z_vars.append(h_fragment.sum().variance)
 
         # fill the histograms
         if histtype == 'hist':
             h_out = hist.Hist(hist.axis.Variable(bins), storage=hist.storage.Weight())
-            h_out[:] = np.stack([z_vals, np.sqrt(z_vars)], axis=-1)
+            h_out[:] = np.stack([z_vals, z_vars], axis=-1)
 
         elif histtype == 'bh':
             h_out = bh.Histogram(bh.axis.Variable(bins), storage=bh.storage.Weight())
-            h_out[:] = np.stack([z_vals, np.sqrt(z_vars)], axis=-1)
+            h_out[:] = np.stack([z_vals, z_vars], axis=-1)
 
         return h_out
 
