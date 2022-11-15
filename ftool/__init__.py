@@ -65,7 +65,7 @@ class datagroup:
                histograms = None
 
                _scale = 1
-               if self.name != "data":
+               if ptype.lower() != "data":
                    _scale = self.lumi* 1000.0 #
 
                if self.name == "expected":
