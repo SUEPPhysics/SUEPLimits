@@ -116,7 +116,8 @@ def main():
         card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"))
         card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
         card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
-        card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"))
+        card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"),symmetric=True) #Symmetrise the down value
+
         
         # define rates
         if name  in ["QCD"]:
