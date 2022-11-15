@@ -383,13 +383,27 @@ class datacard:
         
         self.shape_file[process + "_" + cardname + "Up"  ] = hist_up
         self.shape_file[process + "_" + cardname + "Down"] = hist_dw
-  
-     def add_shape_nuisance(self, process, cardname, shape):
+                
+     def add_shape_nuisance(self, process, cardname, shape, symmetric=False):
           nuisance = "{:<20} shape".format(cardname)
           if shape[0] is not None and (
                     (shape[0].values()[shape[0].values()>0].shape[0]) and
                     (shape[1].values()[shape[1].values()>0].shape[0])
           ):
+               
+               if symmetric: # apply a symmetric variation to up using nominal and down
+                
+                    h_down = shape[1] #Taking down variation
+                    h_nom = self.nominal_hist
+                    
+                    h_up = bh.Histogram(bh.axis.Variable(h_nom.to_numpy()[1]), storage=bh.storage.Weight())
+                    h_up_vals = 2*h_nom.values() - h_down.values() # Calculate a symmetric variation
+                    h_up_vals = np.where(h_up_vals<0, 0, h_up_vals) # Set potentially negative counts (if h_down>2*h_up) to 0
+                    h_up_vars = h_down.variances() 
+                    h_up[:] = np.stack([h_up_vals, h_up_vars], axis=-1) 
+                    
+                    shape = (h_up, h_down)
+                    
                self.add_nuisance(process, nuisance, 1.0)
                self.shape_file[process + "_" + cardname + "Up"  ] = shape[0]
                self.shape_file[process + "_" + cardname + "Down"] = shape[1]
