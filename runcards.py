@@ -19,7 +19,7 @@ def call_makeDataCard(cmd):
 
 pool = ThreadPool(multiprocessing.cpu_count())
 results = []
-new_bins = '0.5 0.75 1'
+new_bins = '80 100 150 300'
 for year in [2018]:
 #for year in [2016,2017]:
     with open(options_input.format(year)) as f:
@@ -34,8 +34,8 @@ for year in [2018]:
         cmd_sr = "python3 makeDataCard.py --channel catSig "
         cmd_sr += "--variable I_SUEP_nconst_Cluster "
         cmd_sr += "--stack {signal} expected data "
-        #cmd_sr += "--bins " + new_bins + " "
-        cmd_sr += "--rebin 25 " 
+        cmd_sr += "--bins " + new_bins + " "
+        #cmd_sr += "--rebin 25 " 
         cmd_sr += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_sr = cmd_sr.format(signal=n, era=year)
         
