@@ -36,7 +36,7 @@ pip install thermcolor --user
 ## Now get the FinalFit tools
 ```bash
 cd $CMSSW_BASE/src/
-git clone https://github.com/SUEPPhysics/SUEPLimits.git
+git clone git@github.com:SUEPPhysics/SUEPLimits.git
 cd $CMSSW_BASE/src/SUEPLimits/
 ```
 Please make sure to edit config/inputs_XXX.yaml and make appropriate changes about how the group merging should be done
