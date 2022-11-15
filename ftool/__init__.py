@@ -59,15 +59,14 @@ class datagroup:
           for fn in self._files:
                _proc = os.path.basename(fn).replace(".root","")
                _file = uproot.open(fn)
-
                if not _file:
                     raise ValueError("%s is not a valid rootfile" % self.name)
 
                histograms = None
 
                _scale = 1
-               if ptype.lower() != "data":
-                    _scale = self.lumi* 1000.0 #
+               if self.name != "data":
+                   _scale = self.lumi* 1000.0 #
 
                if self.name == "expected":
                     systs = [] 
@@ -92,7 +91,7 @@ class datagroup:
                             systs.append(sys)
                         else: 
                             sys = ""
-                            systs.append("nom")
+                            if "I_" in name: systs.append("nom")
 
                         if "A_"+ABCD_obs == name: A["nom"] = _file["A_"+ABCD_obs].to_boost()
                         if "B_"+ABCD_obs == name: B["nom"] = _file["B_"+ABCD_obs].to_boost()
@@ -102,7 +101,7 @@ class datagroup:
                         if "F_"+ABCD_obs == name: F["nom"] = _file["F_"+ABCD_obs].to_boost()
                         if "G_"+ABCD_obs == name: G["nom"] = _file["G_"+ABCD_obs].to_boost()
                         if "H_"+ABCD_obs == name: H["nom"] = _file["H_"+ABCD_obs].to_boost()
-
+                        
                         if "A_"+ABCD_obs+"_"+sys == name: A[sys] = _file["A_"+ABCD_obs+"_"+sys].to_boost()
                         if "B_"+ABCD_obs+"_"+sys == name: B[sys] = _file["B_"+ABCD_obs+"_"+sys].to_boost()
                         if "C_"+ABCD_obs+"_"+sys == name: C[sys] = _file["C_"+ABCD_obs+"_"+sys].to_boost()
@@ -111,7 +110,6 @@ class datagroup:
                         if "F_"+ABCD_obs+"_"+sys == name: F[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
                         if "G_"+ABCD_obs+"_"+sys == name: G[sys] = _file["G_"+ABCD_obs+"_"+sys].to_boost()
                         if "H_"+ABCD_obs+"_"+sys == name: H[sys] = _file["H_"+ABCD_obs+"_"+sys].to_boost()
-
 
                     for syst in systs:
                         name = ABCD_obs+"_"+syst
@@ -125,7 +123,7 @@ class datagroup:
                         
                         ####merge bins to specified array
                         if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                            newhist = self.rebin_piecewise(hist, self.bins, 'bh')
+                            newhist = self.rebin_piecewise(newhist, self.bins, 'bh')
                         
                         newhist.name = name
                         if name in self.nominal.keys():
@@ -152,7 +150,7 @@ class datagroup:
                         
                         ####merge bins to specified array
                         if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                            newhist = self.rebin_piecewise(hist, self.bins, 'bh')
+                            newhist = self.rebin_piecewise(newhist, self.bins, 'bh')
                         
                         newhist.name = name
                         if name in self.nominal.keys():
@@ -179,7 +177,7 @@ class datagroup:
      def get(self, systvar, merged=True):
           shapeUp, shapeDown= None, None
           for n, hist in self.merged.items():
-               #if "JEC" in n: continue
+               if "Inverted" in n: continue
                if "up" not in n and "down" not in n and systvar=="nom":
                     return hist[1]
                elif systvar in n:
@@ -233,7 +231,7 @@ class datagroup:
          new_var = SR_exp.values()**2 * float(sigma_alpha)**2 + float(alpha)**2 * abs(SR_exp.variances())
          return current_bins, current_edges, new_val, new_var
      
-     def rebin_piecewise(h_in, bins, histtype='hist'):
+     def rebin_piecewise(self, h_in, bins, histtype='hist'):
          """
          Inputs:
              h : histogram
@@ -268,7 +266,6 @@ class datagroup:
              elif histtype == 'bh':
                  bin_lo = bh.loc(bins[iBin])
                  bin_hi = bh.loc(bins[iBin+1])
-             
              h_fragment = h_in[bin_lo:bin_hi]    
              z_vals.append(h_fragment.sum().value)
              z_vars.append(h_fragment.sum().variance)
@@ -393,8 +390,6 @@ class datacard:
                     (shape[0].values()[shape[0].values()>0].shape[0]) and
                     (shape[1].values()[shape[1].values()>0].shape[0])
           ):
-               if shape[0] == shape[1]:
-                    shape = (2 * self.nominal_hist - shape[0], shape[1])
                self.add_nuisance(process, nuisance, 1.0)
                self.shape_file[process + "_" + cardname + "Up"  ] = shape[0]
                self.shape_file[process + "_" + cardname + "Down"] = shape[1]
