@@ -69,9 +69,9 @@ python runcombine.py
 
 If you would like to look at the impacts you can make the coombined.root and combined.dat and then run the following:
 ```bash
-combineTool.py -M Impacts -d combined.dat.root -m 125 --doInitialFit --robustFit 1
-combineTool.py -M Impacts -d combined.dat.root -m 125 --robustFit 1 --doFits
-combineTool.py -M Impacts -d combined.dat.root -m 125 --o impacts.json
+combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit --robustFit 1
+combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits
+combineTool.py -M Impacts -d combined.root -m 125 --o impacts.json
 plotImpacts.py -i impacts.json -o impacts
 ```
 ## Creating Brazil plots with the combine tool limits
