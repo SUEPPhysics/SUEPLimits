@@ -21,7 +21,7 @@ git checkout v8.0.1
 ## fetch CombineTool
 ```bash
 cd $CMSSW_BASE/src
-bash <(curl -s https://raw.githubusercontent.com/cms-analysis/CombineHarvester/master/CombineTools/scripts/sparse-checkout-https.sh)
+curl -s https://raw.githubusercontent.com/cms-analysis/CombineHarvester/master/CombineTools/scripts/sparse-checkout-https.sh
 
 cd $CMSSW_BASE/src/
 scramv1 b clean; scramv1 b -j 10
