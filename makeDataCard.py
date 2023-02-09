@@ -120,8 +120,8 @@ def main():
 
         
         # define rates
-        if name  in ["QCD"]:
-            card.add_rate_param("QCDnorm_" + options.era, "catSig*", name)
+        #if name  in ["QCD"]:
+        #    card.add_rate_param("QCDnorm_" + options.era, "catSig*", name)
 
         # adding statistical uncertainties
         card.add_auto_stat()
