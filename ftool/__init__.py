@@ -385,17 +385,10 @@ class datacard:
         self.shape_file[process + "_" + cardname + "Down"] = hist_dw
                 
      def add_shape_nuisance(self, process, cardname, shape, symmetric=False):
-          nuisance = "{:<20} shape".format(cardname)
-          print('add shape nuisance test')
-          
+          nuisance = "{:<20} shape".format(cardname)          
 
           if shape[0] is not None:
-          # and (
-          #           (shape[0].values()[shape[0].values()>0].shape[0]) and
-          #           (shape[1].values()[shape[1].values()>0].shape[0])
-          # ): # Why do we veto these empty histograms for up or down variations? 
-               print('add shape nuisance test 2')
-
+            
                if symmetric: # apply a symmetric variation to up using nominal and down
                 
                     h_down = shape[1] #Taking down variation
