@@ -68,15 +68,10 @@ class datagroup:
                if ptype.lower() != "data":
                    _scale = self.lumi* 1000.0 #
 
-               if self.name == "expected":
+               if self.name == "expected" and "I_" in self.observable:
+                    sum_var = 'x' #Change this to a y to look at the sphericity instead of nconst
                     systs = [] 
-                    A = {}
-                    B = {}
-                    C = {}
-                    D = {}
-                    E = {}
                     F = {}
-                    G = {}
                     H = {}
                     for name in _file.keys():
                         name = name.replace(";1", "")
@@ -86,36 +81,84 @@ class datagroup:
                         if "up" in name:
                             sys = name.split("Cluster_")[1]
                             systs.append(sys)
-                        elif "down" in name: 
+                        elif "down" in name:
                             sys = name.split("Cluster_")[1]
                             systs.append(sys)
-                        else: 
+                        else:
                             sys = ""
                             if "I_" in name: systs.append("nom")
 
-                        if "A_"+ABCD_obs == name: A["nom"] = _file["A_"+ABCD_obs].to_boost()
-                        if "B_"+ABCD_obs == name: B["nom"] = _file["B_"+ABCD_obs].to_boost()
-                        if "C_"+ABCD_obs == name: C["nom"] = _file["C_"+ABCD_obs].to_boost()
-                        if "D_"+ABCD_obs == name: D["nom"] = _file["D_"+ABCD_obs].to_boost()
-                        if "E_"+ABCD_obs == name: E["nom"] = _file["E_"+ABCD_obs].to_boost()
-                        if "F_"+ABCD_obs == name: F["nom"] = _file["F_"+ABCD_obs].to_boost()
-                        if "G_"+ABCD_obs == name: G["nom"] = _file["G_"+ABCD_obs].to_boost()
-                        if "H_"+ABCD_obs == name: H["nom"] = _file["H_"+ABCD_obs].to_boost()
-                        
-                        if "A_"+ABCD_obs+"_"+sys == name: A[sys] = _file["A_"+ABCD_obs+"_"+sys].to_boost()
-                        if "B_"+ABCD_obs+"_"+sys == name: B[sys] = _file["B_"+ABCD_obs+"_"+sys].to_boost()
-                        if "C_"+ABCD_obs+"_"+sys == name: C[sys] = _file["C_"+ABCD_obs+"_"+sys].to_boost()
-                        if "D_"+ABCD_obs+"_"+sys == name: D[sys] = _file["D_"+ABCD_obs+"_"+sys].to_boost()
-                        if "E_"+ABCD_obs+"_"+sys == name: E[sys] = _file["E_"+ABCD_obs+"_"+sys].to_boost()
-                        if "F_"+ABCD_obs+"_"+sys == name: F[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
-                        if "G_"+ABCD_obs+"_"+sys == name: G[sys] = _file["G_"+ABCD_obs+"_"+sys].to_boost()
-                        if "H_"+ABCD_obs+"_"+sys == name: H[sys] = _file["H_"+ABCD_obs+"_"+sys].to_boost()
+                        if sum_var == 'x':   
+                            if "F_"+ABCD_obs == name: F["nom"] = _file["F_"+ABCD_obs].to_boost()
+                            if "F_"+ABCD_obs+"_"+sys == name: F[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
 
+                        elif sum_var == 'y': 
+                            if "H_"+ABCD_obs == name: H["nom"] = _file["H_"+ABCD_obs].to_boost()
+                            if "H_"+ABCD_obs+"_"+sys == name: H[sys] = _file["H_"+ABCD_obs+"_"+sys].to_boost()
+                        else:
+                            raise ValueError('ERROR: Appropriate variable not chosen!')
+                            
                     for syst in systs:
                         name = ABCD_obs+"_"+syst
-                        current_bins, current_edges, exp_freq, exp_var = self.ABCD_9regions_errorProp(A=A[syst],B=B[syst],C=C[syst],D=D[syst],E=E[syst],F=F[syst],G=G[syst],H=H[syst])
-                        newhist = bh.Histogram(bh.axis.Variable(current_edges),storage=bh.storage.Weight())
-                        newhist[:] = np.stack([exp_freq, exp_var], axis=-1)
+                        if sum_var == 'x':
+                            newhist=F[syst].copy()
+                        elif sum_var == 'y':
+                            newhist=H[syst].copy()
+                        else:
+                            raise ValueError('ERROR: Systematic plots not found for expected!')
+                        #current_bins, current_edges, exp_freq, exp_var = self.ABCD_9regions_errorProp(A=A[syst],B=B[syst],C=C[syst],D=D[syst],E=E[syst],F=F[syst],G=G[syst],H=H[syst])
+                        #newhist = bh.Histogram(bh.axis.Variable(current_edges),storage=bh.storage.Weight())
+                        #newhist[:] = np.stack([exp_freq, exp_var], axis=-1)         
+
+
+
+
+                    #A = {}
+                    #B = {}
+                    #C = {}
+                    #D = {}
+                    #E = {}
+                    #F = {}
+                    #G = {}
+                    #H = {}
+                    #for name in _file.keys():
+                    #    name = name.replace(";1", "")
+                    #    ABCD_obs = self.observable.split("I_")[1]
+                    #    if "2D" in name: continue
+                    #    if ABCD_obs not in name: continue
+                    #    if "up" in name:
+                    #        sys = name.split("Cluster_")[1]
+                    #        systs.append(sys)
+                    #    elif "down" in name: 
+                    #        sys = name.split("Cluster_")[1]
+                    #        systs.append(sys)
+                    #    else: 
+                    #        sys = ""
+                    #        if "I_" in name: systs.append("nom")
+
+                    #    if "A_"+ABCD_obs == name: A["nom"] = _file["A_"+ABCD_obs].to_boost()
+                    #    if "B_"+ABCD_obs == name: B["nom"] = _file["B_"+ABCD_obs].to_boost()
+                    #    if "C_"+ABCD_obs == name: C["nom"] = _file["C_"+ABCD_obs].to_boost()
+                    #    if "D_"+ABCD_obs == name: D["nom"] = _file["D_"+ABCD_obs].to_boost()
+                    #    if "E_"+ABCD_obs == name: E["nom"] = _file["E_"+ABCD_obs].to_boost()
+                    #    if "F_"+ABCD_obs == name: F["nom"] = _file["F_"+ABCD_obs].to_boost()
+                    #    if "G_"+ABCD_obs == name: G["nom"] = _file["G_"+ABCD_obs].to_boost()
+                    #    if "H_"+ABCD_obs == name: H["nom"] = _file["H_"+ABCD_obs].to_boost()
+                    #    
+                    #    if "A_"+ABCD_obs+"_"+sys == name: A[sys] = _file["A_"+ABCD_obs+"_"+sys].to_boost()
+                    #    if "B_"+ABCD_obs+"_"+sys == name: B[sys] = _file["B_"+ABCD_obs+"_"+sys].to_boost()
+                    #    if "C_"+ABCD_obs+"_"+sys == name: C[sys] = _file["C_"+ABCD_obs+"_"+sys].to_boost()
+                    #    if "D_"+ABCD_obs+"_"+sys == name: D[sys] = _file["D_"+ABCD_obs+"_"+sys].to_boost()
+                    #    if "E_"+ABCD_obs+"_"+sys == name: E[sys] = _file["E_"+ABCD_obs+"_"+sys].to_boost()
+                    #    if "F_"+ABCD_obs+"_"+sys == name: F[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
+                    #    if "G_"+ABCD_obs+"_"+sys == name: G[sys] = _file["G_"+ABCD_obs+"_"+sys].to_boost()
+                    #    if "H_"+ABCD_obs+"_"+sys == name: H[sys] = _file["H_"+ABCD_obs+"_"+sys].to_boost()
+
+                    #for syst in systs:
+                    #    name = ABCD_obs+"_"+syst
+                    #    current_bins, current_edges, exp_freq, exp_var = self.ABCD_9regions_errorProp(A=A[syst],B=B[syst],C=C[syst],D=D[syst],E=E[syst],F=F[syst],G=G[syst],H=H[syst])
+                    #    newhist = bh.Histogram(bh.axis.Variable(current_edges),storage=bh.storage.Weight())
+                    #    newhist[:] = np.stack([exp_freq, exp_var], axis=-1)
 
                         #### merge bins
                         if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
@@ -127,9 +170,9 @@ class datagroup:
                         
                         newhist.name = name
                         if name in self.nominal.keys():
-                             self.nominal[name] += newhist
+                             self.nominal[name] += newhist# * 0.0 + 1.0
                         else:
-                             self.nominal[name] = newhist
+                             self.nominal[name] = newhist#  * 0.0 + 1.0
 
                         try:
                              self.systvar.add(re.search("sys_[\w.]+", name).group())
@@ -324,7 +367,11 @@ class datacard:
           self.nuisances[name][process] = value
 
      def add_nominal(self, process, shape):
-          value = shape.sum()["value"]
+          if process == 'expected': 
+               shape = shape * 0.0 + 1.0#values will come from rate_params
+               shape.view().variance = shape.variances() * 0.0
+          #value = shape.sum(flow=False)["value"]
+          value = shape.values(flow=False).sum()
           self.rates.append((process, value))
           self.shape_file[process] = shape
           self.nominal_hist = shape
@@ -406,15 +453,29 @@ class datacard:
                self.shape_file[process + "_" + cardname + "Up"  ] = shape[0]
                self.shape_file[process + "_" + cardname + "Down"] = shape[1]
 
-     def add_rate_param(self, name, channel, process, vmin=0.1, vmax=10):
+     def add_rate_param(self, name, channel, process, rate=1.0, vmin=0.1, vmax=10):
           # name rateParam bin process initial_value [min,max]
-          template = "{name} rateParam {channel} {process} 1 [{vmin},{vmax}]"
+          template = "{name} rateParam {channel} {process} {rate} [{vmin},{vmax}]"
           template = template.format(
                name = name,
                channel = channel,
                process = process,
+               rate = rate,
                vmin = vmin,
                vmax = vmax
+          )
+          self.extras.add(template)
+
+     def add_ABCD_rate_param(self, name, channel, process, era, F):
+          # name rateParam bin process initial_value [min,max]
+          rera = "r" + era
+          template = "{name} rateParam {channel} {process} @5*@5*@7*@7*@3*@3*@1*@1/(@6*@2*@0*@4*@4*@4*@4) {rera}_cat_crA,{rera}_cat_crB,{rera}_cat_crC,{rera}_cat_crD,{rera}_cat_crE,{rera}_{F},{rera}_cat_crG,{rera}_cat_crH"
+          template = template.format(
+               name = name,
+               channel = channel,
+               process = process,
+               rera = rera,
+               F = F
           )
           self.extras.add(template)
 

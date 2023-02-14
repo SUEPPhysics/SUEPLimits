@@ -103,7 +103,24 @@ def main():
     for n, p in datasets.items():
         name = "Signal" if p.ptype=="signal" else p.name
         if p.ptype=="data" and p.name == "data": continue #Skip the data_obs
+
+        #Look at expected and add in the rate_params
         card.add_nominal(name, p.get("nom"))
+        if "Sig" in options.channel:
+            if p.name == "expected" and p.ptype == "data" :
+                if "Bin1" in options.channel: Bin_cr = "Bin1crF"
+                if "Bin2" in options.channel: Bin_cr = "Bin2crF"
+                if "Bin3" in options.channel: Bin_cr = "Bin3crF"
+                card.add_ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, Bin_cr )
+                card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}_{}".format(options.channel, options.era)), 1.2)          
+        else:
+            rate_nom = p.get("nom").values().sum()
+            rate_up = (p.get("nom").values() + np.sqrt(p.get("nom").variances())).sum()
+            rate_down = (p.get("nom").values() - np.sqrt(p.get("nom").variances())).sum()
+            #print(rate_nom, rate_up, rate_down)
+            if p.name == "expected" and p.ptype == "data" :
+                card.add_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, rate=rate_nom, vmin=rate_down, vmax=rate_up )
+
         if p.ptype=="data": continue #Now that we have expected nom we skip data
 
         #Add lnN nuisances
@@ -118,12 +135,6 @@ def main():
         card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
         card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"),symmetric=True) #Symmetrise the down value
 
-        
-        # define rates
-        #if name  in ["QCD"]:
-        #    card.add_rate_param("QCDnorm_" + options.era, "catSig*", name)
-
-        # adding statistical uncertainties
         card.add_auto_stat()
     card.dump()
 
