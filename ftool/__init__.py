@@ -74,21 +74,21 @@ class datagroup:
                     F = {}
                     H = {}
                     for name in _file.keys():
-                        name = name.replace(";1", "")
+                        name = name.replace(";1","")
                         ABCD_obs = self.observable.split("I_")[1]
                         if "2D" in name: continue
                         if ABCD_obs not in name: continue
                         if "up" in name:
-                            sys = name.split("Cluster_")[1]
+                            sys = name.split("Cluster70_")[1]
                             systs.append(sys)
                         elif "down" in name:
-                            sys = name.split("Cluster_")[1]
+                            sys = name.split("Cluster70_")[1]
                             systs.append(sys)
                         else:
                             sys = ""
                             if "I_" in name: systs.append("nom")
 
-                        if sum_var == 'x':   
+                        if sum_var == 'x':
                             if "F_"+ABCD_obs == name: F["nom"] = _file["F_"+ABCD_obs].to_boost()
                             if "F_"+ABCD_obs+"_"+sys == name: F[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
 
@@ -168,6 +168,7 @@ class datagroup:
                         if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
                             newhist = self.rebin_piecewise(newhist, self.bins, 'bh')
                         
+                        name = self.channel + "_" + name
                         newhist.name = name
                         if name in self.nominal.keys():
                              self.nominal[name] += newhist# * 0.0 + 1.0
@@ -195,6 +196,7 @@ class datagroup:
                         if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
                             newhist = self.rebin_piecewise(newhist, self.bins, 'bh')
                         
+                        name = self.channel + "_" + name
                         newhist.name = name
                         if name in self.nominal.keys():
                              self.nominal[name] += newhist
@@ -370,7 +372,6 @@ class datacard:
           if process == 'expected': 
                shape = shape * 0.0 + 1.0#values will come from rate_params
                shape.view().variance = shape.variances() * 0.0
-          #value = shape.sum(flow=False)["value"]
           value = shape.values(flow=False).sum()
           self.rates.append((process, value))
           self.shape_file[process] = shape
@@ -435,7 +436,7 @@ class datacard:
           nuisance = "{:<20} shape".format(cardname)          
 
           if shape[0] is not None:
-            
+               
                if symmetric: # apply a symmetric variation to up using nominal and down
                 
                     h_down = shape[1] #Taking down variation
@@ -443,11 +444,13 @@ class datacard:
                     
                     h_up = bh.Histogram(bh.axis.Variable(h_nom.to_numpy()[1]), storage=bh.storage.Weight())
                     h_up_vals = 2*h_nom.values() - h_down.values() # Calculate a symmetric variation
-                    h_up_vals = np.where(h_up_vals<0, 0, h_up_vals) # Set potentially negative counts (if h_down>2*h_up) to 0
+                    h_up_vals = np.where(h_up_vals<=0.0, 0.0, h_up_vals) # Set potentially negative counts (if h_down>2*h_up) to 0
                     h_up_vars = h_down.variances() 
                     h_up[:] = np.stack([h_up_vals, h_up_vars], axis=-1) 
                     
                     shape = (h_up, h_down)
+
+          if shape[1].values().sum() != 0 and shape[0].values().sum() != 0:
                     
                self.add_nuisance(process, nuisance, 1.0)
                self.shape_file[process + "_" + cardname + "Up"  ] = shape[0]
