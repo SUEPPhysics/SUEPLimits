@@ -73,8 +73,9 @@ for dc in dcards:
         " -M AsymptoticLimits --datacard cards-{name}/combined.root"
         #" -M FitDiagnostics -datacard cards-{name}/combined.root --plots signalPdfNames='ADD*,Signal' --backgroundPdfNames='*DY*,*WW*,*TOP*,ZZ*,WZ*,VVV'"
         " -m 125 --cl 0.95 --name {name} {options}"
-        ##" --rMin=0 --cminFallbackAlgo Minuit2,Migrad,0:0.05"
-        " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH".format(
+        " --rMin=0 --cminFallbackAlgo Minuit2,Migrad,0:0.05"
+        " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --run blind".format(
+        #" --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH".format(
             name=name,
             options="" #"--rMax=10" if "ADD" in name else "--rMax=10"
         )
