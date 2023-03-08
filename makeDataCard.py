@@ -69,6 +69,7 @@ def main():
             inputs[dg]["files"],
             ptype      = inputs[dg]["type"],
             observable = options.variable,
+            era        = options.era,
             name       = dg,
             kfactor    = inputs[dg].get("kfactor", 1.0),
             xsections  = xsections,
