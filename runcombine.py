@@ -4,11 +4,21 @@ import multiprocessing
 from multiprocessing.pool import ThreadPool
 import subprocess
 import shlex
+import argparse
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-p"  , "--print_commands"   , type=bool, default=False) # Print the executed combine commands
+parser.add_argument("-r"  , "--rerun", nargs='+', type=str) # Rerun a list of datacards
+options = parser.parse_args()
+
+# Read in the datacards
+if options.rerun != None:
+    dcards = options.rerun
+else:
+    dcards = glob.glob("cards-*")
 
 combine_options = " --rMin=0, --cminFallbackAlgo Minuit2,Migrad,0:0.05  --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH"
-
-dcards = glob.glob("cards-*")
-
 
 def call_combine(cmd):
     p = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -24,9 +34,11 @@ for dc in dcards:
     if "SUEP" not in name:
         continue
     print(" --- name : ", name)
-    os.system("rm -rf cards-{}/combined.dat".format(name))
-    os.system(
-            "combineCards.py -S "
+    
+    
+    # Write combine commmands
+    rm_command = "rm -rf cards-{}/combined.dat".format(name)
+    combine_card_command = ("combineCards.py -S "
             #"catcrA2016=cards-{name}/shapes-cat_crA2016.dat "
             #"catcrB2016=cards-{name}/shapes-cat_crB2016.dat "
             #"catcrC2016=cards-{name}/shapes-cat_crC2016.dat "
@@ -66,21 +78,34 @@ for dc in dcards:
             "Bin1Sig2018=cards-{name}/shapes-Bin1Sig2018.dat "
             "Bin2Sig2018=cards-{name}/shapes-Bin2Sig2018.dat "
             "Bin3Sig2018=cards-{name}/shapes-Bin3Sig2018.dat "
-            "> cards-{name}/combined.dat".format(name=name))
-    os.system("text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root".format(name=name))
-    command = (
+            "> cards-{name}/combined.dat").format(name=name)
+    
+    text2workspace_command = "text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root".format(name=name)
+    
+    combine_command = (
         "combine "
         " -M AsymptoticLimits --datacard cards-{name}/combined.root"
         #" -M FitDiagnostics -datacard cards-{name}/combined.root --plots signalPdfNames='ADD*,Signal' --backgroundPdfNames='*DY*,*WW*,*TOP*,ZZ*,WZ*,VVV'"
         " -m 125 --cl 0.95 --name {name} {options}"
-        " --rMin=0 --cminFallbackAlgo Minuit2,Migrad,0:0.05"
+        ##" --rMin=0 --cminFallbackAlgo Minuit2,Migrad,0:0.05"
         " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --run blind".format(
-        #" --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH".format(
             name=name,
             options="" #"--rMax=10" if "ADD" in name else "--rMax=10"
         )
     )
-    results.append(pool.apply_async(call_combine, (command,)))
+    
+    
+    # Execute and optionally print the commands   
+    if options.print_commands:
+        print('--- removing old combined datacard:', rm_command)
+        print('--- combining datacards:', combine_card_command)
+        print('--- text2workspace:', text2workspace_command)
+        print('--- running combine:', combine_command)
+        
+    os.system(rm_command)
+    os.system(combine_card_command)
+    os.system(text2workspace_command)
+    results.append(pool.apply_async(call_combine, (combine_command,)))
 
 pool.close()
 pool.join()
@@ -91,3 +116,5 @@ for result in results:
         print(str(err))
         print(" ----------------- ")
         print()
+
+        

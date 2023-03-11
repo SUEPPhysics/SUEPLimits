@@ -68,8 +68,7 @@ class datagroup:
 
                _scale = 1
                if ptype.lower() != "data":
-                   _scale = self.xs_scale(proc=self.name)
-                   #_scale = self.lumi#* 1000.0 #
+                   _scale = self.lumi * self.xs_scale(proc=self.name)
 
                if self.name == "expected" and "I_" in self.observable:
                     sum_var = 'x' #Change this to a y to look at the sphericity instead of nconst
