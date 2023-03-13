@@ -6,19 +6,30 @@ import ftool
 import numpy as np
 from termcolor import colored
 
-
+#from:https://twiki.cern.ch/twiki/bin/viewauth/CMS/LumiRecommendationsRun2#Combination_and_correlations
 lumis = {
     "2016" : 36.308,
     "2017" : 41.471,
     "2018" : 59.817
-
+}
+lumi_uncorr = {
+    "2016" : 1.0,
+    "2017" : 2.0,
+    "2018" : 1.5
 }
 
-lumi_unc = {
-    "2016" : 1.025,
-    "2017" : 1.023,
-    "2018" : 1.025
+lumi_corr = {
+    "2016" : 0.6,
+    "2017" : 0.9,
+    "2018" : 2.0
 }
+
+lumi_corr1718 = {
+    "2017" : 0.6,
+    "2018" : 0.2
+}
+
+
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_inputs_2018.yaml")
@@ -131,7 +142,10 @@ def main():
         if p.ptype=="data": continue #Now that we have expected nom we skip data
 
         #Add lnN nuisances
-        card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_{}".format(options.era)), lumi_unc[options.era])
+        card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_uncorr_{}".format(options.era)), lumi_uncorr[options.era])
+        card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr"), lumi_corr[options.era])
+        if options.era in ["2017","2018"]:
+            card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr1718"), lumi_corr1718[options.era])
 
         #Shape based uncertainties
         card.add_shape_nuisance(name, "CMS_JES", p.get("JES"))
