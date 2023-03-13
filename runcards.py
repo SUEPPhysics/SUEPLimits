@@ -21,7 +21,7 @@ pool = ThreadPool(multiprocessing.cpu_count())
 results = []
 new_bins = '80 100 150 300'
 for year in [2018]:
-#for year in [2016,2017]:
+#for year in [2016,2017,2018]:
     with open(options_input.format(year)) as f:
         try:
             inputs = yaml.safe_load(f.read())
