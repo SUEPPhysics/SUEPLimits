@@ -279,6 +279,7 @@ class datagroup:
          xsec = 1.0
          with open(f"config/xsections_{self.era}.json") as file:
             MC_xsecs = json.load(file)
+         print('PROC',proc)
          xsec  = MC_xsecs[proc]["xsec"]
          xsec *= MC_xsecs[proc]["kr"]
          xsec *= MC_xsecs[proc]["br"]
@@ -363,14 +364,14 @@ class datacard:
 
      def add_rate_param(self, name, channel, process, rate=1.0, vmin=0.1, vmax=10):
           # name rateParam bin process initial_value [min,max]
-          template = "{name} rateParam {channel} {process} {rate} [{vmin},{vmax}]"
+          template = "{name} rateParam {channel} {process} {rate}" # apply no fixed range for floating rateparam
           template = template.format(
                name = name,
                channel = channel,
                process = process,
                rate = rate,
-               vmin = vmin,
-               vmax = vmax
+               # vmin = vmin, 
+               # vmax = vmax
           )
           self.extras.add(template)
 
