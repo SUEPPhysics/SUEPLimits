@@ -19,9 +19,9 @@ def call_makeDataCard(cmd):
 
 pool = ThreadPool(multiprocessing.cpu_count())
 results = []
-new_bins = '80 100 150 300'
-for year in [2018]:
-#for year in [2016,2017,2018]:
+# new_bins = '80 90 150 300'
+
+for year in [2016,2017,2018]: # Combining all years!
     with open(options_input.format(year)) as f:
         try:
             inputs = yaml.safe_load(f.read())
@@ -75,7 +75,7 @@ for year in [2018]:
         cmd_crF1 = "python3 makeDataCard.py --channel Bin1crF "
         cmd_crF1 += "--variable F_SUEP_nconst_Cluster70 "
         cmd_crF1 += "--stack {signal} expected data "
-        cmd_crF1 += "--bins 70 100 "
+        cmd_crF1 += "--bins 70 90 "
         #cmd_crF1 += "--rebin 25 " 
         cmd_crF1 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_crF1 = cmd_crF1.format(signal=n, era=year)
@@ -83,7 +83,7 @@ for year in [2018]:
         cmd_crF2 = "python3 makeDataCard.py --channel Bin2crF "
         cmd_crF2 += "--variable F_SUEP_nconst_Cluster70 "
         cmd_crF2 += "--stack {signal} expected data "
-        cmd_crF2 += "--bins 100 120 "
+        cmd_crF2 += "--bins 90 120 "
         #cmd_crF2 += "--rebin 25 " 
         cmd_crF2 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_crF2 = cmd_crF2.format(signal=n, era=year)
@@ -115,7 +115,7 @@ for year in [2018]:
         cmd_sr1 = "python3 makeDataCard.py --channel Bin1Sig "
         cmd_sr1 += "--variable I_SUEP_nconst_Cluster70 "
         cmd_sr1 += "--stack {signal} expected data "
-        cmd_sr1 += "--bins 70 100 "
+        cmd_sr1 += "--bins 70 90 "
         #cmd_sr1 += "--rebin 25 " 
         cmd_sr1 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_sr1 = cmd_sr1.format(signal=n, era=year)
@@ -123,7 +123,7 @@ for year in [2018]:
         cmd_sr2 = "python3 makeDataCard.py --channel Bin2Sig "
         cmd_sr2 += "--variable I_SUEP_nconst_Cluster70 "
         cmd_sr2 += "--stack {signal} expected data "
-        cmd_sr2 += "--bins 100 120 "
+        cmd_sr2 += "--bins 90 120 "
         #cmd_sr2 += "--rebin 25 " 
         cmd_sr2 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_sr2 = cmd_sr2.format(signal=n, era=year)

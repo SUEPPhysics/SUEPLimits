@@ -29,7 +29,6 @@ lumi_corr1718 = {
     "2018" : 1.002
 }
 
-
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_inputs_2018.yaml")
