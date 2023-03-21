@@ -179,6 +179,5 @@ def main():
         card.add_auto_stat()
     card.dump()
 
-
 if __name__ == "__main__":
     main()
