@@ -29,6 +29,24 @@ lumi_corr1718 = {
     "2018" : 1.002
 }
 
+#Closure systematics applied to data
+close_Bin1 = {
+    "2016" : 1.05,
+    "2017" : 1.05,
+    "2018" : 1.05
+}
+
+close_Bin2 = {
+    "2016" : 1.10,
+    "2017" : 1.10,
+    "2018" : 1.15
+}
+
+close_Bin3 = {
+    "2016" : 1.30,
+    "2017" : 1.25,
+    "2018" : 1.15
+}
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_inputs_2018.yaml")
@@ -122,13 +140,13 @@ def main():
             if p.name == "expected" and p.ptype == "data" :
                 if "Bin1" in options.channel:
                     Bin_cr = "Bin1crF"
-                    close_stat = 1.1
+                    close_stat = close_Bin1[options.era]
                 if "Bin2" in options.channel:
                     Bin_cr = "Bin2crF"
-                    close_stat = 1.05
+                    close_stat = close_Bin1[options.era]
                 if "Bin3" in options.channel:
                     Bin_cr = "Bin3crF"
-                    close_stat = 1.05
+                    close_stat = close_Bin1[options.era]
                 card.add_ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, Bin_cr )
                 card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}_{}".format(options.channel, options.era)), close_stat)
         else:
@@ -153,8 +171,9 @@ def main():
         card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"))
         card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
         card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
-        #card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"),symmetric=True) #Symmetrise the down value
         card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"))
+        if options.era == "2016" or options.era == "2017":
+             card.add_shape_nuisance(name, "CMS_Prefire", p.get("prefire"))
         if "mS125" in p.name:
              card.add_shape_nuisance(name, "CMS_Higgs", p.get("higgs_weights"))
         card.add_auto_stat()
