@@ -165,7 +165,7 @@ def main():
             card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr1718"), lumi_corr1718[options.era])
 
         #Shape based uncertainties
-        card.add_shape_nuisance(name, "CMS_JES", p.get("JES"))
+        card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JES"))
         card.add_shape_nuisance(name, "CMS_JER", p.get("JER"))
         card.add_shape_nuisance(name, "CMS_PU", p.get("puweights"))
         card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"))
