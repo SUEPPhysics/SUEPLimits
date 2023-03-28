@@ -143,10 +143,10 @@ def main():
                     close_stat = close_Bin1[options.era]
                 if "Bin2" in options.channel:
                     Bin_cr = "Bin2crF"
-                    close_stat = close_Bin1[options.era]
+                    close_stat = close_Bin2[options.era]
                 if "Bin3" in options.channel:
                     Bin_cr = "Bin3crF"
-                    close_stat = close_Bin1[options.era]
+                    close_stat = close_Bin3[options.era]
                 card.add_ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, Bin_cr )
                 card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}_{}".format(options.channel, options.era)), close_stat)
         else:
