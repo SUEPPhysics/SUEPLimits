@@ -8,16 +8,32 @@ from termcolor import colored
 
 
 lumis = {
-    "2016" : 35.9,
-    "2017" : 41.5,
-    "2018" : 60.0
+    "2016" : 35.48,#35.9,
+    "2017" : 36.74,#41.5,
+    "2018" : 60.69#60.0
 }
 
-lumi_unc = {
-    "2016" : 1.025,
-    "2017" : 1.023,
-    "2018" : 1.025
+lumi_uncorr = {
+    "2016" : 1.0,
+    "2017" : 2.0,
+    "2018" : 1.5
 }
+
+lumi_corr = {
+    "2016" : 0.6,
+    "2017" : 0.9,
+    "2018" : 2.0
+}
+
+lumi_corr1718 = {
+    "2017" : 0.6,
+    "2018" : 0.2
+}
+#lumi_unc = {
+#    "2016" : 1.025,
+#    "2017" : 1.023,
+#    "2018" : 1.025
+#}
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_inputs_2018.yaml")
@@ -124,7 +140,11 @@ def main():
         if p.ptype=="data": continue #Now that we have expected nom we skip data
 
         #Add lnN nuisances
-        card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_{}".format(options.era)), lumi_unc[options.era])
+        #card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_{}".format(options.era)), lumi_unc[options.era])
+        card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_uncorr_{}".format(options.era)), lumi_uncorr[options.era])
+        card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr"), lumi_corr[options.era])
+        if options.era in ["2017","2018"]:
+            card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr1718"), lumi_corr1718[options.era])
 
         #Shape based uncertainties
         card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JES"))
@@ -134,6 +154,8 @@ def main():
         card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
         card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
         card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"),symmetric=True) #Symmetrise the down value
+        if "mS125" in p.name:
+            card.add_shape_nuisance(name, "CMS_Higgs", p.get("higgs_weights"))
 
         card.add_auto_stat()
     card.dump()

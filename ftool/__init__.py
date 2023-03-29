@@ -65,8 +65,8 @@ class datagroup:
                histograms = None
 
                _scale = 1
-               if ptype.lower() != "data":
-                   _scale = self.lumi#* 1000.0 #
+               #if ptype.lower() != "data":
+               #    _scale = self.lumi#/100#* 1000.0 #
 
                if self.name == "expected" and "I_" in self.observable:
                     sum_var = 'x' #Change this to a y to look at the sphericity instead of nconst
@@ -350,14 +350,14 @@ class datacard:
 
      def add_rate_param(self, name, channel, process, rate=1.0, vmin=0.1, vmax=10):
           # name rateParam bin process initial_value [min,max]
-          template = "{name} rateParam {channel} {process} {rate} [{vmin},{vmax}]"
+          template = "{name} rateParam {channel} {process} {rate}"# [{vmin},{vmax}]"
           template = template.format(
                name = name,
                channel = channel,
                process = process,
                rate = rate,
-               vmin = vmin,
-               vmax = vmax
+               #vmin = vmin,
+               #vmax = vmax
           )
           self.extras.add(template)
 

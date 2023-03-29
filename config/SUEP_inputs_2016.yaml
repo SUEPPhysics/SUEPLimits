@@ -1,157 +1,62 @@
 QCD:
   files:
-    - /work/submit/lavezzo/SUEP/outputs/QCD_2018.root
+    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/GluGluToSUEP_HT1000_T2p00_mS1000.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV_feb23_v2.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/QCD_2016.root
   type:
     background
   color: 895
   
 expected:
   files:
-    - /work/submit/lavezzo/SUEP/outputs/predicted_data_2018.root
+    #- ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/QCD_2018.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/Data_2016.root
+    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018A-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
+    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018B-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
+    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018C-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
+    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018D-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
   type:
     data
   color: 895
 
 data:
   files:
-    - /work/submit/lavezzo/SUEP/outputs/predicted_data_2018.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/Data_2016.root
+    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018A-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
+    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018B-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
+    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018C-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
+    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018D-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
   type:
     data
   color: 895
 
-SUEP-m1000-darkPhoHad:
+GluGluToSUEP_HT1000_T2p00_mS400.000_mPhi2.00_T2.00_modegeneric:
   files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m1000-darkPhoHad+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig400_2016.root
   type:
     signal
-
-SUEP-m1000-darkPho:
+GluGluToSUEP_HT1000_T2p00_mS1000.000_mPhi2.00_T2.00_modegeneric:
   files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m1000-darkPho+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig1000_2016.root
   type:
     signal
-
-SUEP-m1000-generic:
+GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi2.00_T2.00_modegeneric:
   files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m1000-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig700_2016.root
   type:
     signal
-
-SUEP-m125-darkPhoHad:
+GluGluToSUEP_HT1000_T2p00_mS300.000_mPhi2.00_T2.00_modegeneric:
   files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m125-darkPhoHad+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig300_2016.root
   type:
     signal
-
-SUEP-m125-darkPho:
+GluGluToSUEP_HT1000_T2p00_mS200.000_mPhi2.00_T2.00_modegeneric:
   files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m125-darkPho+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig200_2016.root
   type:
     signal
-
-SUEP-m125-generic:
+GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi2.00_T2.00_modegeneric:
   files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m125-generic-htcut+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-darkPhoHad:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-darkPhoHad+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-SUEP-m400-darkPho:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-darkPho+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-SUEP-m400-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md2-t0.5-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md2-t0.5-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md2-t1-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md2-t1-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md2-t2-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md2-t2-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md2-t3-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md2-t3-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md2-t4-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md2-t4-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md3-t1.5-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md3-t1.5-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md3-t3-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md3-t3-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md3-t6-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md3-t6-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md5-t10-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md5-t10-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md5-t1-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md5-t1-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m400-md5-t5-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m400-md5-t5-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m750-darkPhoHad:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m750-darkPhoHad+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m750-darkPho:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m750-darkPho+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
-  type:
-    signal
-
-SUEP-m750-generic:
-  files:
-    - /work/submit/lavezzo/SUEP/outputs/SUEP-m750-generic+RunIIAutumn18-private+MINIAODSIM_sys_studies.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig125_2016.root
   type:
     signal
 
