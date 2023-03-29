@@ -47,7 +47,7 @@ close_Bin3 = {
     "2016" : 1.05,
     "2017" : 1.10,
     "2018" : 1.15
-#}
+}
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_inputs_2018.yaml")

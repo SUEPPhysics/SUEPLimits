@@ -1,0 +1,18 @@
+imax * number of categories
+jmax * number of samples minus one
+kmax * number of nuisance parameters
+------------------------------
+shapes * * shapes-cat_crA2016.root $PROCESS $PROCESS_$SYSTEMATIC
+bin          cat_crA2016
+observation   9210719.0
+------------------------------
+------------------------------
+bin         cat_crA2016    cat_crA2016
+process          Signal       expected
+process               0              1
+rate              0.000          1.000
+------------------------------
+CMS_lumi_corr          lnN          1.006              -
+CMS_lumi_uncorr_2016   lnN          1.010              -
+r2016_cat_crA rateParam cat_crA2016 expected 9210719.0
+cat_crA2016 autoMCStats 0 0 1

@@ -1,6 +1,6 @@
 QCD:
   files:
-    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/GluGluToSUEP_HT1000_T2p00_mS1000.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV_feb23_v2.root
+    #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/GluGluToSUEP_HT400_T2p00_mS1000.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV_feb23_v2.root
     - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/QCD_2016.root
   type:
     background
@@ -29,31 +29,31 @@ data:
     data
   color: 895
 
-GluGluToSUEP_HT1000_T2p00_mS400.000_mPhi2.00_T2.000_modegeneric:
+GluGluToSUEP_HT400_T2p00_mS400.000_mPhi2.00_T2.000_modegeneric:
   files:
     - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig400_2016.root
   type:
     signal
-GluGluToSUEP_HT1000_T2p00_mS1000.000_mPhi2.00_T2.000_modegeneric:
+GluGluToSUEP_HT400_T2p00_mS1000.000_mPhi2.00_T2.000_modegeneric:
   files:
     - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig1000_2016.root
   type:
     signal
-GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi2.00_T2.000_modegeneric:
+GluGluToSUEP_HT400_T2p00_mS700.000_mPhi2.00_T2.000_modegeneric:
   files:
     - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig700_2016.root
   type:
     signal
-GluGluToSUEP_HT1000_T2p00_mS300.000_mPhi2.00_T2.000_modegeneric:
+GluGluToSUEP_HT400_T2p00_mS300.000_mPhi2.00_T2.000_modegeneric:
   files:
     - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig300_2016.root
   type:
     signal
-GluGluToSUEP_HT1000_T2p00_mS200.000_mPhi2.00_T2.000_modegeneric:
+GluGluToSUEP_HT400_T2p00_mS200.000_mPhi2.00_T2.000_modegeneric:
   files:
     - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig200_2016.root
   type:
     signal
-GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi2.00_T2.000_modegeneric:
+GluGluToSUEP_HT400_T2p00_mS125.000_mPhi2.00_T2.000_modegeneric:
   files:
     - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig125_2016.root
