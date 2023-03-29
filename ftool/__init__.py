@@ -2,6 +2,7 @@ from __future__ import division
 
 import numpy as np
 import uproot
+import json
 import os
 import re
 from . import methods
@@ -38,12 +39,13 @@ def draw_ratio(nom, uph, dwh, name):
      plt.savefig("plots/"+name + ".png")
 
 class datagroup:
-     def __init__(self, files, observable="SUEP_nconst_Cluster ", name = "QCD",
-                  channel="", kfactor=1.0, ptype="background",
+     def __init__(self, files, observable="SUEP_nconst_Cluster ", era = 2018,  
+                  name = "QCD", channel="", kfactor=1.0, ptype="background",
                   luminosity= 1.0, rebin=1, bins=[], normalise=True,
                   xsections=None, mergecat=True, binrange=None):
           self._files  = files
           self.observable = observable
+          self.era     = era
           self.name    = name
           self.ptype   = ptype
           self.lumi    = luminosity
@@ -66,7 +68,7 @@ class datagroup:
 
                _scale = 1
                #if ptype.lower() != "data":
-               #    _scale = self.lumi#/100#* 1000.0 #
+               #    _scale = self.lumi * self.xs_scale(proc=self.name)
 
                if self.name == "expected" and "I_" in self.observable:
                     sum_var = 'x' #Change this to a y to look at the sphericity instead of nconst
@@ -273,6 +275,18 @@ class datagroup:
      
          return h_out
 
+     def xs_scale(self, proc):
+         xsec = 1.0
+         with open(f"config/xsections_{self.era}.json") as file:
+            MC_xsecs = json.load(file)
+         print('PROC',proc)
+         xsec  = MC_xsecs[proc]["xsec"]
+         xsec *= MC_xsecs[proc]["kr"]
+         xsec *= MC_xsecs[proc]["br"]
+         xsec *= 1000.0
+         assert xsec > 0, "{} has a null cross section!".format(proc)
+         return xsec
+
 
 class datacard:
      def __init__(self, name, channel="ch1"):
@@ -350,14 +364,14 @@ class datacard:
 
      def add_rate_param(self, name, channel, process, rate=1.0, vmin=0.1, vmax=10):
           # name rateParam bin process initial_value [min,max]
-          template = "{name} rateParam {channel} {process} {rate}"# [{vmin},{vmax}]"
+          template = "{name} rateParam {channel} {process} {rate}" # apply no fixed range for floating rateparam
           template = template.format(
                name = name,
                channel = channel,
                process = process,
                rate = rate,
-               #vmin = vmin,
-               #vmax = vmax
+               # vmin = vmin, 
+               # vmax = vmax
           )
           self.extras.add(template)
 

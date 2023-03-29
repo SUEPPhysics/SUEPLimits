@@ -6,7 +6,7 @@ import ftool
 import numpy as np
 from termcolor import colored
 
-
+#from:https://twiki.cern.ch/twiki/bin/viewauth/CMS/LumiRecommendationsRun2#Combination_and_correlations
 lumis = {
     "2016" : 35.48,#35.9,
     "2017" : 36.74,#41.5,
@@ -14,25 +14,39 @@ lumis = {
 }
 
 lumi_uncorr = {
-    "2016" : 1.0,
-    "2017" : 2.0,
-    "2018" : 1.5
+    "2016" : 1.010,
+    "2017" : 1.020,
+    "2018" : 1.015
 }
 
 lumi_corr = {
-    "2016" : 0.6,
-    "2017" : 0.9,
-    "2018" : 2.0
+    "2016" : 1.006,
+    "2017" : 1.009,
+    "2018" : 1.020
 }
 
 lumi_corr1718 = {
-    "2017" : 0.6,
-    "2018" : 0.2
+    "2017" : 1.006,
+    "2018" : 1.002
 }
-#lumi_unc = {
-#    "2016" : 1.025,
-#    "2017" : 1.023,
-#    "2018" : 1.025
+
+#Closure systematics applied to data
+close_Bin1 = {
+    "2016" : 1.05,
+    "2017" : 1.05,
+    "2018" : 1.05
+}
+
+close_Bin2 = {
+    "2016" : 1.10,
+    "2017" : 1.10,
+    "2018" : 1.15
+}
+
+close_Bin3 = {
+    "2016" : 1.30,
+    "2017" : 1.25,
+    "2018" : 1.15
 #}
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
@@ -85,6 +99,7 @@ def main():
             inputs[dg]["files"],
             ptype      = inputs[dg]["type"],
             observable = options.variable,
+            era        = options.era,
             name       = dg,
             kfactor    = inputs[dg].get("kfactor", 1.0),
             xsections  = xsections,
@@ -124,23 +139,27 @@ def main():
         card.add_nominal(name,options.channel, p.get("nom"))
         if "Sig" in options.channel:
             if p.name == "expected" and p.ptype == "data" :
-                if "Bin1" in options.channel: Bin_cr = "Bin1crF"
-                if "Bin2" in options.channel: Bin_cr = "Bin2crF"
-                if "Bin3" in options.channel: Bin_cr = "Bin3crF"
+                if "Bin1" in options.channel:
+                    Bin_cr = "Bin1crF"
+                    close_stat = close_Bin1[options.era]
+                if "Bin2" in options.channel:
+                    Bin_cr = "Bin2crF"
+                    close_stat = close_Bin2[options.era]
+                if "Bin3" in options.channel:
+                    Bin_cr = "Bin3crF"
+                    close_stat = close_Bin3[options.era]
                 card.add_ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, Bin_cr )
-                card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}_{}".format(options.channel, options.era)), 1.2)          
+                card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}_{}".format(options.channel, options.era)), close_stat)
         else:
             rate_nom = p.get("nom").values().sum()
             rate_up = (p.get("nom").values() + 3 * np.sqrt(p.get("nom").variances())).sum()
             rate_down = (p.get("nom").values() - 3 * np.sqrt(p.get("nom").variances())).sum()
-            #print(rate_nom, rate_up, rate_down)
             if p.name == "expected" and p.ptype == "data" :
                 card.add_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, rate=rate_nom, vmin=rate_down, vmax=rate_up )
 
         if p.ptype=="data": continue #Now that we have expected nom we skip data
 
         #Add lnN nuisances
-        #card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_{}".format(options.era)), lumi_unc[options.era])
         card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_uncorr_{}".format(options.era)), lumi_uncorr[options.era])
         card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr"), lumi_corr[options.era])
         if options.era in ["2017","2018"]:
@@ -148,18 +167,18 @@ def main():
 
         #Shape based uncertainties
         card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JES"))
-        card.add_shape_nuisance(name, "CMS_JER_{}".format(options.era), p.get("JER"))
-        card.add_shape_nuisance(name, "CMS_PU_{}".format(options.era), p.get("puweights"))
+        card.add_shape_nuisance(name, "CMS_JER", p.get("JER"))
+        card.add_shape_nuisance(name, "CMS_PU", p.get("puweights"))
         card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"))
         card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
         card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
-        card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"),symmetric=True) #Symmetrise the down value
+        card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"))
+        if options.era == "2016" or options.era == "2017":
+             card.add_shape_nuisance(name, "CMS_Prefire", p.get("prefire"))
         if "mS125" in p.name:
-            card.add_shape_nuisance(name, "CMS_Higgs", p.get("higgs_weights"))
-
+             card.add_shape_nuisance(name, "CMS_Higgs", p.get("higgs_weights"))
         card.add_auto_stat()
     card.dump()
-
 
 if __name__ == "__main__":
     main()
