@@ -20,13 +20,13 @@ def call_makeDataCard(cmd):
 pool = ThreadPool(multiprocessing.cpu_count())
 results = []
 #new_bins = '60 65 70 150'
-binsx_2018 = [50,60,70,300]
+binsx_2018 = [50,60,80,300]
 #binsx_low = [50,60,80,300]
 binsx_1617 = [50,60,70,300]
 #binsx_2017 = [50,60,80,300]
 #for year in [2016]:#,2017]:
-#for year in [2018]:
-for year in [2018,2017,2016]:
+for year in [2018]:
+#for year in [2016]:
     with open(options_input.format(year)) as f:
         try:
             inputs = yaml.safe_load(f.read())

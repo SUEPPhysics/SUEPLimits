@@ -31,54 +31,54 @@ data:
 
 GluGluToSUEP_HT400_T2p00_mS400.000_mPhi2.00_T2.000_modegeneric:
   files:
-    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig400_2018.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig400_T2p00_phi2.000_2018.root
   type:
     signal
 GluGluToSUEP_HT400_T2p00_mS1000.000_mPhi2.00_T2.000_modegeneric:
   files:
-    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig1000_2018.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig1000_T2p00_phi2.000_2018.root
   type:
     signal
 GluGluToSUEP_HT400_T2p00_mS700.000_mPhi2.00_T2.000_modegeneric:
   files:
-    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig700_2018.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig700_T2p00_phi2.000_2018.root
   type:
     signal
 GluGluToSUEP_HT400_T2p00_mS300.000_mPhi2.00_T2.000_modegeneric:
   files:
-    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig300_2018.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig300_T2p00_phi2.000_2018.root
   type:
     signal
 GluGluToSUEP_HT400_T2p00_mS200.000_mPhi2.00_T2.000_modegeneric:
   files:
-    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig200_2018.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig200_T2p00_phi2.000_2018.root
   type:
     signal
 GluGluToSUEP_HT400_T2p00_mS125.000_mPhi2.00_T2.000_modegeneric:
   files:
-    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig125_2018.root
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig125_T2p00_phi2.000_2018.root
   type:
     signal
-##GluGluToSUEP_HT400_T2p00_mS500.000_mPhi2.00_T2.00_modegeneric:
-##  files:
-##    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig500_2018.root
-##  type:
-##    signal
-##GluGluToSUEP_HT400_T2p00_mS600.000_mPhi2.00_T2.00_modegeneric:
-##  files:
-##    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig600_2018.root
-##  type:
-##    signal
-##GluGluToSUEP_HT400_T2p00_mS800.000_mPhi2.00_T2.00_modegeneric:
-##  files:
-##    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig800_2018.root
-##  type:
-##    signal
-##GluGluToSUEP_HT400_T2p00_mS900.000_mPhi2.00_T2.00_modegeneric:
-##  files:
-##    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig900_2018.root
-##  type:
-##    signal
+GluGluToSUEP_HT400_T2p00_mS500.000_mPhi2.00_T2.000_modegeneric:
+  files:
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig500_T2p00_phi2.000_2018.root
+  type:
+    signal
+GluGluToSUEP_HT400_T2p00_mS600.000_mPhi2.00_T2.000_modegeneric:
+  files:
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig600_T2p00_phi2.000_2018.root
+  type:
+    signal
+GluGluToSUEP_HT400_T2p00_mS800.000_mPhi2.00_T2.000_modegeneric:
+  files:
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig800_T2p00_phi2.000_2018.root
+  type:
+    signal
+GluGluToSUEP_HT400_T2p00_mS900.000_mPhi2.00_T2.000_modegeneric:
+  files:
+    - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig900_T2p00_phi2.000_2018.root
+  type:
+    signal
 
 #GluGluToSUEP_HT400_T4p00_mS400.000_mPhi2.00_T4.000_modegeneric:
 #  files:

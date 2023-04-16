@@ -57,3 +57,5 @@ GluGluToSUEP_HT400_T2p00_mS200.000_mPhi2.00_T2.000_modegeneric:
 GluGluToSUEP_HT400_T2p00_mS125.000_mPhi2.00_T2.000_modegeneric:
   files:
     - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/sig125_2016.root
+  type:
+    signal
