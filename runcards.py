@@ -25,7 +25,7 @@ binsx_2018 = [50,65,80,300]
 binsx_1617 = [50,60,70,300]
 #binsx_2017 = [50,60,80,300]
 #for year in [2016]:#,2017]:
-for year in [2018,2017]:
+for year in [2018]:
 #for year in [2016]:
     with open(options_input.format(year)) as f:
         try:
