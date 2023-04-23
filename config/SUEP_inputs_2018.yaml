@@ -21,6 +21,7 @@ expected:
 data:
   files:
     - ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/Data_2018.root
+    #- ~/nobackup/sueps/analysis/SUEPs/scouting/plotter/combineHist/QCD_2018.root
     #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018A-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
     #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018B-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
     #- ~/nobackup/sueps/analysis/SUEPs/newlimits/CMSSW_10_2_13/src/SUEPLimits/offline_testfiles/JetHT+Run2018C-UL2018_MiniAODv2-v1+MINIAOD_feb23_v2.root
