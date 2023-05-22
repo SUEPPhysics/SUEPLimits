@@ -48,6 +48,11 @@ close_Bin3 = {
     "2017" : 1.10,
     "2018" : 1.15
 }
+close_Bin4 = {
+    "2016" : 1.05,
+    "2017" : 1.1,
+    "2018" : 1.15
+}
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_inputs_2018.yaml")
@@ -148,6 +153,9 @@ def main():
                 if "Bin3" in options.channel:
                     Bin_cr = "Bin3crF"
                     close_stat = close_Bin3[options.era]
+                if "Bin4" in options.channel:
+                    Bin_cr = "Bin4crF"
+                    close_stat = close_Bin4[options.era]
                 card.add_ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, Bin_cr )
                 card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}_{}".format(options.channel, options.era)), close_stat)
         else:

@@ -20,13 +20,15 @@ def call_makeDataCard(cmd):
 pool = ThreadPool(multiprocessing.cpu_count())
 results = []
 #new_bins = '60 65 70 150'
-binsx_2018 = [50,65,80,300]
+binsx_18 = [50,65,70,250,300]
 #binsx_low = [50,60,80,300]
-binsx_1617 = [50,60,70,300]
+binsx_17 = [50,65,75,250,300]
+#binsx_17 = [50,65,70,250,300]
+binsx_16 = [50,65,70,250,300]
 #binsx_2017 = [50,60,80,300]
 #for year in [2016]:#,2017]:
+#for year in [2016,2017,2018]:
 for year in [2018]:
-#for year in [2016]:
     with open(options_input.format(year)) as f:
         try:
             inputs = yaml.safe_load(f.read())
@@ -36,16 +38,18 @@ for year in [2018]:
     for n, sam in inputs.items():
         if "SUEP" not in n: continue
         sigmass = int(n.split("_mS")[1].split('.')[0])
-        if year == 2018:
-          binsx = binsx_2018
+        if year == 2016:
+          binsx = binsx_16
+        elif year == 2017:
+          binsx = binsx_17
         else:
-          binsx = binsx_1617
+          binsx = binsx_18
 
         print(" ===== processing : ", n, sam, year,sigmass)
         cmd_crA = "python3 makeDataCard.py --channel cat_crA "
         cmd_crA += "--variable A_SUEP_nconst_Cluster70 "
         cmd_crA += "--stack {signal} expected data "
-        cmd_crA += "--bins 0 %s "%binsx[3]
+        cmd_crA += "--bins 0 %s "%binsx[-1]
         #cmd_crA += "--rebin 300 " 
         cmd_crA += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_crA = cmd_crA.format(signal=n, era=year)
@@ -53,7 +57,7 @@ for year in [2018]:
         cmd_crB = "python3 makeDataCard.py --channel cat_crB "
         cmd_crB += "--variable B_SUEP_nconst_Cluster70 "
         cmd_crB += "--stack {signal} expected data "
-        cmd_crB += "--bins 0 %s "%binsx[3]
+        cmd_crB += "--bins 0 %s "%binsx[-1]
         #cmd_crB += "--rebin 300 " 
         cmd_crB += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_crB = cmd_crB.format(signal=n, era=year)
@@ -61,7 +65,7 @@ for year in [2018]:
         cmd_crC = "python3 makeDataCard.py --channel cat_crC "
         cmd_crC += "--variable C_SUEP_nconst_Cluster70 "
         cmd_crC += "--stack {signal} expected data "
-        cmd_crC += "--bins 0 %s "%binsx[3]
+        cmd_crC += "--bins 0 %s "%binsx[-1]
         #cmd_crC += "--rebin 300 " 
         cmd_crC += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_crC = cmd_crC.format(signal=n, era=year)
@@ -69,7 +73,7 @@ for year in [2018]:
         cmd_crD = "python3 makeDataCard.py --channel cat_crD "
         cmd_crD += "--variable D_SUEP_nconst_Cluster70 "
         cmd_crD += "--stack {signal} expected data "
-        cmd_crD += "--bins 0 %s "%binsx[3]
+        cmd_crD += "--bins 0 %s "%binsx[-1]
         #cmd_crD += "--rebin 300 " 
         cmd_crD += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_crD = cmd_crD.format(signal=n, era=year)
@@ -77,7 +81,7 @@ for year in [2018]:
         cmd_crE = "python3 makeDataCard.py --channel cat_crE "
         cmd_crE += "--variable E_SUEP_nconst_Cluster70 "
         cmd_crE += "--stack {signal} expected data "
-        cmd_crE += "--bins 0 %s "%binsx[3]
+        cmd_crE += "--bins 0 %s "%binsx[-1]
         #cmd_crE += "--rebin 300 " 
         cmd_crE += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_crE = cmd_crE.format(signal=n, era=year)
@@ -106,10 +110,18 @@ for year in [2018]:
         cmd_crF3 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_crF3 = cmd_crF3.format(signal=n, era=year)
 
+        cmd_crF4 = "python3 makeDataCard.py --channel Bin4crF "
+        cmd_crF4 += "--variable F_SUEP_nconst_Cluster70 "
+        cmd_crF4 += "--stack {signal} expected data "
+        cmd_crF4 += "--bins %s %s "%(binsx[3],binsx[4])
+        #cmd_crF3 += "--rebin 25 " 
+        cmd_crF4 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
+        cmd_crF4 = cmd_crF4.format(signal=n, era=year)
+
         cmd_crG = "python3 makeDataCard.py --channel cat_crG "
         cmd_crG += "--variable G_SUEP_nconst_Cluster70 "
         cmd_crG += "--stack {signal} expected data "
-        cmd_crG += "--bins 0 %s "%binsx[3]
+        cmd_crG += "--bins 0 %s "%binsx[-1]
         #cmd_crG += "--rebin 300 " 
         cmd_crG += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_crG = cmd_crG.format(signal=n, era=year)
@@ -117,7 +129,7 @@ for year in [2018]:
         cmd_crH = "python3 makeDataCard.py --channel cat_crH "
         cmd_crH += "--variable H_SUEP_nconst_Cluster70 "
         cmd_crH += "--stack {signal} expected data "
-        cmd_crH += "--bins 0 %s "%binsx[3]
+        cmd_crH += "--bins 0 %s "%binsx[-1]
         #cmd_crH += "--rebin 300 " 
         cmd_crH += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_crH = cmd_crH.format(signal=n, era=year)
@@ -146,6 +158,14 @@ for year in [2018]:
         cmd_sr3 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
         cmd_sr3 = cmd_sr3.format(signal=n, era=year)
 
+        cmd_sr4 = "python3 makeDataCard.py --channel Bin4Sig "
+        cmd_sr4 += "--variable I_SUEP_nconst_Cluster70 "
+        cmd_sr4 += "--stack {signal} expected data "
+        cmd_sr4 += "--bins %s %s "%(binsx[3],binsx[4])
+        #cmd_sr3 += "--rebin 25 " 
+        cmd_sr4 += "--input=config/SUEP_inputs_{era}.yaml --era={era}"
+        cmd_sr4 = cmd_sr4.format(signal=n, era=year)
+
         results.append(pool.apply_async(call_makeDataCard, (cmd_crA,)))
         results.append(pool.apply_async(call_makeDataCard, (cmd_crB,)))
         results.append(pool.apply_async(call_makeDataCard, (cmd_crC,)))
@@ -154,11 +174,13 @@ for year in [2018]:
         results.append(pool.apply_async(call_makeDataCard, (cmd_crF1,)))
         results.append(pool.apply_async(call_makeDataCard, (cmd_crF2,)))
         results.append(pool.apply_async(call_makeDataCard, (cmd_crF3,)))
+        results.append(pool.apply_async(call_makeDataCard, (cmd_crF4,)))
         results.append(pool.apply_async(call_makeDataCard, (cmd_crG,)))
         results.append(pool.apply_async(call_makeDataCard, (cmd_crH,)))        
         results.append(pool.apply_async(call_makeDataCard, (cmd_sr1,)))
         results.append(pool.apply_async(call_makeDataCard, (cmd_sr2,)))
         results.append(pool.apply_async(call_makeDataCard, (cmd_sr3,)))
+        results.append(pool.apply_async(call_makeDataCard, (cmd_sr4,)))
 
 # Close the pool and wait for each running task to complete
 pool.close()
