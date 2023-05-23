@@ -1,0 +1,20 @@
+imax * number of categories
+jmax * number of samples minus one
+kmax * number of nuisance parameters
+------------------------------
+shapes * * shapes-Bin2crF2017.root $PROCESS $PROCESS_$SYSTEMATIC
+bin          Bin2crF2017
+observation      1604.0
+------------------------------
+------------------------------
+bin         Bin2crF2017    Bin2crF2017
+process          Signal       expected
+process               0              1
+rate              0.000          1.000
+------------------------------
+CMS_lumi_corr          lnN          1.009              -
+CMS_lumi_corr1718      lnN          1.006              -
+CMS_lumi_uncorr_2017   lnN          1.020              -
+CMS_trk_kill_2017    shape          1.000              -
+Bin2crF2017 autoMCStats 0 0 1
+r2017_Bin2crF rateParam Bin2crF2017 expected 1604.0

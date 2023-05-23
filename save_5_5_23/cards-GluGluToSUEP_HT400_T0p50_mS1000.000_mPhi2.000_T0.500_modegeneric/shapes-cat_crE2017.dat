@@ -1,0 +1,27 @@
+imax * number of categories
+jmax * number of samples minus one
+kmax * number of nuisance parameters
+------------------------------
+shapes * * shapes-cat_crE2017.root $PROCESS $PROCESS_$SYSTEMATIC
+bin          cat_crE2017
+observation  27494486.0
+------------------------------
+------------------------------
+bin         cat_crE2017    cat_crE2017
+process          Signal       expected
+process               0              1
+rate              0.403          1.000
+------------------------------
+CMS_JER              shape          1.000              -
+CMS_JES_2017         shape          1.000              -
+CMS_PS_FSR_2017      shape          1.000              -
+CMS_PS_ISR_2017      shape          1.000              -
+CMS_PU               shape          1.000              -
+CMS_Prefire          shape          1.000              -
+CMS_lumi_corr          lnN          1.009              -
+CMS_lumi_corr1718      lnN          1.006              -
+CMS_lumi_uncorr_2017   lnN          1.020              -
+CMS_trigSF_2017      shape          1.000              -
+CMS_trk_kill_2017    shape          1.000              -
+cat_crE2017 autoMCStats 0 0 1
+r2017_cat_crE rateParam cat_crE2017 expected 27494486.0
