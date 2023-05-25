@@ -59,6 +59,7 @@ class datagroup:
           self.binrange= binrange # dropping bins the same way as droping elements in numpy arrays a[1:3]
 
           for fn in self._files:
+
                _proc = os.path.basename(fn).replace(".root","")
                _file = uproot.open(fn)
                if not _file:
@@ -68,7 +69,12 @@ class datagroup:
 
                _scale = 1
                if ptype.lower() != "data":
-                   _scale = self.lumi * self.xs_scale(proc=self.name)
+                   if '2016apv' in fn:
+                    _scale = 19.497 * self.xs_scale(proc=self.name) # To treat the special 2016 case where 2016 and 2016 apv have different lumis
+                   elif '2016' in fn:
+                    _scale = 16.811 * self.xs_scale(proc=self.name)
+                   else:
+                    _scale = self.lumi * self.xs_scale(proc=self.name)
 
                if self.name == "expected" and "I_" in self.observable:
                     sum_var = 'x' #Change this to a y to look at the sphericity instead of nconst
@@ -279,7 +285,6 @@ class datagroup:
          xsec = 1.0
          with open(f"config/xsections_{self.era}.json") as file:
             MC_xsecs = json.load(file)
-         print('PROC',proc)
          xsec  = MC_xsecs[proc]["xsec"]
          xsec *= MC_xsecs[proc]["kr"]
          xsec *= MC_xsecs[proc]["br"]
@@ -307,7 +312,6 @@ class datacard:
           self.dc_name = "cards-{}/shapes-{}.dat".format(name, channel)
           if not os.path.isdir(os.path.dirname(self.dc_name)):
                os.mkdir(os.path.dirname(self.dc_name))
-
           self.shape_file = uproot.recreate(
                "cards-{}/shapes-{}.root".format(name, channel)
           )
@@ -364,21 +368,20 @@ class datacard:
 
      def add_rate_param(self, name, channel, process, rate=1.0, vmin=0.1, vmax=10):
           # name rateParam bin process initial_value [min,max]
-          template = "{name} rateParam {channel} {process} {rate}" # apply no fixed range for floating rateparam
+          template = "{name} rateParam {channel} {process} {rate} [{vmin},{vmax}]" # apply no fixed range for floating rateparam
           template = template.format(
                name = name,
                channel = channel,
                process = process,
                rate = rate,
-               # vmin = vmin, 
-               # vmax = vmax
+               vmin = vmin, 
+               vmax = vmax
           )
           self.extras.add(template)
-
      def add_ABCD_rate_param(self, name, channel, process, era, F):
           # name rateParam bin process initial_value [min,max]
           rera = "r" + era
-          template = "{name} rateParam {channel} {process} @5*(@8+@9+@10)*@7*@7*@3*@3*@1*@1/(@6*@2*@0*@4*@4*@4*@4) {rera}_cat_crA,{rera}_cat_crB,{rera}_cat_crC,{rera}_cat_crD,{rera}_cat_crE,{rera}_{F},{rera}_cat_crG,{rera}_cat_crH,{rera}_Bin1crF,{rera}_Bin2crF,{rera}_Bin3crF"
+          template = "{name} rateParam {channel} {process} @5*(@8+@9+@10+@11+@12)*@7*@7*@3*@3*@1*@1/(@6*@2*@0*@4*@4*@4*@4) {rera}_cat_crA,{rera}_cat_crB,{rera}_cat_crC,{rera}_cat_crD,{rera}_cat_crE,{rera}_{F},{rera}_cat_crG,{rera}_cat_crH,{rera}_Bin1crF,{rera}_Bin2crF,{rera}_Bin3crF,{rera}_Bin4crF,{rera}_Bin0crF"
           template = template.format(
                name = name,
                channel = channel,

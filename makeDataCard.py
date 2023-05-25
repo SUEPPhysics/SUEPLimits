@@ -6,12 +6,13 @@ import ftool
 import numpy as np
 from termcolor import colored
 
-#from:https://twiki.cern.ch/twiki/bin/viewauth/CMS/LumiRecommendationsRun2#Combination_and_correlations
+# from: https://twiki.cern.ch/twiki/bin/viewauth/CMS/LumiRecommendationsRun2#Combination_and_correlations
 lumis = {
-    "2016" : 36.308,
+    "2016" : 16.811, #2016apv lumi 19.498 is applied in ftool
     "2017" : 41.471,
     "2018" : 59.817
 }
+
 lumi_uncorr = {
     "2016" : 1.010,
     "2017" : 1.020,
@@ -30,23 +31,39 @@ lumi_corr1718 = {
 }
 
 #Closure systematics applied to data
+
 close_Bin1 = {
     "2016" : 1.05,
     "2017" : 1.05,
-    "2018" : 1.05
+    "2018" : 1.20
 }
 
 close_Bin2 = {
-    "2016" : 1.10,
-    "2017" : 1.10,
-    "2018" : 1.15
+    "2016" : 2.00,
+    "2017" : 1.60,
+    "2018" : 1.50
 }
 
 close_Bin3 = {
-    "2016" : 1.30,
-    "2017" : 1.25,
-    "2018" : 1.15
+    "2016" : 2.00,
+    "2017" : 2.00,
+    "2018" : 2.00
 }
+
+close_Bin4 = {
+    "2016" : 2.00,
+    "2017" : 2.00,
+    "2018" : 2.00
+}
+
+close_Bin4 = {
+    "2016" : 2.00,
+    "2017" : 2.00,
+    "2018" : 2.00
+}
+
+
+
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_inputs_2018.yaml")
@@ -88,15 +105,15 @@ def main():
         options.channel = options.channel[0]
     
     xsections = 1.0
-    # make datasets per prcess
+    # make datasets per process
     datasets = {}
     nsignals = 0
     signal = ""
     for dg in options.stack:
-        print(dg)
-        p = ftool.datagroup(
+        print('dg',dg)
+        p = ftool.datagroup( 
             inputs[dg]["files"],
-            ptype      = inputs[dg]["type"],
+            ptype      = inputs[dg]["type"], 
             observable = options.variable,
             era        = options.era,
             name       = dg,
@@ -112,10 +129,11 @@ def main():
         datasets[p.name] = p
         if p.ptype == "signal":
             signal = p.name
+    print('datasets!',datasets['data'].get("nom")) #Empty already
 
     card_name = "ch"+options.era
     if isinstance(options.channel, str):
-        card_name = options.channel+options.era
+        card_name = options.channel+options.era 
 
     elif isinstance(options.channel, list):
         if np.all(["signal" in c.lower() for c in options.channel]):
@@ -127,7 +145,7 @@ def main():
     )
     card.shapes_headers()
 
-    data_obs = datasets.get("data").get("nom")
+    data_obs = datasets.get("data").get("nom") 
     card.add_observation(data_obs)
 
     for n, p in datasets.items():
@@ -147,12 +165,16 @@ def main():
                 if "Bin3" in options.channel:
                     Bin_cr = "Bin3crF"
                     close_stat = close_Bin3[options.era]
+                if "Bin4" in options.channel:
+                    Bin_cr = "Bin4crF"
+                    close_stat = close_Bin4[options.era]
+
                 card.add_ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, Bin_cr )
                 card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}_{}".format(options.channel, options.era)), close_stat)
         else:
             rate_nom = p.get("nom").values().sum()
-            rate_up = (p.get("nom").values() + 3 * np.sqrt(p.get("nom").variances())).sum()
-            rate_down = (p.get("nom").values() - 3 * np.sqrt(p.get("nom").variances())).sum()
+            rate_up = p.get("nom").values().sum()*5
+            rate_down = 0
             if p.name == "expected" and p.ptype == "data" :
                 card.add_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, rate=rate_nom, vmin=rate_down, vmax=rate_up )
 
