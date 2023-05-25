@@ -7,7 +7,7 @@ import shlex
 import numpy as np
 from multiprocessing.pool import ThreadPool
 
-options_input = "config/SUEP_inputs_{}_small-Copy1.yaml"
+options_input = "config/SUEP_inputs_{}.yaml"
 
 def call_makeDataCard(cmd):
     """ This runs in a separate thread. """

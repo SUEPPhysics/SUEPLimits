@@ -368,7 +368,7 @@ class datacard:
 
      def add_rate_param(self, name, channel, process, rate=1.0, vmin=0.1, vmax=10):
           # name rateParam bin process initial_value [min,max]
-          template = "{name} rateParam {channel} {process} {rate} [{vmin},{vmax}]" # apply no fixed range for floating rateparam
+          template = "{name} rateParam {channel} {process} {rate} [{vmin},{vmax}]" # take large interval s.t. rateparam is essentially floating
           template = template.format(
                name = name,
                channel = channel,
