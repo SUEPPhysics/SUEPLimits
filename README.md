@@ -47,7 +47,8 @@ This section sits on top of the Combine tools and is run in 3 sections. Make sur
 
 ## Creating Datacards
 
-The first section creates datacards and root files that will be ready to input into combine. It does this by reading in the histograms made by coffea and preparing the different control and signal regions as well as the different systematic variations. Notice that after activating the combine tools through cmsenv, functions and packages from other environments might not work anymore so only activate cmsenv after completing the datacards. 
+The first section creates datacards and root files that will be ready to input into combine. It does this by reading in the histograms made by coffea and preparing the different control and signal regions as well as the different systematic variations. 
+Notice that after activating the combine tools through cmsenv, functions and packages from other environments might not work anymore so only activate cmsenv after completing the datacards. 
 
 The nuisances for the datacard are defined in MakeDataCard.py 
 The various regions and binnings are defined in runcards.py
@@ -79,4 +80,4 @@ plotImpacts.py -i impacts.json -o impacts
 ```
 ## Creating Brazil plots with the combine tool limits
 
-The notebook_tools directory contains jupyter notebooks which read in the output of the combine tool and make 1D limit Brazil plots, 2D temperature plots, and 3D summary plots keeping different parameters fixed. Additional notebooks for correlation plots and to investigate systematic uncertainties can be found in there. 
+The notebook_tools directory contains jupyter notebooks which read in the output of the combine tool and plot the exclusion limits through 1D limit Brazil plots, 2D temperature plots, and 3D summary plots keeping different parameters fixed.
