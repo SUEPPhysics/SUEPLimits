@@ -32,21 +32,27 @@ lumi_corr1718 = {
 
 #Closure systematics applied to data
 
+close_Bin0 = { # Bin0 is used as validation region and therefore not anymore in combine fit
+    "2016" : 1.01,
+    "2017" : 1.01,
+    "2018" : 1.01
+}
+
 close_Bin1 = {
-    "2016" : 1.05,
-    "2017" : 1.05,
-    "2018" : 1.20
+    "2016" : 1.15,
+    "2017" : 1.20,
+    "2018" : 1.15
 }
 
 close_Bin2 = {
-    "2016" : 2.00,
-    "2017" : 1.60,
+    "2016" : 1.40,
+    "2017" : 1.80,
     "2018" : 1.50
 }
 
 close_Bin3 = {
     "2016" : 2.00,
-    "2017" : 2.00,
+    "2017" : 1.50,
     "2018" : 2.00
 }
 
@@ -55,14 +61,6 @@ close_Bin4 = {
     "2017" : 2.00,
     "2018" : 2.00
 }
-
-close_Bin4 = {
-    "2016" : 2.00,
-    "2017" : 2.00,
-    "2018" : 2.00
-}
-
-
 
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
