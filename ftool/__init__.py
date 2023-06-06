@@ -294,11 +294,12 @@ class datagroup:
 
 
 class datacard:
-     def __init__(self, name, channel="ch1"):
+     def __init__(self, name, channel="ch1", tag="."):
           self.dc_file = []
           self.name = []
           self.nsignal = 1
           self.channel = channel
+          self.tag = tag
           self.dc_file.append("imax * number of categories")
           self.dc_file.append("jmax * number of samples minus one")
           self.dc_file.append("kmax * number of nuisance parameters")
@@ -309,11 +310,11 @@ class datacard:
           self.rates = []
           self.nuisances = {}
           self.extras = set()
-          self.dc_name = "cards-{}/shapes-{}.dat".format(name, channel)
+          self.dc_name = "{}/cards-{}/shapes-{}.dat".format(self.tag, name, channel)
           if not os.path.isdir(os.path.dirname(self.dc_name)):
                os.mkdir(os.path.dirname(self.dc_name))
           self.shape_file = uproot.recreate(
-               "cards-{}/shapes-{}.root".format(name, channel)
+               "{}/cards-{}/shapes-{}.root".format(self.tag, name, channel)
           )
 
      def shapes_headers(self):

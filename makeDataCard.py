@@ -30,41 +30,48 @@ lumi_corr1718 = {
     "2018" : 1.002
 }
 
-#Closure systematics applied to data
-
-close_Bin0 = { # Bin0 is used as validation region and therefore not anymore in combine fit
+# Shape closure systematic applied to data
+shape_Bin0 = { # Bin0 is used as validation region and therefore not anymore in combine fit
     "2016" : 1.01,
     "2017" : 1.01,
     "2018" : 1.01
 }
 
-close_Bin1 = {
+shape_Bin1 = {
     "2016" : 1.15,
     "2017" : 1.20,
     "2018" : 1.15
 }
 
-close_Bin2 = {
+shape_Bin2 = {
     "2016" : 1.40,
     "2017" : 1.80,
     "2018" : 1.50
 }
 
-close_Bin3 = {
+shape_Bin3 = {
     "2016" : 2.00,
     "2017" : 1.50,
     "2018" : 2.00
 }
 
-close_Bin4 = {
+shape_Bin4 = {
     "2016" : 2.00,
     "2017" : 2.00,
     "2018" : 2.00
 }
 
+# Closure systematic applied to data
+closure_stats = {
+    "2016": 1.05,
+    "2017": 1.05,
+    "2018": 1.20
+}
+
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_inputs_2018.yaml")
+    parser.add_argument("-tag"  , "--tag"   , type=str, default=".")
     parser.add_argument("-v"  , "--variable", type=str, default="nCleaned_Cands")
     parser.add_argument("-o"  , "--outdir"  , type=str, default="fitroom")
     parser.add_argument("-c"  , "--channel" , nargs='+', type=str)
@@ -139,7 +146,8 @@ def main():
 
     card = ftool.datacard(
         name = signal,
-        channel= card_name
+        channel= card_name,
+        tag = options.tag
     )
     card.shapes_headers()
 
@@ -156,19 +164,22 @@ def main():
             if p.name == "expected" and p.ptype == "data" :
                 if "Bin1" in options.channel:
                     Bin_cr = "Bin1crF"
-                    close_stat = close_Bin1[options.era]
+                    shape_stat = shape_Bin1[options.era]
                 if "Bin2" in options.channel:
                     Bin_cr = "Bin2crF"
-                    close_stat = close_Bin2[options.era]
+                    shape_stat = shape_Bin2[options.era]
                 if "Bin3" in options.channel:
                     Bin_cr = "Bin3crF"
-                    close_stat = close_Bin3[options.era]
+                    shape_stat = shape_Bin3[options.era]
                 if "Bin4" in options.channel:
                     Bin_cr = "Bin4crF"
-                    close_stat = close_Bin4[options.era]
+                    shape_stat = shape_Bin4[options.era]
+
+                closure_stat = closure_stats[options.era]
 
                 card.add_ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, Bin_cr )
-                card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}_{}".format(options.channel, options.era)), close_stat)
+                card.add_nuisance(name, "{:<21}  lnN".format("Shape_{}_{}".format(options.channel, options.era)), shape_stat)
+                card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}_{}".format(options.channel, options.era)), closure_stat)
         else:
             rate_nom = p.get("nom").values().sum()
             rate_up = p.get("nom").values().sum()*5
