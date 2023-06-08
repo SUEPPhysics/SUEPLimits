@@ -56,7 +56,6 @@ def main():
 
             # testing
             if 'mPhi3.0' not in n: continue
-            if 'T3p0' not in n: continue
 
             # either force the run, or check whether the file already exist before running
             run = False
@@ -66,7 +65,7 @@ def main():
                     for eof in ['dat','root']:
                         path = '{}/cards-{}/shapes-{}{}.{}'.format(options.tag, n,bin_name,year,eof)
                         if not os.path.exists(path): 
-                            print('Missing datacards:',path)
+                            print('Making datacards:',path)
                             run = True
             if not run: 
                 print("File exists, skippng (use -f to overwrite):", path)

@@ -41,7 +41,6 @@ for dc in dcards:
 
     # testing
     if 'mPhi3.0' not in name: continue
-    if 'T3p0' not in name: continue
 
     print(" -- making :", name)
     
