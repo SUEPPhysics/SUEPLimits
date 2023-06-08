@@ -54,9 +54,6 @@ def main():
         for n, sam in inputs.items():
             if "SUEP" not in n: continue
 
-            # testing
-            if 'mPhi3.0' not in n: continue
-
             # either force the run, or check whether the file already exist before running
             run = False
             if options.force: run = True

@@ -38,10 +38,7 @@ for dc in dcards:
     name= dc.replace("cards-", "")
     if "SUEP" not in name:
         continue
-
-    # testing
-    if 'mPhi3.0' not in name: continue
-
+    
     print(" -- making :", name)
     
     # Write combine commmands
