@@ -8,9 +8,14 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p"  , "--print_commands"   , type=bool, default=False) # Print the executed combine commands
-parser.add_argument("-r"  , "--rerun", nargs='+', type=str) # Rerun a list of datacards
+parser.add_argument("-p"  , "--print_commands"   , type=bool, default=False, help='Print the executed combine commands.')
+parser.add_argument("-r"  , "--rerun", nargs='+', type=str, help='Rerun a list of datacards.')
+parser.add_argument("-i"  , "--input", type=str, required=True, help='Where to find the cards.')
 options = parser.parse_args()
+
+# change cwd to the input tag: combine will read the cards from here and will make the higgsCombine file here
+os.chdir(options.input)
+print("Working in", options.input)
 
 # Read in the datacards
 if options.rerun != None:
@@ -29,12 +34,12 @@ pool = ThreadPool(multiprocessing.cpu_count())
 results = []
 
 for dc in dcards:
-    print(" -- making :", dc)
+    
     name= dc.replace("cards-", "")
     if "SUEP" not in name:
         continue
-    print(" --- name : ", name)
     
+    print(" -- making :", name)
     
     # Write combine commmands
     rm_command = "rm -rf cards-{}/combined.dat".format(name)
