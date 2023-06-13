@@ -65,7 +65,7 @@ def main():
                             print('Making datacards:',path)
                             run = True
             if not run: 
-                print("File exists, skippng (use -f to overwrite):", path)
+                print("File exists, skipping (use -f to overwrite):", path)
                 continue
             
             print(" ===== processing : ", n, sam, year)

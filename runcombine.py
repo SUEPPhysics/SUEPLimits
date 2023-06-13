@@ -8,7 +8,7 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p"  , "--print_commands"   , type=bool, default=False, help='Print the executed combine commands.')
+parser.add_argument("-p"  , "--print_commands"   , action='store_true', help='Print the executed combine commands.')
 parser.add_argument("-r"  , "--rerun", nargs='+', type=str, help='Rerun a list of datacards.')
 parser.add_argument("-i"  , "--input", type=str, required=True, help='Where to find the cards.')
 options = parser.parse_args()
