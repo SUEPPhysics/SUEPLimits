@@ -30,42 +30,65 @@ lumi_corr1718 = {
     "2018" : 1.002
 }
 
-# Shape closure systematic applied to data
+# Shape closure systematic applied to data (from F/C)
 shape_Bin0 = { # Bin0 is used as validation region and therefore not anymore in combine fit
     "2016" : 1.01,
     "2017" : 1.01,
     "2018" : 1.01
 }
-
 shape_Bin1 = {
-    "2016" : 1.15,
+    "2016" : 1.14,
     "2017" : 1.20,
     "2018" : 1.15
 }
-
 shape_Bin2 = {
     "2016" : 1.40,
     "2017" : 1.80,
     "2018" : 1.50
 }
-
 shape_Bin3 = {
-    "2016" : 2.00,
-    "2017" : 1.50,
-    "2018" : 2.00
+    "2016" : 2.0,
+    "2017" : 0.65,
+    "2018" : 2.0
 }
-
 shape_Bin4 = {
     "2016" : 2.00,
     "2017" : 2.00,
     "2018" : 2.00
 }
 
-# Closure systematic applied to data
-closure_stats = {
-    "2016": 1.05,
-    "2017": 1.05,
-    "2018": 1.20
+# Statistical variation on F/C
+shape_stat_Bin0 = { # Bin0 is used as validation region and therefore not anymore in combine fit
+    "2016" : 1.008,
+    "2017" : 1.007,
+    "2018" : 1.006
+}
+shape_stat_Bin1 = {
+    "2016" : 1.03,
+    "2017" : 1.03,
+    "2018" : 1.03
+}
+shape_stat_Bin2 = {
+    "2016" : 1.17,
+    "2017" : 1.16,
+    "2018" : 1.13
+}
+shape_stat_Bin3 = {
+    "2016" : 2.0,
+    "2017" : 0.5,
+    "2018" : 1.84
+}
+shape_stat_Bin4 = {
+    "2016" : 2.00,
+    "2017" : 2.00,
+    "2018" : 2.00
+}
+
+# ABCD closure systematic applied to data (from ISR)
+closure_systs = {
+    "2016": 1.08,
+    "2017": 1.08,
+    "2018": 1.08
 }
 
 def main():
@@ -73,7 +96,6 @@ def main():
     parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_inputs_2018.yaml")
     parser.add_argument("-tag"  , "--tag"   , type=str, default=".")
     parser.add_argument("-v"  , "--variable", type=str, default="nCleaned_Cands")
-    parser.add_argument("-o"  , "--outdir"  , type=str, default="fitroom")
     parser.add_argument("-c"  , "--channel" , nargs='+', type=str)
     parser.add_argument("-s"  , "--signal"  , nargs='+', type=str)
     parser.add_argument("-t"  , "--stack"   , nargs='+', type=str)
@@ -87,16 +109,7 @@ def main():
     options = parser.parse_args()
     
     print("range =", options.binrange)
-    # create a working directory where to store the datacards
-    try:
-        os.mkdir(options.outdir)
-        print("Directory " , options.outdir ,  " Created ")
-    except:
-        if options.force:
-            os.rmdir(options.outdir)
-            os.mkdir(options.outdir)
-            print("Directory " , options.outdir ,  " Re-created ")
-
+    
     inputs = None
     with open(options.input) as f:
         try:
@@ -164,26 +177,38 @@ def main():
             if p.name == "expected" and p.ptype == "data" :
                 if "Bin1" in options.channel:
                     Bin_cr = "Bin1crF"
-                    shape_stat = shape_Bin1[options.era]
+                    shape_syst = shape_Bin1[options.era]
+                    shape_stat = shape_stat_Bin1[options.era]
                 if "Bin2" in options.channel:
                     Bin_cr = "Bin2crF"
-                    shape_stat = shape_Bin2[options.era]
+                    shape_syst = shape_Bin2[options.era]
+                    shape_stat = shape_stat_Bin2[options.era]
                 if "Bin3" in options.channel:
                     Bin_cr = "Bin3crF"
-                    shape_stat = shape_Bin3[options.era]
+                    shape_syst = shape_Bin3[options.era]
+                    shape_stat = shape_stat_Bin3[options.era]
                 if "Bin4" in options.channel:
                     Bin_cr = "Bin4crF"
-                    shape_stat = shape_Bin4[options.era]
+                    shape_syst = shape_Bin4[options.era]
+                    shape_stat = shape_stat_Bin4[options.era]
 
-                closure_stat = closure_stats[options.era]
+                closure_syst = closure_systs[options.era]
+                
+                # correlated between years, bins
+                card.add_nuisance(name, "{:<21}  lnN".format("Closure"), closure_syst)
+                
+                # correlated between the bins, uncorrelated between years
+                card.add_nuisance(name, "{:<21}  lnN".format("Shape_{}".format(options.era)), shape_syst)
 
+                # uncorrelated systematics between the bins
                 card.add_ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, Bin_cr )
-                card.add_nuisance(name, "{:<21}  lnN".format("Shape_{}_{}".format(options.channel, options.era)), shape_stat)
-                card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}_{}".format(options.channel, options.era)), closure_stat)
+                card.add_nuisance(name, "{:<21}  lnN".format("ShapeStat_{}_{}".format(options.era, options.channel)), shape_stat)
         else:
             rate_nom = p.get("nom").values().sum()
-            rate_up = p.get("nom").values().sum()*5
-            rate_down = 0
+            rate_up = rate_nom + np.sqrt(p.get("nom").variances().sum())*5
+            rate_down =  rate_nom - np.sqrt(p.get("nom").variances().sum())*5
+            if rate_up == 0: 
+                rate_up = 15.065 # 5 sigma, using poisson interval on a count of 0
             if p.name == "expected" and p.ptype == "data" :
                 card.add_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, rate=rate_nom, vmin=rate_down, vmax=rate_up )
 

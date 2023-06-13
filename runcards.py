@@ -54,6 +54,11 @@ def main():
         for n, sam in inputs.items():
             if "SUEP" not in n: continue
 
+            if 'generic' not in n: continue
+            if 'mPhi3' not in n: continue
+            if 'T3' not in n: continue
+            if 'mS1000' not in n: continue
+
             # either force the run, or check whether the file already exist before running
             run = False
             if options.force: run = True
@@ -65,7 +70,7 @@ def main():
                             print('Making datacards:',path)
                             run = True
             if not run: 
-                print("File exists, skippng (use -f to overwrite):", path)
+                print("File exists, skipping (use -f to overwrite):", path)
                 continue
             
             print(" ===== processing : ", n, sam, year)
