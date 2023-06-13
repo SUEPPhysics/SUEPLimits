@@ -38,10 +38,6 @@ for dc in dcards:
     name= dc.replace("cards-", "")
     if "SUEP" not in name:
         continue
-
-    if 'mPhi3' not in name: continue
-    if 'T3' not in name: continue
-    if 'mS1000' not in name: continue
     
     print(" -- making :", name)
     
