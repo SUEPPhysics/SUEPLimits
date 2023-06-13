@@ -71,6 +71,7 @@ To make limits for all of the differnt samples you can run:
 python runcombine.py
 ```
 
+## Impact Plots
 If you would like to look at the impacts you can make the coombined.root and combined.dat and then run the following:
 ```bash
 combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit --robustFit 1
@@ -78,6 +79,17 @@ combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits
 combineTool.py -M Impacts -d combined.root -m 125 --o impacts.json
 plotImpacts.py -i impacts.json -o impacts
 ```
+
+## Pre and Post Fit Plots
+After running runcards.py and runcombine.py, make a fitDiagnostics.root file containin the pre/post-fit distributions by activating cmsenv and running
+
+```bash
+combine -M FitDiagnostics cards-<sample>/combined.root -m 200 --rMin -1 --rMax 2 --saveShapes
+```
+
+Make sure to adjust the r-interval (--rMin, --rMax) accordingly.
+Use `notebook_tools/prefit_postfit.ipynb` to plot the pre and post-fit plots by pointing it to the output of this command.
+
 ## Creating Brazil plots with the combine tool limits
 
 The notebook_tools directory contains jupyter notebooks which read in the output of the combine tool and plot the exclusion limits through 1D limit Brazil plots, 2D temperature plots, and 3D summary plots keeping different parameters fixed.
