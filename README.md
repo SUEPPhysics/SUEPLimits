@@ -90,6 +90,16 @@ combine -M FitDiagnostics cards-<sample>/combined.root -m 200 --rMin -1 --rMax 2
 Make sure to adjust the r-interval (--rMin, --rMax) accordingly.
 Use `notebook_tools/prefit_postfit.ipynb` to plot the pre and post-fit plots by pointing it to the output of this command.
 
+## Correlations
+See `notebook_tools/CorrelationPlots.ipynb`. 
+This notebook plots the correlation matrix of the nuisances using the outputs from running runcards.py and runcombine.py. Firstly, make a `fitDiagnostics.root` file by activating cmsenv and running any of
+
+- `combine -M FitDiagnostics combined.root  -t -1 --expectSignal 0 --rMin -10 --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200 --plots` (background only)
+- `combine -M FitDiagnostics combined.root -t -1 --expectSignal 1 --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200 --plots` (s+b only)
+- `combine -M FitDiagnostics combined.root --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200 --plots` (data)
+
+You can use the script `getCovariances.sh` instead (from https://github.com/cericeci/combineScripts/blob/master/getCovariances.sh), and you can look at https://twiki.cern.ch/twiki/bin/viewauth/CMS/SUSPAGPreapprovalChecks for a nice walkthrough of the checks and explanations.
+
 ## Creating Brazil plots with the combine tool limits
 
 The notebook_tools directory contains jupyter notebooks which read in the output of the combine tool and plot the exclusion limits through 1D limit Brazil plots, 2D temperature plots, and 3D summary plots keeping different parameters fixed.
