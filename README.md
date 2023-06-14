@@ -92,13 +92,23 @@ Use `notebook_tools/prefit_postfit.ipynb` to plot the pre and post-fit plots by 
 
 ## Correlations
 See `notebook_tools/CorrelationPlots.ipynb`. 
-This notebook plots the correlation matrix of the nuisances using the outputs from running runcards.py and runcombine.py. Firstly, make a `fitDiagnostics.root` file by activating cmsenv and running any of
+This notebook plots the correlation matrix of the nuisances and/or the bins, using the outputs from running runcards.py and runcombine.py. 
 
-- `combine -M FitDiagnostics combined.root  -t -1 --expectSignal 0 --rMin -10 --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200 --plots` (background only)
-- `combine -M FitDiagnostics combined.root -t -1 --expectSignal 1 --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200 --plots` (s+b only)
-- `combine -M FitDiagnostics combined.root --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200 --plots` (data)
+### Bin-to-Bin Correlations
+In order to check the bin-to-bin covariances and correlations, firstly, make a `fitDiagnostics.root` file by activating cmsenv and running any of
 
-You can use the script `getCovariances.sh` instead (from https://github.com/cericeci/combineScripts/blob/master/getCovariances.sh), and you can look at https://twiki.cern.ch/twiki/bin/viewauth/CMS/SUSPAGPreapprovalChecks for a nice walkthrough of the checks and explanations.
+- `combine -M FitDiagnostics combined.root  -t -1 --expectSignal 0 --rMin -10 --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200` (background only)
+- `combine -M FitDiagnostics combined.root -t -1 --expectSignal 1 --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200` (s+b only)
+- `combine -M FitDiagnostics combined.root --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200` (data)
+
+You can use the script `getCovariances.sh` instead (from https://github.com/cericeci/combineScripts/blob/master/getCovariances.sh), and https://twiki.cern.ch/twiki/bin/viewauth/CMS/SUSPAGPreapprovalChecks for a nice walkthrough of the checks.
+
+### Correlations between Nuisances
+In to check the nuisance parameters correlations, the command, which produces `robustHesse.root`, is
+
+- ` combine -M MultiDimFit combined.root -m 125 --robustHesse 1 --robustHesseSave 1 --saveFitResult`
+
+See https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/tutorial2023/parametric_exercise/#correlations-between-parameters.
 
 ## Creating Brazil plots with the combine tool limits
 
