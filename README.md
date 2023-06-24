@@ -79,6 +79,7 @@ combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits
 combineTool.py -M Impacts -d combined.root -m 125 --o impacts.json
 plotImpacts.py -i impacts.json -o impacts
 ```
+Often, you might need to use `--rMin -1 --rMax 1 --stepSize 0.001` to make everything converge.
 
 ## Pre and Post Fit Plots
 After running runcards.py and runcombine.py, make a fitDiagnostics.root file containin the pre/post-fit distributions by activating cmsenv and running
