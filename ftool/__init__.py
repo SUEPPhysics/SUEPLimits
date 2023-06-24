@@ -69,7 +69,7 @@ class datagroup:
 
                _scale = 1
                if ptype.lower() != "data":
-                   if '2016apv' in fn:
+                   if '2016apv' in fn.lower():
                     _scale = 19.497 * self.xs_scale(proc=self.name) # To treat the special 2016 case where 2016 and 2016 apv have different lumis
                    elif '2016' in fn:
                     _scale = 16.811 * self.xs_scale(proc=self.name)
@@ -186,50 +186,6 @@ class datagroup:
                     if "down" in n:
                          shapeDown= hist[1]
           return (shapeUp, shapeDown)
-
-     def ABCD_9regions_errorProp(self, A, B, C, D, E, F, G, H):
-         """
-         Does 9 region ABCD using error propagation of the statistical
-         uncerantities of the regions. We need to scale histogram F or H
-         by some factor 'alpha' (defined in exp). For example, for F,
-         the new variance is:
-         variance = F_value**2 * sigma_alpha**2 + alpha**2 * F_variance**2
-         """
-
-         # define the scaling factor function
-         a, b, c, d, e, f, g, h = symbols('A B C D E F G H')
-         sum_var = 'x'
-         if sum_var == 'x':#currently nconst 
-              exp = f * h**2 * d**2 * b**2 * g**-1 * c**-1 * a**-1 * e**-4
-              SR_exp = F.copy()
-              current_bins, current_edges = F.to_numpy()
-         elif sum_var == 'y':#currently S1
-              exp = h * d**2 * b**2 * f**2 * g**-1 * c**-1 * a**-1 * e**-4
-              SR_exp = H.copy()
-              current_bins, current_edges = H.to_numpy()
-         # defines lists of variables (sympy symbols) and accumulators (hist.sum())
-         variables = [a, b, c, d, e, f, g, h]
-         accs = [A.sum(), B.sum(), C.sum(), D.sum(),
-                 E.sum(), F.sum(), G.sum(), H.sum()] 
-         # calculate scaling factor by substituting values of the histograms' sums for the sympy symbols
-         alpha = exp.copy()
-         for var, acc in zip(variables, accs):
-             alpha = alpha.subs(var, acc.value)
-             
-         # calculate the error on the scaling factor
-         variance = 0
-         for var, acc in zip(variables, accs):
-             der = diff(exp, var)
-             var = abs(acc.variance)
-             variance += der**2 * var
-         for var, acc in zip(variables, accs):
-             variance = variance.subs(var, acc.value)
-         sigma_alpha = sqrt(variance)
-
-         # define SR_exp and propagate the error on the scaling factor to the bin variances
-         new_val = SR_exp.values() * alpha
-         new_var = SR_exp.values()**2 * float(sigma_alpha)**2 + float(alpha)**2 * abs(SR_exp.variances())
-         return current_bins, current_edges, new_val, new_var
      
      def rebin_piecewise(self, h_in, bins, histtype='hist'):
          """
