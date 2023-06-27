@@ -8,7 +8,7 @@ from termcolor import colored
 
 # from: https://twiki.cern.ch/twiki/bin/viewauth/CMS/LumiRecommendationsRun2#Combination_and_correlations
 lumis = {
-    "2016" : 16.811, #2016apv lumi 19.498 is applied in ftool
+    "2016" : 16.811, #2016apv lumi 19.498 is applied in ftool IFF the filename contains 2016apv
     "2017" : 41.471,
     "2018" : 59.817
 }
@@ -34,54 +34,64 @@ lumi_corr1718 = {
 shape_Bin0 = { # Bin0 is used as validation region and therefore not anymore in combine fit
     "2016" : 1.01,
     "2017" : 1.01,
-    "2018" : 1.01
+    "2018" : 1.01,
+    "all": 1.01
 }
 shape_Bin1 = {
     "2016" : 1.14,
     "2017" : 1.20,
-    "2018" : 1.15
+    "2018" : 1.15,
+    "all": 1.16
 }
 shape_Bin2 = {
     "2016" : 1.40,
     "2017" : 1.80,
-    "2018" : 1.50
+    "2018" : 1.50,
+    "all": 1.55
 }
 shape_Bin3 = {
     "2016" : 2.0,
     "2017" : 0.65,
-    "2018" : 2.0
+    "2018" : 2.0,
+    "all": 2.0
 }
 shape_Bin4 = {
     "2016" : 2.00,
     "2017" : 2.00,
-    "2018" : 2.00
+    "2018" : 2.00,
+    "all": 2.00
 }
 
 # Statistical variation on F/C
 shape_stat_Bin0 = { # Bin0 is used as validation region and therefore not anymore in combine fit
     "2016" : 1.008,
     "2017" : 1.007,
-    "2018" : 1.006
+    "2018" : 1.006,
+    "all": 1.004
 }
 shape_stat_Bin1 = {
     "2016" : 1.03,
     "2017" : 1.03,
-    "2018" : 1.03
+    "2018" : 1.03,
+    "all": 1.02
 }
 shape_stat_Bin2 = {
     "2016" : 1.17,
     "2017" : 1.16,
-    "2018" : 1.13
+    "2018" : 1.13,
+    "all": 1.13
 }
 shape_stat_Bin3 = {
     "2016" : 2.0,
     "2017" : 0.5,
-    "2018" : 1.84
+    "2018" : 1.84,
+    "all": 1.91
 }
 shape_stat_Bin4 = {
     "2016" : 2.00,
     "2017" : 2.00,
-    "2018" : 2.00
+    "2018" : 2.00,
+    "all": 2.00
 }
 
 # ABCD closure systematic applied to data (from ISR)
@@ -195,20 +205,25 @@ def main():
                 closure_syst = closure_systs[options.era]
                 
                 # correlated between years, bins
-                card.add_nuisance(name, "{:<21}  lnN".format("Closure"), closure_syst)
                 
                 # correlated between the bins, uncorrelated between years
+                card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}".format(options.era)), closure_syst)
                 card.add_nuisance(name, "{:<21}  lnN".format("Shape_{}".format(options.era)), shape_syst)
 
                 # uncorrelated systematics between the bins
                 card.add_ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, Bin_cr )
-                card.add_nuisance(name, "{:<21}  lnN".format("ShapeStat_{}_{}".format(options.era, options.channel)), shape_stat)
+                #card.add_nuisance(name, "{:<21}  lnN".format("ShapeStat_{}_{}".format(options.era, options.channel)), shape_stat)
         else:
             rate_nom = p.get("nom").values().sum()
-            rate_up = rate_nom + np.sqrt(p.get("nom").variances().sum())*5
-            rate_down =  rate_nom - np.sqrt(p.get("nom").variances().sum())*5
+            # rate_up = rate_nom + np.sqrt(p.get("nom").variances().sum())*5
+            # rate_down =  rate_nom - np.sqrt(p.get("nom").variances().sum())*5
+            rate_up = rate_nom*5
+            rate_down = 0
             if rate_up == 0: 
-                rate_up = 15.065 # 5 sigma, using poisson interval on a count of 0
+                rate_nom = 0.0001
+                rate_up = 20
+                rate_down = 0
+                #rate_up = 15.065 # 5 sigma, using poisson interval on a count of 0
             if p.name == "expected" and p.ptype == "data" :
                 card.add_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, rate=rate_nom, vmin=rate_down, vmax=rate_up )
 
