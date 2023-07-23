@@ -6,12 +6,53 @@ import subprocess
 import shlex
 import argparse
 
+# SLURM script template
+slurm_script_template = '''#!/bin/bash
+#SBATCH --job-name={sample}
+#SBATCH --output={log_dir}{sample}.out
+#SBATCH --error={log_dir}{sample}.err
+#SBATCH --time=05:00:00
+#SBATCH --mem=1GB
+#SBATCH --partition=submit
+
+source ~/.bashrc
+cd {work_dir}
+cmsenv
+{rm_command}
+{combine_card_command}
+{text2workspace_command}
+{combine_command}
+'''
+
+
+def call_combine(cmd):
+    p = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = p.communicate()
+    return (out, err)
+
 
 parser = argparse.ArgumentParser()
+parser.add_argument(
+        "-m", "--method", type=str, default="slurm", choices=['slurm', 'multithread'], help="How to execute the code: either via multithread or slurm."
+)
 parser.add_argument("-p"  , "--print_commands"   , action='store_true', help='Print the executed combine commands.')
 parser.add_argument("-r"  , "--rerun", nargs='+', type=str, help='Rerun a list of datacards.')
 parser.add_argument("-i"  , "--input", type=str, required=True, help='Where to find the cards.')
 options = parser.parse_args()
+
+
+#combine_options = " --rMin=0, --cminFallbackAlgo Minuit2,Migrad,0:0.05  --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH"
+
+
+if options.method == 'multithread':
+    pool = ThreadPool(multiprocessing.cpu_count())
+    results = []
+    print("Running on multithread")
+elif options.method == 'slurm':
+    work_dir = os.getcwd() + '/' + options.input + '/'
+    log_dir = '/work/submit/{}/SUEP/logs/{}/'.format(os.environ['USER'], 'slurm_runcombine')
+    if not os.path.isdir(log_dir): os.mkdir(log_dir)
+    print("Running on slurm")
 
 # change cwd to the input tag: combine will read the cards from here and will make the higgsCombine file here
 os.chdir(options.input)
@@ -22,23 +63,12 @@ if options.rerun != None:
     dcards = options.rerun
 else:
     dcards = glob.glob("cards-*")
-
-combine_options = " --rMin=0, --cminFallbackAlgo Minuit2,Migrad,0:0.05  --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH"
-
-def call_combine(cmd):
-    p = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    out, err = p.communicate()
-    return (out, err)
-
-pool = ThreadPool(multiprocessing.cpu_count())
-results = []
-
+    
 for dc in dcards:
     
     name= dc.replace("cards-", "")
     if "SUEP" not in name:
         continue
-
     print(" -- making :", name)
     
     # Write combine commmands
@@ -108,27 +138,43 @@ for dc in dcards:
         )
     )
     
-    
     # Execute and optionally print the commands   
     if options.print_commands:
         print('--- removing old combined datacard:', rm_command)
         print('--- combining datacards:', combine_card_command)
         print('--- text2workspace:', text2workspace_command)
         print('--- running combine:', combine_command)
-        
-    os.system(rm_command)
-    os.system(combine_card_command)
-    os.system(text2workspace_command)
-    results.append(pool.apply_async(call_combine, (combine_command,)))
+    
+    if options.method == 'multithread':
+        os.system(rm_command)
+        os.system(combine_card_command)
+        os.system(text2workspace_command)
+        results.append(pool.apply_async(call_combine, (combine_command,)))
+    elif options.method == 'slurm':
+        slurm_script_content = slurm_script_template.format(
+                                    rm_command=rm_command,
+                                    combine_card_command=combine_card_command,
+                                    text2workspace_command=text2workspace_command,
+                                    combine_command=combine_command,
+                                    work_dir=work_dir,
+                                    log_dir=log_dir,
+                                    sample=name)
 
-pool.close()
-pool.join()
+        # Write the SLURM script to a file
+        slurm_script_file = f'{log_dir}submit_{name}.sh'
+        with open(slurm_script_file, 'w') as f:
+            f.write(slurm_script_content)
 
-for result in results:
-    out, err = result.get()
-    if "error" in str(err).lower():
-        print(str(err))
-        print(" ----------------- ")
-        print()
+        # Submit the SLURM job
+        subprocess.run(['sbatch', slurm_script_file])
+                
+if options.method == 'multithread':
+    pool.close()
+    pool.join()
 
-        
+    for result in results:
+        out, err = result.get()
+        if "error" in str(err).lower():
+            print(str(err))
+            print(" ----------------- ")
+            print()
