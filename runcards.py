@@ -46,6 +46,7 @@ def main():
     parser.add_argument(
         "-t", "--tag", type=str, default='cards', help="Output tag for cards. Creates a subfolder and puts cards there."
     )
+    parser.add_argument("-include", "--include", type=str, default='', help="Pass a '-' separated list of strings you want your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' and 'mPhi300' in the name.")
     options = parser.parse_args()
     # these are hardcoded in for now
     bins  = ['Bin1Sig','Bin2Sig',
@@ -54,8 +55,7 @@ def main():
             'Bin3crF','Bin4crF', # pre approval
             'cat_crA','cat_crB','cat_crC','cat_crD','cat_crE','cat_crG','cat_crH']
     config_file = "config/SUEP_inputs_{}.yaml"
-    #years = ['2016', '2017', '2018']
-    years = ['2018']
+    years = ['2016', '2017', '2018']
 
     if options.method == 'multithread':
         n_cpus = min(multiprocessing.cpu_count(), options.cores)
@@ -82,6 +82,11 @@ def main():
                 print (exc)
         for n, sam in inputs.items():
             if "SUEP" not in n: continue
+
+            # select samples based on include
+            if options.include != '':
+                if any([i not in n for i in options.include.split('-')]): continue
+                
             # either force the run, or check whether the file already exist before running
             run = False
             if options.force: run = True

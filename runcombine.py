@@ -11,16 +11,22 @@ slurm_script_template = '''#!/bin/bash
 #SBATCH --job-name={sample}
 #SBATCH --output={log_dir}{sample}.out
 #SBATCH --error={log_dir}{sample}.err
-#SBATCH --time=05:00:00
+#SBATCH --time=12:00:00
 #SBATCH --mem=1GB
 #SBATCH --partition=submit
 
 source ~/.bashrc
+echo "cd {work_dir}"
 cd {work_dir}
+echo "cmsenv"
 cmsenv
+echo "{rm_command}"
 {rm_command}
+echo "{combine_card_command}"
 {combine_card_command}
+echo "{text2workspace_command}"
 {text2workspace_command}
+echo "{combine_command}"
 {combine_command}
 '''
 
@@ -38,10 +44,12 @@ parser.add_argument(
 parser.add_argument("-p"  , "--print_commands"   , action='store_true', help='Print the executed combine commands.')
 parser.add_argument("-r"  , "--rerun", nargs='+', type=str, help='Rerun a list of datacards.')
 parser.add_argument("-i"  , "--input", type=str, required=True, help='Where to find the cards.')
+parser.add_argument("-f"  , "--force", action='store_true', help="Force rerunning of limits. By default will not re-run combine if the output .root file exists.")
+parser.add_argument("-M"  , "--combineMethod", type=str, default="HybridNew", help="Combine method to use. Supported: HybridNew, AsymptoticLimits")
+parser.add_argument("-o"  , "--combineOptions", type=str, default="", help="Additional options to run the combine command with.")
+parser.add_argument("-include", "--include", type=str, default='', help="Pass a '-' separated list of strings you want your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' and 'mPhi300' in the name.")
 options = parser.parse_args()
 
-
-#combine_options = " --rMin=0, --cminFallbackAlgo Minuit2,Migrad,0:0.05  --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH"
 
 
 if options.method == 'multithread':
@@ -63,16 +71,30 @@ if options.rerun != None:
     dcards = options.rerun
 else:
     dcards = glob.glob("cards-*")
+
+# select datacards based on the --include options
+if options.include != '':
+    dcards = [dc for dc in dcards if all([i in dc for i in options.include.split('-')])]
     
 for dc in dcards:
-    
+
     name= dc.replace("cards-", "")
     if "SUEP" not in name:
         continue
+
+    # don't re run cards, unless running with --force
+    if os.path.isfile("higgsCombine{name}.{method}.mH125.root".format(name=name, method=options.combineMethod)) and not options.force:
+        print(" -- skipping :", name)
+        continue
+
     print(" -- making :", name)
     
     # Write combine commmands
+
+    # remove the old combined cards
     rm_command = "rm -rf cards-{}/combined.dat".format(name)
+
+    # make the combined.dat cards
     combine_card_command = ("combineCards.py -S "
             "catcrA2016=cards-{name}/shapes-cat_crA2016.dat "
             "catcrB2016=cards-{name}/shapes-cat_crB2016.dat "
@@ -124,17 +146,24 @@ for dc in dcards:
             "Bin4Sig2018=cards-{name}/shapes-Bin4Sig2018.dat "        
             "> cards-{name}/combined.dat").format(name=name)
     
+    # converts .dat to .root
     text2workspace_command = "text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root".format(name=name)
     
+    # this is the command running combine. Some options are passed through the parser
+    if options.combineMethod == 'HybridNew':
+        combine_method = " -M HybridNew --LHCmode LHC-limits "
+    elif options.combineMethod == 'AsymptoticLimits':
+        combine_method = " -M AsymptoticLimits "
     combine_command = (
         "combine "
-        " -M AsymptoticLimits --datacard cards-{name}/combined.root"
-        #" -M FitDiagnostics -datacard cards-{name}/combined.root --plots signalPdfNames='ADD*,Signal' --backgroundPdfNames='*DY*,*WW*,*TOP*,ZZ*,WZ*,VVV'"
-        " -m 125 --cl 0.95 --name {name} {options}"
-        ##" --rMin=0 --cminFallbackAlgo Minuit2,Migrad,0:0.05"
-        " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --rAbsAcc 0.00001 --rRelAcc 0.00001".format( #rAbsAcc and rRelAcc added for convergence of small mu values
+        " --datacard cards-{name}/combined.root "
+        " {combine_method}"
+        " -m 125 --cl 0.95 --name {name}"
+        " {options}"
+        " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --rAbsAcc 0.00001 --rRelAcc 0.05".format(
             name=name,
-            options="" #"--rMax=10" if "ADD" in name else "--rMax=10"
+            combine_method=combine_method,
+            options=options.combineOptions
         )
     )
     

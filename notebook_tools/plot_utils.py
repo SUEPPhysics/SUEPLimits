@@ -37,19 +37,20 @@ def get_limits(fn): # Returns quantile vs limits
         return np.stack([quant,limit]) 
 
 
-def get_SUEP_file(ms=125, mphi=2, temp=1, decay='generic', path="../"): # Returns filename
+def get_SUEP_file(ms=125, mphi=2, temp=1, decay='generic', path="../", method='AsymptoticLimits'): # Returns filename
     if temp < 10:
         tem = "{0:.2f}".format(temp)
     else:
         tem = "{0:.1f}".format(temp)
     tem = str(tem).replace(".","p")
     fname = os.path.join(
-        "{}higgsCombineGluGluToSUEP_HT1000_T{}_mS{:.3f}_mPhi{:.3f}_T{:.3f}_mode{}_TuneCP5_13TeV-pythia8.AsymptoticLimits.mH125.root".format(path, tem, ms, mphi, temp, decay)
+        "{}higgsCombineGluGluToSUEP_HT1000_T{}_mS{:.3f}_mPhi{:.3f}_T{:.3f}_mode{}_TuneCP5_13TeV-pythia8.{}.mH125.root".format(path, tem, ms, mphi, temp, decay, method)
     )
     if os.path.isfile(fname):
         return fname
     else:
-        pass
+        print(f"WARNING: No file {fname} found.")
+        return None
 
 
 def xs_scale(proc):
@@ -169,7 +170,7 @@ def get_unique_combinations(variables: list, ms=None, mphi=None, temp=None, deca
     return unique_combinations
         
 
-def get_scan_limits(ms=None, mphi=None, temp=None, decay=None, path="../", file='../config/xsections_SUEP.json'):
+def get_scan_limits(ms=None, mphi=None, temp=None, decay=None, path="../", file='../config/xsections_SUEP.json', method='AsymptoticLimits'):
     """
     Get all existing limits for a given set of parameters.
     Leave a parameter blank as None to get all possible values for that parameter.
@@ -191,24 +192,24 @@ def get_scan_limits(ms=None, mphi=None, temp=None, decay=None, path="../", file=
 
     for sample in selected_params:
         try:
-            limit = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3]))
+            limit = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method))
             if limit.shape == (2,6):
                 good_selected_params.append([sample, limit*sample[4]])
             else:
-                print('Bad limits', get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3]))
+                print('Bad limits', get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method))
         except Exception as e:
             print(e)
-            print("File doesn't exit", get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3]))
+            print("File doesn't exit", get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method))
 
     return good_selected_params
 
 
-def plot_ms_limits(temp, mphi, decay, path='../', verbose=False):
+def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='AsymptoticLimits'):
     """
     Make 1D Brazil plot for some choice of mPhi, temp, and decay, scanning over mS.
     """
     
-    limits = get_scan_limits(path=path, temp=temp, mphi=mphi, decay=decay)
+    limits = get_scan_limits(path=path, temp=temp, mphi=mphi, decay=decay, method=method)
     masses = np.array([l[0][0] for l in limits])
     xsec = np.array([l[0][4] for l in limits])
 
@@ -240,7 +241,7 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False):
     fig = plt.figure(figsize=(12,12))
     ax = fig.subplots()
         
-    xvar = np.linspace(100,1050,1000)
+    xvar = np.linspace(100,2050,1000)
 
     # Plot observed limits
     ax.plot(masses, _obs,'.', ms=12, color='black') 
@@ -260,7 +261,7 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False):
     ax.legend(loc="upper left", fontsize=20)
 
     _ = ax.text(
-        0.6, 0.8, r"$T$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n""{}".format(temp,mphi,decaysLabels[decay]),
+        0.6, 0.8, r"$T_D$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n""{}".format(temp,mphi,decaysLabels[decay]),
         fontsize=25, horizontalalignment='left', 
         verticalalignment='bottom', 
         transform=ax.transAxes,
@@ -269,7 +270,7 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False):
     hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
 
     ax.grid(visible=True, which='major', color='grey', linestyle='--', alpha=0.3)
-    ax.set_ylim(1e-4,9e7)
+    ax.set_ylim(1e-5,9e7)
     ax.set_yscale("log")
     
     y_major = ticker.LogLocator(base = 10.0, numticks = 20)
@@ -282,7 +283,7 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False):
     return fig
 
 
-def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', calculateWithoutPlotting=False): 
+def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', calculateWithoutPlotting=False, showPoints=False): 
     """
     Make 2D limit plot for some choice of mS and decay, scanning over T and mPhi.
     Inputs:
@@ -291,6 +292,7 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
         path: path to the directory containing the higgsCombined files
         tricontour: 'log' or 'lin' to interpolate through log(mu) or mu
         calculateWithoutPlotting: if True, the function returns the interpolated limits without plotting them
+        showPoints: shows were the actual samples are
     Outputs:
         fig: figure object
     """
@@ -327,7 +329,7 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
     
     if tricontour == 'log':
         levels = np.linspace(min(data['obs']),max(data['obs']))
-        contour = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels, cmap="Wistia")
+        contour = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels, cmap="plasma")
         cb = fig.colorbar(contour)
         cb.ax.set_ylabel(r'$\mu$', loc='center', rotation=0, fontsize=20)
         ticks = (np.array(range(math.ceil(min(data['obs'])), math.floor(max(data['obs'])) + 1)))
@@ -337,9 +339,9 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
 
     if tricontour == 'lin':
         levels = np.logspace(np.log10(min(data['obs'])),np.log10(max(data['obs'])))
-        x = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels,locator=ticker.LogLocator(), cmap="Wistia")
+        x = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels,locator=ticker.LogLocator(), cmap="plasma")
         formatter = ticker.LogFormatter(base=10, labelOnlyBase=True) 
-        cb = fig.colorbar(format=formatter, label=r'$\mu$')
+        cb = fig.colorbar(x, format=formatter, label=r'$\mu$')
         cb.ax.set_ylabel(r'$\mu$', loc='center', rotation=0, fontsize=20)
         cb.locator = ticker.LogLocator(base=10.0, subs=[1.0], numdecs=7, numticks=45)
         cb.update_ticks()
@@ -354,6 +356,9 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
     p3 = ax.tricontour(limit_mphi, limit_temp, limit_mu[:,1,3],levels=[0,1],  colors="k", alpha=0) # +1 sigma expected
     # p4 = ax.tricontour(limit_mphi, limit_temp, limit_mu[:,1,4],levels=[0,1],  colors="k", alpha=0) # +2 sigma expected
     p5 = ax.tricontour(limit_mphi, limit_temp, limit_mu[:,1,5],levels=[0,1],  colors="k", alpha=0) # observed
+
+    if showPoints:
+        ax.scatter(limit_mphi, limit_temp, marker='o', color='black', label='Signal point', s=10)
     
     if tricontour == 'log': x=0
     if tricontour == 'lin': x=1 
@@ -375,7 +380,7 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
     ax.plot(*line5.T, linestyle = "-", color='#00008b', label=r"$\mu=1$ observed",linewidth =4)
         
     ax.set_xlabel(r"$m_{\phi}$ (GeV)", x=1, ha='right')
-    ax.set_ylabel(r"$T$ (GeV)", y=1, ha='right')
+    ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
     
     hep.cms.label(llabel='Preliminary', data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
     
@@ -388,7 +393,7 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
     
     ax.set_xlim([1, 8.5])
     ax.set_ylim([0, 35])     
-    ax.legend(loc="upper right", fontsize=20)
+    ax.legend(loc="upper right", fontsize=16)
     fig.tight_layout()
      
     return fig
@@ -412,7 +417,7 @@ def plot_summary_limits_mPhi_temp(decay, path='../'):
     fig = plt.figure(figsize=(16,9))
     ax = fig.subplots()
 
-    for i, line in enumerate(lines[::-1]):
+    for i, line in enumerate(lines):
         line1,line2,line3,line5 = line
         x1,y1 = interpLimit(line1, 4) #Expected $95\%$ CL
         x2,y2 = interpLimit(line2, 4)
@@ -428,7 +433,7 @@ def plot_summary_limits_mPhi_temp(decay, path='../'):
 
     # Annotate figure
     ax.set_xlabel(r"$m_{\phi}$ (GeV)", x=1, ha='right')
-    ax.set_ylabel(r"$T$ (GeV)", y=1, ha='right')
+    ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
     hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
     ax.text(7.5, 10, decaysLabels[decay], horizontalalignment='right', verticalalignment='center',fontsize=20)
 
@@ -542,7 +547,7 @@ def plot_xsec_limits(mphi:int, decay:str, path:str, tricontour:str ='log', calcu
     ax.plot(*line5.T, "b-", label="$\sigma_{excluded}=\sigma_{theory}$")
         
     ax.set_xlabel(r"$m_{s}$ (GeV)", x=1, ha='right')
-    ax.set_ylabel(r"$T$ (GeV)", y=1, ha='right')
+    ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
 
     _ = ax.text(
         0.05, 0.85, r"$m_{{\phi}} = {}$ GeV""\n""{}".format(str(mphi), decaysLabels[decay]),
@@ -592,7 +597,7 @@ def plot_summary_limits_mS_temp(decay, path='../'):
 
     # Annotate figure
     ax.set_xlabel(r"$m_{s}$ (GeV)", x=1, ha='right')
-    ax.set_ylabel(r"$T$ (GeV)", y=1, ha='right')
+    ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
     hep.cms.label(llabel='Preliminary', data=False, lumi=137, ax=ax) # To add CMS lumi scripts
     ax.text(600,9, decaysLabels[decay], horizontalalignment='right', verticalalignment='center',fontsize=20)
 
