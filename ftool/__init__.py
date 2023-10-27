@@ -239,7 +239,9 @@ class datagroup:
 
      def xs_scale(self, proc):
          xsec = 1.0
-         with open(f"config/xsections_{self.era}.json") as file:
+         xsec_file = "config/xsections_{self.era}.json"
+         if 'SUEP' in proc: xsec_file = "config/xsections_SUEP.json"
+         with open(xsec_file) as file:
             MC_xsecs = json.load(file)
          xsec  = MC_xsecs[proc]["xsec"]
          xsec *= MC_xsecs[proc]["kr"]
