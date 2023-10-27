@@ -34,42 +34,11 @@ missing_files = []
 
 signalFilelists = {}
 for year, tag in signalTags.items():
-
-    signalFilelists[year] = []
-
-    # read in all samples
-    file_fullsamplelist = 'filelist/{}/list_full_signal_{}.txt'.format(channel.capitalize(), channel)
-    with open(file_fullsamplelist, 'r') as f:
-        fullsamplelist = f.readlines()
-
-    # for each sample, construct file, and check if it exists
-    for sample in fullsamplelist:
-        expected_file = sample.strip('\n')+'_'+tag+'.root'
-        if expected_file not in existing_files:
-            print("ERROR: {} not found in the directory".format(expected_file))
-            missing_files.append(expected_file)
-        else:
-            signalFilelists[year].append(expected_file)
+    signalFilelists[year] = [ histFile for histFile in existing_files if histFile.endswith(tag+'.root')]
 
 dataFilelists = {}
 for year, tag in dataTags.items():
-
-    dataFilelists[year] = []
-
-    # read in all samples
-    file_fullsamplelist = 'filelist/{}/list_{}_{}_{}.txt'.format(channel.capitalize(), year, dataLabel, channel)
-    with open(file_fullsamplelist, 'r') as f:
-        fullsamplelist = f.readlines()
-
-    # for each sample, construct file, and check if it exists
-    for sample in fullsamplelist:
-        expected_file = sample.strip('\n')+'_'+tag+'.root'
-        if '/' in expected_file: expected_file = expected_file.split('/')[-1] # if a path is provided, juts grab the sample name
-        if expected_file not in existing_files:
-            print("ERROR: {} not found in the directory".format(expected_file))
-            missing_files.append(expected_file)
-        else:
-            dataFilelists[year].append(expected_file)
+    dataFilelists[year] = [ histFile for histFile in existing_files if histFile.endswith(tag+'.root')]
 
 # print out missing samples
 if len(missing_files) > 0:
