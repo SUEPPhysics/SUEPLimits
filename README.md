@@ -115,6 +115,38 @@ combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits
 combineTool.py -M Impacts -d combined.root -m 125 --o impacts.json
 plotImpacts.py -i impacts.json -o impacts
 ```
+Often, you might need to use `--rMin -1 --rMax 1 --stepSize 0.001` to make everything converge.
+
+## Pre and Post Fit Plots
+After running runcards.py and runcombine.py, make a fitDiagnostics.root file containin the pre/post-fit distributions by activating cmsenv and running
+
+```bash
+combine -M FitDiagnostics cards-<sample>/combined.root -m 200 --rMin -1 --rMax 2 --saveShapes
+```
+
+Make sure to adjust the r-interval (--rMin, --rMax) accordingly.
+Use `notebook_tools/prefit_postfit.ipynb` to plot the pre and post-fit plots by pointing it to the output of this command.
+
+## Correlations
+See `notebook_tools/CorrelationPlots.ipynb`. 
+This notebook plots the correlation matrix of the nuisances and/or the bins, using the outputs from running runcards.py and runcombine.py. 
+
+### Bin-to-Bin Correlations
+In order to check the bin-to-bin covariances and correlations, firstly, make a `fitDiagnostics.root` file by activating cmsenv and running any of
+
+- `combine -M FitDiagnostics combined.root  -t -1 --expectSignal 0 --rMin -10 --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200` (background only)
+- `combine -M FitDiagnostics combined.root -t -1 --expectSignal 1 --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200` (s+b only)
+- `combine -M FitDiagnostics combined.root --forceRecreateNLL  --saveWithUncertainties --saveOverallShapes --numToysForShapes 200` (data)
+
+You can use the script `getCovariances.sh` instead (from https://github.com/cericeci/combineScripts/blob/master/getCovariances.sh), and https://twiki.cern.ch/twiki/bin/viewauth/CMS/SUSPAGPreapprovalChecks for a nice walkthrough of the checks.
+
+### Correlations between Nuisances
+In to check the nuisance parameters correlations, the command, which produces `robustHesse.root`, is
+
+- ` combine -M MultiDimFit combined.root -m 125 --robustHesse 1 --robustHesseSave 1 --saveFitResult`
+
+See https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/tutorial2023/parametric_exercise/#correlations-between-parameters.
+
 ## Creating Brazil plots with the combine tool limits
 
 The notebook_tools directory contains jupyter notebooks which read in the output of the combine tool and plot the exclusion limits through 1D limit Brazil plots, 2D temperature plots, and 3D summary plots keeping different parameters fixed.
