@@ -51,7 +51,7 @@ Before we make cards, we need to set up the cross sections for the signal sample
 
 Run `make_yaml.py` which will produce a .yaml file for each year containing a list of histogram files for each sample.
 You will need to configure the parameters of this script, such as the input directory, the channel, etc.
-This script will ***NOT*** inform you if some histograms files are missing, make sure that they're all there when you produce them!
+This script will ***NOT*** inform you if some histograms files are missing, make sure that they're all there when you produce them!	
 
 To make the cross section list, you can use `make_xsec.py`.
 
