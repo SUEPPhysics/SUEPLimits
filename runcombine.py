@@ -12,7 +12,7 @@ slurm_script_template = '''#!/bin/bash
 #SBATCH --output={log_dir}{sample}.out
 #SBATCH --error={log_dir}{sample}.err
 #SBATCH --time=12:00:00
-#SBATCH --mem=1GB
+#SBATCH --mem=3GB
 #SBATCH --partition=submit
 
 source ~/.bashrc
@@ -39,7 +39,7 @@ def call_combine(cmd):
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-        "-m", "--method", type=str, default="slurm", choices=['slurm', 'multithread'], help="How to execute the code: either via multithread or slurm."
+        "-m", "--method", type=str, default="iterative", choices=['iterative', 'slurm', 'multithread'], help="How to execute the code: either via multithread or slurm."
 )
 parser.add_argument("-p"  , "--print_commands"   , action='store_true', help='Print the executed combine commands.')
 parser.add_argument("-r"  , "--rerun", nargs='+', type=str, help='Rerun a list of datacards.')
@@ -83,7 +83,13 @@ for dc in dcards:
         continue
 
     # don't re run cards, unless running with --force
-    if os.path.isfile("higgsCombine{name}.{method}.mH125.root".format(name=name, method=options.combineMethod)) and not options.force:
+    outFile = "higgsCombine{name}.{method}.mH125.root".format(name=name, method=options.combineMethod)
+    if options.combineMethod == 'HybridNew' and "expectedFromGrid" in options.combineOptions:
+        quant = options.combineOptions.split('expectedFromGrid ')[1].split(' ')[0]
+        # add enough 0's to reach 3 digits after the .
+        quant = quant + '0'*(3-len(quant.split('.')[1]))
+        outFile = "higgsCombine{name}.{method}.mH125.quant{quant}.root".format(name=name, method=options.combineMethod, quant=quant)
+    if os.path.isfile(outFile) and not options.force:
         print(" -- skipping :", name)
         continue
 
@@ -160,7 +166,7 @@ for dc in dcards:
         " {combine_method}"
         " -m 125 --cl 0.95 --name {name}"
         " {options}"
-        " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --rAbsAcc 0.00001 --rRelAcc 0.05".format(
+        " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --rAbsAcc 0.00001 --rRelAcc 0.1".format(
             name=name,
             combine_method=combine_method,
             options=options.combineOptions
@@ -196,6 +202,12 @@ for dc in dcards:
 
         # Submit the SLURM job
         subprocess.run(['sbatch', slurm_script_file])
+    elif options.method == 'iterative':
+        subprocess.run('cmsenv', shell=True)
+        subprocess.run(rm_command, shell=True)
+        subprocess.run(combine_card_command, shell=True)
+        subprocess.run(text2workspace_command, shell=True)
+        subprocess.run(combine_command, shell=True)
                 
 if options.method == 'multithread':
     pool.close()

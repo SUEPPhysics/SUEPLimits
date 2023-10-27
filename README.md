@@ -98,6 +98,7 @@ python runcombine.py -M AsymptoticLimits
 And to run with toys (warning: CPU intensive):
 ```bash
 python runcombine.py -M HybridNew -o "--expectedFromGrid -1"     # observed
+python runcombine.py -M HybridNew -o "--expectedFromGrid 0.50"   # expected
 python runcombine.py -M HybridNew -o "--expectedFromGrid 0.16"   # -1 sigma
 python runcombine.py -M HybridNew -o "--expectedFromGrid 0.84"   # +1 sigma
 python runcombine.py -M HybridNew -o "--expectedFromGrid 0.025"  # -2 sigma
