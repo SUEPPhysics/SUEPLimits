@@ -31,20 +31,16 @@ def get_limits(fn): # Returns quantile vs limits
     f = uproot.open(fn)
     limit = f["limit"]['limit'].array(library="np")
     quant = f["limit"]['quantileExpected'].array(library="np")
-    if limit.shape[0] == 1:
-        return -1
-    else:
-        return np.stack([quant,limit]) 
+    return np.stack([quant,limit]) 
 
-
-def get_SUEP_file(ms=125, mphi=2, temp=1, decay='generic', path="../", method='AsymptoticLimits'): # Returns filename
+def get_SUEP_file(ms=125, mphi=2, temp=1, decay='generic', path="../", method='AsymptoticLimits', quant=""): # Returns filename
     if temp < 10:
         tem = "{0:.2f}".format(temp)
     else:
         tem = "{0:.1f}".format(temp)
     tem = str(tem).replace(".","p")
     fname = os.path.join(
-        "{}higgsCombineGluGluToSUEP_HT1000_T{}_mS{:.3f}_mPhi{:.3f}_T{:.3f}_mode{}_TuneCP5_13TeV-pythia8.{}.mH125.root".format(path, tem, ms, mphi, temp, decay, method)
+        "{}higgsCombineGluGluToSUEP_HT1000_T{}_mS{:.3f}_mPhi{:.3f}_T{:.3f}_mode{}_TuneCP5_13TeV-pythia8.{}.mH125{}.root".format(path, tem, ms, mphi, temp, decay, method, quant)
     )
     if os.path.isfile(fname):
         return fname
@@ -192,7 +188,16 @@ def get_scan_limits(ms=None, mphi=None, temp=None, decay=None, path="../", file=
 
     for sample in selected_params:
         try:
-            limit = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method))
+            if method == 'AsymptoticLimits':
+                limit = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method))
+            elif method == 'HybridNew':
+                exp = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant='.quant0.500'))
+                s1p = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant='.quant0.840'))
+                s1m = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant='.quant0.160'))
+                s2p = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant='.quant0.975'))
+                s2m = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant='.quant0.025'))
+                obs = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant=''))
+                limit = np.hstack((s2p, s1p, exp, s1m, s2m, obs))
             if limit.shape == (2,6):
                 good_selected_params.append([sample, limit*sample[4]])
             else:

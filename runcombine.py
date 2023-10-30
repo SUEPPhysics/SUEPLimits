@@ -8,12 +8,13 @@ import argparse
 
 # SLURM script template
 slurm_script_template = '''#!/bin/bash
-#SBATCH --job-name={sample}
-#SBATCH --output={log_dir}{sample}.out
-#SBATCH --error={log_dir}{sample}.err
-#SBATCH --time=12:00:00
+#SBATCH --job-name={sample}-%j
+#SBATCH --output={log_dir}{sample}-%j.out
+#SBATCH --error={log_dir}{sample}-%j.err
+#SBATCH --time=24:00:00
 #SBATCH --mem=3GB
 #SBATCH --partition=submit
+#SBATCH --oversubscribe
 
 source ~/.bashrc
 echo "cd {work_dir}"
@@ -86,15 +87,20 @@ for dc in dcards:
     outFile = "higgsCombine{name}.{method}.mH125.root".format(name=name, method=options.combineMethod)
     if options.combineMethod == 'HybridNew' and "expectedFromGrid" in options.combineOptions:
         quant = options.combineOptions.split('expectedFromGrid ')[1].split(' ')[0]
-        # add enough 0's to reach 3 digits after the .
-        quant = quant + '0'*(3-len(quant.split('.')[1]))
-        outFile = "higgsCombine{name}.{method}.mH125.quant{quant}.root".format(name=name, method=options.combineMethod, quant=quant)
+        if quant == '-1':
+            # deal with the case of observed
+            quant = ''
+        else:
+            # add enough 0's to reach 3 digits after the .
+            quant = quant + '0'*(3-len(quant.split('.')[1]))
+            quant = '.quant' + quant
+        outFile = "higgsCombine{name}.{method}.mH125{quant}.root".format(name=name, method=options.combineMethod, quant=quant)
     if os.path.isfile(outFile) and not options.force:
         print(" -- skipping :", name)
         continue
-
-    print(" -- making :", name)
     
+    continue
+            
     # Write combine commmands
 
     # remove the old combined cards
