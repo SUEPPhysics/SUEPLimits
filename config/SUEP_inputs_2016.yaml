@@ -37,7 +37,7 @@ data:
 GluGluToSUEP_HT1000_T12p0_mS400.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS400.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS400.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS400.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -46,46 +46,41 @@ GluGluToSUEP_HT1000_T12p0_mS400.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T1p50_mS700.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS700.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS700.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS700.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p35_mS2000.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p35_mS2000.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p35_mS2000.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p35_mS2000.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS2000.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS2000.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS2000.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS2000.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS1500.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1500.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1500.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1500.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS900.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS900.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS900.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS900.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS400.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -96,14 +91,12 @@ GluGluToSUEP_HT1000_T8p00_mS400.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p75_mS200.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV-pythia8:
@@ -114,14 +107,12 @@ GluGluToSUEP_HT1000_T0p75_mS200.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS400.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -132,14 +123,12 @@ GluGluToSUEP_HT1000_T1p00_mS400.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p50_mS1500.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS1500.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS1500.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS1000.000_mPhi2.000_T1.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -150,14 +139,12 @@ GluGluToSUEP_HT1000_T1p00_mS1000.000_mPhi2.000_T1.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS800.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS800.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS800.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS300.000_mPhi8.000_T8.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -168,14 +155,12 @@ GluGluToSUEP_HT1000_T8p00_mS300.000_mPhi8.000_T8.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi4.000_T2.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -186,14 +171,12 @@ GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi4.000_T2.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS600.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS600.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS600.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS900.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -204,14 +187,12 @@ GluGluToSUEP_HT1000_T8p00_mS900.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T6p00_mS800.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS800.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS800.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi2.000_T2.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -222,14 +203,12 @@ GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi2.000_T2.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p75_mS800.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS800.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS800.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p75_mS1500.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV-pythia8:
@@ -240,14 +219,12 @@ GluGluToSUEP_HT1000_T0p75_mS1500.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p50_mS1000.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS1000.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS1000.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -258,14 +235,12 @@ GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS125.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS125.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS125.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS1500.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -276,14 +251,12 @@ GluGluToSUEP_HT1000_T4p00_mS1500.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p25_mS125.000_mPhi1.000_T0.250_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p25_mS125.000_mPhi1.000_T0.250_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p25_mS125.000_mPhi1.000_T0.250_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p75_mS125.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV-pythia8:
@@ -294,14 +267,12 @@ GluGluToSUEP_HT1000_T0p75_mS125.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p75_mS400.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS400.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS400.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS200.000_mPhi4.000_T2.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -312,14 +283,12 @@ GluGluToSUEP_HT1000_T2p00_mS200.000_mPhi4.000_T2.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS2000.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -330,14 +299,12 @@ GluGluToSUEP_HT1000_T1p00_mS2000.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T3p00_mS300.000_mPhi3.000_T3.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS300.000_mPhi3.000_T3.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS300.000_mPhi3.000_T3.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS800.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -348,14 +315,12 @@ GluGluToSUEP_HT1000_T0p50_mS800.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS300.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS300.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS300.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS400.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -366,14 +331,12 @@ GluGluToSUEP_HT1000_T8p00_mS400.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T3p00_mS1000.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS1000.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS1000.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p50_mS1200.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV-pythia8:
@@ -384,14 +347,12 @@ GluGluToSUEP_HT1000_T1p50_mS1200.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS2000.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS2000.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS2000.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T3p00_mS125.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -402,14 +363,12 @@ GluGluToSUEP_HT1000_T3p00_mS125.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -420,14 +379,12 @@ GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS1200.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS1200.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS1200.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS600.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -438,14 +395,12 @@ GluGluToSUEP_HT1000_T2p00_mS600.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS1200.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS1200.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS1200.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS1500.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -456,14 +411,12 @@ GluGluToSUEP_HT1000_T1p00_mS1500.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS300.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS300.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS300.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T6p00_mS400.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -474,14 +427,12 @@ GluGluToSUEP_HT1000_T6p00_mS400.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -492,14 +443,12 @@ GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS800.000_mPhi8.000_T8.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS800.000_mPhi8.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS800.000_mPhi8.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T3p00_mS900.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -510,14 +459,12 @@ GluGluToSUEP_HT1000_T3p00_mS900.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T12p0_mS1000.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS1000.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS1000.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p80_mS1500.000_mPhi1.400_T2.800_modehadronic_TuneCP5_13TeV-pythia8:
@@ -528,14 +475,12 @@ GluGluToSUEP_HT1000_T2p80_mS1500.000_mPhi1.400_T2.800_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS500.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS500.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS500.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS400.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -546,14 +491,12 @@ GluGluToSUEP_HT1000_T8p00_mS400.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS600.000_mPhi2.000_T2.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS600.000_mPhi2.000_T2.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS600.000_mPhi2.000_T2.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -564,14 +507,12 @@ GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T6p00_mS300.000_mPhi3.000_T6.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS300.000_mPhi3.000_T6.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS300.000_mPhi3.000_T6.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -582,14 +523,12 @@ GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS1500.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1500.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1500.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -600,14 +539,12 @@ GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T12p0_mS1500.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS1500.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS1500.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi2.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -618,14 +555,12 @@ GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi2.000_T4.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS1200.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS1200.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS1200.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS400.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -636,14 +571,12 @@ GluGluToSUEP_HT1000_T2p00_mS400.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS600.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS600.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS600.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS500.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -654,14 +587,12 @@ GluGluToSUEP_HT1000_T1p00_mS500.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS800.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS800.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS800.000_mPhi8.000_T2.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS200.000_mPhi1.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -672,14 +603,12 @@ GluGluToSUEP_HT1000_T1p00_mS200.000_mPhi1.000_T1.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS2000.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS2000.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS2000.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi8.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -690,14 +619,12 @@ GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi8.000_T4.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p50_mS700.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS700.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS700.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T3p00_mS1200.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -708,14 +635,12 @@ GluGluToSUEP_HT1000_T3p00_mS1200.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T12p0_mS2000.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -726,14 +651,12 @@ GluGluToSUEP_HT1000_T12p0_mS2000.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13Te
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS1500.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS1500.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS1500.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS800.000_mPhi8.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -744,14 +667,12 @@ GluGluToSUEP_HT1000_T4p00_mS800.000_mPhi8.000_T4.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS1500.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS1500.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS1500.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS800.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -762,14 +683,12 @@ GluGluToSUEP_HT1000_T8p00_mS800.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T12p0_mS800.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS800.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS800.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -780,14 +699,12 @@ GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS125.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-pythia8:
@@ -798,14 +715,12 @@ GluGluToSUEP_HT1000_T0p50_mS125.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS2000.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS2000.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS2000.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS400.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -816,14 +731,12 @@ GluGluToSUEP_HT1000_T8p00_mS400.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS1000.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1000.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1000.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS1000.000_mPhi4.000_T8.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -834,14 +747,12 @@ GluGluToSUEP_HT1000_T8p00_mS1000.000_mPhi4.000_T8.000_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS400.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS400.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS400.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS600.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -852,14 +763,12 @@ GluGluToSUEP_HT1000_T8p00_mS600.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p75_mS400.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS400.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS400.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS700.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -870,14 +779,12 @@ GluGluToSUEP_HT1000_T1p00_mS700.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS1000.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1000.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1000.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS600.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -888,14 +795,12 @@ GluGluToSUEP_HT1000_T8p00_mS600.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p25_mS2000.000_mPhi1.000_T0.250_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -906,14 +811,12 @@ GluGluToSUEP_HT1000_T0p25_mS2000.000_mPhi1.000_T0.250_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS1000.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1000.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1000.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T3p00_mS300.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -924,14 +827,12 @@ GluGluToSUEP_HT1000_T3p00_mS300.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS500.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -942,14 +843,12 @@ GluGluToSUEP_HT1000_T0p50_mS500.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS125.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS125.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS125.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS900.000_mPhi2.000_T2.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -960,14 +859,12 @@ GluGluToSUEP_HT1000_T2p00_mS900.000_mPhi2.000_T2.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS1500.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS1500.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS1500.000_mPhi8.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi2.000_T1.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -978,14 +875,12 @@ GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi2.000_T1.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T5p60_mS800.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS800.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS800.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p75_mS900.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -996,14 +891,12 @@ GluGluToSUEP_HT1000_T0p75_mS900.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS600.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS600.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS600.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T6p00_mS125.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1014,14 +907,12 @@ GluGluToSUEP_HT1000_T6p00_mS125.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p75_mS800.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS800.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS800.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p50_mS1500.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1032,14 +923,12 @@ GluGluToSUEP_HT1000_T1p50_mS1500.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS1000.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS1000.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS1000.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS1000.000_mPhi2.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1050,14 +939,12 @@ GluGluToSUEP_HT1000_T4p00_mS1000.000_mPhi2.000_T4.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS600.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS600.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS600.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T6p00_mS1200.000_mPhi3.000_T6.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1068,14 +955,12 @@ GluGluToSUEP_HT1000_T6p00_mS1200.000_mPhi3.000_T6.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS700.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1086,14 +971,12 @@ GluGluToSUEP_HT1000_T16p0_mS700.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS125.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS125.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS125.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS1200.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1104,14 +987,12 @@ GluGluToSUEP_HT1000_T0p50_mS1200.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi2.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi2.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi2.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T3p00_mS800.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1122,14 +1003,12 @@ GluGluToSUEP_HT1000_T3p00_mS800.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS900.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS900.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS900.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS1200.000_mPhi4.000_T16.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1140,14 +1019,12 @@ GluGluToSUEP_HT1000_T16p0_mS1200.000_mPhi4.000_T16.000_modegeneric_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS500.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS500.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS500.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T6p00_mS500.000_mPhi3.000_T6.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1158,14 +1035,12 @@ GluGluToSUEP_HT1000_T6p00_mS500.000_mPhi3.000_T6.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS1200.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS1200.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS1200.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS125.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1176,14 +1051,12 @@ GluGluToSUEP_HT1000_T16p0_mS125.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p35_mS500.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p35_mS500.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p35_mS500.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS500.000_mPhi4.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1194,14 +1067,12 @@ GluGluToSUEP_HT1000_T8p00_mS500.000_mPhi4.000_T8.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T6p00_mS1500.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS1500.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS1500.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS700.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1212,14 +1083,12 @@ GluGluToSUEP_HT1000_T0p50_mS700.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS125.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS125.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS125.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS800.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1230,14 +1099,12 @@ GluGluToSUEP_HT1000_T1p00_mS800.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS400.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS400.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS400.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS400.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1248,14 +1115,12 @@ GluGluToSUEP_HT1000_T16p0_mS400.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T6p00_mS900.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS900.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS900.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS500.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1266,14 +1131,12 @@ GluGluToSUEP_HT1000_T1p00_mS500.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS1200.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1200.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1200.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1284,14 +1147,12 @@ GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS900.000_mPhi4.000_T16.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1302,14 +1163,12 @@ GluGluToSUEP_HT1000_T16p0_mS900.000_mPhi4.000_T16.000_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p50_mS2000.000_mPhi3.000_T1.500_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS2000.000_mPhi3.000_T1.500_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS2000.000_mPhi3.000_T1.500_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1320,14 +1179,12 @@ GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS400.000_mPhi4.000_T16.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS400.000_mPhi4.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS400.000_mPhi4.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS400.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1338,14 +1195,12 @@ GluGluToSUEP_HT1000_T4p00_mS400.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS500.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS500.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS500.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS500.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1356,14 +1211,12 @@ GluGluToSUEP_HT1000_T0p50_mS500.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS1200.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1200.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1200.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS1500.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1374,14 +1227,12 @@ GluGluToSUEP_HT1000_T8p00_mS1500.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS900.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS900.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS900.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi2.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1392,14 +1243,12 @@ GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi2.000_T4.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T3p00_mS300.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS300.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS300.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS700.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1410,14 +1259,12 @@ GluGluToSUEP_HT1000_T0p50_mS700.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T6p00_mS300.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS300.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS300.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS1200.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1428,14 +1275,12 @@ GluGluToSUEP_HT1000_T0p50_mS1200.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p50_mS400.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS400.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS400.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS1000.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1446,14 +1291,12 @@ GluGluToSUEP_HT1000_T1p00_mS1000.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p50_mS200.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS200.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS200.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS700.000_mPhi4.000_T16.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1464,14 +1307,12 @@ GluGluToSUEP_HT1000_T16p0_mS700.000_mPhi4.000_T16.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p50_mS1000.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS1000.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS1000.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1482,14 +1323,12 @@ GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS125.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS125.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS125.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS800.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1500,14 +1339,12 @@ GluGluToSUEP_HT1000_T4p00_mS800.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p70_mS900.000_mPhi1.400_T0.700_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p70_mS900.000_mPhi1.400_T0.700_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p70_mS900.000_mPhi1.400_T0.700_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS125.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1518,14 +1355,12 @@ GluGluToSUEP_HT1000_T1p00_mS125.000_mPhi2.000_T1.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T5p60_mS700.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS700.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS700.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS200.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1536,14 +1371,12 @@ GluGluToSUEP_HT1000_T8p00_mS200.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p35_mS1000.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p35_mS1000.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p35_mS1000.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T3p00_mS900.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1554,14 +1387,12 @@ GluGluToSUEP_HT1000_T3p00_mS900.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS1000.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS1000.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS1000.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS600.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1572,14 +1403,12 @@ GluGluToSUEP_HT1000_T8p00_mS600.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS800.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS800.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS800.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi4.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1590,14 +1419,12 @@ GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi4.000_T8.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS1000.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1608,14 +1435,12 @@ GluGluToSUEP_HT1000_T4p00_mS1000.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p50_mS1200.000_mPhi3.000_T1.500_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS1200.000_mPhi3.000_T1.500_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS1200.000_mPhi3.000_T1.500_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1626,14 +1451,12 @@ GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS1500.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1500.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1500.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS500.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1644,14 +1467,12 @@ GluGluToSUEP_HT1000_T8p00_mS500.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS1500.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS1500.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS1500.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p75_mS2000.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1662,14 +1483,12 @@ GluGluToSUEP_HT1000_T0p75_mS2000.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T6p00_mS125.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1680,14 +1499,12 @@ GluGluToSUEP_HT1000_T6p00_mS125.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS300.000_mPhi4.000_T16.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1698,14 +1515,12 @@ GluGluToSUEP_HT1000_T16p0_mS300.000_mPhi4.000_T16.000_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi2.000_T2.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi2.000_T2.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi2.000_T2.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS400.000_mPhi2.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1716,14 +1531,12 @@ GluGluToSUEP_HT1000_T1p00_mS400.000_mPhi2.000_T1.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS600.000_mPhi1.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS600.000_mPhi1.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS600.000_mPhi1.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS1500.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1734,14 +1547,12 @@ GluGluToSUEP_HT1000_T2p00_mS1500.000_mPhi8.000_T2.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS1500.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS1500.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS1500.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS800.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1752,14 +1563,12 @@ GluGluToSUEP_HT1000_T0p50_mS800.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS125.000_mPhi4.000_T16.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS125.000_mPhi4.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS125.000_mPhi4.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1770,14 +1579,12 @@ GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p50_mS400.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS400.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS400.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p70_mS200.000_mPhi1.400_T0.700_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1788,14 +1595,12 @@ GluGluToSUEP_HT1000_T0p70_mS200.000_mPhi1.400_T0.700_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS125.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS125.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS125.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS300.000_mPhi4.000_T16.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1806,14 +1611,12 @@ GluGluToSUEP_HT1000_T16p0_mS300.000_mPhi4.000_T16.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p75_mS1200.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS1200.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS1200.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS500.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1824,14 +1627,12 @@ GluGluToSUEP_HT1000_T8p00_mS500.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi2.000_T1.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi2.000_T1.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi2.000_T1.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T32p0_mS400.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1842,14 +1643,12 @@ GluGluToSUEP_HT1000_T32p0_mS400.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS600.000_mPhi2.000_T1.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS600.000_mPhi2.000_T1.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS600.000_mPhi2.000_T1.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p75_mS900.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1860,14 +1659,12 @@ GluGluToSUEP_HT1000_T0p75_mS900.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T3p00_mS400.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS400.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS400.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p50_mS500.000_mPhi3.000_T1.500_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1878,14 +1675,12 @@ GluGluToSUEP_HT1000_T1p50_mS500.000_mPhi3.000_T1.500_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T3p00_mS2000.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS2000.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS2000.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T12p0_mS125.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1896,14 +1691,12 @@ GluGluToSUEP_HT1000_T12p0_mS125.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS1500.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS1500.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS1500.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS200.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -1914,14 +1707,12 @@ GluGluToSUEP_HT1000_T0p50_mS200.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS800.000_mPhi2.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS800.000_mPhi2.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS800.000_mPhi2.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS800.000_mPhi4.000_T2.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1932,14 +1723,12 @@ GluGluToSUEP_HT1000_T2p00_mS800.000_mPhi4.000_T2.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T12p0_mS200.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS200.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS200.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T32p0_mS1500.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1950,14 +1739,12 @@ GluGluToSUEP_HT1000_T32p0_mS1500.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13Te
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p80_mS500.000_mPhi1.400_T2.800_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p80_mS500.000_mPhi1.400_T2.800_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p80_mS500.000_mPhi1.400_T2.800_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -1968,14 +1755,12 @@ GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T6p00_mS500.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS500.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS500.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T3p00_mS1500.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -1986,14 +1771,12 @@ GluGluToSUEP_HT1000_T3p00_mS1500.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi8.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi8.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi8.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS500.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2004,14 +1787,12 @@ GluGluToSUEP_HT1000_T4p00_mS500.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T3p00_mS900.000_mPhi3.000_T3.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS900.000_mPhi3.000_T3.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS900.000_mPhi3.000_T3.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS500.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2022,14 +1803,12 @@ GluGluToSUEP_HT1000_T4p00_mS500.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS1500.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1500.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1500.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS200.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -2040,14 +1819,12 @@ GluGluToSUEP_HT1000_T1p00_mS200.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p00_mS500.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS500.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS500.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2058,14 +1835,12 @@ GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T5p60_mS1000.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS1000.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS1000.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p75_mS300.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2076,14 +1851,12 @@ GluGluToSUEP_HT1000_T0p75_mS300.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS800.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS800.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS800.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T12p0_mS700.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2094,14 +1867,12 @@ GluGluToSUEP_HT1000_T12p0_mS700.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p75_mS500.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS500.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS500.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2112,14 +1883,12 @@ GluGluToSUEP_HT1000_T4p00_mS700.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p40_mS1000.000_mPhi1.400_T1.400_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p40_mS1000.000_mPhi1.400_T1.400_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p40_mS1000.000_mPhi1.400_T1.400_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p35_mS1200.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2130,14 +1899,12 @@ GluGluToSUEP_HT1000_T0p35_mS1200.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS125.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2148,14 +1915,12 @@ GluGluToSUEP_HT1000_T2p00_mS500.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS300.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS300.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS300.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS1000.000_mPhi2.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2166,14 +1931,12 @@ GluGluToSUEP_HT1000_T1p00_mS1000.000_mPhi2.000_T1.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi8.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS400.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2184,14 +1947,12 @@ GluGluToSUEP_HT1000_T8p00_mS400.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p35_mS700.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p35_mS700.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p35_mS700.000_mPhi1.400_T0.350_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T6p00_mS1000.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2202,14 +1963,12 @@ GluGluToSUEP_HT1000_T6p00_mS1000.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p50_mS1000.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS1000.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS1000.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p70_mS400.000_mPhi1.400_T0.700_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2220,14 +1979,12 @@ GluGluToSUEP_HT1000_T0p70_mS400.000_mPhi1.400_T0.700_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T2p00_mS900.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS900.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS900.000_mPhi4.000_T2.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS400.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2238,14 +1995,12 @@ GluGluToSUEP_HT1000_T1p00_mS400.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS200.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS200.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS200.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS500.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2256,14 +2011,12 @@ GluGluToSUEP_HT1000_T4p00_mS500.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p50_mS200.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS200.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS200.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -2274,14 +2027,12 @@ GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi8.000_T4.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T3p00_mS1000.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS1000.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS1000.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2292,14 +2043,12 @@ GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi1.000_T2.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p50_mS800.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS800.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS800.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS1000.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2310,14 +2059,12 @@ GluGluToSUEP_HT1000_T1p00_mS1000.000_mPhi4.000_T1.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS125.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS125.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS125.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p50_mS200.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2328,14 +2075,12 @@ GluGluToSUEP_HT1000_T1p50_mS200.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi2.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2346,14 +2091,12 @@ GluGluToSUEP_HT1000_T1p00_mS1200.000_mPhi4.000_T1.000_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS300.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS300.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS300.000_mPhi8.000_T16.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS300.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2364,14 +2107,12 @@ GluGluToSUEP_HT1000_T8p00_mS300.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS1200.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS1200.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS1200.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS2000.000_mPhi2.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2382,14 +2123,12 @@ GluGluToSUEP_HT1000_T1p00_mS2000.000_mPhi2.000_T1.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS500.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS500.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS500.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS300.000_mPhi2.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2400,14 +2139,12 @@ GluGluToSUEP_HT1000_T1p00_mS300.000_mPhi2.000_T1.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T5p60_mS125.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS125.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS125.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS200.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -2418,14 +2155,12 @@ GluGluToSUEP_HT1000_T16p0_mS200.000_mPhi8.000_T16.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p75_mS600.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS600.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS600.000_mPhi3.000_T0.750_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p75_mS1000.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2436,14 +2171,12 @@ GluGluToSUEP_HT1000_T0p75_mS1000.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS2000.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS2000.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS2000.000_mPhi8.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T12p0_mS1500.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2454,14 +2187,12 @@ GluGluToSUEP_HT1000_T12p0_mS1500.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13Te
     signal
 
 
-
 GluGluToSUEP_HT1000_T6p00_mS300.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS300.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS300.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T6p00_mS900.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2472,14 +2203,12 @@ GluGluToSUEP_HT1000_T6p00_mS900.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p25_mS1000.000_mPhi1.000_T0.250_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p25_mS1000.000_mPhi1.000_T0.250_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p25_mS1000.000_mPhi1.000_T0.250_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS1500.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2490,14 +2219,12 @@ GluGluToSUEP_HT1000_T0p50_mS1500.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p75_mS900.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS900.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS900.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T12p0_mS500.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2508,14 +2235,12 @@ GluGluToSUEP_HT1000_T12p0_mS500.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T32p0_mS400.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS400.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS400.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS125.000_mPhi4.000_T16.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -2526,14 +2251,12 @@ GluGluToSUEP_HT1000_T16p0_mS125.000_mPhi4.000_T16.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T5p60_mS200.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS200.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS200.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2544,14 +2267,12 @@ GluGluToSUEP_HT1000_T4p00_mS600.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p40_mS1500.000_mPhi1.400_T1.400_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p40_mS1500.000_mPhi1.400_T1.400_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p40_mS1500.000_mPhi1.400_T1.400_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS125.000_mPhi8.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2562,14 +2283,12 @@ GluGluToSUEP_HT1000_T4p00_mS125.000_mPhi8.000_T4.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T12p0_mS1200.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS1200.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS1200.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS1200.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -2580,14 +2299,12 @@ GluGluToSUEP_HT1000_T8p00_mS1200.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS900.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p40_mS300.000_mPhi1.400_T1.400_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2598,14 +2315,12 @@ GluGluToSUEP_HT1000_T1p40_mS300.000_mPhi1.400_T1.400_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T12p0_mS400.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS400.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS400.000_mPhi3.000_T12.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T32p0_mS900.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2616,14 +2331,12 @@ GluGluToSUEP_HT1000_T32p0_mS900.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T12p0_mS300.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS300.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS300.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T1p00_mS600.000_mPhi2.000_T1.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -2634,14 +2347,12 @@ GluGluToSUEP_HT1000_T1p00_mS600.000_mPhi2.000_T1.000_modehadronic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T16p0_mS1000.000_mPhi4.000_T16.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1000.000_mPhi4.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1000.000_mPhi4.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS900.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-pythia8:
@@ -2652,14 +2363,12 @@ GluGluToSUEP_HT1000_T0p50_mS900.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T6p00_mS700.000_mPhi3.000_T6.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS700.000_mPhi3.000_T6.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS700.000_mPhi3.000_T6.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T12p0_mS1200.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -2670,14 +2379,12 @@ GluGluToSUEP_HT1000_T12p0_mS1200.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T0p50_mS125.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS125.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p50_mS125.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T8p00_mS800.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -2688,14 +2395,12 @@ GluGluToSUEP_HT1000_T8p00_mS800.000_mPhi8.000_T8.000_modegeneric_TuneCP5_13TeV-p
     signal
 
 
-
 GluGluToSUEP_HT1000_T5p60_mS900.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS900.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T5p60_mS900.000_mPhi1.400_T5.600_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T0p50_mS1500.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2706,14 +2411,12 @@ GluGluToSUEP_HT1000_T0p50_mS1500.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV
     signal
 
 
-
 GluGluToSUEP_HT1000_T8p00_mS800.000_mPhi4.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS800.000_mPhi4.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS800.000_mPhi4.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T16p0_mS800.000_mPhi4.000_T16.000_modegeneric_TuneCP5_13TeV-pythia8:
@@ -2724,14 +2427,12 @@ GluGluToSUEP_HT1000_T16p0_mS800.000_mPhi4.000_T16.000_modegeneric_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T1p50_mS500.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS500.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS500.000_mPhi3.000_T1.500_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
@@ -2742,14 +2443,12 @@ GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV-
     signal
 
 
-
 GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
-
 
 
 GluGluToSUEP_HT1000_T32p0_mS1200.000_mPhi8.000_T32.000_modehadronic_TuneCP5_13TeV-pythia8:
@@ -3672,7 +3371,7 @@ GluGluToSUEP_HT1000_T0p50_mS2000.000_mPhi2.000_T0.500_modegeneric_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T8p00_mS200.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS200.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS200.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS200.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -3681,7 +3380,7 @@ GluGluToSUEP_HT1000_T8p00_mS200.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T8p00_mS1000.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1000.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1000.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS1000.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -3690,7 +3389,7 @@ GluGluToSUEP_HT1000_T8p00_mS1000.000_mPhi2.000_T8.000_modehadronic_TuneCP5_13TeV
 GluGluToSUEP_HT1000_T6p00_mS200.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS200.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS200.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS200.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -3699,7 +3398,7 @@ GluGluToSUEP_HT1000_T6p00_mS200.000_mPhi3.000_T6.000_modeleptonic_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T6p00_mS1200.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS1200.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS1200.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T6p00_mS1200.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -3708,7 +3407,7 @@ GluGluToSUEP_HT1000_T6p00_mS1200.000_mPhi3.000_T6.000_modehadronic_TuneCP5_13TeV
 GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -3717,7 +3416,7 @@ GluGluToSUEP_HT1000_T4p00_mS200.000_mPhi2.000_T4.000_modeleptonic_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi4.000_T2.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi4.000_T2.000_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi4.000_T2.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p00_mS700.000_mPhi4.000_T2.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -3959,7 +3658,7 @@ GluGluToSUEP_HT1000_T0p50_mS2000.000_mPhi2.000_T0.500_modeleptonic_TuneCP5_13TeV
 GluGluToSUEP_HT1000_T1p50_mS800.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS800.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS800.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS800.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -3968,7 +3667,7 @@ GluGluToSUEP_HT1000_T1p50_mS800.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -3977,7 +3676,7 @@ GluGluToSUEP_HT1000_T4p00_mS2000.000_mPhi1.000_T4.000_modeleptonic_TuneCP5_13TeV
 GluGluToSUEP_HT1000_T1p50_mS300.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS300.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS300.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p50_mS300.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -3986,7 +3685,7 @@ GluGluToSUEP_HT1000_T1p50_mS300.000_mPhi3.000_T1.500_modehadronic_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T8p00_mS900.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS900.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS900.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS900.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -3995,7 +3694,7 @@ GluGluToSUEP_HT1000_T8p00_mS900.000_mPhi2.000_T8.000_modegeneric_TuneCP5_13TeV-p
 GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -4004,7 +3703,7 @@ GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV-p
 GluGluToSUEP_HT1000_T0p75_mS700.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS700.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS700.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T0p75_mS700.000_mPhi3.000_T0.750_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6298,7 +5997,7 @@ GluGluToSUEP_HT1000_T0p50_mS2000.000_mPhi2.000_T0.500_modehadronic_TuneCP5_13TeV
 GluGluToSUEP_HT1000_T8p00_mS2000.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS2000.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS2000.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS2000.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6307,7 +6006,7 @@ GluGluToSUEP_HT1000_T8p00_mS2000.000_mPhi4.000_T8.000_modehadronic_TuneCP5_13TeV
 GluGluToSUEP_HT1000_T32p0_mS2000.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS2000.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS2000.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS2000.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6316,7 +6015,7 @@ GluGluToSUEP_HT1000_T32p0_mS2000.000_mPhi8.000_T32.000_modeleptonic_TuneCP5_13Te
 GluGluToSUEP_HT1000_T32p0_mS900.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS900.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS900.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T32p0_mS900.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6325,7 +6024,7 @@ GluGluToSUEP_HT1000_T32p0_mS900.000_mPhi8.000_T32.000_modegeneric_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T12p0_mS200.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS200.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS200.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS200.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6334,7 +6033,7 @@ GluGluToSUEP_HT1000_T12p0_mS200.000_mPhi3.000_T12.000_modegeneric_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6343,7 +6042,7 @@ GluGluToSUEP_HT1000_T1p00_mS900.000_mPhi4.000_T1.000_modegeneric_TuneCP5_13TeV-p
 GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi8.000_T8.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi8.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi8.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T8p00_mS700.000_mPhi8.000_T8.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6441,7 +6140,7 @@ GluGluToSUEP_HT1000_T1p00_mS2000.000_mPhi1.000_T1.000_modeleptonic_TuneCP5_13TeV
 GluGluToSUEP_HT1000_T12p0_mS900.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS900.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS900.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T12p0_mS900.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6450,7 +6149,7 @@ GluGluToSUEP_HT1000_T12p0_mS900.000_mPhi3.000_T12.000_modehadronic_TuneCP5_13TeV
 GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6459,7 +6158,7 @@ GluGluToSUEP_HT1000_T4p00_mS300.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T2p80_mS700.000_mPhi1.400_T2.800_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p80_mS700.000_mPhi1.400_T2.800_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p80_mS700.000_mPhi1.400_T2.800_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T2p80_mS700.000_mPhi1.400_T2.800_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6468,7 +6167,7 @@ GluGluToSUEP_HT1000_T2p80_mS700.000_mPhi1.400_T2.800_modehadronic_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T3p00_mS600.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS600.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS600.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS600.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6477,7 +6176,7 @@ GluGluToSUEP_HT1000_T3p00_mS600.000_mPhi3.000_T3.000_modegeneric_TuneCP5_13TeV-p
 GluGluToSUEP_HT1000_T3p00_mS200.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS200.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS200.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T3p00_mS200.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 
@@ -6486,7 +6185,7 @@ GluGluToSUEP_HT1000_T3p00_mS200.000_mPhi3.000_T3.000_modehadronic_TuneCP5_13TeV-
 GluGluToSUEP_HT1000_T16p0_mS1200.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV-pythia8:
   files:
     - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1200.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016.root
-      - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1200.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
+    - /data/submit/lavezzo/SUEP/outputs/GluGluToSUEP_HT1000_T16p0_mS1200.000_mPhi8.000_T16.000_modeleptonic_TuneCP5_13TeV_approval_2016apv.root
   type:
     signal
 

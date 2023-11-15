@@ -9,21 +9,28 @@ import json
 import pandas as pd
 import math
 from matplotlib import ticker
+import matplotlib.patches as mpatches
+from matplotlib.lines import Line2D
 import mplhep as hep
 from scipy.ndimage import gaussian_filter1d
 
 
+# decaysLabels = {
+#     'hadronic' : r"$A^' \rightarrow e^{+}e^{-},\mu^{+}\mu^{-},\pi^{+}\pi^{-}$""\n""with $\mathcal{B} = 15,15,70\%$",
+#     'leptonic' : r"$A^' \rightarrow e^{+}e^{-},\mu^{+}\mu^{-},\pi^{+}\pi^{-}$""\n""with $\mathcal{B} = 40,40,20\%$",
+#     'generic' : r"$A^' \rightarrow \pi^{+}\pi^{-}$""\n""with $\mathcal{B} = 100\%$"
+# }
 decaysLabels = {
-    'hadronic' : r"$A^' \rightarrow e^{+}e^{-},\mu^{+}\mu^{-},\pi^{+}\pi^{-}$""\n""with BR=15,15,70%",
-    'leptonic' : r"$A^' \rightarrow e^{+}e^{-},\mu^{+}\mu^{-},\pi^{+}\pi^{-}$""\n""with BR=40,40,20%",
-    'generic' : r"$A^' \rightarrow \pi^{+}\pi^{-}$""\n""with BR=100%"
+    'hadronic' : r"$A^' \rightarrow e^{+}e^{-}$ ($15\%$), $\mu^{+}\mu^{-}$ ($15\%$), $\pi^{+}\pi^{-}$ ($70\%$)",
+    'leptonic' : r"$A^' \rightarrow e^{+}e^{-}$ ($40\%$), $\mu^{+}\mu^{-}$ ($40\%$), $\pi^{+}\pi^{-}$ ($20\%$)",
+    'generic' : r"$A^' \rightarrow \pi^{+}\pi^{-}$ ($100\%$) "
 }
 
 lumis = {
     2016 : 36.3, #36.308
     2017 : 41.5, #41.471 
     2018 : 59.8, #59.817
-    'combined' : 59.8+41.5+ 36.3
+    'combined' : round(59.8+41.5+ 36.3)
 }
 
 
@@ -243,19 +250,19 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='Asympto
             print("{} {:.5g} {:.5g}".format(mS, obs, exp))
 
     # Make 1D limit plot
-    fig = plt.figure(figsize=(12,12))
+    fig = plt.figure(figsize=(10,10))
     ax = fig.subplots()
         
     xvar = np.linspace(100,2050,1000)
 
     # Plot observed limits
-    ax.plot(masses, _obs,'.', ms=12, color='black') 
+    ax.plot(masses, _obs,'.', ms=12, color='black', label="Observed") 
     ax.plot(xvar,obs_limit(xvar), #*.101,#* 0.101* 2/3,
-             "-", ms=12, color='black', label="observed")
+             "-", ms=12, color='black')
     
     #Plot expected limits including brazil bands
     ax.plot(xvar,th_limit(xvar), #*.101,#* 0.101* 2/3,
-         "--", ms=12, color='blue', label="$\sigma_{theory}$ (pb)")
+         "--", ms=12, color='blue', label="$\sigma_{theory}$")
     ax.plot(xvar, exp_limit(xvar), ls="--", ms=12, color='black', label="Median expected")
     ax.fill_between(xvar, s2m_limit(xvar), s2p_limit(xvar), color="#FFCC01", lw=0, label="Expected 95% CL")
     ax.fill_between(xvar, s1m_limit(xvar), s1p_limit(xvar), color="#00CC00", lw=0, label="Expected 68% CL")
@@ -266,7 +273,7 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='Asympto
     ax.legend(loc="upper left", fontsize=20)
 
     _ = ax.text(
-        0.6, 0.8, r"$T_D$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n""{}".format(temp,mphi,decaysLabels[decay]),
+        0.65, 0.75, r"$T_D$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n""{}".format(temp,mphi,decaysLabels[decay]),
         fontsize=25, horizontalalignment='left', 
         verticalalignment='bottom', 
         transform=ax.transAxes,
@@ -308,7 +315,8 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
     scan_limits = get_scan_limits(path=path, ms=ms, decay=decay)
     
     # Reorganize data
-    limit_mu = np.stack([s[1]/s[0][-1] for s in scan_limits]) 
+    if calculateWithoutPlotting: limit_mu = np.stack([s[1]/s[0][-1] for s in scan_limits]) 
+    else: limit_mu = np.stack([s[1] for s in scan_limits]) 
     limit_mphi = np.array([s[0][1] for s in scan_limits]) 
     limit_temp =  np.array([s[0][2] for s in scan_limits])
 
@@ -336,7 +344,7 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
         levels = np.linspace(min(data['obs']),max(data['obs']))
         contour = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels, cmap="plasma")
         cb = fig.colorbar(contour)
-        cb.ax.set_ylabel(r'$\mu$', loc='center', rotation=0, fontsize=20)
+        cb.ax.set_ylabel(r'$95\%$ CL obs. upper limit on $\sigma$ (pb)', loc='center', rotation=90, fontsize=25)
         ticks = (np.array(range(math.ceil(min(data['obs'])), math.floor(max(data['obs'])) + 1)))
         cb.set_ticks(ticks)
         labels = ['$10^{'+str(i)+'}$' for i in ticks]
@@ -347,7 +355,7 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
         x = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels,locator=ticker.LogLocator(), cmap="plasma")
         formatter = ticker.LogFormatter(base=10, labelOnlyBase=True) 
         cb = fig.colorbar(x, format=formatter, label=r'$\mu$')
-        cb.ax.set_ylabel(r'$\mu$', loc='center', rotation=0, fontsize=20)
+        cb.ax.set_ylabel(r'$95\%$ CL obs. upper limit on $\sigma$ (pb)', loc='center', rotation=90, fontsize=25)
         cb.locator = ticker.LogLocator(base=10.0, subs=[1.0], numdecs=7, numticks=45)
         cb.update_ticks()
      
@@ -379,10 +387,10 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
         return line1, line2, line3, line5
 
     #plot smoothed curve
-    ax.plot(*line2.T, linestyle = "--", color ='red' , label=r"$\mu=1$ median expected",linewidth =4)
-    ax.plot(*line1.T,linestyle = "--", color='#00ffff', label=r"$\pm 1\sigma$",linewidth =4)
+    ax.plot(*line2.T, linestyle = "--", color ='red' , label=r"Median expected",linewidth =4)
+    ax.plot(*line1.T,linestyle = "--", color='#00ffff', label=r"Expected $68\%$ CL",linewidth =4)
     ax.plot(*line3.T, linestyle = "--", color='#00ffff', linewidth =4)
-    ax.plot(*line5.T, linestyle = "-", color='#00008b', label=r"$\mu=1$ observed",linewidth =4)
+    ax.plot(*line5.T, linestyle = "-", color='#00008b', label=r"Observed",linewidth =4)
         
     ax.set_xlabel(r"$m_{\phi}$ (GeV)", x=1, ha='right')
     ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
@@ -398,73 +406,73 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
     
     ax.set_xlim([1, 8.5])
     ax.set_ylim([0, 35])     
-    ax.legend(loc="upper right", fontsize=16)
+    ax.legend(loc="upper right", fontsize=20)
     fig.tight_layout()
      
     return fig
 
 
 def plot_summary_limits_mPhi_temp(decay, path='../'):
-
+    
     samples = get_unique_combinations(['mphi', 'temp'], decay=decay)
-
+    
+    # sort by mS
+    samples = np.array(samples)[np.argsort([s[0] for s in samples])]
+        
     lines = []
     for sample in samples:
-        lines.append(plot_mPhi_temp_limits(ms=sample[0], decay=decay, 
+        lines.append(plot_mPhi_temp_limits(ms=float(sample[0]), decay=decay, 
                                     tricontour='log', path=path,
-                                    calculateWithoutPlotting=True))
-    
+                                    calculateWithoutPlotting=True)) 
     # Define colours
     cmap = plt.cm.jet
-    colors = cmap(np.linspace(0, 1, 10))[::-1]
+    colors = cmap(np.linspace(0, 1, len(lines)))
 
     # Plot mu=1 lines 
     fig = plt.figure(figsize=(16,9))
     ax = fig.subplots()
 
+    legend_elements = []
+    legend_elements.append(Line2D([0],[0], linestyle = '-',c='black', label='Observed'))
+    legend_elements.append(Line2D([0],[0], linestyle = '-',c='white', label='Expected 68% CL:'))
     for i, line in enumerate(lines):
         line1,line2,line3,line5 = line
-        x1,y1 = interpLimit(line1, 4) #Expected $95\%$ CL
+        x1,y1 = interpLimit(line1, 4) 
         x2,y2 = interpLimit(line2, 4)
         x3,y3 = interpLimit(line3, 4)
         x5,y5 = interpLimit(line5, 4)
 
-        ax.plot(x2,y2, linestyle = '--',label=r"$m_{{S}}$ = {} GeV".format(samples[i][0]),c=colors[i])
+        ax.plot(x2,y2, linestyle = '--', lw=2, c=colors[i])
         ax.plot(x5,y5, linestyle = '-',c='black')
 
         y1_interp = np.interp(x2, x1, y1)
         y3_interp = np.interp(x2, x3, y3)
-        ax.fill_between(x2,y1_interp, y3_interp, color=colors[i],alpha=0.2)
+        band = ax.fill_between(x2,y1_interp, y3_interp, color=colors[i],alpha=0.2)
+        legend_elements.append(mpatches.Patch(facecolor=colors[i], alpha=0.2, label='$m_{{S}}$ = {} GeV'.format(round(float(samples[i][0])))))
 
     # Annotate figure
     ax.set_xlabel(r"$m_{\phi}$ (GeV)", x=1, ha='right')
     ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
     hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
-    ax.text(7.5, 10, decaysLabels[decay], horizontalalignment='right', verticalalignment='center',fontsize=20)
+    ax.text(7.5, 14, decaysLabels[decay], horizontalalignment='right', verticalalignment='center',fontsize=20)
 
     # Plot theoretically excluded regions
     mA = {'leptonic':0.5,'hadronic':0.7,'generic':1.0}
     x=[2*mA[decay],8]
     ax.plot(x, [4 * xi for xi in x], '--',color='black')
     ax.plot(x, [0.25 * xi for xi in x], '--',color='black')
-    ax.plot([2*mA[decay]]*50, np.linspace(0.5,10.5,50),color='black',marker=(1,2,45),markersize =20, alpha =0.5)
-    ax.plot([8]*50, np.linspace(0.5,10.5,50),color='black',marker=(1,2,-135),markersize =30, alpha =0.5)
+    ax.plot([2*mA[decay]]*50, np.linspace(0.5,15,50),color='black',marker=(1,2,45),markersize =20, alpha =0.5)
+    ax.plot([8]*50, np.linspace(0.5,15,50),color='black',marker=(1,2,-135),markersize =30, alpha =0.5)
     ax.text(8.4, 5, 'few hard tracks', horizontalalignment='right', verticalalignment='center',fontsize=16,rotation=-90)
-    ax.text(2*mA[decay]-0.15, 5, r"$m_{\phi}<2m_{A^'}$", horizontalalignment='right', verticalalignment='center',fontsize=16,rotation=-90)
-    ax.text(2.6, 10., r'$T/m_{\phi}=4$', horizontalalignment='right', verticalalignment='center',fontsize=16,rotation =65)
-    ax.text(6, 0.75, r'$T/m_{\phi}=0.25$', horizontalalignment='right', verticalalignment='center',fontsize=16,rotation =8)
-
-    # # # Plot datapoints
-    # x,y,_= tuple(np.array(get_params(1000,plot=False)).T)
-    # ax.scatter(x,y,marker='o') 
+    ax.text(2*mA[decay]-0.15, 5, r"$m_{\phi}<2m_{A^'}$", horizontalalignment='right', verticalalignment='center',fontsize=20,rotation=-90)
+    ax.text(3, 11.5, r'$T_D/m_{\phi}=4$', horizontalalignment='right', verticalalignment='center',fontsize=20,rotation =55)
+    ax.text(6, 0.75, r'$T_D/m_{\phi}=0.25$', horizontalalignment='right', verticalalignment='center',fontsize=20,rotation =6)
 
     ax.set_xlim([2*mA[decay]-0.6, 12])
-    ax.set_ylim([0.0, 11])
-
-    legend = ax.legend(loc='center left', bbox_to_anchor=(0.69, 0.5),frameon=False , fontsize=25, title= 'Expected 95% CL $\pm 1\sigma$')
-    legend.get_title().set_fontsize(25)
-
-    ax.text(9.5,10,'— observed')
+    ax.set_ylim([0.0, 15])
+    
+    ax.legend(handles=legend_elements, loc=(0.70, 0.05), fontsize=20)
+    
     fig.tight_layout()
 
     return fig

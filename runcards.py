@@ -50,9 +50,9 @@ def main():
     options = parser.parse_args()
     # these are hardcoded in for now
     bins  = ['Bin1Sig','Bin2Sig',
-            'Bin3Sig','Bin4Sig', # pre approval
+            'Bin3Sig','Bin4Sig',
             'Bin0crF','Bin1crF','Bin2crF',
-            'Bin3crF','Bin4crF', # pre approval
+            'Bin3crF','Bin4crF',
             'cat_crA','cat_crB','cat_crC','cat_crD','cat_crE','cat_crG','cat_crH']
     config_file = "config/SUEP_inputs_{}.yaml"
     years = ['2016', '2017', '2018']
