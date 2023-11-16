@@ -21,6 +21,7 @@ import uproot
 import datetime
 import argparse
 import yaml
+import logging
 
 def main ():
 
@@ -33,7 +34,14 @@ def main ():
     parser.add_argument("-r", "--remoteDir", type=str, required=False, default='', help="Where to move the limits from. Must be run with --move.")
     parser.add_argument("-t", "--tag", type=str, help="Production tag (and name of local directory) where the cards and limits are stored)", required=True, default='')
     parser.add_argument("-dry", "--dry", action='store_true', help="Don't delete any limit files.")
+    parser.add_argument("-v", "--verbose", action='store_true', help="Increase output verbosity")
     args = parser.parse_args()
+
+    # set verbosity level
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
 
     # some checks
     if not args.checkMissingLimits and not args.checkMissingCards and not args.moveLimits:
@@ -49,7 +57,19 @@ def main ():
     remoteLimitDir = args.remoteDir
     limitDir = args.tag
 
+    logging.info("monitor.py will run the following modes:")
+    if args.checkMissingCards: logging.info("--checkMissingCards")
+    if args.moveLimits: logging.info("--moveLimits")
+    if args.checkMissingLimits: logging.info("--checkMissingLimits")
+
     if args.checkMissingCards:
+
+        logging.info('')
+        logging.info("-"*50)
+        logging.info("--checkMissingCards")
+        logging.info("Checking for missing cards in the local directory.")
+        logging.info("Local directory:", limitDir)
+        logging.info('')
 
         bins  = ['Bin1Sig','Bin2Sig',
                 'Bin3Sig','Bin4Sig',
@@ -70,26 +90,35 @@ def main ():
                     for eof in ['dat','root']:
                         path = '{}/cards-{}/shapes-{}{}.{}'.format(limitDir, sample, bin_name, year, eof)
                         if not os.path.exists(path) or os.path.getsize(path) == 0: 
-                            print("--missing:", path)
+                            logging.debug("--missing:", path)
                             missingCardsSamples.append(sample)
                             continue
         
-        print("Found", len(missingCardsSamples), "samples with missing cards.")
-        if len(missingCardsSamples) > 0:
-            print()
-            print("The following samples have one or more missing cards:")
+        logging.info(f"Found {len(missingCardsSamples)} samples with missing cards.")
+        if len(missingCardsSamples) > 0 and args.verbose:
+            logging.debug()
+            logging.debug("The following samples have one or more missing cards:")
             for sample in set(missingCardsSamples):
-                print(sample)
+                logging.debug(sample)
 
         # write out missing samples to file
         now = datetime.datetime.now()
         outCardsFile = 'missingCards_'+now.strftime("%Y-%m-%d_%H-%M-%S")+'.txt'
-        print("Outputting results to", outCardsFile)
+        logging.info("Outputting results to", outCardsFile)
         with open(outCardsFile, 'w') as f:  
             for item in missingCardsSamples:
                 f.write("%s\n" % item)
 
     if args.moveLimits:
+
+        logging.info('')
+        logging.info("-"*50)
+        logging.info("--moveLimits")
+        logging.info("Moving limit files from the remote directory to the local directory")
+        logging.info("Checking each .root limit file for corruption and deleting corrupted files. Might take a little longer...")
+        logging.info("Remote directory: " + remoteLimitDir)
+        logging.info("Local directory: " + limitDir)
+        logging.info('')
 
         nMoved = 0
         nDeleted = 0
@@ -98,7 +127,7 @@ def main ():
 
             # check if corresponding file is missing in outDir, if so, cp it there
             if not os.path.isfile(os.path.join(limitDir,outFile)):
-                print(outFile)
+                logging.debug(outFile)
                 remoteFile = os.path.join(remoteLimitDir,outFile)
                 f = uproot.open(remoteFile)
                 try:
@@ -110,17 +139,23 @@ def main ():
                         raise ValueError
                 except:
                     nDeleted += 1
-                    print("\t --> Limit not found in the file", remoteFile, "deleting...")
+                    logging.debug("\t --> Limit not found in the file " +  remoteFile + " deleting...")
                     if not args.dry: os.system('rm '+remoteFile)
 
-        print()
-        if nDeleted > 0: print("Deleted", nDeleted, "bad limit files from the remote directory.")
-        print("Moved", nMoved, "new limit files.")
+        logging.info('')
+        if nDeleted > 0: logging.info(f"Deleted {nDeleted} bad limit files from the remote directory.")
+        logging.info(f"Moved {nMoved} new limit files.")
 
     if args.checkMissingLimits:
 
+        logging.info('')
+        logging.info("-"*50)
+        logging.info("--checkMissingLimits")
+        logging.info("Checking for missing limits in the local directory.")
+        logging.info("Local directory: " + limitDir)
         if args.deleteCorruptedLimits:
-            print("Checking each .root limit file for corruption and deleting corrupted files. Might take a little longer...")
+            logging.info("Checking each .root limit file for corruption and deleting corrupted files. Might take a little longer...")
+        logging.info('')
 
         nMissingLimits = 0
         nBadLimit = 0
@@ -165,21 +200,21 @@ def main ():
                             # raise error if we find empty limits!
                             raise ValueError
                     except:
-                        print("\t --> Limit not found in the file", fname, "deleting...")
+                        logging.debug("\t --> Limit not found in the file " + fname + "deleting...")
                         if not args.dry: os.system('rm '+fname)
                         nBadLimit += 1
                         nMissingLimits += 1
                         missingLimits.append(fname)
 
-        print()
-        print("Files Completion Rate: {}%".format(round((nTotalLimits-nMissingLimits)*100/nTotalLimits,2)))
-        print("Still to process", nMissingLimits, "out of", nTotalLimits, "limit files.")
-        if args.deleteCorruptedLimits: print("Found and deleted", nBadLimit, "bad limit files from the local directory.")
+        logging.info('')
+        logging.info(f"Files Completion Rate: {round((nTotalLimits-nMissingLimits)*100/nTotalLimits,2)}%")
+        logging.info(f"Still to process {nMissingLimits} out of {nTotalLimits} limit files.")
+        if args.deleteCorruptedLimits: logging.info(f"Found and deleted {nBadLimit} bad limit files from the local directory.")
 
         # write out missing samples to file
         now = datetime.datetime.now()
         outLimitFile = 'missingLimits_'+now.strftime("%Y-%m-%d_%H-%M-%S")+'.txt'
-        print("Outputting results to", outLimitFile)
+        logging.info("Outputting results to " + outLimitFile)
         with open(outLimitFile, 'w') as f:  
             for item in missingLimits:
                 f.write("%s\n" % item)
