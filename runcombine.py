@@ -127,6 +127,7 @@ parser.add_argument("-i"  , "--input", type=str, required=True, help='Where to f
 parser.add_argument("-f"  , "--force", action='store_true', help="Force rerunning of limits. By default will not re-run combine if the output .root file exists.")
 parser.add_argument("-M"  , "--combineMethod", type=str, default="HybridNew", choices=['HybridNew', 'AsymptoticLimits'], help="Combine method to use. Supported: HybridNew, AsymptoticLimits")
 parser.add_argument("-o"  , "--combineOptions", type=str, default="", help="Additional options to run the combine command with.")
+parser.add_argument("-a"  , "--allQuantiles", action='store_true', help="Run all quantiles for HybridNew. Overrides --combineOptions '-- expectedFromGrid X'.")
 parser.add_argument("-d"  , "--dry", action='store_true', help="Dry run. Print the commands but don't run them.")
 parser.add_argument("-include", "--include", type=str, default='', help="Pass a '-' separated list of strings you want your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' and 'mPhi300' in the name.")
 options = parser.parse_args()
@@ -140,6 +141,8 @@ print("Running with", options.method, "method,")
 if options.method == 'multithread':
     pool = ThreadPool(multiprocessing.cpu_count())
     results = []
+elif options.method == 'iterative':
+    print("Make sure you have the correct CMSSW environment set up! i.e. run cmsenv before running this script.")
 elif options.method == 'slurm':
     work_dir = os.getcwd()
     log_dir = '/work/submit/{}/SUEP/logs/{}_{}/'.format(os.environ['USER'], 'slurm_runcombine', options.input)
@@ -177,16 +180,18 @@ for dc in dcards:
     # don't re run cards, unless running with --force
     outFile = "higgsCombine{name}.{method}.mH125.root".format(name=name, method=options.combineMethod)
     # deal with HybridNew naming scheme
-    if options.combineMethod == 'HybridNew' and "expectedFromGrid" in options.combineOptions:
-        quant = options.combineOptions.split('expectedFromGrid ')[1].split(' ')[0]
-        if quant == '-1':
-            # deal with the case of observed
-            quant = ''
-        else:
-            # add enough 0's to reach 3 digits after the .
-            quant = quant + '0'*(3-len(quant.split('.')[1]))
-            quant = '.quant' + quant
-        outFile = "higgsCombine{name}.{method}.mH125{quant}.root".format(name=name, method=options.combineMethod, quant=quant)
+    if options.combineMethod == 'HybridNew':
+        if "expectedFromGrid" in options.combineOptions:
+            quant = options.combineOptions.split('expectedFromGrid ')[1].split(' ')[0]
+            if quant == '-1':
+                # deal with the case of observed
+                quant = ''
+            else:
+                # add enough 0's to reach 3 digits after the .
+                quant = quant + '0'*(3-len(quant.split('.')[1]))
+                quant = '.quant' + quant
+            outFile = "higgsCombine{name}.{method}.mH125{quant}.root".format(name=name, method=options.combineMethod, quant=quant)
+    
     if os.path.isfile(outFile) and not options.force:
         print(" -- skipping :", name)
         continue
@@ -267,7 +272,8 @@ for dc in dcards:
         " {combine_method}"
         " -m 125 --cl 0.95 --name {name}"
         " {options}"
-        " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --rAbsAcc 0.00001 --rRelAcc 0.1".format(
+        " --rAbsAcc 0.00001 --rRelAcc 0.001 "
+        " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH ".format(
             name=name,
             combine_method=combine_method,
             options=options.combineOptions

@@ -11,19 +11,24 @@ import math
 from matplotlib import ticker
 import matplotlib.patches as mpatches
 from matplotlib.lines import Line2D
+from matplotlib.legend_handler import HandlerLine2D
 import mplhep as hep
 from scipy.ndimage import gaussian_filter1d
 
-
-# decaysLabels = {
-#     'hadronic' : r"$A^' \rightarrow e^{+}e^{-},\mu^{+}\mu^{-},\pi^{+}\pi^{-}$""\n""with $\mathcal{B} = 15,15,70\%$",
-#     'leptonic' : r"$A^' \rightarrow e^{+}e^{-},\mu^{+}\mu^{-},\pi^{+}\pi^{-}$""\n""with $\mathcal{B} = 40,40,20\%$",
-#     'generic' : r"$A^' \rightarrow \pi^{+}\pi^{-}$""\n""with $\mathcal{B} = 100\%$"
-# }
 decaysLabels = {
     'hadronic' : r"$A^' \rightarrow e^{+}e^{-}$ ($15\%$), $\mu^{+}\mu^{-}$ ($15\%$), $\pi^{+}\pi^{-}$ ($70\%$)",
     'leptonic' : r"$A^' \rightarrow e^{+}e^{-}$ ($40\%$), $\mu^{+}\mu^{-}$ ($40\%$), $\pi^{+}\pi^{-}$ ($20\%$)",
     'generic' : r"$A^' \rightarrow \pi^{+}\pi^{-}$ ($100\%$) "
+}
+decaysColors = {
+    'generic': 'black',
+    'hadronic': 'red',
+    'leptonic': 'blue'
+}
+decaysMarkers = {
+    'generic': 'o',
+    'leptonic': 's',
+    'hadronic': '^'
 }
 
 lumis = {
@@ -294,6 +299,115 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='Asympto
 
     return fig
 
+def ms_limits_all_decays(temp, mphi, ref_decay='generic', path='../', verbose=False, method='AsymptoticLimits'):
+    """
+    Make 1D Brazil plot for some choice of mPhi, temp, and decay, scanning over mS.
+    """
+    
+    all_decays = [c[0] for c in get_unique_combinations(['ms','mphi','temp'])]
+    # make sure the ref_decay is first
+    all_decays = sorted(all_decays, key=lambda x: x != ref_decay)
+    
+    fig = plt.figure(figsize=(10,10))
+    ax = fig.subplots()
+    
+    xvar = np.linspace(125,2000,1000)
+        
+    legend_objects, legend_labels = [], []
+    for decay in all_decays:
+                
+        limits = get_scan_limits(path=path, temp=temp, mphi=mphi, decay=decay, method=method)
+                
+        masses = np.array([l[0][0] for l in limits])
+        xsec = np.array([l[0][4] for l in limits])
+
+        _exp = np.array([l[1][1][2] for l in limits])
+        _s1p = np.array([l[1][1][1] for l in limits]) 
+        _s1m = np.array([l[1][1][3] for l in limits]) 
+        _s2p = np.array([l[1][1][0] for l in limits]) 
+        _s2m = np.array([l[1][1][4] for l in limits]) 
+        _obs = np.array([l[1][1][5] for l in limits])    
+        
+        # Define interpolation
+        exp_limit = log_interp1d(masses, _exp) 
+        s1p_limit = log_interp1d(masses, _s1p)
+        s1m_limit = log_interp1d(masses, _s1m)
+        s2p_limit = log_interp1d(masses, _s2p)
+        s2m_limit = log_interp1d(masses, _s2m)
+        obs_limit = log_interp1d(masses, _obs)
+        th_limit =  log_interp1d(masses, xsec)
+        
+        if decay == ref_decay:
+            _theoryline, = ax.plot(xvar,th_limit(xvar), "--", ms=12, color='magenta')
+            legend_objects.append(_theoryline)
+            legend_labels.append("$\sigma_{theory}$")
+    
+        if verbose:
+            sorted_masses = np.array(masses)[np.argsort(masses)]
+            sorted_obs = np.array(_obs)[np.argsort(masses)]
+            sorted_exp = np.array(_exp)[np.argsort(masses)]
+            sorted_s1p = np.array(_s1p)[np.argsort(masses)]
+            sorted_s1m = np.array(_s1m)[np.argsort(masses)]
+            sorted_s2p = np.array(_s2p)[np.argsort(masses)]
+            sorted_s2m = np.array(_s2m)[np.argsort(masses)]
+            from prettytable import PrettyTable
+            x = PrettyTable()
+            x.field_names = ["mS", "Obs", "-2 Sigma", "-1 Sigma", "Exp", "+1 Sigma", "+2 Sigma"]
+            x.add_rows(np.stack([sorted_masses, sorted_obs, sorted_s2m, sorted_s1m, sorted_exp, sorted_s1p, sorted_s2p]).T)
+            x.float_format = '.7'
+            print(x)
+            
+        # Plot observed limits
+        _marker, = ax.plot(masses, _obs,marker=decaysMarkers[decay], ms=10, ls='none', color=decaysColors[decay]) 
+        _line, = ax.plot(xvar, obs_limit(xvar), "-", ms=12, color=decaysColors[decay])
+        _expline, = ax.plot(xvar, exp_limit(xvar), ls="--", ms=12, color=decaysColors[decay])
+        _label, = ax.plot(0,0,ls='none',color='white')
+        
+        legend_objects += [_label, (_marker, _line), _expline]
+        legend_labels += [decaysLabels[decay], "Observed", "Median expected"]
+    
+        if decay == ref_decay:
+            _s2line = ax.fill_between(xvar, s2m_limit(xvar), s2p_limit(xvar), color="#FFCC01", lw=0)
+            _s1line = ax.fill_between(xvar, s1m_limit(xvar), s1p_limit(xvar), color="#00CC00", lw=0)
+            legend_objects += [_s2line, _s1line]
+            legend_labels += ["Expected 95% CL", "Expected 68% CL"]
+
+    ax.set_ylabel(r"$\sigma$ (pb)")
+    ax.set_xlabel(r"$m_{S}$ (GeV)") 
+    leg = ax.legend(legend_objects, legend_labels, handler_map = {legend_objects[0] : HandlerLine2D(marker_pad = 0)}, 
+           loc=(0.35, 0.4), fontsize=18)
+    #ax.legend(loc="upper right", fontsize=12)
+    
+    for item, label in zip(leg.legendHandles, leg.texts):
+        if "rightarrow" in label._text:
+            width=item.get_window_extent(fig.canvas.get_renderer()).width
+            label.set_ha('left')
+            # label.set_position((-4*width,0))
+            label.set_position((-1.5*width,0))
+
+    _ = ax.text(
+        0.05, 0.8, r"$T_D$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n".format(temp,mphi),
+        fontsize=25, horizontalalignment='left', 
+        verticalalignment='bottom', 
+        transform=ax.transAxes,
+    )
+
+    hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
+
+    ax.grid(visible=True, which='major', color='grey', linestyle='--', alpha=0.3)
+    ax.set_ylim(1e-5,9e7)
+    ax.set_yscale("log")
+
+    y_major = ticker.LogLocator(base = 10.0, numticks = 20)
+    ax.yaxis.set_major_locator(y_major)
+    y_minor = ticker.LogLocator(base = 10.0, subs = np.arange(1.0, 10.0) * 0.1, numticks = 100)
+    ax.yaxis.set_minor_locator(y_minor)
+    ax.yaxis.set_minor_formatter(ticker.NullFormatter())
+    fig.tight_layout()
+    
+    fig.set_label("limits1D_T{:.1f}_mphi{:.1f}".format(temp,mphi))
+
+    return fig
 
 def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', calculateWithoutPlotting=False, showPoints=False): 
     """

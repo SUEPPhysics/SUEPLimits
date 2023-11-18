@@ -108,6 +108,7 @@ def main():
     signal = ""
     for dg in options.stack:
         print('dg',dg)
+                
         p = ftool.datagroup( 
             inputs[dg]["files"],
             ptype      = inputs[dg]["type"], 
@@ -193,6 +194,9 @@ def main():
                 card.add_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, rate=rate_nom, vmin=rate_down, vmax=rate_up )
 
         if p.ptype=="data": continue #Now that we have expected nom we skip data
+
+        # add rate param
+        card.add_rate_param("rSCALE", options.channel + options.era, name, rate=0.003, vmin=0.003, vmax=0.003)
 
         #Add lnN nuisances
         card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_uncorr_{}".format(options.era)), lumi_uncorr[options.era])

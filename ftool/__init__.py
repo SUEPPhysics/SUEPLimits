@@ -6,6 +6,7 @@ import json
 import os
 import re
 from . import methods
+import hist
 import boost_histogram as bh
 from sympy import symbols, diff, sqrt
 
@@ -249,7 +250,6 @@ class datagroup:
          xsec *= 1000.0
          assert xsec > 0, "{} has a null cross section!".format(proc)
          return xsec
-
 
 class datacard:
      def __init__(self, name, channel="ch1", tag="."):
