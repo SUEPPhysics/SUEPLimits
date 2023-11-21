@@ -1,0 +1,55 @@
+expected:
+  files:
+    - /data/submit/jinw65/SUEP/outputs/GluGluToSUEP_HT400_T4p00_mS1000.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_Nov20_2016apv.root
+    - /data/submit/jinw65/SUEP/outputs/GluGluToSUEP_HT400_T4p00_mS1000.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_Nov20_2016.root
+    # Note that Run2016B-ver1 is omitted because it is empty
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016B-ver2_HIPM_UL2016_MiniAODv2-v2+MINIAOD_unblind.root 
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016C-HIPM_UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016D-HIPM_UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016E-HIPM_UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016F-HIPM_UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016F-UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016G-UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016H-UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+  type:
+    data
+  color: 895
+
+data:
+  files:
+    - /data/submit/jinw65/SUEP/outputs/GluGluToSUEP_HT400_T4p00_mS1000.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_Nov20_2016apv.root
+    - /data/submit/jinw65/SUEP/outputs/GluGluToSUEP_HT400_T4p00_mS1000.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_Nov20_2016.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016B-ver2_HIPM_UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016C-HIPM_UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016D-HIPM_UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016E-HIPM_UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016F-HIPM_UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016F-UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016G-UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+    #- /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016H-UL2016_MiniAODv2-v2+MINIAOD_unblind.root
+  type:
+    data
+  color: 895
+
+GluGluToSUEP_HT400_T4p00_mS1000.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV-pythia8:
+  files:
+    - /data/submit/jinw65/SUEP/outputs/GluGluToSUEP_HT400_T4p00_mS1000.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_Nov20_2016apv.root
+    - /data/submit/jinw65/SUEP/outputs/GluGluToSUEP_HT400_T4p00_mS1000.000_mPhi4.000_T4.000_modehadronic_TuneCP5_13TeV_Nov20_2016.root
+  type:
+    signal
+
+
+GluGluToSUEP_HT400_T4p00_mS125.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV-pythia8:
+  files:
+    - /data/submit/jinw65/SUEP/outputs/GluGluToSUEP_HT400_T4p00_mS125.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV_Nov20_2016apv.root
+    - /data/submit/jinw65/SUEP/outputs/GluGluToSUEP_HT400_T4p00_mS125.000_mPhi4.000_T4.000_modegeneric_TuneCP5_13TeV_Nov20_2016.root
+  type:
+    signal
+
+GluGluToSUEP_HT400_T4p00_mS400.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV-pythia8:
+  files:
+    - /data/submit/jinw65/SUEP/outputs/GluGluToSUEP_HT400_T4p00_mS400.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV_Nov20_2016apv.root
+    - /data/submit/jinw65/SUEP/outputs/GluGluToSUEP_HT400_T4p00_mS400.000_mPhi4.000_T4.000_modeleptonic_TuneCP5_13TeV_Nov20_2016.root
+  type:
+    signal
+
