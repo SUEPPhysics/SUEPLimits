@@ -53,7 +53,7 @@ shape_extrapolated_Bin3 = {
     "2016" : 1.00,
     "2017" : 1.00,
     "2018" : 1.00,
-    "all": 2.0
+    "all": 1.00
 }
 shape_extrapolated_Bin4 = {
     "2016" : 1.00,
