@@ -131,7 +131,7 @@ def main ():
                 remoteFile = os.path.join(remoteLimitDir,outFile)
                 f = uproot.open(remoteFile)
                 try:
-                    if len(f['limit']['limit'].array()) > 0:
+                    if len(f['limit']['limit'].array()) == expected_length:
                         nMoved +=1 
                         os.system('cp '+remoteFile+' '+limitDir)
                     else:
@@ -162,6 +162,7 @@ def main ():
         nTotalLimits = 0
         missingLimits = []
         limit = args.combineMethod
+        expected_length = 1 if limit == 'HybridNew' else 6    # size of the limit array in the root file
 
         all_samples = []
         # list all subdirectories of the limitDir, these are the samples we will check
@@ -194,14 +195,16 @@ def main ():
                 elif args.deleteCorruptedLimits:
                     f = uproot.open(fname)
                     try:
-                        if len(f['limit']['limit'].array()) > 0:
+                        if len(f['limit']['limit'].array()) == expected_length:
                             continue
                         else:
                             # raise error if we find empty limits!
                             raise ValueError
                     except:
-                        logging.debug("\t --> Limit not found in the file " + fname + "deleting...")
-                        if not args.dry: os.system('rm '+fname)
+                        logging.debug("\t --> Limit not found in the file " + fname + " deleting...")
+                        if not args.dry: 
+                            #os.system('rm '+fname)
+                            os.system('mv '+fname+' '+fname.replace('.root','.corrupted.root'))
                         nBadLimit += 1
                         nMissingLimits += 1
                         missingLimits.append(fname)

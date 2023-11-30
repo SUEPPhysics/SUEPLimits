@@ -22,6 +22,11 @@ decaysLabels = {
     'leptonic' : r"$A^' \rightarrow e^{+}e^{-}$ ($40\%$), $\mu^{+}\mu^{-}$ ($40\%$), $\pi^{+}\pi^{-}$ ($20\%$)",
     'generic' : r"$A^' \rightarrow \pi^{+}\pi^{-}$ ($100\%$) "
 }
+decaysLabelsWithLineBreaks = {
+    'hadronic' : "$A^' \\rightarrow e^{+}e^{-}$ ($15\%$),\n\t$\mu^{+}\mu^{-}$ ($15\%$),\n\t$\pi^{+}\pi^{-}$ ($70\%$)",
+    'leptonic' : "$A^' \\rightarrow e^{+}e^{-}$ ($40\%$),\n\t$\mu^{+}\mu^{-}$ ($40\%$),\n\t$\pi^{+}\pi^{-}$ ($20\%$)",
+    'generic' : r"$A^' \rightarrow \pi^{+}\pi^{-}$ ($100\%$) "
+}
 decaysColors = {
     'generic': 'black',
     'hadronic': 'red',
@@ -32,7 +37,7 @@ decaysMarkers = {
     'leptonic': 's',
     'hadronic': '^'
 }
-
+mA = {'leptonic':0.5,'hadronic':0.7,'generic':1.0}
 lumis = {
     2016 : 36.3, #36.308
     2017 : 41.5, #41.471 
@@ -524,13 +529,13 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
     hep.cms.label(llabel='Preliminary', data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
     
     _ = ax.text(
-        0.05, 0.85, r"$m_{{s}} = {}$ GeV""\n""{}".format(str(ms), decaysLabels[decay]),
+        0.05, 0.98, r"$m_{{s}} = {}$ GeV""\n""{}".format(str(ms), decaysLabelsWithLineBreaks[decay]),
         fontsize=20, horizontalalignment='left', 
-        verticalalignment='bottom', 
+        verticalalignment='top', 
         transform=ax.transAxes
     )
     
-    ax.set_xlim([1, 8.5])
+    ax.set_xlim([2*mA[decay]-0.5, 8.5])
     ax.set_ylim([0, 35])     
     ax.legend(loc="upper right", fontsize=20)
     fig.tight_layout()
@@ -560,7 +565,6 @@ def plot_summary_limits_mPhi_temp(decay, path='../', method='AsymptoticLimits'):
     fig = plt.figure(figsize=(16,9))
     ax = fig.subplots()
     
-    mA = {'leptonic':0.5,'hadronic':0.7,'generic':1.0}
     x=np.array([2*mA[decay],8])
 
     legend_elements = []
@@ -599,7 +603,7 @@ def plot_summary_limits_mPhi_temp(decay, path='../', method='AsymptoticLimits'):
     ax.plot(x, [0.25 * xi for xi in x], '--',color='black')
     ax.plot([2*mA[decay]]*50, np.linspace(0.5,15,50),color='black',marker=(1,2,45),markersize =20, alpha =0.5)
     ax.plot([8]*50, np.linspace(0.5,15,50),color='black',marker=(1,2,-135),markersize =30, alpha =0.5)
-    ax.text(8.4, 5, 'few hard tracks', horizontalalignment='right', verticalalignment='center',fontsize=16,rotation=-90)
+    ax.text(8.4, 5, 'few high-$p_T$ tracks', horizontalalignment='right', verticalalignment='center',fontsize=16,rotation=-90)
     ax.text(2*mA[decay]-0.15, 5, r"$m_{\phi}<2m_{A^'}$", horizontalalignment='right', verticalalignment='center',fontsize=20,rotation=-90)
     ax.text(3, 11.5, r'$T_D/m_{\phi}=4$', horizontalalignment='right', verticalalignment='center',fontsize=20,rotation =55)
     ax.text(6, 0.75, r'$T_D/m_{\phi}=0.25$', horizontalalignment='right', verticalalignment='center',fontsize=20,rotation =6)
@@ -714,7 +718,7 @@ def plot_xsec_limits(mphi:int, decay:str, path:str, tricontour:str ='log', calcu
     )
     hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
 
-    ax.set_xlim([125, 1000])
+    ax.set_xlim([125, 2000])
     ax.set_ylim([mphi/4, mphi*4])     
     ax.legend(loc="upper right", fontsize=20)
     fig.tight_layout()
@@ -760,7 +764,7 @@ def plot_summary_limits_mS_temp(decay, path='../'):
     hep.cms.label(llabel='Preliminary', data=False, lumi=137, ax=ax) # To add CMS lumi scripts
     ax.text(600,9, decaysLabels[decay], horizontalalignment='right', verticalalignment='center',fontsize=20)
 
-    ax.set_xlim([0., 1050])
+    ax.set_xlim([0., 2050])
     ax.set_ylim([0,10 ])
 
     legend = ax.legend(loc='center left', bbox_to_anchor=(0.6, 0.3),frameon=False , fontsize=20, title= 'Expected 95% CL $\pm 1\sigma$')

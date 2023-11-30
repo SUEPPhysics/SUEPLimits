@@ -122,7 +122,7 @@ parser.add_argument(
         "-m", "--method", type=str, default="iterative", choices=['iterative', 'slurm', 'multithread', 'condor'], help="How to execute the code."
 )
 parser.add_argument("-p"  , "--print_commands"   , action='store_true', help='Print the executed combine commands.')
-parser.add_argument("-r"  , "--rerun", nargs='+', type=str, help='Rerun a list of datacards.')
+parser.add_argument("-file"  , "--file", type=str, help='Rerun a list of datacards.')
 parser.add_argument("-i"  , "--input", type=str, required=True, help='Where to find the cards.')
 parser.add_argument("-f"  , "--force", action='store_true', help="Force rerunning of limits. By default will not re-run combine if the output .root file exists.")
 parser.add_argument("-M"  , "--combineMethod", type=str, default="HybridNew", choices=['HybridNew', 'AsymptoticLimits'], help="Combine method to use. Supported: HybridNew, AsymptoticLimits")
@@ -161,8 +161,10 @@ elif options.method == 'condor':
     transfer_file = os.path.join(os.getcwd(), 'cards.tar.gz')
     
 # Read in the datacards
-if options.rerun != None:
-    dcards = options.rerun
+if options.file != None:
+    with open(options.file) as f:
+        samples = f.read().splitlines()
+    dcards = ["cards-{}".format(s) for s in samples]
 else:
     dcards = glob.glob("cards-*")
 

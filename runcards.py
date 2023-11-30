@@ -38,7 +38,7 @@ def main():
         "-m", "--method", type=str, default="slurm", choices=['slurm', 'multithread'], help="How to execute the code: either via multithread or slurm."
     )
     parser.add_argument(
-        "-f", "--force",action="store_true", help="recreate all cards"
+        "-f", "--force",action="store_true", help="Recreate cards even if they already exist. By default, it will not re-run existing cards."
     )
     parser.add_argument(
         "-c", "--cores", type=int, default=1000, help="Max number of CPUs to run on, if multithreading."
@@ -47,7 +47,9 @@ def main():
         "-t", "--tag", type=str, default='cards', help="Output tag for cards. Creates a subfolder and puts cards there."
     )
     parser.add_argument("-include", "--include", type=str, default='', help="Pass a '-' separated list of strings you want your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' and 'mPhi300' in the name.")
+    parser.add_argument("-file"  , "--file", type=str, required=False, help='List of samples you want to make datacards for.')
     options = parser.parse_args()
+
     # these are hardcoded in for now
     bins  = ['Bin1Sig','Bin2Sig',
             'Bin3Sig','Bin4Sig',
@@ -56,6 +58,10 @@ def main():
             'cat_crA','cat_crB','cat_crC','cat_crD','cat_crE','cat_crG','cat_crH']
     config_file = "config/SUEP_inputs_{}.yaml"
     years = ['2016', '2017', '2018']
+
+    if options.file:
+        with open(options.file) as f:
+            samplesToRun = f.read().splitlines()
 
     if options.method == 'multithread':
         n_cpus = min(multiprocessing.cpu_count(), options.cores)
@@ -86,7 +92,11 @@ def main():
             # select samples based on include
             if options.include != '':
                 if any([i not in n for i in options.include.split('-')]): continue
-                
+            
+            # select samples based on file
+            if options.file:
+                if n not in samplesToRun: continue
+
             # either force the run, or check whether the file already exist before running
             run = False
             if options.force: run = True
