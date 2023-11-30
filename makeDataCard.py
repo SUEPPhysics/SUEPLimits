@@ -1,6 +1,6 @@
 import yaml
 import uproot
-import os
+import os, sys
 import argparse
 import ftool
 import numpy as np
@@ -196,8 +196,7 @@ def main():
         if p.ptype=="data": continue #Now that we have expected nom we skip data
 
         # add rate param
-        card.add_rate_param("rSCALE", options.channel + options.era, name, rate=0.003, vmin=0.003, vmax=0.003)
-
+        
         #Add lnN nuisances
         card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_uncorr_{}".format(options.era)), lumi_uncorr[options.era])
         card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr"), lumi_corr[options.era])
