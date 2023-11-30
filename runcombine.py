@@ -58,8 +58,8 @@ xrdcp *.root root://submit50.mit.edu/{condor_out_dir}/
 condor_submission_script = '''
 universe              = vanilla
 request_disk          = 5GB
-request_memory        = 10GB
-request_cpus          = 10
+request_memory        = {mem}
+request_cpus          = {cpus}
 executable            = {jobdir}/{script}.sh
 arguments             = $(ProcId) $(jobid) $(fileid)
 should_transfer_files = YES
@@ -90,6 +90,7 @@ slurm_script_template = '''#!/bin/bash
 #SBATCH --time={time_limit}
 #SBATCH --mem={mem}
 #SBATCH --partition=submit
+#SBATCH --tasks-per-node {cpus}
 #SBATCH --oversubscribe
 
 source ~/.bashrc
@@ -105,8 +106,6 @@ echo "{text2workspace_command}"
 {text2workspace_command}
 echo "{combine_command}"
 {combine_command}
-
-# singularity run --bind /cvmfs/,/work/ /cvmfs/cvmfs.cmsaf.mit.edu/submit/work/submit/submit-software/centos/centos7p9 "source ~/.bsahrc; cd {work_dir}; {rm_command}; {combine_card_command}; {text2workspace_command}; {combine_command}"
 
 '''
 
@@ -300,12 +299,17 @@ for dc in dcards:
 
     elif options.method == 'slurm':
 
+        cpus = 1 # default value
+        if '--fork' in options.combineOptions: # grab it from fork
+            cpus = int(options.combineOptions.split('--fork ')[1].split(' ')[0])
+
         if options.combineMethod == 'AsymptoticLimits':
-            mem = '1GB'
+            mem_per_cpu = 1
             time_limit = '1:0:0'
         elif options.combineMethod == 'HybridNew':
-            mem = '4GB'
+            mem_per_cpu = 4
             time_limit = '12:0:0'
+        mem = str(mem_per_cpu*cpus)+'GB'
 
         slurm_script_content = slurm_script_template.format(
                                     rm_command=rm_command,
@@ -315,6 +319,7 @@ for dc in dcards:
                                     work_dir=work_dir,
                                     log_dir=log_dir,
                                     mem=mem,
+                                    cpus=cpus,
                                     time_limit=time_limit,
                                     sample=name,
                                     outFile=strippedOutFile)
@@ -335,6 +340,17 @@ for dc in dcards:
         subprocess.run(combine_command, shell=True)
 
     elif options.method == 'condor':
+
+        cpus = 1 # default value
+        if '--fork' in options.combineOptions: # grab it from fork
+            cpus = int(options.combineOptions.split('--fork ')[1].split(' ')[0])
+
+        # set the memory
+        if options.combineMethod == 'AsymptoticLimits':
+            mem_per_cpu = 1
+        elif options.combineMethod == 'HybridNew':
+            mem_per_cpu = 2
+        mem = str(mem_per_cpu*cpus)+'GB'
         
         # Write the condor script to a file
         condor_script_content = condor_script_template.format(
@@ -355,6 +371,8 @@ for dc in dcards:
                                         user=os.environ['USER'],
                                         proxy=f"x509up_u{os.getuid()}",
                                         queue='espresso',
+                                        cpus=cpus,
+                                        mem=mem,
                                         outFile=strippedOutFile)
         condor_submission_file = f'{log_dir}submit_{strippedOutFile}.sub'
         with open(condor_submission_file, 'w') as f:
