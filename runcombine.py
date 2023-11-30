@@ -127,7 +127,6 @@ parser.add_argument("-i"  , "--input", type=str, required=True, help='Where to f
 parser.add_argument("-f"  , "--force", action='store_true', help="Force rerunning of limits. By default will not re-run combine if the output .root file exists.")
 parser.add_argument("-M"  , "--combineMethod", type=str, default="HybridNew", choices=['HybridNew', 'AsymptoticLimits'], help="Combine method to use. Supported: HybridNew, AsymptoticLimits")
 parser.add_argument("-o"  , "--combineOptions", type=str, default="", help="Additional options to run the combine command with.")
-parser.add_argument("-a"  , "--allQuantiles", action='store_true', help="Run all quantiles for HybridNew. Overrides --combineOptions '-- expectedFromGrid X'.")
 parser.add_argument("-d"  , "--dry", action='store_true', help="Dry run. Print the commands but don't run them.")
 parser.add_argument("-include", "--include", type=str, default='', help="Pass a '-' separated list of strings you want your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' and 'mPhi300' in the name.")
 options = parser.parse_args()
