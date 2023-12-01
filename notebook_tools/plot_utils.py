@@ -9,21 +9,40 @@ import json
 import pandas as pd
 import math
 from matplotlib import ticker
+import matplotlib.patches as mpatches
+from matplotlib.lines import Line2D
+from matplotlib.legend_handler import HandlerLine2D
 import mplhep as hep
 from scipy.ndimage import gaussian_filter1d
 
+np.seterr(divide='ignore', invalid='ignore')
 
 decaysLabels = {
-    'hadronic' : r"$A^' \rightarrow e^{+}e^{-},\mu^{+}\mu^{-},\pi^{+}\pi^{-}$""\n""with BR=15,15,70%",
-    'leptonic' : r"$A^' \rightarrow e^{+}e^{-},\mu^{+}\mu^{-},\pi^{+}\pi^{-}$""\n""with BR=40,40,20%",
-    'generic' : r"$A^' \rightarrow \pi^{+}\pi^{-}$""\n""with BR=100%"
+    'hadronic' : r"$A^' \rightarrow e^{+}e^{-}$ ($15\%$), $\mu^{+}\mu^{-}$ ($15\%$), $\pi^{+}\pi^{-}$ ($70\%$)",
+    'leptonic' : r"$A^' \rightarrow e^{+}e^{-}$ ($40\%$), $\mu^{+}\mu^{-}$ ($40\%$), $\pi^{+}\pi^{-}$ ($20\%$)",
+    'generic' : r"$A^' \rightarrow \pi^{+}\pi^{-}$ ($100\%$) "
 }
-
+decaysLabelsWithLineBreaks = {
+    'hadronic' : "$A^' \\rightarrow e^{+}e^{-}$ ($15\%$),\n\t$\mu^{+}\mu^{-}$ ($15\%$),\n\t$\pi^{+}\pi^{-}$ ($70\%$)",
+    'leptonic' : "$A^' \\rightarrow e^{+}e^{-}$ ($40\%$),\n\t$\mu^{+}\mu^{-}$ ($40\%$),\n\t$\pi^{+}\pi^{-}$ ($20\%$)",
+    'generic' : r"$A^' \rightarrow \pi^{+}\pi^{-}$ ($100\%$) "
+}
+decaysColors = {
+    'generic': 'black',
+    'hadronic': 'red',
+    'leptonic': 'blue'
+}
+decaysMarkers = {
+    'generic': 'o',
+    'leptonic': 's',
+    'hadronic': '^'
+}
+mA = {'leptonic':0.5,'hadronic':0.7,'generic':1.0}
 lumis = {
     2016 : 36.3, #36.308
     2017 : 41.5, #41.471 
     2018 : 59.8, #59.817
-    'combined' : 59.8+41.5+ 36.3
+    'combined' : round(59.8+41.5+ 36.3)
 }
 
 
@@ -31,20 +50,16 @@ def get_limits(fn): # Returns quantile vs limits
     f = uproot.open(fn)
     limit = f["limit"]['limit'].array(library="np")
     quant = f["limit"]['quantileExpected'].array(library="np")
-    if limit.shape[0] == 1:
-        return -1
-    else:
-        return np.stack([quant,limit]) 
+    return np.stack([quant,limit]) 
 
-
-def get_SUEP_file(ms=125, mphi=2, temp=1, decay='generic', path="../", method='AsymptoticLimits'): # Returns filename
+def get_SUEP_file(ms=125, mphi=2, temp=1, decay='generic', path="../", method='AsymptoticLimits', quant=""): # Returns filename
     if temp < 10:
         tem = "{0:.2f}".format(temp)
     else:
         tem = "{0:.1f}".format(temp)
     tem = str(tem).replace(".","p")
     fname = os.path.join(
-        "{}higgsCombineGluGluToSUEP_HT1000_T{}_mS{:.3f}_mPhi{:.3f}_T{:.3f}_mode{}_TuneCP5_13TeV-pythia8.{}.mH125.root".format(path, tem, ms, mphi, temp, decay, method)
+        "{}higgsCombineGluGluToSUEP_HT1000_T{}_mS{:.3f}_mPhi{:.3f}_T{:.3f}_mode{}_TuneCP5_13TeV-pythia8.{}.mH125{}.root".format(path, tem, ms, mphi, temp, decay, method, quant)
     )
     if os.path.isfile(fname):
         return fname
@@ -53,9 +68,9 @@ def get_SUEP_file(ms=125, mphi=2, temp=1, decay='generic', path="../", method='A
         return None
 
 
-def xs_scale(proc):
+def xs_scale(proc, file="../config/xsections_SUEP.json"):
     xsec = -1.0
-    with open(f"../config/xsections_SUEP.json") as file:
+    with open(file) as file:
         MC_xsecs = json.load(file)
     xsec  = MC_xsecs[proc]["xsec"]
     # xsec *= MC_xsecs[proc]["kr"] # this is fine commented out!
@@ -72,7 +87,7 @@ def log_interp1d(xx, yy, kind='linear'):
     return log_interp
 
 
-def interpLimit(limit, sigma=3):
+def interp_limit(limit, sigma=3):
     x, y = limit.T
     t  = np.linspace(0, 1, len(x))
     t2 = np.linspace(-0.9, 1.2, 100)
@@ -88,7 +103,7 @@ def interpLimit(limit, sigma=3):
     return x3, y3
 
 
-def getParamsFromSampleName(sample):
+def get_params_from_sample_name(sample):
     pattern = r'_T(\d+p?\d*)_mS(\d+\.\d+)_mPhi(\d+\.\d+)_T(\d+\.\d+)_mode(\w+)_TuneCP5'
 
     # Use re.search to find the first occurrence of the pattern in the sample name
@@ -108,7 +123,7 @@ def getParamsFromSampleName(sample):
         return None
     
 
-def getSampleNameFromParams(ms, mphi, temp, decay):
+def get_sample_name_from_params(ms, mphi, temp, decay):
     temp_p = temp
     if temp_p > 10:
         temp_p = "{temp:.1f}".format(temp=temp_p).replace(".","p")
@@ -129,7 +144,7 @@ def filter_samples(ms=None, mphi=None, temp=None, decay=None, file='../config/xs
     # filter them by the parameters you want
     combinations = []
     for sample in samples:
-        _ms, _mphi, _temp, _decay = getParamsFromSampleName(sample) 
+        _ms, _mphi, _temp, _decay = get_params_from_sample_name(sample) 
         if ms is not None and ms != _ms: continue
         if mphi is not None and mphi != _mphi: continue
         if temp is not None and temp != _temp: continue
@@ -183,8 +198,8 @@ def get_scan_limits(ms=None, mphi=None, temp=None, decay=None, path="../", file=
     # add the xsec to the list
     for i in range(len(selected_params)):
         p = selected_params[i]
-        sample_name = getSampleNameFromParams(p[0], p[1], p[2], p[3])
-        xsec = xs_scale(sample_name)
+        sample_name = get_sample_name_from_params(p[0], p[1], p[2], p[3])
+        xsec = xs_scale(sample_name, file=file)
         selected_params[i] = p + [xsec]
 
     # check if combine produced the 5 expected limits
@@ -192,9 +207,19 @@ def get_scan_limits(ms=None, mphi=None, temp=None, decay=None, path="../", file=
 
     for sample in selected_params:
         try:
-            limit = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method))
+            if method == 'AsymptoticLimits':
+                limit = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method))
+            elif method == 'HybridNew':
+                exp = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant='.quant0.500'))
+                s1p = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant='.quant0.840'))
+                s1m = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant='.quant0.160'))
+                s2p = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant='.quant0.975'))
+                s2m = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant='.quant0.025'))
+                obs = get_limits(get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, quant=''))
+                limit = np.hstack((s2p, s1p, exp, s1m, s2m, obs))
             if limit.shape == (2,6):
-                good_selected_params.append([sample, limit*sample[4]])
+                limit[1,:] *= sample[4] # scale the r limit by the theoretical xsec to get limit on xsec
+                good_selected_params.append([sample, limit])
             else:
                 print('Bad limits', get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method))
         except Exception as e:
@@ -203,6 +228,14 @@ def get_scan_limits(ms=None, mphi=None, temp=None, decay=None, path="../", file=
 
     return good_selected_params
 
+def savefig(fig, outDir, outName=None):
+    """
+    Saves a matplotlib figure as png and pdf.
+    """
+    if outName is None:
+        outName = fig.get_label()
+    fig.savefig(outDir + outName + '.pdf', bbox_inches='tight')
+    fig.savefig(outDir + outName + '.png', dpi=100, bbox_inches='tight')
 
 def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='AsymptoticLimits'):
     """
@@ -238,19 +271,19 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='Asympto
             print("{} {:.5g} {:.5g}".format(mS, obs, exp))
 
     # Make 1D limit plot
-    fig = plt.figure(figsize=(12,12))
+    fig = plt.figure(figsize=(10,10))
     ax = fig.subplots()
         
     xvar = np.linspace(100,2050,1000)
 
     # Plot observed limits
-    ax.plot(masses, _obs,'.', ms=12, color='black') 
+    ax.plot(masses, _obs,'.', ms=12, color='black', label="Observed") 
     ax.plot(xvar,obs_limit(xvar), #*.101,#* 0.101* 2/3,
-             "-", ms=12, color='black', label="observed")
+             "-", ms=12, color='black')
     
     #Plot expected limits including brazil bands
     ax.plot(xvar,th_limit(xvar), #*.101,#* 0.101* 2/3,
-         "--", ms=12, color='blue', label="$\sigma_{theory}$ (pb)")
+         "--", ms=12, color='blue', label="$\sigma_{theory}$")
     ax.plot(xvar, exp_limit(xvar), ls="--", ms=12, color='black', label="Median expected")
     ax.fill_between(xvar, s2m_limit(xvar), s2p_limit(xvar), color="#FFCC01", lw=0, label="Expected 95% CL")
     ax.fill_between(xvar, s1m_limit(xvar), s1p_limit(xvar), color="#00CC00", lw=0, label="Expected 68% CL")
@@ -261,7 +294,7 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='Asympto
     ax.legend(loc="upper left", fontsize=20)
 
     _ = ax.text(
-        0.6, 0.8, r"$T_D$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n""{}".format(temp,mphi,decaysLabels[decay]),
+        0.65, 0.75, r"$T_D$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n""{}".format(temp,mphi,decaysLabels[decay]),
         fontsize=25, horizontalalignment='left', 
         verticalalignment='bottom', 
         transform=ax.transAxes,
@@ -270,7 +303,7 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='Asympto
     hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
 
     ax.grid(visible=True, which='major', color='grey', linestyle='--', alpha=0.3)
-    ax.set_ylim(1e-5,9e7)
+    ax.set_ylim(1e-6,9e7)
     ax.set_yscale("log")
     
     y_major = ticker.LogLocator(base = 10.0, numticks = 20)
@@ -280,10 +313,121 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='Asympto
     ax.yaxis.set_minor_formatter(ticker.NullFormatter())
     fig.tight_layout()
 
+    fig.set_label("limits1D_T{:.1f}_mphi{:.1f}_{}".format(temp,mphi, decay))
+
     return fig
 
+def plot_ms_limits_all_decays(temp, mphi, ref_decay='generic', path='../', verbose=False, method='AsymptoticLimits'):
+    """
+    Make 1D Brazil plot for some choice of mPhi, temp, and decay, scanning over mS.
+    """
+    
+    all_decays = [c[0] for c in get_unique_combinations(['ms','mphi','temp'])]
+    # make sure the ref_decay is first
+    all_decays = sorted(all_decays, key=lambda x: x != ref_decay)
+    
+    fig = plt.figure(figsize=(10,10))
+    ax = fig.subplots()
+    
+    xvar = np.linspace(125,2000,1000)
+        
+    legend_objects, legend_labels = [], []
+    for decay in all_decays:
+                
+        limits = get_scan_limits(path=path, temp=temp, mphi=mphi, decay=decay, method=method)
+                
+        masses = np.array([l[0][0] for l in limits])
+        xsec = np.array([l[0][4] for l in limits])
 
-def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', calculateWithoutPlotting=False, showPoints=False): 
+        _exp = np.array([l[1][1][2] for l in limits])
+        _s1p = np.array([l[1][1][1] for l in limits]) 
+        _s1m = np.array([l[1][1][3] for l in limits]) 
+        _s2p = np.array([l[1][1][0] for l in limits]) 
+        _s2m = np.array([l[1][1][4] for l in limits]) 
+        _obs = np.array([l[1][1][5] for l in limits])    
+        
+        # Define interpolation
+        exp_limit = log_interp1d(masses, _exp) 
+        s1p_limit = log_interp1d(masses, _s1p)
+        s1m_limit = log_interp1d(masses, _s1m)
+        s2p_limit = log_interp1d(masses, _s2p)
+        s2m_limit = log_interp1d(masses, _s2m)
+        obs_limit = log_interp1d(masses, _obs)
+        th_limit =  log_interp1d(masses, xsec)
+        
+        if decay == ref_decay:
+            _theoryline, = ax.plot(xvar,th_limit(xvar), "--", ms=12, color='magenta')
+            legend_objects.append(_theoryline)
+            legend_labels.append("$\sigma_{theory}$")
+    
+        if verbose:
+            sorted_masses = np.array(masses)[np.argsort(masses)]
+            sorted_obs = np.array(_obs)[np.argsort(masses)]
+            sorted_exp = np.array(_exp)[np.argsort(masses)]
+            sorted_s1p = np.array(_s1p)[np.argsort(masses)]
+            sorted_s1m = np.array(_s1m)[np.argsort(masses)]
+            sorted_s2p = np.array(_s2p)[np.argsort(masses)]
+            sorted_s2m = np.array(_s2m)[np.argsort(masses)]
+            from prettytable import PrettyTable
+            x = PrettyTable()
+            x.field_names = ["mS", "Obs", "-2 Sigma", "-1 Sigma", "Exp", "+1 Sigma", "+2 Sigma"]
+            x.add_rows(np.stack([sorted_masses, sorted_obs, sorted_s2m, sorted_s1m, sorted_exp, sorted_s1p, sorted_s2p]).T)
+            x.float_format = '.7'
+            print(x)
+            
+        # Plot observed limits
+        _marker, = ax.plot(masses, _obs,marker=decaysMarkers[decay], ms=10, ls='none', color=decaysColors[decay]) 
+        _line, = ax.plot(xvar, obs_limit(xvar), "-", ms=12, color=decaysColors[decay])
+        _expline, = ax.plot(xvar, exp_limit(xvar), ls="--", ms=12, color=decaysColors[decay])
+        _label, = ax.plot(0,0,ls='none',color='white')
+        
+        legend_objects += [_label, (_marker, _line), _expline]
+        legend_labels += [decaysLabels[decay], "Observed", "Median expected"]
+    
+        if decay == ref_decay:
+            _s2line = ax.fill_between(xvar, s2m_limit(xvar), s2p_limit(xvar), color="#FFCC01", lw=0)
+            _s1line = ax.fill_between(xvar, s1m_limit(xvar), s1p_limit(xvar), color="#00CC00", lw=0)
+            legend_objects += [_s2line, _s1line]
+            legend_labels += ["Expected 95% CL", "Expected 68% CL"]
+
+    ax.set_ylabel(r"$\sigma$ (pb)")
+    ax.set_xlabel(r"$m_{S}$ (GeV)") 
+    leg = ax.legend(legend_objects, legend_labels, handler_map = {legend_objects[0] : HandlerLine2D(marker_pad = 0)}, 
+           loc=(0.35, 0.4), fontsize=18)
+    #ax.legend(loc="upper right", fontsize=12)
+    
+    for item, label in zip(leg.legendHandles, leg.texts):
+        if "rightarrow" in label._text:
+            width=item.get_window_extent(fig.canvas.get_renderer()).width
+            label.set_ha('left')
+            # label.set_position((-4*width,0))
+            label.set_position((-1.5*width,0))
+
+    _ = ax.text(
+        0.05, 0.8, r"$T_D$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n".format(temp,mphi),
+        fontsize=25, horizontalalignment='left', 
+        verticalalignment='bottom', 
+        transform=ax.transAxes,
+    )
+
+    hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
+
+    ax.grid(visible=True, which='major', color='grey', linestyle='--', alpha=0.3)
+    ax.set_ylim(1e-6,9e7)
+    ax.set_yscale("log")
+
+    y_major = ticker.LogLocator(base = 10.0, numticks = 20)
+    ax.yaxis.set_major_locator(y_major)
+    y_minor = ticker.LogLocator(base = 10.0, subs = np.arange(1.0, 10.0) * 0.1, numticks = 100)
+    ax.yaxis.set_minor_locator(y_minor)
+    ax.yaxis.set_minor_formatter(ticker.NullFormatter())
+    fig.tight_layout()
+    
+    fig.set_label("limits1D_T{:.1f}_mphi{:.1f}".format(temp,mphi))
+
+    return fig
+
+def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', calculateWithoutPlotting=False, showPoints=False, method='AsymptoticLimits'): 
     """
     Make 2D limit plot for some choice of mS and decay, scanning over T and mPhi.
     Inputs:
@@ -300,10 +444,11 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
     if tricontour not in ['log','lin']: #tricontour decides whether we interpolate through mu ('lin') or log(mu) ('log')
         raise Exception("tricontour should be 'log' or 'lin'")
 
-    scan_limits = get_scan_limits(path=path, ms=ms, decay=decay)
-    
+    scan_limits = get_scan_limits(path=path, ms=ms, decay=decay, method=method)
+        
     # Reorganize data
-    limit_mu = np.stack([s[1]/s[0][-1] for s in scan_limits]) 
+    if calculateWithoutPlotting: limit_mu = np.stack([s[1]/s[0][-1] for s in scan_limits]) 
+    else: limit_mu = np.stack([s[1] for s in scan_limits]) 
     limit_mphi = np.array([s[0][1] for s in scan_limits]) 
     limit_temp =  np.array([s[0][2] for s in scan_limits])
 
@@ -331,7 +476,7 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
         levels = np.linspace(min(data['obs']),max(data['obs']))
         contour = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels, cmap="plasma")
         cb = fig.colorbar(contour)
-        cb.ax.set_ylabel(r'$\mu$', loc='center', rotation=0, fontsize=20)
+        cb.ax.set_ylabel(r'$95\%$ CL obs. upper limit on $\sigma$ (pb)', loc='top', rotation=90, fontsize=25)
         ticks = (np.array(range(math.ceil(min(data['obs'])), math.floor(max(data['obs'])) + 1)))
         cb.set_ticks(ticks)
         labels = ['$10^{'+str(i)+'}$' for i in ticks]
@@ -342,11 +487,10 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
         x = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels,locator=ticker.LogLocator(), cmap="plasma")
         formatter = ticker.LogFormatter(base=10, labelOnlyBase=True) 
         cb = fig.colorbar(x, format=formatter, label=r'$\mu$')
-        cb.ax.set_ylabel(r'$\mu$', loc='center', rotation=0, fontsize=20)
+        cb.ax.set_ylabel(r'$95\%$ CL obs. upper limit on $\sigma$ (pb)', loc='top', rotation=90, fontsize=25)
         cb.locator = ticker.LogLocator(base=10.0, subs=[1.0], numdecs=7, numticks=45)
         cb.update_ticks()
      
-    
     # Obtain values for expected mu=1 line
     
     # NOTE: suppressing +- 2 sigma (p0 and p4)
@@ -374,10 +518,10 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
         return line1, line2, line3, line5
 
     #plot smoothed curve
-    ax.plot(*line2.T, linestyle = "--", color ='red' , label=r"$\mu=1$ median expected",linewidth =4)
-    ax.plot(*line1.T,linestyle = "--", color='#00ffff', label=r"$\pm 1\sigma$",linewidth =4)
+    ax.plot(*line2.T, linestyle = "--", color ='red' , label=r"Median expected",linewidth =4)
+    ax.plot(*line1.T,linestyle = "--", color='#00ffff', label=r"Expected $68\%$ CL",linewidth =4)
     ax.plot(*line3.T, linestyle = "--", color='#00ffff', linewidth =4)
-    ax.plot(*line5.T, linestyle = "-", color='#00008b', label=r"$\mu=1$ observed",linewidth =4)
+    ax.plot(*line5.T, linestyle = "-", color='#00008b', label=r"Observed",linewidth =4)
         
     ax.set_xlabel(r"$m_{\phi}$ (GeV)", x=1, ha='right')
     ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
@@ -385,82 +529,99 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
     hep.cms.label(llabel='Preliminary', data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
     
     _ = ax.text(
-        0.05, 0.85, r"$m_{{s}} = {}$ GeV""\n""{}".format(str(ms), decaysLabels[decay]),
+        0.05, 0.98, r"$m_{{s}} = {}$ GeV""\n""{}".format(str(ms), decaysLabelsWithLineBreaks[decay]),
         fontsize=20, horizontalalignment='left', 
-        verticalalignment='bottom', 
+        verticalalignment='top', 
         transform=ax.transAxes
     )
     
-    ax.set_xlim([1, 8.5])
+    ax.set_xlim([2*mA[decay]-0.5, 8.5])
     ax.set_ylim([0, 35])     
-    ax.legend(loc="upper right", fontsize=16)
+    ax.legend(loc="upper right", fontsize=20)
     fig.tight_layout()
+    
+    fig.set_label("limits2D_mS{:.1f}_{}".format(ms, decay))
      
     return fig
 
 
-def plot_summary_limits_mPhi_temp(decay, path='../'):
-
+def plot_summary_limits_mPhi_temp(decay, path='../', method='AsymptoticLimits'):
+    
     samples = get_unique_combinations(['mphi', 'temp'], decay=decay)
-
+    
+    # sort by mS
+    samples = np.array(samples)[np.argsort([s[0] for s in samples])]
+            
     lines = []
     for sample in samples:
-        lines.append(plot_mPhi_temp_limits(ms=sample[0], decay=decay, 
+        lines.append(plot_mPhi_temp_limits(ms=float(sample[0]), decay=decay, 
                                     tricontour='log', path=path,
-                                    calculateWithoutPlotting=True))
-    
+                                    calculateWithoutPlotting=True, method=method)) 
     # Define colours
     cmap = plt.cm.jet
-    colors = cmap(np.linspace(0, 1, 10))[::-1]
+    colors = cmap(np.linspace(0, 1, len(lines)))
 
     # Plot mu=1 lines 
     fig = plt.figure(figsize=(16,9))
     ax = fig.subplots()
+    
+    x=np.array([2*mA[decay],8])
 
+    legend_elements = []
+    legend_labels = []
+    legend_elements.append(Line2D([0],[0], linestyle = '-',c='black'))
+    legend_labels.append('Observed')
+    legend_elements.append(Line2D([0],[0], linestyle = '-',c='white'))
+    legend_labels.append('Expected (median, 68%):')
     for i, line in enumerate(lines):
         line1,line2,line3,line5 = line
-        x1,y1 = interpLimit(line1, 4) #Expected $95\%$ CL
-        x2,y2 = interpLimit(line2, 4)
-        x3,y3 = interpLimit(line3, 4)
-        x5,y5 = interpLimit(line5, 4)
+        x1,y1 = interp_limit(line1, 4) 
+        x2,y2 = interp_limit(line2, 4)
+        x3,y3 = interp_limit(line3, 4)
+        x5,y5 = interp_limit(line5, 4)
 
-        ax.plot(x2,y2, linestyle = '--',label=r"$m_{{S}}$ = {} GeV".format(samples[i][0]),c=colors[i])
+        _expline, = ax.plot(x2,y2, linestyle = '--', lw=2, c=colors[i])
         ax.plot(x5,y5, linestyle = '-',c='black')
 
         y1_interp = np.interp(x2, x1, y1)
         y3_interp = np.interp(x2, x3, y3)
-        ax.fill_between(x2,y1_interp, y3_interp, color=colors[i],alpha=0.2)
+        
+        upper_bound = np.minimum(x2*4, y1_interp)
+        
+        band = ax.fill_between(x2, y3_interp, upper_bound, color=colors[i],alpha=0.2)
+        legend_elements.append((mpatches.Patch(facecolor=colors[i], alpha=0.2), _expline))
+        legend_labels.append('$m_{{S}}$ = {} GeV'.format(round(float(samples[i][0]))))
 
     # Annotate figure
     ax.set_xlabel(r"$m_{\phi}$ (GeV)", x=1, ha='right')
     ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
     hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
-    ax.text(7.5, 10, decaysLabels[decay], horizontalalignment='right', verticalalignment='center',fontsize=20)
+    ax.text(7.7, 14, decaysLabels[decay], horizontalalignment='right', verticalalignment='center',fontsize=18)
 
     # Plot theoretically excluded regions
-    mA = {'leptonic':0.5,'hadronic':0.7,'generic':1.0}
-    x=[2*mA[decay],8]
     ax.plot(x, [4 * xi for xi in x], '--',color='black')
     ax.plot(x, [0.25 * xi for xi in x], '--',color='black')
-    ax.plot([2*mA[decay]]*50, np.linspace(0.5,10.5,50),color='black',marker=(1,2,45),markersize =20, alpha =0.5)
-    ax.plot([8]*50, np.linspace(0.5,10.5,50),color='black',marker=(1,2,-135),markersize =30, alpha =0.5)
-    ax.text(8.4, 5, 'few hard tracks', horizontalalignment='right', verticalalignment='center',fontsize=16,rotation=-90)
-    ax.text(2*mA[decay]-0.15, 5, r"$m_{\phi}<2m_{A^'}$", horizontalalignment='right', verticalalignment='center',fontsize=16,rotation=-90)
-    ax.text(2.6, 10., r'$T/m_{\phi}=4$', horizontalalignment='right', verticalalignment='center',fontsize=16,rotation =65)
-    ax.text(6, 0.75, r'$T/m_{\phi}=0.25$', horizontalalignment='right', verticalalignment='center',fontsize=16,rotation =8)
-
-    # # # Plot datapoints
-    # x,y,_= tuple(np.array(get_params(1000,plot=False)).T)
-    # ax.scatter(x,y,marker='o') 
+    ax.plot([2*mA[decay]]*50, np.linspace(0.5,15,50),color='black',marker=(1,2,45),markersize =20, alpha =0.5)
+    ax.plot([8]*50, np.linspace(0.5,15,50),color='black',marker=(1,2,-135),markersize =30, alpha =0.5)
+    ax.text(8.4, 5, 'few high-$p_T$ tracks', horizontalalignment='right', verticalalignment='center',fontsize=16,rotation=-90)
+    ax.text(2*mA[decay]-0.15, 5, r"$m_{\phi}<2m_{A^'}$", horizontalalignment='right', verticalalignment='center',fontsize=20,rotation=-90)
+    ax.text(3, 11.5, r'$T_D/m_{\phi}=4$', horizontalalignment='right', verticalalignment='center',fontsize=20,rotation =55)
+    ax.text(6, 0.75, r'$T_D/m_{\phi}=0.25$', horizontalalignment='right', verticalalignment='center',fontsize=20,rotation =6)
 
     ax.set_xlim([2*mA[decay]-0.6, 12])
-    ax.set_ylim([0.0, 11])
-
-    legend = ax.legend(loc='center left', bbox_to_anchor=(0.69, 0.5),frameon=False , fontsize=25, title= 'Expected 95% CL $\pm 1\sigma$')
-    legend.get_title().set_fontsize(25)
-
-    ax.text(9.5,10,'— observed')
+    ax.set_ylim([0.0, 15])
+    
+    leg = ax.legend(legend_elements, legend_labels, loc=(0.70, 0.05), fontsize=20, handler_map = {legend_elements[0] : HandlerLine2D(marker_pad = 0)})
+    
+    for item, label in zip(leg.legendHandles, leg.texts):
+        if "Expected" in label._text:
+            width=item.get_window_extent(fig.canvas.get_renderer()).width
+            label.set_ha('left')
+            label.set_position((-1.5*width,0))
+    
     fig.tight_layout()
+    
+    fig.set_label('limits3D_{}'.format(decay))
 
     return fig
 
@@ -557,10 +718,12 @@ def plot_xsec_limits(mphi:int, decay:str, path:str, tricontour:str ='log', calcu
     )
     hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
 
-    ax.set_xlim([125, 1000])
+    ax.set_xlim([125, 2000])
     ax.set_ylim([mphi/4, mphi*4])     
     ax.legend(loc="upper right", fontsize=20)
     fig.tight_layout()
+
+    fig.set_label("limits2D_mphi{:.1f}_{}".format(mphi, decay))
 
     return fig
 
@@ -583,10 +746,10 @@ def plot_summary_limits_mS_temp(decay, path='../'):
 
     for i, line in enumerate(lines):
         line1,line2,line3,line5 = line
-        x1,y1 = interpLimit(line1, 2) #Expected $95\%$ CL
-        x2,y2 = interpLimit(line2, 2)
-        x3,y3 = interpLimit(line3, 2)
-        x5,y5 = interpLimit(line5, 2)
+        x1,y1 = interp_limit(line1, 2) #Expected $95\%$ CL
+        x2,y2 = interp_limit(line2, 2)
+        x3,y3 = interp_limit(line3, 2)
+        x5,y5 = interp_limit(line5, 2)
 
         ax.plot(x2,y2,linestyle = '--', label=r"$m_{{\phi}}$ = {} GeV".format(samples[i][0]),c=colors[i])
         ax.plot(x5,y5, linestyle = '-',c='black')
@@ -601,7 +764,7 @@ def plot_summary_limits_mS_temp(decay, path='../'):
     hep.cms.label(llabel='Preliminary', data=False, lumi=137, ax=ax) # To add CMS lumi scripts
     ax.text(600,9, decaysLabels[decay], horizontalalignment='right', verticalalignment='center',fontsize=20)
 
-    ax.set_xlim([0., 1050])
+    ax.set_xlim([0., 2050])
     ax.set_ylim([0,10 ])
 
     legend = ax.legend(loc='center left', bbox_to_anchor=(0.6, 0.3),frameon=False , fontsize=20, title= 'Expected 95% CL $\pm 1\sigma$')
@@ -609,5 +772,7 @@ def plot_summary_limits_mS_temp(decay, path='../'):
     ax.text(700,5,'— observed')
 
     fig.tight_layout()
+
+    fig.set_label('limits3D_mS_temp_{}'.format(decay))
 
     return fig

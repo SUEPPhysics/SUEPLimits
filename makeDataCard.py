@@ -1,6 +1,6 @@
 import yaml
 import uproot
-import os
+import os, sys
 import argparse
 import ftool
 import numpy as np
@@ -108,6 +108,7 @@ def main():
     signal = ""
     for dg in options.stack:
         print('dg',dg)
+                
         p = ftool.datagroup( 
             inputs[dg]["files"],
             ptype      = inputs[dg]["type"], 
@@ -194,6 +195,8 @@ def main():
 
         if p.ptype=="data": continue #Now that we have expected nom we skip data
 
+        # add rate param
+        
         #Add lnN nuisances
         card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_uncorr_{}".format(options.era)), lumi_uncorr[options.era])
         card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr"), lumi_corr[options.era])
