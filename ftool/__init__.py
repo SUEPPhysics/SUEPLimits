@@ -87,11 +87,18 @@ class datagroup:
                         ABCD_obs = self.observable.split("I_")[1]
                         if "2D" in name: continue
                         if ABCD_obs not in name: continue
+                        if "Inverted" in name: continue
                         if "up" in name:
-                            sys = name.split("Cluster70_")[1]
+                            if "Cluster70_" in name:
+                                sys = name.split("Cluster70_")[1]
+                            else:
+                                sys = name.split("Cluster_")[1]
                             systs.append(sys)
                         elif "down" in name:
-                            sys = name.split("Cluster70_")[1]
+                            if "Cluster70_" in name:
+                                sys = name.split("Cluster70_")[1]
+                            else:
+                                sys = name.split("Cluster_")[1]
                             systs.append(sys)
                         else:
                             sys = ""
