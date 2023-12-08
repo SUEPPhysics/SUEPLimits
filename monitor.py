@@ -68,7 +68,7 @@ def main ():
         logging.info("-"*50)
         logging.info("--checkMissingCards")
         logging.info("Checking for missing cards in the local directory.")
-        logging.info("Local directory:", limitDir)
+        logging.info("Local directory: " + limitDir)
         logging.info('')
 
         bins  = ['Bin1Sig','Bin2Sig',
@@ -94,6 +94,8 @@ def main ():
                             missingCardsSamples.append(sample)
                             continue
         
+        missingCardsSamples = list(set(missingCardsSamples))
+
         logging.info(f"Found {len(missingCardsSamples)} samples with missing cards.")
         if len(missingCardsSamples) > 0 and args.verbose:
             logging.debug()
@@ -104,7 +106,7 @@ def main ():
         # write out missing samples to file
         now = datetime.datetime.now()
         outCardsFile = 'missingCards_'+now.strftime("%Y-%m-%d_%H-%M-%S")+'.txt'
-        logging.info("Outputting results to", outCardsFile)
+        logging.info("Outputting results to " +  outCardsFile)
         with open(outCardsFile, 'w') as f:  
             for item in missingCardsSamples:
                 f.write("%s\n" % item)
@@ -129,8 +131,8 @@ def main ():
             if not os.path.isfile(os.path.join(limitDir,outFile)):
                 logging.debug(outFile)
                 remoteFile = os.path.join(remoteLimitDir,outFile)
-                f = uproot.open(remoteFile)
                 try:
+                    f = uproot.open(remoteFile)
                     if len(f['limit']['limit'].array()) == expected_length:
                         nMoved +=1 
                         os.system('cp '+remoteFile+' '+limitDir)

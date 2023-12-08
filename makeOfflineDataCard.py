@@ -69,7 +69,7 @@ closure_systs = {
     "2018": 1.08
 }
 
-def make_command(options, n, year):
+def get_commands(options, n, year):
 
     cmd_crA = "python3 makeDataCard.py --tag {tag} --channel cat_crA "
     cmd_crA += "--variable A_SUEP_nconst_Cluster70 "
@@ -187,6 +187,16 @@ def make_command(options, n, year):
 
     return commands
 
+def get_bins():
+    bins  = ['Bin1Sig','Bin2Sig',
+            'Bin3Sig','Bin4Sig',
+            'Bin0crF','Bin1crF','Bin2crF',
+            'Bin3crF','Bin4crF',
+            'cat_crA','cat_crB','cat_crC','cat_crD','cat_crE','cat_crG','cat_crH']
+    return bins
+
+def get_config_file():
+    return "config/SUEP_inputs_{}.yaml"
 
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
