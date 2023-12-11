@@ -57,6 +57,11 @@ def main ():
     remoteLimitDir = args.remoteDir
     limitDir = args.tag
 
+    # set expected length of the limit tree
+    if args.combineMethod == 'AsymptoticLimits': expected_length = 6
+    elif args.combineMethod == 'HybridNew': expected_length = 1
+
+    # print out what we are doing
     logging.info("monitor.py will run the following modes:")
     if args.checkMissingCards: logging.info("--checkMissingCards")
     if args.moveLimits: logging.info("--moveLimits")
@@ -139,7 +144,8 @@ def main ():
                     else:
                         # raise error if we find empty limits!
                         raise ValueError
-                except:
+                except Exception as e:
+                    print(e)
                     nDeleted += 1
                     logging.debug("\t --> Limit not found in the file " +  remoteFile + " deleting...")
                     if not args.dry: os.system('rm '+remoteFile)
@@ -164,7 +170,6 @@ def main ():
         nTotalLimits = 0
         missingLimits = []
         limit = args.combineMethod
-        expected_length = 1 if limit == 'HybridNew' else 6    # size of the limit array in the root file
 
         all_samples = []
         # list all subdirectories of the limitDir, these are the samples we will check

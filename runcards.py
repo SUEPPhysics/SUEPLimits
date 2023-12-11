@@ -1,3 +1,17 @@
+"""
+Script to run the makeXYZDataCard.py script in parallel across many bins and samples.
+Define in your makeXYZDataCard.py script the bins, commands, and samples to run,
+this script will pull from there using:
+    makeXYZDataCard.get_bins()        # list of bins to run over per sample
+    makeXYZDataCard.get_commands()    # list of commands to run per sample, one per bin
+    makeXYZDataCard.get_config_file() # .yaml file of samples
+
+Example usage:
+    python runcards.py -m multithread -c 1000 -channel ggf-offline
+
+Authors: Luca Lavezzo, Chad Freer, Pieter van Steenweghen
+"""
+
 import argparse
 import yaml
 import glob
