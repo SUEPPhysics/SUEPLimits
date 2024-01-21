@@ -278,11 +278,11 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='Asympto
 
     # Plot observed limits
     ax.plot(masses, _obs,'.', ms=12, color='black', label="Observed") 
-    ax.plot(xvar,obs_limit(xvar), #*.101,#* 0.101* 2/3,
+    ax.plot(xvar,obs_limit(xvar),
              "-", ms=12, color='black')
     
     #Plot expected limits including brazil bands
-    ax.plot(xvar,th_limit(xvar), #*.101,#* 0.101* 2/3,
+    ax.plot(xvar,th_limit(xvar),
          "--", ms=12, color='blue', label="$\sigma_{theory}$")
     ax.plot(xvar, exp_limit(xvar), ls="--", ms=12, color='black', label="Median expected")
     ax.fill_between(xvar, s2m_limit(xvar), s2p_limit(xvar), color="#FFCC01", lw=0, label="Expected 95% CL")
@@ -294,13 +294,13 @@ def plot_ms_limits(temp, mphi, decay, path='../', verbose=False, method='Asympto
     ax.legend(loc="upper left", fontsize=20)
 
     _ = ax.text(
-        0.65, 0.75, r"$T_D$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n""{}".format(temp,mphi,decaysLabels[decay]),
-        fontsize=25, horizontalalignment='left', 
+        0.65, 0.75, r"$T_D$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n""{}".format(temp,mphi,decaysLabelsWithLineBreaks[decay]),
+        fontsize=20, horizontalalignment='left', 
         verticalalignment='bottom', 
         transform=ax.transAxes,
     )
     
-    hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
+    hep.cms.label(data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
 
     ax.grid(visible=True, which='major', color='grey', linestyle='--', alpha=0.3)
     ax.set_ylim(1e-6,9e7)
@@ -410,7 +410,7 @@ def plot_ms_limits_all_decays(temp, mphi, ref_decay='generic', path='../', verbo
         transform=ax.transAxes,
     )
 
-    hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
+    hep.cms.label(data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
 
     ax.grid(visible=True, which='major', color='grey', linestyle='--', alpha=0.3)
     ax.set_ylim(1e-6,9e7)
@@ -424,6 +424,88 @@ def plot_ms_limits_all_decays(temp, mphi, ref_decay='generic', path='../', verbo
     fig.tight_layout()
     
     fig.set_label("limits1D_T{:.1f}_mphi{:.1f}".format(temp,mphi))
+
+    return fig
+
+def plot_temp_limits(mphi, ms, decay, path='../', verbose=False, method='AsymptoticLimits'):
+    """
+    Make 1D Brazil plot for some choice of mS, mPhi, and decay, scanning over T.
+    """
+    
+    limits = get_scan_limits(path=path, mphi=mphi, ms=ms, decay=decay, method=method)
+    masses = np.array([l[0][2] for l in limits])
+    xsec = np.array([l[0][4] for l in limits])
+
+    _exp = np.array([l[1][1][2] for l in limits])
+    _s1p = np.array([l[1][1][1] for l in limits]) 
+    _s1m = np.array([l[1][1][3] for l in limits]) 
+    _s2p = np.array([l[1][1][0] for l in limits]) 
+    _s2m = np.array([l[1][1][4] for l in limits]) 
+    _obs = np.array([l[1][1][5] for l in limits])  
+    
+    print(limits)
+    
+    # Define interpolation
+    exp_limit = log_interp1d(masses, _exp) 
+    s1p_limit = log_interp1d(masses, _s1p)
+    s1m_limit = log_interp1d(masses, _s1m)
+    s2p_limit = log_interp1d(masses, _s2p)
+    s2m_limit = log_interp1d(masses, _s2m)
+    obs_limit = log_interp1d(masses, _obs)
+    th_limit =  log_interp1d(masses, xsec)
+        
+    if verbose:
+        sorted_masses = np.array(masses)[np.argsort(masses)]
+        sorted_obs = np.array(_obs)[np.argsort(masses)]
+        sorted_exp = np.array(_exp)[np.argsort(masses)]
+        for mS, obs, exp in zip(sorted_masses, sorted_obs, sorted_exp):
+            # print the first 5 digits after the decimal of the obs, exp
+            print("{} {:.5g} {:.5g}".format(mS, obs, exp))
+
+    # Make 1D limit plot
+    fig = plt.figure(figsize=(10,10))
+    ax = fig.subplots()
+        
+    xvar = np.linspace(0,10,1000)
+
+    # Plot observed limits
+    ax.plot(masses, _obs,'.', ms=12, color='black', label="Observed") 
+    ax.plot(xvar,obs_limit(xvar),
+             "-", ms=12, color='black')
+    
+    #Plot expected limits including brazil bands
+    ax.plot(xvar,th_limit(xvar),
+         "--", ms=12, color='blue', label="$\sigma_{theory}$")
+    ax.plot(xvar, exp_limit(xvar), ls="--", ms=12, color='black', label="Median expected")
+    ax.fill_between(xvar, s2m_limit(xvar), s2p_limit(xvar), color="#FFCC01", lw=0, label="Expected 95% CL")
+    ax.fill_between(xvar, s1m_limit(xvar), s1p_limit(xvar), color="#00CC00", lw=0, label="Expected 68% CL")
+    
+    # Just to make everything look nice
+    ax.set_ylabel(r"$\sigma$ (pb)")
+    ax.set_xlabel(r"$T_D$ (GeV)") 
+    ax.legend(loc="upper left", fontsize=20)
+
+    _ = ax.text(
+        0.65, 0.75, r"$m_S$ = {} GeV""\n""$m_{{\phi}}$ = {} GeV""\n""{}".format(ms,mphi,decaysLabelsWithLineBreaks[decay]),
+        fontsize=20, horizontalalignment='left', 
+        verticalalignment='bottom', 
+        transform=ax.transAxes,
+    )
+    
+    hep.cms.label(data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
+
+    ax.grid(visible=True, which='major', color='grey', linestyle='--', alpha=0.3)
+    ax.set_ylim(1e-6,9e7)
+    ax.set_yscale("log")
+    
+    y_major = ticker.LogLocator(base = 10.0, numticks = 20)
+    ax.yaxis.set_major_locator(y_major)
+    y_minor = ticker.LogLocator(base = 10.0, subs = np.arange(1.0, 10.0) * 0.1, numticks = 100)
+    ax.yaxis.set_minor_locator(y_minor)
+    ax.yaxis.set_minor_formatter(ticker.NullFormatter())
+    fig.tight_layout()
+
+    fig.set_label("limits1D_mS{:.1f}_mPhi{:.1f}_{}".format(ms, mphi, decay))
 
     return fig
 
@@ -526,7 +608,7 @@ def plot_mPhi_temp_limits(ms:int, decay:str, path:str, tricontour:str ='log', ca
     ax.set_xlabel(r"$m_{\phi}$ (GeV)", x=1, ha='right')
     ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
     
-    hep.cms.label(llabel='Preliminary', data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
+    hep.cms.label(data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
     
     _ = ax.text(
         0.05, 0.98, r"$m_{{s}} = {}$ GeV""\n""{}".format(str(ms), decaysLabelsWithLineBreaks[decay]),
@@ -583,8 +665,8 @@ def plot_summary_limits_mPhi_temp(decay, path='../', method='AsymptoticLimits'):
         _expline, = ax.plot(x2,y2, linestyle = '--', lw=2, c=colors[i])
         ax.plot(x5,y5, linestyle = '-',c='black')
 
-        y1_interp = np.interp(x2, x1, y1)
-        y3_interp = np.interp(x2, x3, y3)
+        y1_interp = np.interp(x2, x3, y3)
+        y3_interp = np.interp(x2, x1, y1)
         
         upper_bound = np.minimum(x2*4, y1_interp)
         
@@ -595,7 +677,7 @@ def plot_summary_limits_mPhi_temp(decay, path='../', method='AsymptoticLimits'):
     # Annotate figure
     ax.set_xlabel(r"$m_{\phi}$ (GeV)", x=1, ha='right')
     ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
-    hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
+    hep.cms.label(data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
     ax.text(7.7, 14, decaysLabels[decay], horizontalalignment='right', verticalalignment='center',fontsize=18)
 
     # Plot theoretically excluded regions
@@ -716,7 +798,7 @@ def plot_xsec_limits(mphi:int, decay:str, path:str, tricontour:str ='log', calcu
         verticalalignment='bottom', 
         transform=ax.transAxes
     )
-    hep.cms.label(llabel='Preliminary', data=False, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
+    hep.cms.label(data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
 
     ax.set_xlim([125, 2000])
     ax.set_ylim([mphi/4, mphi*4])     
@@ -761,7 +843,7 @@ def plot_summary_limits_mS_temp(decay, path='../'):
     # Annotate figure
     ax.set_xlabel(r"$m_{s}$ (GeV)", x=1, ha='right')
     ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
-    hep.cms.label(llabel='Preliminary', data=False, lumi=137, ax=ax) # To add CMS lumi scripts
+    hep.cms.label(data=True, lumi=lumis["combined"], ax=ax) # To add CMS lumi scripts
     ax.text(600,9, decaysLabels[decay], horizontalalignment='right', verticalalignment='center',fontsize=20)
 
     ax.set_xlim([0., 2050])

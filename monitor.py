@@ -6,7 +6,7 @@ Script to do any of the following:
     local directory/tag.
 
 2. Monitor the completion of the limits produced via combine, and verify that the they are not corrupted.
-    Will check that for each cards-SAMPLE/ subdirectory under the directory/tag --tag, the correspodning 
+    Will check that for each cards-SAMPLE/ subdirectory under the directory named via --tag, the correspodning 
     limit files have been produced successfully.
 
 3. Move the limit files from the remote directory, where condor places the outputs, to the local directory/tag.
@@ -22,6 +22,14 @@ import datetime
 import argparse
 import yaml
 import logging
+
+def getExpectedLength(fname):
+    """
+    Get the expected length of the limit tree.
+    """
+    if 'AsymptoticLimits' in fname: return 6
+    elif 'HybridNew' in fname: return 1
+    else: raise ValueError("Cannot determine expected length of limit tree from file name.")
 
 def main ():
 
@@ -56,10 +64,6 @@ def main ():
     # set directories
     remoteLimitDir = args.remoteDir
     limitDir = args.tag
-
-    # set expected length of the limit tree
-    if args.combineMethod == 'AsymptoticLimits': expected_length = 6
-    elif args.combineMethod == 'HybridNew': expected_length = 1
 
     # print out what we are doing
     logging.info("monitor.py will run the following modes:")
@@ -138,14 +142,13 @@ def main ():
                 remoteFile = os.path.join(remoteLimitDir,outFile)
                 try:
                     f = uproot.open(remoteFile)
-                    if len(f['limit']['limit'].array()) == expected_length:
+                    if len(f['limit']['limit'].array()) == getExpectedLength(remoteFile):
                         nMoved +=1 
                         os.system('cp '+remoteFile+' '+limitDir)
                     else:
                         # raise error if we find empty limits!
                         raise ValueError
-                except Exception as e:
-                    print(e)
+                except:
                     nDeleted += 1
                     logging.debug("\t --> Limit not found in the file " +  remoteFile + " deleting...")
                     if not args.dry: os.system('rm '+remoteFile)
@@ -202,7 +205,7 @@ def main ():
                 elif args.deleteCorruptedLimits:
                     f = uproot.open(fname)
                     try:
-                        if len(f['limit']['limit'].array()) == expected_length:
+                        if len(f['limit']['limit'].array()) == getExpectedLength(fname):
                             continue
                         else:
                             # raise error if we find empty limits!
