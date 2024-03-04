@@ -70,112 +70,112 @@ closure_systs = {
 }
 
 def get_commands(options, n, year):
-    cmd_crA = "python3 makeScoutingCard.py --tag {tag} --channel cat_crA "
+    cmd_crA = "python3 makeScoutingDataCard.py --tag {tag} --channel cat_crA "
     cmd_crA += "--variable A_SUEP_nconst_Cluster "
     cmd_crA += "--stack {signal} expected data "
     cmd_crA += "--bins 0 2000 "
     cmd_crA += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crA = cmd_crA.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crB = "python3 makeScoutingCard.py --tag {tag} --channel cat_crB "
+    cmd_crB = "python3 makeScoutingDataCard.py --tag {tag} --channel cat_crB "
     cmd_crB += "--variable B_SUEP_nconst_Cluster "
     cmd_crB += "--stack {signal} expected data "
     cmd_crB += "--bins 0 2000 "
     cmd_crB += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crB = cmd_crB.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crC = "python3 makeScoutingCard.py --tag {tag} --channel cat_crC "
+    cmd_crC = "python3 makeScoutingDataCard.py --tag {tag} --channel cat_crC "
     cmd_crC += "--variable C_SUEP_nconst_Cluster "
     cmd_crC += "--stack {signal} expected data "
     cmd_crC += "--bins 0 2000 "
     cmd_crC += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crC = cmd_crC.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crD = "python3 makeScoutingCard.py --tag {tag} --channel cat_crD "
+    cmd_crD = "python3 makeScoutingDataCard.py --tag {tag} --channel cat_crD "
     cmd_crD += "--variable D_SUEP_nconst_Cluster "
     cmd_crD += "--stack {signal} expected data "
     cmd_crD += "--bins 0 2000 "
     cmd_crD += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crD = cmd_crD.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crE = "python3 makeScoutingCard.py --tag {tag} --channel cat_crE "
+    cmd_crE = "python3 makeScoutingDataCard.py --tag {tag} --channel cat_crE "
     cmd_crE += "--variable E_SUEP_nconst_Cluster "
     cmd_crE += "--stack {signal} expected data "
     cmd_crE += "--bins 0 2000 "
     cmd_crE += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crE = cmd_crE.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crF0 = "python3 makeScoutingCard.py --tag {tag} --channel Bin0crF "
+    cmd_crF0 = "python3 makeScoutingDataCard.py --tag {tag} --channel Bin0crF "
     cmd_crF0 += "--variable F_SUEP_nconst_Cluster "
     cmd_crF0 += "--stack {signal} expected data "
     cmd_crF0 += "--bins 50 60 "
     cmd_crF0 += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crF0 = cmd_crF0.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crF1 = "python3 makeScoutingCard.py --tag {tag} --channel Bin1crF "
+    cmd_crF1 = "python3 makeScoutingDataCard.py --tag {tag} --channel Bin1crF "
     cmd_crF1 += "--variable F_SUEP_nconst_Cluster "
     cmd_crF1 += "--stack {signal} expected data "
     cmd_crF1 += "--bins 60 70 "
     cmd_crF1 += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crF1 = cmd_crF1.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crF2 = "python3 makeScoutingCard.py --tag {tag} --channel Bin2crF "
+    cmd_crF2 = "python3 makeScoutingDataCard.py --tag {tag} --channel Bin2crF "
     cmd_crF2 += "--variable F_SUEP_nconst_Cluster "
     cmd_crF2 += "--stack {signal} expected data "
     cmd_crF2 += "--bins 70 80 "
     cmd_crF2 += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crF2 = cmd_crF2.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crF3 = "python3 makeScoutingCard.py --tag {tag} --channel Bin3crF "
+    cmd_crF3 = "python3 makeScoutingDataCard.py --tag {tag} --channel Bin3crF "
     cmd_crF3 += "--variable F_SUEP_nconst_Cluster "
     cmd_crF3 += "--stack {signal} expected data "
     cmd_crF3 += "--bins 80 120 "
     cmd_crF3 += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crF3 = cmd_crF3.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crF4 = "python3 makeScoutingCard.py --tag {tag} --channel Bin4crF "
+    cmd_crF4 = "python3 makeScoutingDataCard.py --tag {tag} --channel Bin4crF "
     cmd_crF4 += "--variable F_SUEP_nconst_Cluster "
     cmd_crF4 += "--stack {signal} expected data "
     cmd_crF4 += "--bins 120 2000 "
     cmd_crF4 += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crF4 = cmd_crF4.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crG = "python3 makeScoutingCard.py --tag {tag} --channel cat_crG "
+    cmd_crG = "python3 makeScoutingDataCard.py --tag {tag} --channel cat_crG "
     cmd_crG += "--variable G_SUEP_nconst_Cluster "
     cmd_crG += "--stack {signal} expected data "
     cmd_crG += "--bins 0 2000 "
     cmd_crG += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crG = cmd_crG.format(tag=options.tag, signal=n, era=year)
 
-    cmd_crH = "python3 makeScoutingCard.py --tag {tag} --channel cat_crH "
+    cmd_crH = "python3 makeScoutingDataCard.py --tag {tag} --channel cat_crH "
     cmd_crH += "--variable H_SUEP_nconst_Cluster "
     cmd_crH += "--stack {signal} expected data "
     cmd_crH += "--bins 0 2000 "
     cmd_crH += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_crH = cmd_crH.format(tag=options.tag, signal=n, era=year)
 
-    cmd_sr1 = "python3 makeScoutingCard.py --tag {tag} --channel Bin1Sig "
+    cmd_sr1 = "python3 makeScoutingDataCard.py --tag {tag} --channel Bin1Sig "
     cmd_sr1 += "--variable I_SUEP_nconst_Cluster "
     cmd_sr1 += "--stack {signal} expected data "
     cmd_sr1 += "--bins 60 70 "
     cmd_sr1 += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_sr1 = cmd_sr1.format(tag=options.tag, signal=n, era=year)
 
-    cmd_sr2 = "python3 makeScoutingCard.py --tag {tag} --channel Bin2Sig "
+    cmd_sr2 = "python3 makeScoutingDataCard.py --tag {tag} --channel Bin2Sig "
     cmd_sr2 += "--variable I_SUEP_nconst_Cluster "
     cmd_sr2 += "--stack {signal} expected data "
     cmd_sr2 += "--bins 70 80 "
     cmd_sr2 += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_sr2 = cmd_sr2.format(tag=options.tag, signal=n, era=year)
 
-    cmd_sr3 = "python3 makeScoutingCard.py --tag {tag} --channel Bin3Sig "
+    cmd_sr3 = "python3 makeScoutingDataCard.py --tag {tag} --channel Bin3Sig "
     cmd_sr3 += "--variable I_SUEP_nconst_Cluster "
     cmd_sr3 += "--stack {signal} expected data "
     cmd_sr3 += "--bins 80 120 "
     cmd_sr3 += "--input=config/SUEP_scouting_{era}.yaml --era={era}"
     cmd_sr3 = cmd_sr3.format(tag=options.tag, signal=n, era=year)
 
-    cmd_sr4 = "python3 makeScoutingCard.py --tag {tag} --channel Bin4Sig "
+    cmd_sr4 = "python3 makeScoutingDataCard.py --tag {tag} --channel Bin4Sig "
     cmd_sr4 += "--variable I_SUEP_nconst_Cluster "
     cmd_sr4 += "--stack {signal} expected data "
     cmd_sr4 += "--bins 120 2000 "

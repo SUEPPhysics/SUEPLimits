@@ -43,7 +43,8 @@ slurm_script_template = '''#!/bin/bash
 
 source ~/.bashrc
 cd {work_dir}
-conda activate SUEP
+#conda activate SUEP
+source activate /work/submit/jinw65/limit
 {cmd}
 '''
 
