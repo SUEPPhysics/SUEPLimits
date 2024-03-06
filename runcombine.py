@@ -121,13 +121,15 @@ parser.add_argument(
         "-m", "--method", type=str, default="iterative", choices=['iterative', 'slurm', 'multithread', 'condor'], help="How to execute the code."
 )
 parser.add_argument("-p"  , "--print_commands"   , action='store_true', help='Print the executed combine commands.')
-parser.add_argument("-file"  , "--file", type=str, help='Rerun a list of datacards.')
+parser.add_argument("-file"  , "--file", type=str, help='Rerun a list of samples stored in a file.')
 parser.add_argument("-i"  , "--input", type=str, required=True, help='Where to find the cards.')
-parser.add_argument("-f"  , "--force", action='store_true', help="Force rerunning of limits. By default will not re-run combine if the output .root file exists.")
-parser.add_argument("-M"  , "--combineMethod", type=str, default="HybridNew", choices=['HybridNew', 'AsymptoticLimits'], help="Combine method to use. Supported: HybridNew, AsymptoticLimits")
-parser.add_argument("-o"  , "--combineOptions", type=str, default="", help="Additional options to run the combine command with.")
-parser.add_argument("-d"  , "--dry", action='store_true', help="Dry run. Print the commands but don't run them.")
-parser.add_argument("-include", "--include", type=str, default='', help="Pass a '-' separated list of strings you want your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' and 'mPhi300' in the name.")
+parser.add_argument("-f"  , "--force", action='store_true', help="Force rerunning of limits. By default will not re-run combine if the output .root file exists. Existing limits are moved to a file higgsCombine<sample_name>.overwritten.root ")
+parser.add_argument("-M"  , "--combineMethod", type=str, default="HybridNew", choices=['HybridNew', 'HybridNewAuto', 'AsymptoticLimits'], help="Combine method to use.")
+parser.add_argument("-o"  , "--combineOptions", type=str, default="", help="Additional options to run the combine command with, e.g. -o ' --fork 20 ' runs the combine command like ' combine ... --fork 20 '.")
+parser.add_argument("-d"  , "--dry", action='store_true', help="Dry run, does not exectute any combine command.")
+parser.add_argument("-includeAll", "--includeAll", type=str, default='', help="Pass a '-' separated list of strings you want all your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' AND 'mPhi300' in the name.")
+parser.add_argument("-includeAny", "--includeAny", type=str, default='', help="Pass a '-' separated list of strings you want any of your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' OR 'mPhi300' in the name.")
+parser.add_argument("-q", "--quantiles", action='store_true', default=False, help="When running '-M HybridNew' or '-M HybridNewAuto', use this option to run the following quantiles (0.025, 0.16, 0.5, 0.84, 0.975) as well as the observed limit, automatically. Equivalent to running this script with '-o '--expectedFromGrid <QUANTILE>'' for all quantiles.") 
 options = parser.parse_args()
 
 # change cwd to the input tag: combine will read the cards from here and will make the higgsCombine file here
@@ -167,8 +169,12 @@ else:
     dcards = glob.glob("cards-*")
 
 # select datacards based on the --include options
-if options.include != '':
-    dcards = [dc for dc in dcards if all([i in dc for i in options.include.split('-')])]
+if options.includeAll != '' and options.includeAny != '':
+    raise Exception("Either run with --includeAll or --includeAny or neither, not both")
+elif options.includeAll != '':
+    dcards = [dc for dc in dcards if all([i in dc for i in options.includeAll.split('-')])]
+elif options.includeAny != '':
+    dcards = [dc for dc in dcards if any([i in dc for i in options.includeAny.split('-')])]
 
 toProcess = 0
 for dc in dcards:
@@ -177,11 +183,13 @@ for dc in dcards:
     if "SUEP" not in name:
         continue
 
-    # don't re run cards, unless running with --force
-    outFile = "higgsCombine{name}.{method}.mH125.root".format(name=name, method=options.combineMethod)
-    # deal with HybridNew naming scheme
-    if options.combineMethod == 'HybridNew':
-        if "expectedFromGrid" in options.combineOptions:
+    quantilesToRun = ['']
+    if 'HybridNew' in options.combineMethod:
+        if options.quantiles and "expectedFromGrid" in options.combineOptions:
+                raise Exception("Either run with --expectedFromGrid as a combine option or with --quantiles as a script option, but not both.")
+        if options.quantiles:
+            quantilesToRun = ['', '0.025', '0.160', '0.500', '0.840', '0.975']
+        elif "expectedFromGrid" in options.combineOptions:
             quant = options.combineOptions.split('expectedFromGrid ')[1].split(' ')[0]
             if quant == '-1':
                 # deal with the case of observed
@@ -189,197 +197,240 @@ for dc in dcards:
             else:
                 # add enough 0's to reach 3 digits after the .
                 quant = quant + '0'*(3-len(quant.split('.')[1]))
-                quant = '.quant' + quant
-            outFile = "higgsCombine{name}.{method}.mH125{quant}.root".format(name=name, method=options.combineMethod, quant=quant)
-    
-    if os.path.isfile(outFile) and not options.force:
-        print(" -- skipping :", name)
-        continue
-    else:
-        print(" --making:", name)
-    strippedOutFile = outFile.split(".root")[0]
-    
-    toProcess += 1
-
-    # Write combine commmands
-
-    # remove the old combined cards
-    rm_command = "rm -rf cards-{}/combined.dat".format(name)
-
-    # make the combined.dat cards
-    combine_card_command = ("combineCards.py -S "
-            "catcrA2016=cards-{name}/shapes-cat_crA2016.dat "
-            "catcrB2016=cards-{name}/shapes-cat_crB2016.dat "
-            "catcrC2016=cards-{name}/shapes-cat_crC2016.dat "
-            "catcrD2016=cards-{name}/shapes-cat_crD2016.dat "
-            "catcrE2016=cards-{name}/shapes-cat_crE2016.dat "
-            "Bin0crF2016=cards-{name}/shapes-Bin0crF2016.dat "
-            "Bin1crF2016=cards-{name}/shapes-Bin1crF2016.dat "
-            "Bin2crF2016=cards-{name}/shapes-Bin2crF2016.dat "
-            "Bin3crF2016=cards-{name}/shapes-Bin3crF2016.dat "
-            "Bin4crF2016=cards-{name}/shapes-Bin4crF2016.dat "
-            "catcrG2016=cards-{name}/shapes-cat_crG2016.dat "
-            "catcrH2016=cards-{name}/shapes-cat_crH2016.dat "
-            "Bin1Sig2016=cards-{name}/shapes-Bin1Sig2016.dat "
-            "Bin2Sig2016=cards-{name}/shapes-Bin2Sig2016.dat "
-            "Bin3Sig2016=cards-{name}/shapes-Bin3Sig2016.dat "
-            "Bin4Sig2016=cards-{name}/shapes-Bin4Sig2016.dat "
-            "catcrA2017=cards-{name}/shapes-cat_crA2017.dat "
-            "catcrB2017=cards-{name}/shapes-cat_crB2017.dat "
-            "catcrC2017=cards-{name}/shapes-cat_crC2017.dat "
-            "catcrD2017=cards-{name}/shapes-cat_crD2017.dat "
-            "catcrE2017=cards-{name}/shapes-cat_crE2017.dat "
-            "Bin0crF2017=cards-{name}/shapes-Bin0crF2017.dat "
-            "Bin1crF2017=cards-{name}/shapes-Bin1crF2017.dat "
-            "Bin2crF2017=cards-{name}/shapes-Bin2crF2017.dat "
-            "Bin3crF2017=cards-{name}/shapes-Bin3crF2017.dat "
-            "Bin4crF2017=cards-{name}/shapes-Bin4crF2017.dat "
-            "catcrG2017=cards-{name}/shapes-cat_crG2017.dat "
-            "catcrH2017=cards-{name}/shapes-cat_crH2017.dat "
-            "Bin1Sig2017=cards-{name}/shapes-Bin1Sig2017.dat "
-            "Bin2Sig2017=cards-{name}/shapes-Bin2Sig2017.dat "
-            "Bin3Sig2017=cards-{name}/shapes-Bin3Sig2017.dat "
-            "Bin4Sig2017=cards-{name}/shapes-Bin4Sig2017.dat "
-            "catcrA2018=cards-{name}/shapes-cat_crA2018.dat "
-            "catcrB2018=cards-{name}/shapes-cat_crB2018.dat "
-            "catcrC2018=cards-{name}/shapes-cat_crC2018.dat "
-            "catcrD2018=cards-{name}/shapes-cat_crD2018.dat "
-            "catcrE2018=cards-{name}/shapes-cat_crE2018.dat "
-            "Bin0crF2018=cards-{name}/shapes-Bin0crF2018.dat "
-            "Bin1crF2018=cards-{name}/shapes-Bin1crF2018.dat "
-            "Bin2crF2018=cards-{name}/shapes-Bin2crF2018.dat "
-            "Bin3crF2018=cards-{name}/shapes-Bin3crF2018.dat "
-            "Bin4crF2018=cards-{name}/shapes-Bin4crF2018.dat "
-            "catcrG2018=cards-{name}/shapes-cat_crG2018.dat "
-            "catcrH2018=cards-{name}/shapes-cat_crH2018.dat "
-            "Bin1Sig2018=cards-{name}/shapes-Bin1Sig2018.dat "
-            "Bin2Sig2018=cards-{name}/shapes-Bin2Sig2018.dat "
-            "Bin3Sig2018=cards-{name}/shapes-Bin3Sig2018.dat "
-            "Bin4Sig2018=cards-{name}/shapes-Bin4Sig2018.dat "        
-            "> cards-{name}/combined.dat").format(name=name)
-    
-    # converts .dat to .root
-    text2workspace_command = "text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root".format(name=name)
-    
-    # this is the command running combine. Some options are passed through the parser
-    if options.combineMethod == 'HybridNew':
-        combine_method = " -M HybridNew --LHCmode LHC-limits "
-    elif options.combineMethod == 'AsymptoticLimits':
-        combine_method = " -M AsymptoticLimits "
-    combine_command = (
-        "combine "
-        " --datacard cards-{name}/combined.root "
-        " {combine_method}"
-        " -m 125 --cl 0.95 --name {name}"
-        " {options}"
-        " --rAbsAcc 0.00001 --rRelAcc 0.001 "
-        " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH ".format(
-            name=name,
-            combine_method=combine_method,
-            options=options.combineOptions
-        )
-    )
-    
-    # Execute and optionally print the commands   
-    if options.print_commands:
-        print('--- removing old combined datacard:', rm_command)
-        print('--- combining datacards:', combine_card_command)
-        print('--- text2workspace:', text2workspace_command)
-        print('--- running combine:', combine_command)
-
-    # if dry run, skip the rest
-    if options.dry: continue
-    
-    # run the commands!
-    if options.method == 'multithread':
-        os.system(rm_command)
-        os.system(combine_card_command)
-        os.system(text2workspace_command)
-        results.append(pool.apply_async(call_combine, (combine_command,)))
-
-    elif options.method == 'slurm':
-
-        cpus = 1 # default value
-        if '--fork' in options.combineOptions: # grab it from fork
-            cpus = int(options.combineOptions.split('--fork ')[1].split(' ')[0])
-
-        if options.combineMethod == 'AsymptoticLimits':
-            mem_per_cpu = 1
-            time_limit = '1:0:0'
-        elif options.combineMethod == 'HybridNew':
-            mem_per_cpu = 4
-            time_limit = '12:0:0'
-        mem = str(mem_per_cpu*cpus)+'GB'
-
-        slurm_script_content = slurm_script_template.format(
-                                    rm_command=rm_command,
-                                    combine_card_command=combine_card_command,
-                                    text2workspace_command=text2workspace_command,
-                                    combine_command=combine_command,
-                                    work_dir=work_dir,
-                                    log_dir=log_dir,
-                                    mem=mem,
-                                    cpus=cpus,
-                                    time_limit=time_limit,
-                                    sample=name,
-                                    outFile=strippedOutFile)
-
-        # Write the SLURM script to a file
-        slurm_script_file = f'{log_dir}submit_{strippedOutFile}.sh'
-        with open(slurm_script_file, 'w') as f:
-            f.write(slurm_script_content)
-
-        # Submit the SLURM job
-        subprocess.run(['sbatch', slurm_script_file])
-
-    elif options.method == 'iterative':
-        subprocess.run('cmsenv', shell=True)
-        subprocess.run(rm_command, shell=True)
-        subprocess.run(combine_card_command, shell=True)
-        subprocess.run(text2workspace_command, shell=True)
-        subprocess.run(combine_command, shell=True)
-
-    elif options.method == 'condor':
-
-        cpus = 1 # default value
-        if '--fork' in options.combineOptions: # grab it from fork
-            cpus = int(options.combineOptions.split('--fork ')[1].split(' ')[0])
-
-        # set the memory
-        if options.combineMethod == 'AsymptoticLimits':
-            mem_per_cpu = 1
-        elif options.combineMethod == 'HybridNew':
-            mem_per_cpu = 2
-        mem = str(mem_per_cpu*cpus)+'GB'
+                #quant = '.quant' + quant
+            quantilesToRun = [quant]
+                        
+    for quant in quantilesToRun:
         
-        # Write the condor script to a file
-        condor_script_content = condor_script_template.format(
-                                    rm_command=rm_command,
-                                    combine_card_command=combine_card_command,
-                                    text2workspace_command=text2workspace_command,
-                                    combine_command=combine_command,
-                                    condor_out_dir=condor_out_dir)
-        condor_script_file = f'{log_dir}submit_{strippedOutFile}.sh'
-        with open(condor_script_file, 'w') as f:
-            f.write(condor_script_content)
+        # don't re run cards, unless running with --force
+        quantName = '.quant' + quant if quant != '' else ''
+        outFile = "higgsCombine{name}.{method}.mH125{quantName}.root".format(name=name, method=options.combineMethod.replace("Auto",""), quantName=quantName)
+        if os.path.isfile(outFile) and not options.force:
+            print(" -- skipping :", name, quant)
+            continue
+        elif os.path.isfile(outFile) and options.force:
+            overwriteFile = outFile.replace(".root", ".overwritten.root")
+            os.system(f"mv {outFile} {overwriteFile}")
+            print(" --making:", name, quant)
+        else:
+            print(" --making:", name, quant)
+        strippedOutFile = outFile.split(".root")[0]
+        toProcess += 1
 
-        # Write the condor submission script to a file
-        condor_submission_content = condor_submission_script.format(
-                                        jobdir=log_dir,
-                                        script=f'submit_{strippedOutFile}',
-                                        transfer_file=transfer_file,
-                                        user=os.environ['USER'],
-                                        proxy=f"x509up_u{os.getuid()}",
-                                        queue='espresso',
-                                        cpus=cpus,
+        # Write combine commmands
+
+        # remove the old combined cards
+        rm_command = "rm -rf cards-{}/combined.dat".format(name)
+
+        # make the combined.dat cards
+        combine_card_command = ("combineCards.py -S "
+                "catcrA2016=cards-{name}/shapes-cat_crA2016.dat "
+                "catcrB2016=cards-{name}/shapes-cat_crB2016.dat "
+                "catcrC2016=cards-{name}/shapes-cat_crC2016.dat "
+                "catcrD2016=cards-{name}/shapes-cat_crD2016.dat "
+                "catcrE2016=cards-{name}/shapes-cat_crE2016.dat "
+                "Bin0crF2016=cards-{name}/shapes-Bin0crF2016.dat "
+                "Bin1crF2016=cards-{name}/shapes-Bin1crF2016.dat "
+                "Bin2crF2016=cards-{name}/shapes-Bin2crF2016.dat "
+                "Bin3crF2016=cards-{name}/shapes-Bin3crF2016.dat "
+                "Bin4crF2016=cards-{name}/shapes-Bin4crF2016.dat "
+                "catcrG2016=cards-{name}/shapes-cat_crG2016.dat "
+                "catcrH2016=cards-{name}/shapes-cat_crH2016.dat "
+                "Bin1Sig2016=cards-{name}/shapes-Bin1Sig2016.dat "
+                "Bin2Sig2016=cards-{name}/shapes-Bin2Sig2016.dat "
+                "Bin3Sig2016=cards-{name}/shapes-Bin3Sig2016.dat "
+                "Bin4Sig2016=cards-{name}/shapes-Bin4Sig2016.dat "
+                "catcrA2017=cards-{name}/shapes-cat_crA2017.dat "
+                "catcrB2017=cards-{name}/shapes-cat_crB2017.dat "
+                "catcrC2017=cards-{name}/shapes-cat_crC2017.dat "
+                "catcrD2017=cards-{name}/shapes-cat_crD2017.dat "
+                "catcrE2017=cards-{name}/shapes-cat_crE2017.dat "
+                "Bin0crF2017=cards-{name}/shapes-Bin0crF2017.dat "
+                "Bin1crF2017=cards-{name}/shapes-Bin1crF2017.dat "
+                "Bin2crF2017=cards-{name}/shapes-Bin2crF2017.dat "
+                "Bin3crF2017=cards-{name}/shapes-Bin3crF2017.dat "
+                "Bin4crF2017=cards-{name}/shapes-Bin4crF2017.dat "
+                "catcrG2017=cards-{name}/shapes-cat_crG2017.dat "
+                "catcrH2017=cards-{name}/shapes-cat_crH2017.dat "
+                "Bin1Sig2017=cards-{name}/shapes-Bin1Sig2017.dat "
+                "Bin2Sig2017=cards-{name}/shapes-Bin2Sig2017.dat "
+                "Bin3Sig2017=cards-{name}/shapes-Bin3Sig2017.dat "
+                "Bin4Sig2017=cards-{name}/shapes-Bin4Sig2017.dat "
+                "catcrA2018=cards-{name}/shapes-cat_crA2018.dat "
+                "catcrB2018=cards-{name}/shapes-cat_crB2018.dat "
+                "catcrC2018=cards-{name}/shapes-cat_crC2018.dat "
+                "catcrD2018=cards-{name}/shapes-cat_crD2018.dat "
+                "catcrE2018=cards-{name}/shapes-cat_crE2018.dat "
+                "Bin0crF2018=cards-{name}/shapes-Bin0crF2018.dat "
+                "Bin1crF2018=cards-{name}/shapes-Bin1crF2018.dat "
+                "Bin2crF2018=cards-{name}/shapes-Bin2crF2018.dat "
+                "Bin3crF2018=cards-{name}/shapes-Bin3crF2018.dat "
+                "Bin4crF2018=cards-{name}/shapes-Bin4crF2018.dat "
+                "catcrG2018=cards-{name}/shapes-cat_crG2018.dat "
+                "catcrH2018=cards-{name}/shapes-cat_crH2018.dat "
+                "Bin1Sig2018=cards-{name}/shapes-Bin1Sig2018.dat "
+                "Bin2Sig2018=cards-{name}/shapes-Bin2Sig2018.dat "
+                "Bin3Sig2018=cards-{name}/shapes-Bin3Sig2018.dat "
+                "Bin4Sig2018=cards-{name}/shapes-Bin4Sig2018.dat "        
+                "> cards-{name}/combined.dat").format(name=name)
+
+        # converts .dat to .root
+        text2workspace_command = "text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root".format(name=name)
+
+        # this is the command running combine. Some options are passed through the parser
+        if 'HybridNew' in options.combineMethod:
+            combine_method = " -M HybridNew --LHCmode LHC-limits "
+            if options.quantiles and quant != '':
+                 combine_method += f" --expectedFromGrid {quant} "
+        elif options.combineMethod == 'AsymptoticLimits':
+            combine_method = " -M AsymptoticLimits "
+        combine_command = (
+            "combine "
+            " --datacard cards-{name}/combined.root "
+            " {combine_method}"
+            " -m 125 --cl 0.95 --name {name}"
+            " {options}"
+            " --rAbsAcc 0.00001 --rRelAcc 0.01 "
+            " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH ".format(
+                name=name,
+                combine_method=combine_method,
+                options=options.combineOptions
+            )
+        )
+        
+        if options.combineMethod == 'HybridNewAuto':
+            if 'rMin' in options.combineOptions or 'rMax' in options.combineOptions:
+                raise Exception("The HybrdiNewAuto method sets rMin and rMax automatically, incomptible if rMin and rMax passed to the combine options via -o.")
+        
+            # run the asymptotic command
+            pre_combine_command = (
+                "combine "
+                " --datacard cards-{name}/combined.root "
+                " -M AsymptoticLimits "
+                " -m 125 --cl 0.95 --name {name}"
+                " --rAbsAcc 0.00001 --rRelAcc 0.01 "
+                " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH > asymptotic_output-{name}.txt ".format(
+                    name=name,
+                    options=options.combineOptions
+                )
+            ) 
+            # grab the output from asymptotic 
+            grab_boundaries_command = (
+                " min_r=$(grep -oP 'r < \K[0-9.]*' asymptotic_output-{name}.txt | sort -n | head -n 1); "
+                " max_r=$(grep -oP 'r < \K[0-9.]*' asymptotic_output-{name}.txt | sort -n | tail -n 1); "
+                " echo Minimum r value from asymptotic limits: $min_r; "
+                " echo Maximum r value from asymptotic limits: $max_r; "
+                " min_r=$(echo \"$min_r / 2\" | bc -l); "
+                " max_r=$(echo \"$max_r * 2\" | bc -l); "
+                " echo \"Using r lower bound: $min_r \"; "
+                " echo \"Using r upper bound: $max_r \"".format(name=name)
+            )
+            # and use those as boundaries for the toys
+            combine_command += " --rMin $min_r --rMax $max_r "
+            
+            # the command that gets executed is the combination of all the above
+            combine_command = pre_combine_command + " ;\n " + grab_boundaries_command + " ;\n " + combine_command
+
+        # Execute and optionally print the commands   
+        if options.print_commands:
+            print('--- removing old combined datacard:', rm_command)
+            print('--- combining datacards:', combine_card_command)
+            print('--- text2workspace:', text2workspace_command)
+            print('--- running combine:', combine_command)
+
+        # if dry run, skip the rest
+        if options.dry: continue
+
+        # run the commands!
+        if options.method == 'multithread':
+            os.system(rm_command)
+            os.system(combine_card_command)
+            os.system(text2workspace_command)
+            results.append(pool.apply_async(call_combine, (combine_command,)))
+
+        elif options.method == 'slurm':
+
+            cpus = 1 # default value
+            if '--fork' in options.combineOptions: # grab it from fork
+                cpus = int(options.combineOptions.split('--fork ')[1].split(' ')[0])
+
+            if options.combineMethod == 'AsymptoticLimits':
+                mem_per_cpu = 1
+                time_limit = '1:0:0'
+            elif 'HybridNew' in options.combineMethod:
+                mem_per_cpu = 4
+                time_limit = '12:0:0'
+            mem = str(mem_per_cpu*cpus)+'GB'
+
+            slurm_script_content = slurm_script_template.format(
+                                        rm_command=rm_command,
+                                        combine_card_command=combine_card_command,
+                                        text2workspace_command=text2workspace_command,
+                                        combine_command=combine_command,
+                                        work_dir=work_dir,
+                                        log_dir=log_dir,
                                         mem=mem,
+                                        cpus=cpus,
+                                        time_limit=time_limit,
+                                        sample=name,
                                         outFile=strippedOutFile)
-        condor_submission_file = f'{log_dir}submit_{strippedOutFile}.sub'
-        with open(condor_submission_file, 'w') as f:
-            f.write(condor_submission_content)
 
-        # Submit the condor job
-        subprocess.run(['condor_submit', condor_submission_file])
+            # Write the SLURM script to a file
+            slurm_script_file = f'{log_dir}submit_{strippedOutFile}.sh'
+            with open(slurm_script_file, 'w') as f:
+                f.write(slurm_script_content)
+
+            # Submit the SLURM job
+            subprocess.run(['sbatch', slurm_script_file])
+
+        elif options.method == 'iterative':
+            subprocess.run('cmsenv', shell=True)
+            subprocess.run(rm_command, shell=True)
+            subprocess.run(combine_card_command, shell=True)
+            subprocess.run(text2workspace_command, shell=True)
+            subprocess.run(combine_command, shell=True)
+
+        elif options.method == 'condor':
+
+            cpus = 1 # default value
+            if '--fork' in options.combineOptions: # grab it from fork
+                cpus = int(options.combineOptions.split('--fork ')[1].split(' ')[0])
+
+            # set the memory
+            if options.combineMethod == 'AsymptoticLimits':
+                mem_per_cpu = 1
+            elif 'HybridNew' in options.combineMethod:
+                mem_per_cpu = 2
+            mem = str(mem_per_cpu*cpus)+'GB'
+
+            # Write the condor script to a file
+            condor_script_content = condor_script_template.format(
+                                        rm_command=rm_command,
+                                        combine_card_command=combine_card_command,
+                                        text2workspace_command=text2workspace_command,
+                                        combine_command=combine_command,
+                                        condor_out_dir=condor_out_dir)
+            condor_script_file = f'{log_dir}submit_{strippedOutFile}.sh'
+            with open(condor_script_file, 'w') as f:
+                f.write(condor_script_content)
+
+            # Write the condor submission script to a file
+            condor_submission_content = condor_submission_script.format(
+                                            jobdir=log_dir,
+                                            script=f'submit_{strippedOutFile}',
+                                            transfer_file=transfer_file,
+                                            user=os.environ['USER'],
+                                            proxy=f"x509up_u{os.getuid()}",
+                                            queue='espresso',
+                                            cpus=cpus,
+                                            mem=mem,
+                                            outFile=strippedOutFile)
+            condor_submission_file = f'{log_dir}submit_{strippedOutFile}.sub'
+            with open(condor_submission_file, 'w') as f:
+                f.write(condor_submission_content)
+
+            # Submit the condor job
+            subprocess.run(['condor_submit', condor_submission_file])
                 
 if options.method == 'multithread':
     pool.close()

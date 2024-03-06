@@ -57,7 +57,11 @@ GluGluToSUEP_HT1000_T8p00_mS125.000_mPhi2.000_T8.000_modeleptonic_TuneCP5_13TeV-
   type:
     signal
 
-
+GluGluToSUEP_HT1000_T0p50_mS1500.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV-pythia8:
+  files:
+    - /data/submit/lavezzo/SUEP/outputs//GluGluToSUEP_HT1000_T0p50_mS1500.000_mPhi1.000_T0.500_modeleptonic_TuneCP5_13TeV_approval_2017.root
+  type:
+    signal
 
 GluGluToSUEP_HT1000_T0p75_mS700.000_mPhi3.000_T0.750_modeleptonic_TuneCP5_13TeV-pythia8:
   files:

@@ -63,7 +63,8 @@ def main():
     parser.add_argument(
         "-t", "--tag", type=str, default='cards', help="Output tag for cards. Creates a subfolder and puts cards there."
     )
-    parser.add_argument("-include", "--include", type=str, default='', help="Pass a '-' separated list of strings you want your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' and 'mPhi300' in the name.")
+    parser.add_argument("-includeAll", "--includeAll", type=str, default='', help="Pass a '-' separated list of strings you want all your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' AND 'mPhi300' in the name.")
+    parser.add_argument("-includeAny", "--includeAny", type=str, default='', help="Pass a '-' separated list of strings you want any of your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' OR 'mPhi300' in the name.")
     parser.add_argument("-file"  , "--file", type=str, required=False, help='List of samples you want to make datacards for.')
     parser.add_argument("-channel"  , "--channel", type=str, required=True, choices=['ggf-offline', 'ggf-scouting'], help='Which channel to run on.')
     parser.add_argument("-v", "--verbose", action="store_true", help="Print out more information.")
@@ -108,8 +109,12 @@ def main():
             if "SUEP" not in n: continue
 
             # select samples based on include
-            if options.include != '':
-                if any([i not in n for i in options.include.split('-')]): continue
+            if options.includeAll != '' and options.includeAny != '':
+                raise Exception("Either run with --includeAll or --includeAny or neither, not both")
+            elif options.includeAny != '':
+                if any([i not in n for i in options.includeAny.split('-')]): continue
+            elif options.includeAll != '':
+                if all([i not in n for i in options.includeAll.split('-')]): continue
             
             # select samples based on file
             if options.file:
