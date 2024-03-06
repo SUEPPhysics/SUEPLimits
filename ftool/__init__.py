@@ -60,7 +60,6 @@ class datagroup:
           self.binrange= binrange # dropping bins the same way as droping elements in numpy arrays a[1:3]
 
           for fn in self._files:
-
                _proc = os.path.basename(fn).replace(".root","")
                _file = uproot.open(fn)
                if not _file:
