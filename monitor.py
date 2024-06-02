@@ -6,7 +6,7 @@ Script to do any of the following:
     local directory/tag.
 
 2. Monitor the completion of the limits produced via combine, and verify that the they are not corrupted.
-    Will check that for each cards-SAMPLE/ subdirectory under the directory/tag --tag, the correspodning 
+    Will check that for each cards-SAMPLE/ subdirectory under the directory named via --tag, the correspodning 
     limit files have been produced successfully.
 
 3. Move the limit files from the remote directory, where condor places the outputs, to the local directory/tag.
@@ -22,6 +22,20 @@ import datetime
 import argparse
 import yaml
 import logging
+from tqdm import tqdm
+
+def getExpectedLength(fname):
+    """
+    Get the expected length of the limit tree.
+    """
+    if 'AsymptoticLimits' in fname: return 6
+    elif 'HybridNew' in fname: return 1
+    else: raise ValueError("Cannot determine expected length of limit tree from file name.")
+
+def find_recompute_indices(numbers):
+    sorted_indices = sorted(range(len(numbers)), key=lambda k: numbers[k])
+    wrong_indices = [i for i, j in enumerate(sorted_indices) if i != j]
+    return [i for i in wrong_indices]
 
 def main ():
 
@@ -29,6 +43,7 @@ def main ():
     parser.add_argument("-c", "--checkMissingCards", action='store_true')
     parser.add_argument("-l", "--checkMissingLimits", action='store_true')
     parser.add_argument("-d", "--deleteCorruptedLimits", action='store_true', help="Deletes empty or corrupted limit files. Must be run with --checkMissingLimits")
+    parser.add_argument("-q", "--checkQuantiles", action='store_true', help="Checks that the quantiles are ordered correctly. Must be run with --checkMissingLimits")
     parser.add_argument("-M", "--combineMethod", type=str, required=False, choices=["HybridNew", "AsymptoticLimits"], default='HybridNew', help="Which limit files to look for. Must be run with --checkMissingLimits.")
     parser.add_argument("-m", "--moveLimits", action='store_true')
     parser.add_argument("-r", "--remoteDir", type=str, required=False, default='', help="Where to move the limits from. Must be run with --move.")
@@ -50,13 +65,12 @@ def main ():
         raise ValueError("Please specify remote directory with -r when asking to move files.")
     if args.deleteCorruptedLimits and not args.checkMissingLimits:
         raise ValueError("Please specify --checkMissingLimits when asking to delete corrupted limits.")
-    if (args.moveLimits and not args.remoteDir) or (not args.moveLimits and args.remoteDir):
-        raise ValueError("Please specify both --moveLimits and --remoteDir or neither.")
 
     # set directories
     remoteLimitDir = args.remoteDir
     limitDir = args.tag
 
+    # print out what we are doing
     logging.info("monitor.py will run the following modes:")
     if args.checkMissingCards: logging.info("--checkMissingCards")
     if args.moveLimits: logging.info("--moveLimits")
@@ -68,7 +82,7 @@ def main ():
         logging.info("-"*50)
         logging.info("--checkMissingCards")
         logging.info("Checking for missing cards in the local directory.")
-        logging.info("Local directory:", limitDir)
+        logging.info("Local directory: " + limitDir)
         logging.info('')
 
         bins  = ['Bin1Sig','Bin2Sig',
@@ -94,6 +108,8 @@ def main ():
                             missingCardsSamples.append(sample)
                             continue
         
+        missingCardsSamples = list(set(missingCardsSamples))
+
         logging.info(f"Found {len(missingCardsSamples)} samples with missing cards.")
         if len(missingCardsSamples) > 0 and args.verbose:
             logging.debug()
@@ -104,7 +120,7 @@ def main ():
         # write out missing samples to file
         now = datetime.datetime.now()
         outCardsFile = 'missingCards_'+now.strftime("%Y-%m-%d_%H-%M-%S")+'.txt'
-        logging.info("Outputting results to", outCardsFile)
+        logging.info("Outputting results to " +  outCardsFile)
         with open(outCardsFile, 'w') as f:  
             for item in missingCardsSamples:
                 f.write("%s\n" % item)
@@ -125,13 +141,16 @@ def main ():
 
         for outFile in os.listdir(remoteLimitDir):
 
+            # no need to check bad files
+            if ".corrupted.root" in outFile or ".badQuantile" in outFile: continue
+
             # check if corresponding file is missing in outDir, if so, cp it there
             if not os.path.isfile(os.path.join(limitDir,outFile)):
                 logging.debug(outFile)
                 remoteFile = os.path.join(remoteLimitDir,outFile)
-                f = uproot.open(remoteFile)
                 try:
-                    if len(f['limit']['limit'].array()) == expected_length:
+                    f = uproot.open(remoteFile)
+                    if len(f['limit']['limit'].array()) == getExpectedLength(remoteFile):
                         nMoved +=1 
                         os.system('cp '+remoteFile+' '+limitDir)
                     else:
@@ -140,7 +159,7 @@ def main ():
                 except:
                     nDeleted += 1
                     logging.debug("\t --> Limit not found in the file " +  remoteFile + " deleting...")
-                    if not args.dry: os.system('rm '+remoteFile)
+                    if not args.dry: os.system('mv '+remoteFile+ ' '+remoteFile.replace('.root','.corrupted.root'))
 
         logging.info('')
         if nDeleted > 0: logging.info(f"Deleted {nDeleted} bad limit files from the remote directory.")
@@ -160,9 +179,10 @@ def main ():
         nMissingLimits = 0
         nBadLimit = 0
         nTotalLimits = 0
+        nSamplesWithBadOrderedQuantiles = 0
         missingLimits = []
+        badOrderedQuantiles = []
         limit = args.combineMethod
-        expected_length = 1 if limit == 'HybridNew' else 6    # size of the limit array in the root file
 
         all_samples = []
         # list all subdirectories of the limitDir, these are the samples we will check
@@ -172,14 +192,15 @@ def main ():
                 if "cards-" in subdir:
                     all_samples.append(subdir.replace("cards-",""))
 
-        for sample in all_samples:
+        for sample in tqdm(all_samples):
 
             # the quantiles are only needed for running toys with HybridNew
             if limit == 'AsymptoticLimits':
                 quants = [""]
             elif limit == 'HybridNew':
                 quants = ['', '.quant0.500', '.quant0.160', '.quant0.840', '.quant0.975', '.quant0.025']
-
+                quantsDict = {}
+                
             # check if file higgsCombine{sample}.HybridNew.mH125.root exists
             for quant in quants:
                 nTotalLimits += 1
@@ -192,22 +213,36 @@ def main ():
 
                 # if request, check corrupted files by loading them with uproot.
                 # deletes the file if it finds it corrupted
-                elif args.deleteCorruptedLimits:
+                elif args.deleteCorruptedLimits or args.checkQuantiles:
                     f = uproot.open(fname)
                     try:
-                        if len(f['limit']['limit'].array()) == expected_length:
+                        limitValue = f['limit']['limit'].array()
+                        if len(limitValue) == getExpectedLength(fname):
+                            if args.checkQuantiles:
+                                if len(limitValue) == 1 and 'quant' in quant:
+                                    quantsDict[quant.replace(".quant", "")] = limitValue[0]
                             continue
                         else:
                             # raise error if we find empty limits!
                             raise ValueError
                     except:
                         logging.debug("\t --> Limit not found in the file " + fname + " deleting...")
-                        if not args.dry: 
-                            #os.system('rm '+fname)
+                        if not args.dry and args.deleteCorruptedLimits: 
                             os.system('mv '+fname+' '+fname.replace('.root','.corrupted.root'))
                         nBadLimit += 1
                         nMissingLimits += 1
                         missingLimits.append(fname)
+                        
+            if args.checkQuantiles:
+                sorted_dict = dict(sorted(quantsDict.items(), key=lambda item: float(item[0])))
+                values_in_order = sorted(list(sorted_dict.values())) == list(sorted_dict.values())
+
+                if not values_in_order:
+                    logging.debug("\t --> Bad ordered quantiles in the file " + fname + " ...")
+                    nSamplesWithBadOrderedQuantiles += 1
+                    badQuantsIndices = find_recompute_indices(list(sorted_dict.values()))
+                    for q in badQuantsIndices:
+                        badOrderedQuantiles.append(fname.replace(".quant0.025", ".quant"+str(list(sorted_dict.keys())[q])))
 
         logging.info('')
         logging.info(f"Files Completion Rate: {round((nTotalLimits-nMissingLimits)*100/nTotalLimits,2)}%")
@@ -221,6 +256,20 @@ def main ():
         with open(outLimitFile, 'w') as f:  
             for item in missingLimits:
                 f.write("%s\n" % item)
+
+        # write out bad quantiles
+        if args.checkQuantiles:
+            logging.info('')
+            logging.info(f"Found { nSamplesWithBadOrderedQuantiles } samples with badly ordered quantiles.")
+            outQuantileFile = 'badQuantiles_'+now.strftime("%Y-%m-%d_%H-%M-%S")+'.txt'
+            logging.info("Outputting results to " + outQuantileFile)
+            with open(outQuantileFile, 'w') as f:
+                for fname in badOrderedQuantiles:
+                    if not args.dry: os.system('mv '+fname+' '+fname.replace('.root','.badQuantile.root'))
+                    if "/" in fname: fname = fname.split("/")[-1]
+                    if not args.dry and args.remoteDir != '': 
+                        os.system('mv '+ args.remoteDir + fname+' ' + args.remoteDir + fname.replace('.root','.badQuantile.root'))
+                    f.write(f"\n{fname}")
 
 if __name__ == "__main__":
     main()

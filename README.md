@@ -39,15 +39,27 @@ cd $CMSSW_BASE/src/SUEPLimits/
 
 This section sits on top of the Combine tools and is run in 4 sections. Make sure that the combine tools are up to date. 
 
-## 1. Configuration: cross sections and histograms
+## 1. Configuration: normalizations and samples
 
-Before we make cards, we need to set up the cross sections for the signal samples, and the list of histograms that are used as inputs for the cards for each year.
+Before we make cards, we need to set up the normalizations (cross sections, branching ratios, and k-factors) for the signal samples, and the list of samples for each era. These, and some files to produce them, are stored in `config/`.
 
-Run `make_yaml.py` which will produce a .yaml file for each year containing a list of histogram files for each sample.
+For the normalizations, add them for each sample to the `config/xsections_ERA.json` files. These are common between analyses.
+
+For the list of samples, you need to create a `.yaml` file for each era specific to each analysis.
+This configuration can differ between the different SUEP analyses.
+The basic components, needed to be compatible with the common script to run datacard-maker (`runcards.py`), are:
+
+- Each key is a sample name, which is turn a dictionary containing
+- a `type` key, which specifies if the sample is `signal` or `data`
+
+This file is usually read in by the datacard-maker, which is different for each analysis, so the rest of the configuration files can differ between analyses. What is also commonly found in these files are:
+
+- A `files` key, containing a list of paths to files containing histograms for each sample
+- A  `sample` key, which is used since signal samples may have different names in different eras, but we want to combine them across eras
+
+The production of the `.yaml` file can be 'automated'. For example, for the offline analysis, `config/make_offline_yaml.py` will produce a .yaml file for each year containing a list of histogram files for each sample.
 You will need to configure the parameters of this script, such as the input directory, the channel, etc.
-This script will ***NOT*** inform you if some histograms files are missing, make sure that they're all there when you produce them!	
 
-To make the cross section list, you can use `make_xsec.py`.
 
 ## 2. Creating Datacards
 
@@ -69,7 +81,7 @@ The script:
 - expects an output tag/directory defined via `-t`.
 - supports running via slurm and multithread via the `-m slurm/multithread` option.
 - knows not to re-run cards that already exist under the same tag, but can be forced to via the `-f` parameter.
-- can run on a subset of samples via the `--include` option, e.g. `--include generic-mPhi300` will only run samples that contain 'generic' and 'mPhi300' in the name.
+- can run on a subset of samples via the `--includeAny` and `--includAll` options, e.g. `--includeAll generic-mPhi300` will only run samples that contain 'generic' and 'mPhi300' in the name.
 - can run on a subset of samples defined in a .txt file via the `--file` option.
   
 See the script for more information.
@@ -83,7 +95,7 @@ python runcards.py -m slurm -t my_tag --file sample.txt
 
 e.g. run over multithread with 10 cores all samples with generic decay
 ```
-python runcards.py -m multithread -c 10 -t my_tag --include generic
+python runcards.py -m multithread -c 10 -t my_tag --includeAny generic
 ```
 
 ## 3. Running the Combine tool
@@ -100,9 +112,10 @@ The script:
 - expects an input/output tag/directory defined via `-i`.
 - supports running via any of the following options: iteratively, multithread, slurm, condor.
 - supports running different combine options via `--combineMethod`: `AsymptoticLimits`, `HybridNew`.
-- supports further options to be passed to the `combine` command via `--combineOptions`, e.g. `--combineOptions " --fork 100 --expectedFromGrid 0.5".
+- supports further options to be passed to the `combine` command via `--combineOptions`, e.g. `--combineOptions " --fork 100 --expectedFromGrid 0.5"`.
 - knows not to re-run cards that already eixst under the same tag, but can be forced to via the `-f` parameter.
-- can run on a subset of samples via the `--include` option, e.g. `--include generic-mPhi300` will only run samples that contain 'generic' and 'mPhi300' in the name.
+- can run on a subset of samples via the `--includeAny` and `--includeAll` option, e.g. `--includeAll generic-mPhi300` will only run samples that contain 'generic' and 'mPhi300' in the name, `--includeAny generic-mPhi300` will run samples that include 'generic' or 'mPhi300' in the name.
+- can run all quantiles when running toys with `--quantiles`.
 - can run on a subset of samples defined in a .txt file via the `--file` option.
 - can be ran 'dry' such that it will not actually run/submit anything with the `--dry` option.
 
@@ -112,7 +125,7 @@ Some examples:
 
 e.g. running asymptotic limits for all mS = 125 GeV samples via slurm with setting min and max values on the signal strength `r`:
 ```bash
-python runcombine.py -M AsymptoticLimits -i my_tag --include mS125 -m slurm -o " --rMax 10000 --rMin 0.1 "
+python runcombine.py -M AsymptoticLimits -i my_tag --includeAny mS125 -m slurm -o " --rMax 10000 --rMin 0.1 "
 ```
 
 e.g. running toys (need to run separately for observed, and each 'quanile': expected (0.5), +/-1 sigma (0.84, 0.16), and +/-2 sigma (0.975, 0.025)). Note that these are very computationally intensive, and work best when you are able to split them across several cores, for this example we use 10.
@@ -123,6 +136,10 @@ python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --
 python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.500 --fork 10 "   # expected
 python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.840 --fork 10 "   # +1 sigma
 python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.160 --fork 10 "   # -1 sigma
+```
+Alternatively, use the option `--quantiles` to run them all at the same time,
+```
+python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --fork 10 " --quantiles                # runs all quantiles and observed
 ```
 
 Some notes on running the limits:
