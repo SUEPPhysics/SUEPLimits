@@ -1,5 +1,5 @@
 # SUEP Final fitting 
-Written for python3 (uproot)
+Written for python3 (uproot).
 Using SUEP histograms from coffea producer
 
 1) Create datacards and root files to input into combine
@@ -37,45 +37,51 @@ cd $CMSSW_BASE/src/SUEPLimits/
 
 # The Code set up
 
-This section sits on top of the Combine tools and is run in 4 sections. Make sure that the combine tools are up to date. 
+This tool sits on top of the Combine tools. Make sure that the combine tools are up to date, and familiarize yourself with them through the Combine documentation, if needed.
 
 ## 1. Configuration: normalizations and samples
 
-Before we make cards, we need to set up the normalizations (cross sections, branching ratios, and k-factors) for the signal samples, and the list of samples for each era. These, and some files to produce them, are stored in `config/`.
+Before we make cards, we need to set up the normalizations (cross sections, branching ratios, and k-factors) for the signal samples, and the list of samples for each era. These (and some files to produce them 'automatically') are stored in `config/`.
 
-For the normalizations, add them for each sample to the `config/xsections_ERA.json` files. These are common between analyses.
+For the normalizations, add them for each sample to the `config/xsections_ERA.json` files. These json are common between analyses.
 
-For the list of samples, you need to create a `.yaml` file for each era specific to each analysis.
+For the list of samples, you need to create a yaml file for each era specific to each analysis.
 This configuration can differ between the different SUEP analyses.
-The basic components, needed to be compatible with the common script to run datacard-maker (`runcards.py`), are:
+The basic components, needed to be compatible with the common script to run the datacard-maker (`runcards.py`), are:
 
 - Each key is a sample name, which is turn a dictionary containing
-- a `type` key, which specifies if the sample is `signal` or `data`
+- A `type` key, which specifies if the sample is `signal` or `data`
 
 This file is usually read in by the datacard-maker, which is different for each analysis, so the rest of the configuration files can differ between analyses. What is also commonly found in these files are:
 
 - A `files` key, containing a list of paths to files containing histograms for each sample
 - A  `sample` key, which is used since signal samples may have different names in different eras, but we want to combine them across eras
 
-The production of the `.yaml` file can be 'automated'. For example, for the offline analysis, `config/make_offline_yaml.py` will produce a .yaml file for each year containing a list of histogram files for each sample.
+The production of the yaml file can be 'automated'. For example, for the offline analysis, `config/make_offline_yaml.py` will produce a yaml file for each year containing a list of histogram files for each sample.
 You will need to configure the parameters of this script, such as the input directory, the channel, etc.
-
 
 ## 2. Creating Datacards
 
-The first section creates datacards and root files that will be ready to input into combine.
-It does this by reading in the .root histograms and preparing the different control and signal regions as well as the different systematic variations. 
-Notice that after activating the combine tools through cmsenv, functions and packages from other environments might not work anymore so only activate cmsenv after completing the datacards. 
+To create datacards, we use the `datacard` class in `ftool/__init__.py`. The class supports several functions to convert boost histogram objects to a datacard file that Combine can read, as well as functions to add uncertanties, and ABCD predictions.
 
-The nuisances for the datacard are defined in `makeDataCard.py`. 
-The various regions and binnings are defined in `runcards.py`.
-The functions used to analyze the histograms as well as the nuisances are defined in `ftool/__init__.py`.
+In order to create the histogram objects for `datacard` from a list of root files, and in order to properly combine samples across eras, normalize them, and more, you can use the `datagroup` class in `ftool/__init__.py`. Each analysis can create a subclass to this one to read their own histograms correctly.
 
-You only need to run one file once you are satisfied with the setup. 
-To make datacards for all the different regions you can run:
-```bash
-python runcards.py
-```
+The process of creating a `datagroup` for each sample, and writing it out with `datacard`, is performed in a separate script for each analysis, `make<Analysis>DataCard.py`.
+
+## 3. Running Datacards
+
+The `make<Analysis>DataCard.py` will be ran over many signal samples, and for each signal sample, possibly over many eras and channels/bins.
+To scale this out, we use the script `runcards.py`.
+
+The analysis-dependent input to this script is a yaml file that contains the key `runcards` which in turn contains three arguments, unique for each analysis:
+
+1. `commands`: a list of `python make<Analysis>DataCard.py` commands, one per channel/bin.
+2. `eras`: a list of eras to execute the commands over.
+3. `config`: the path to the configuration file described in section 1, which contains all the signal samples.
+
+The script then iterates over signal samples found in the `config` file, all eras, and all commands, launching jobs to make a datacard for each combination, separately.
+
+If you want to for example combine eras in the same card, you can set this up in your datacard-maker, and only run one era through `runcards.py`.
 
 The script:
 - expects an output tag/directory defined via `-t`.
@@ -88,31 +94,32 @@ See the script for more information.
 
 Some examples:
 
-e.g. run  over slurm a list of sapmles from a file
-```
-python runcards.py -m slurm -t my_tag --file sample.txt
+e.g. run  over slurm a list of samples from a file
+```bash
+python runcards.py -a ggf-offline.yaml -m slurm -t my_tag --file sample.txt
 ```
 
 e.g. run over multithread with 10 cores all samples with generic decay
-```
-python runcards.py -m multithread -c 10 -t my_tag --includeAny generic
-```
-
-## 3. Running the Combine tool
-
-If there are multiple eras or datacards for different regions they will need to be used together to make a combined.root and combined.dat files, which are the input to the `combine` command.
-This is done in the runcombine.py file which subsequently runs the combine tool on the created files. If you need to modify the combine commands you can do that here.
-
-To make limits for all of the different samples you can run:
 ```bash
-python runcombine.py
+python runcards.py -a ggf-offline.yaml -m multithread -c 10 -t my_tag --includeAny generic
 ```
+
+## 4. Running the Combine tool
+
+Once cards for each signal sample, channel, and era are made, they need to be combined, and only then Combine can be used to obtain limits.
+
+`runcombine.py` executes both of these tasks, combinig the datacards into one per sample, and then running the limits.
+
+The analysis-dependent input to this script is a `yaml` file that contains the key `runcombine` which in turn contains one argument, unique for each analysis:
+- `combineCards`: a `combineCards.py` command to combine cards across different channels and eras for each sample. 
 
 The script:
 - expects an input/output tag/directory defined via `-i`.
-- supports running via any of the following options: iteratively, multithread, slurm, condor.
-- supports running different combine options via `--combineMethod`: `AsymptoticLimits`, `HybridNew`.
-- supports further options to be passed to the `combine` command via `--combineOptions`, e.g. `--combineOptions " --fork 100 --expectedFromGrid 0.5"`.
+- supports running via any of the following options: iteratively, multithread, slurm, condor, via the `-m` option.
+   - automatically requests the correct number of CPUs, and its best guess at memory usage, in the condor and slurm jobs if using `--combineOptions "--fork N"`.
+- supports running different combine options via `--combineMethod`: `AsymptoticLimits`, `HybridNew`, `HybridNewAuto`***.
+   - *** `HybridNewAuto` is not a real combine option, it's something that we came up with out of convenience. The `AsymptoticLimits` are first ran on the sample to obtain rough bounds on `r`; these are then fed back as `--rMin` and `--rMax` when running the `HybridNew` (toys) option. This is done because the toys are extremely slow and compute-intensive, and it is thus more efficient to constrain the space that needs to be scanned by Combine. 
+- supports further options to be passed to the `combine` command via `--combineOptions`, e.g. `--combineOptions " --fork 20 --expectedFromGrid 0.5"` tells Combine to fork over 20 threads and calculate the expected limits.
 - knows not to re-run cards that already eixst under the same tag, but can be forced to via the `-f` parameter.
 - can run on a subset of samples via the `--includeAny` and `--includeAll` option, e.g. `--includeAll generic-mPhi300` will only run samples that contain 'generic' and 'mPhi300' in the name, `--includeAny generic-mPhi300` will run samples that include 'generic' or 'mPhi300' in the name.
 - can run all quantiles when running toys with `--quantiles`.
@@ -125,21 +132,25 @@ Some examples:
 
 e.g. running asymptotic limits for all mS = 125 GeV samples via slurm with setting min and max values on the signal strength `r`:
 ```bash
-python runcombine.py -M AsymptoticLimits -i my_tag --includeAny mS125 -m slurm -o " --rMax 10000 --rMin 0.1 "
+python runcombine.py -a ggf-offline.yaml -M AsymptoticLimits -i my_tag --includeAny mS125 -m slurm -o " --rMax 10000 --rMin 0.1 "
 ```
 
-e.g. running toys (need to run separately for observed, and each 'quanile': expected (0.5), +/-1 sigma (0.84, 0.16), and +/-2 sigma (0.975, 0.025)). Note that these are very computationally intensive, and work best when you are able to split them across several cores, for this example we use 10.
-```
-python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --fork 10 "                            # observed
-python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.025 --fork 10 "   # -2 sigma
-python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.975 --fork 10 "   # +2 sigma
-python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.500 --fork 10 "   # expected
-python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.840 --fork 10 "   # +1 sigma
-python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.160 --fork 10 "   # -1 sigma
+e.g. running toys (need to run separately for observed, and each 'quanile': expected (0.5), +/-1 sigma (0.84, 0.16), and +/-2 sigma (0.975, 0.025)). Note that these are very computationally intensive, and work best when you are able to split them across several cores, for this example we use 10. 
+```bash
+python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --fork 10 "                            # observed
+python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --expectedFromGrid 0.025 --fork 10 "   # -2 sigma
+python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --expectedFromGrid 0.975 --fork 10 "   # +2 sigma
+python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --expectedFromGrid 0.500 --fork 10 "   # expected
+python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --expectedFromGrid 0.840 --fork 10 "   # +1 sigma
+python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --expectedFromGrid 0.160 --fork 10 "   # -1 sigma
 ```
 Alternatively, use the option `--quantiles` to run them all at the same time,
+```bash
+python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --fork 10 " --quantiles                # runs all quantiles and observed
 ```
-python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --fork 10 " --quantiles                # runs all quantiles and observed
+As aforementioned, toys also work best when the `r` space is constrained,
+```bash
+python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNewAuto -o " --fork 10 " --quantiles                # runs all quantiles and observed, running first toys to constrain the --rMin and --rMax dynamically
 ```
 
 Some notes on running the limits:
@@ -147,7 +158,7 @@ Some notes on running the limits:
 - Set `--rMax` and `--rMin` if limits are not converging, check the logs, they should say when you are hitting the limits.
 - Set `--rAbsAcc` and `--rRelAcc` by hand; make sure that these are smaller than the ~1 sigma bands.
 
-## 4. Monitoring, Plotting and additional tools
+## 5. Monitoring, Plotting and additional tools
 
 ## Monitoring
 
