@@ -14,27 +14,27 @@ import glob
 #### PARAMETERS #########################################################
 # input directory
 histDirectory = '/data/submit/{}/SUEP/outputs/'.format(os.environ['USER'])
-# signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/Offline/list_{}_full_signal_offline.txt"
-signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_ttHsignal_private.txt"
+signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/Offline/list_{}_full_signal_offline.txt"
+#signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_ttHsignal_private.txt"
 dataList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/Offline/list_{}_JetHT_A02_offline.txt"
 # make a dictionary, keys are years, values are histogram tags
-# signalTags = {
-#     '2016': 'approval_2016',
-#     '2016apv': 'approval_2016apv',
-#     '2017': 'approval_2017',
-#     '2018': 'approval',
-# }
 signalTags = {
-    '2016': 'ggF_limits_ttH',
-    '2016apv': 'ggF_limits_ttH',
-    '2017': 'ggF_limits_ttH',
-    '2018': 'ggF_limits_ttH',
+    '2016': 'approval_2016',
+    '2016apv': 'approval_2016apv',
+    '2017': 'approval_2017',
+    '2018': 'approval',
 }
+# signalTags = {
+#     '2016': 'ggF_limits_ttH',
+#     '2016apv': 'ggF_limits_ttH',
+#     '2017': 'ggF_limits_ttH',
+#     '2018': 'ggF_limits_ttH',
+# }
 dataTags = {
-    '2016apv': 'fix_JEC_final',
-    '2016': 'fix_JEC_final',
-    '2017': 'fix_JEC_final',
-    '2018': 'fix_JEC_final',
+    '2016apv': 'ggF_PRL',
+    '2016': 'ggF_PRL',
+    '2017': 'ggF_PRL',
+    '2018': 'ggF_PRL',
 }
 combine2016 = True
 #########################################################################
@@ -133,7 +133,7 @@ for year, tag in signalTags.items():
         ).format(process=process, files=files)
 
     # write out the output
-    outfile = 'ttHSUEP_inputs_{}.yaml'.format(year)
+    outfile = 'PRL_SUEP_inputs_{}.yaml'.format(year)
     with open(outfile, 'w') as f:
         f.write(output)
     print("Wrote", outfile)

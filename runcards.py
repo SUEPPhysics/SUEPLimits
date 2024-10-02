@@ -52,6 +52,9 @@ def main():
     # script parameters
     parser = argparse.ArgumentParser(description="Famous Submitter")
     parser.add_argument(
+        "-a", "--analysis", type=str, required=True, help="YAML file with analysis configuration."
+    )
+    parser.add_argument(
         "-m", "--method", type=str, default="slurm", choices=['slurm', 'multithread'], help="How to execute the code: either via multithread or slurm."
     )
     parser.add_argument(
@@ -66,9 +69,13 @@ def main():
     parser.add_argument("-includeAll", "--includeAll", type=str, default='', help="Pass a '-' separated list of strings you want all your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' AND 'mPhi300' in the name.")
     parser.add_argument("-includeAny", "--includeAny", type=str, default='', help="Pass a '-' separated list of strings you want any of your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' OR 'mPhi300' in the name.")
     parser.add_argument("-file"  , "--file", type=str, required=False, help='List of samples you want to make datacards for.')
-    parser.add_argument("-channel"  , "--channel", type=str, required=True, choices=['ggf-offline', 'ggf-scouting'], help='Which channel to run on.')
     parser.add_argument("-v", "--verbose", action="store_true", help="Print out more information.")
     options = parser.parse_args()
+
+    with open(options.analysis) as f:
+        analysis = yaml.safe_load(f.read())
+        analysis = analysis['runcards']
+    eras = analysis['eras']
 
     if options.file:
         with open(options.file) as f:
@@ -90,59 +97,48 @@ def main():
     print("Writing out to", options.tag)
     
     results = []
-    years = ['2016', '2017', '2018']
-    for year in years:
+    for era in eras:
 
-        if options.channel == 'ggf-offline':
-            config_file = makeOfflineDataCard.get_config_file()
-        elif options.channel == 'ggf-scouting':
-            config_file = makeScoutingDataCard.get_config_file()
-
-        with open(config_file.format(year)) as f: 
-            try:
-                inputs = yaml.safe_load(f.read())
-            except yaml.YAMLError as exc:
-                print ("failed to open the YAML ....")
-                print (exc)
-
+        with open(analysis['config'].format(era=era)) as f: 
+            inputs = yaml.safe_load(f.read())
+           
         for n, sam in inputs.items():
-            if "SUEP" not in n: continue
+            if type(sam) != dict or sam.get('type') != 'signal': continue
 
             # select samples based on include
             if options.includeAll != '' and options.includeAny != '':
                 raise Exception("Either run with --includeAll or --includeAny or neither, not both")
             elif options.includeAny != '':
-                if any([i not in n for i in options.includeAny.split('-')]): continue
+                if all([i not in n for i in options.includeAny.split('-')]): continue
             elif options.includeAll != '':
-                if all([i not in n for i in options.includeAll.split('-')]): continue
+                if any([i not in n for i in options.includeAll.split('-')]): continue
             
             # select samples based on file
             if options.file:
                 if n not in samplesToRun: continue
 
             # grab the commands and bins for this sample
-            if options.channel == 'ggf-offline':
-                commands = makeOfflineDataCard.get_commands(options, n, year)
-                bins = makeOfflineDataCard.get_bins()
-            elif options.channel == 'ggf-scouting':
-                commands = makeScoutingDataCard.get_commands(options, n, year)
-                bins = makeScoutingDataCard.get_bins()
+            commands = analysis['commands']
+            commands = [com.format(era=era, n=n, tag=options.tag) for com in commands]
 
             # either force the run, or check whether the file already exist before running
-            run = False
-            if options.force: run = True
-            else:
-                for bin_name in bins: 
+            bins_to_run = [com.split('--channel ')[1].split()[0] for com in commands]
+            if not options.force:
+                completed = []
+                for bin_name in bins_to_run: 
                     for eof in ['dat','root']:
-                        path = '{}/cards-{}/shapes-{}{}.{}'.format(options.tag, n,bin_name,year,eof)
-                        if not os.path.exists(path) or os.path.getsize(path) == 0: 
-                            run = True
-            if not run: 
-                print("File exists, skipping (use -f to overwrite):", path)
-                continue
-            
-            print(" ===== processing : ", n, year)
-            if options.verbose: print(" ---- inputs : ", sam)
+                        path = '{}/cards-{}/shapes-{}{}.{}'.format(options.tag, n,bin_name,era,eof)
+                        if os.path.exists(path) and os.path.getsize(path) > 0: 
+                            completed.append(bin_name)
+                bins_to_run = list(set(bins_to_run) - set(completed))
+                if len(bins_to_run) == 0: 
+                    print("Cards for this sample are completed, skipping (use -f to overwrite):", n, era)
+                    continue
+        
+            # only run the commands for the bins that are not already completed
+            commands = [com for com in commands if com.split('--channel ')[1].split()[0] in bins_to_run]
+
+            print(" ===== processing : ", n, era, bins_to_run)
 
             if options.method == 'multithread':
                 for cmd in commands:
@@ -153,7 +149,7 @@ def main():
                                             cmd='\n'.join(commands),
                                             work_dir=work_dir,
                                             log_dir=log_dir,
-                                            sample=n+'_'+year)
+                                            sample=n+'_'+era)
                 
                 # Write the SLURM script to a file
                 slurm_script_file = f'{log_dir}{n}.sh'
@@ -167,12 +163,13 @@ def main():
     if options.method == 'multithread':
         pool.close()
         pool.join()
+        print()
+        print(" ----------------- ")
         for result in results:
             out, err = result.get()
-            if "No such file or directory" in str(err):
-                print(str(err))
-                print(" ----------------- ")
-                print()
+            print(err.decode('utf-8'))
+            print(" ----------------- ")
+            print()
             
             
 if __name__ == "__main__":

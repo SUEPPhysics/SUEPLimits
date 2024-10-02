@@ -24,6 +24,7 @@ import yaml
 import logging
 from tqdm import tqdm
 
+
 def getExpectedLength(fname):
     """
     Get the expected length of the limit tree.
@@ -40,6 +41,8 @@ def find_recompute_indices(numbers):
 def main ():
 
     parser = argparse.ArgumentParser(description='Process some integers.')
+
+    parser.add_argument("-a"  , "--analysis", type=str, required=False, help='Which analysis to check.')
     parser.add_argument("-c", "--checkMissingCards", action='store_true')
     parser.add_argument("-l", "--checkMissingLimits", action='store_true')
     parser.add_argument("-d", "--deleteCorruptedLimits", action='store_true', help="Deletes empty or corrupted limit files. Must be run with --checkMissingLimits")
@@ -85,24 +88,23 @@ def main ():
         logging.info("Local directory: " + limitDir)
         logging.info('')
 
-        bins  = ['Bin1Sig','Bin2Sig',
-                'Bin3Sig','Bin4Sig',
-                'Bin0crF','Bin1crF','Bin2crF',
-                'Bin3crF','Bin4crF',
-                'cat_crA','cat_crB','cat_crC','cat_crD','cat_crE','cat_crG','cat_crH']
-        config_file = "config/SUEP_inputs_{}.yaml"
-        years = ['2016', '2017', '2018']
-        config_file = "config/SUEP_inputs_{}.yaml"
+        # read in the config file
+        with open(args.analysis) as f:
+            analysis = yaml.safe_load(f.read())
+            analysis = analysis['runcards']
+        eras = analysis['eras']
+        config_file = analysis['config']
+        bins = analysis['bins']
 
         missingCardsSamples = []
-        for year in years:
-            with open(config_file.format(year)) as f: 
+        for era in eras:
+            with open(config_file.format(era=era)) as f: 
                 inputs = yaml.safe_load(f.read())
             for sample in inputs.keys():
-                if "SUEP" not in sample: continue
+                if type(inputs[sample]) != dict or inputs[sample].get('type') != 'signal': continue
                 for bin_name in bins: 
                     for eof in ['dat','root']:
-                        path = '{}/cards-{}/shapes-{}{}.{}'.format(limitDir, sample, bin_name, year, eof)
+                        path = '{}/cards-{}/shapes-{}{}.{}'.format(limitDir, sample, bin_name, era, eof)
                         if not os.path.exists(path) or os.path.getsize(path) == 0: 
                             logging.debug("--missing:", path)
                             missingCardsSamples.append(sample)

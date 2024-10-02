@@ -33,44 +33,38 @@ lumi_corr1718 = {
     "2018" : 1.002
 }
 
-# Shape closure systematic applied to data (from F/C)
-shape_extrapolated_Bin0 = { # Bin0 is used as validation region and therefore not anymore in combine fit
+# ABCD systematic from CRWJ
+ABCD_systematic_Bin0 = {
     "2016" : 1.01,
     "2017" : 1.01,
     "2018" : 1.01,
     "all": 1.01
 }
-shape_extrapolated_Bin1 = {
+ABCD_systematic_Bin1 = {
     "2016" : 1.14,
     "2017" : 1.20,
     "2018" : 1.15,
     "all": 1.16
 }
-shape_extrapolated_Bin2 = {
+ABCD_systematic_Bin2 = {
     "2016" : 1.28,
     "2017" : 1.43,
     "2018" : 1.32,
     "all": 1.55
 }
-shape_extrapolated_Bin3 = {
+ABCD_systematic_Bin3 = {
     "2016" : 1.5,
     "2017" : 1.76,
     "2018" : 1.56,
     "all": 2.0
 }
-shape_extrapolated_Bin4 = {
+ABCD_systematic_Bin4 = {
     "2016" : 2.00,
     "2017" : 2.00,
     "2018" : 2.00,
     "all": 2.00
 }
 
-# ABCD closure systematic applied to data (from ISR)
-closure_systs = {
-    "2016": 1.08,
-    "2017": 1.08,
-    "2018": 1.08
-}
 
 def xs_scale(proc, era):
     xsec = 1.0
@@ -86,10 +80,10 @@ def xs_scale(proc, era):
 
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
-    parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_inputs_2018.yaml")
+    parser.add_argument("-i"  , "--input"   , type=str, default="config/WH_inputs_2018.yaml")
     parser.add_argument("-tag"  , "--tag"   , type=str, default=".")
-    parser.add_argument("-v"  , "--variable", type=str, default="nCleaned_Cands")
-    parser.add_argument("-c"  , "--channel" , nargs='+', type=str)
+    parser.add_argument("-v"  , "--variable", type=str, required=True)
+    parser.add_argument("-c"  , "--channel" , type=str)
     parser.add_argument("-s"  , "--signal"  , nargs='+', type=str)
     parser.add_argument("-t"  , "--stack"   , nargs='+', type=str)
     parser.add_argument("-era", "--era"     , type=str, default="2017")
@@ -111,9 +105,6 @@ def main():
     if options.era == "2016":
         with open(options.input.replace("2016","2016apv")) as f:
             inputs2016apv = yaml.safe_load(f.read())
-
-    if len(options.channel) == 1:
-        options.channel = options.channel[0]
     
     # make datasets per process
     datasets = {}
@@ -121,7 +112,15 @@ def main():
     signal = ""
     for dg in options.stack:
         logging.info(dg)
-        p = ftool.ggf_datagroup( 
+
+        if inputs[dg]["type"] == "signal":
+            if signal == "":
+                signal = dg
+            else:
+                raise ValueError("I wasn't expecting multiple signals in the same card.")
+            if 'GJ' in options.channel: continue  # TODO for now skip signal in the gamma+jets
+            
+        p = ftool.wh_datagroup( 
             inputs[dg]["files"],
             ptype      = inputs[dg]["type"], 
             observable = options.variable,
@@ -140,7 +139,7 @@ def main():
         if options.era == "2016":
             sample2016apv = dg.replace("2016","2016apv").replace("UL16", "UL16APV")
             logging.info("Merging with 2016apv sample: " + sample2016apv)
-            p_merge = ftool.ggf_datagroup(
+            p_merge = ftool.wh_datagroup(
                 inputs2016apv[sample2016apv]["files"],
                 ptype      = inputs2016apv[sample2016apv]["type"],
                 observable = options.variable,
@@ -157,8 +156,6 @@ def main():
             p.add(p_merge)
 
         datasets[p.name] = p
-        if p.ptype == "signal":
-            signal = p.name
 
     card_name = "ch"+options.era
     if isinstance(options.channel, str):
@@ -174,53 +171,68 @@ def main():
     )
     card.shapes_headers()
 
-    data_obs = datasets.get("data").get("nom") 
+    card.process_indx_map = {
+        "Signal" : 0,
+        "WJHSdata" : 1,
+        "WJHSexpected" : 2,
+        "WJLSdata" : 3,
+        "WJLSexpected" : 4,
+        "GJLSdata" : 5,
+        "GJLSexpected" : 6,
+        "GJHSdata" : 7,
+        "GJHSexpected" : 8
+    }
+
+    # add the observed data for this channel
+    # since this can be 'data', 'dataCRWJ', 'dataVRGJlowS', etc. we need to loop over all data samples to find it
+    data_samples = []
+    for _, p in datasets.items():
+        if p.ptype != 'data': continue
+        if 'data' in p.name: data_samples.append(dg)
+    if len(data_samples) != 1: raise Exception("Need exactly one data sample, found {}".format(len(data_samples)))
+    data_sample = data_samples[0]
+    data_obs = datasets[data_sample].get("nom") 
+    data_obs[:] = np.stack([np.where(data_obs.values() > 0, data_obs.values(), 0), data_obs.variances()], axis=-1) # workaround for MC edge cases
     card.add_observation(data_obs)
 
     for n, p in datasets.items():
         name = "Signal" if p.ptype=="signal" else p.name
-        if p.ptype=="data" and p.name == "data": continue #Skip the data_obs
+        if p.ptype=="data" and p.name == data_sample: continue #Skip the data_obs
 
         #Look at expected and add in the rate_params
         card.add_nominal(name,options.channel, p.get("nom"))
-        if "Sig" in options.channel:
-            if p.name == "expected" and p.ptype == "data" :
-                
-                if "Bin1" in options.channel:
-                    Bin_cr = "Bin1crF"
-                    shape_syst = shape_extrapolated_Bin1[options.era]
-                if "Bin2" in options.channel:
-                    Bin_cr = "Bin2crF"
-                    shape_syst = shape_extrapolated_Bin2[options.era]
-                if "Bin3" in options.channel:
-                    Bin_cr = "Bin3crF"
-                    shape_syst = shape_extrapolated_Bin3[options.era]
-                if "Bin4" in options.channel:
-                    Bin_cr = "Bin4crF"
-                    shape_syst = shape_extrapolated_Bin4[options.era]
-                    
-                # real
-                closure_syst = closure_systs[options.era]
-                
-                # correlated between years, bins
-                #N/A
-                
-                # correlated between the bins, uncorrelated between years
-                card.add_nuisance(name, "{:<21}  lnN".format("Closure_{}".format(options.era)), closure_syst)
-                card.add_nuisance(name, "{:<21}  lnN".format("Shape_{}".format(options.era)), shape_syst)
+        if "sr" in options.channel:
+            if "expected" in p.name and p.ptype == "data" :
 
-                # uncorrelated systematics between the bins
-                card.add_ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, Bin_cr )
+                # the bin of the E histogram that is used for the ABCD prediction of this channel 
+                Bin_cr = options.channel.replace("sr","crD")
+
+                # ABCD prediction as a rate parameter
+                region = ""
+                if "WJHS" in options.channel: region = "WJHS"
+                elif "WJLS" in options.channel: region = "WJLS"
+                elif "GJHS" in options.channel: region = "GJHS"
+                elif "GJLS" in options.channel: region = "GJLS"
+                card.add_6ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, bin_cr=Bin_cr, region=region)
+                
+                # add systematics for the ABCD prediction
+
+                # correlated between the regions, bins, uncorrelated between years
+                # TODO need to derive these values. non closure?
+                # card.add_nuisance(name, "{:<21}  lnN".format("ABCD_{}".format(options.era)), shape_syst)
 
         else:
             rate_nom = p.get("nom").values().sum()
+            # minor workaround for MC
+            if rate_nom < 0:
+                rate_nom = 0
             rate_up = rate_nom*5
             rate_down = 0
             if rate_up == 0: 
                 rate_nom = 0.0001
                 rate_up = 20
                 rate_down = 0
-            if p.name == "expected" and p.ptype == "data" :
+            if "expected" in p.name and p.ptype == "data" :
                 card.add_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, rate=rate_nom, vmin=rate_down, vmax=rate_up )
 
         if p.ptype=="data": continue #Now that we have expected nom we skip data
@@ -234,18 +246,19 @@ def main():
             card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr1718"), lumi_corr1718[options.era])
 
         #Shape based uncertainties
-        card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JES"))
-        card.add_shape_nuisance(name, "CMS_JER", p.get("JER"))
-        card.add_shape_nuisance(name, "CMS_PU", p.get("puweights"))
-        card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"))
-        card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
-        card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
-        card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"))
-        if options.era == "2016" or options.era == "2017":
-             card.add_shape_nuisance(name, "CMS_Prefire", p.get("prefire"))
-        if "mS125" in p.name:
-             card.add_shape_nuisance(name, "CMS_Higgs", p.get("higgs_weights"))
-        card.add_auto_stat()
+        # TODO missing: btag, lepton scale factors, lepton ID
+        # card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JES"))
+        # card.add_shape_nuisance(name, "CMS_JER", p.get("JER"))
+        # card.add_shape_nuisance(name, "CMS_PU", p.get("puweights"))
+        # card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"))
+        # card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
+        # card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
+        # card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"))
+        # card.add_shape_nuisance(name, "CMS_Higgs", p.get("higgs_weights"))
+        # if options.era == "2016" or options.era == "2017":
+        #      card.add_shape_nuisance(name, "CMS_Prefire", p.get("prefire"))
+             
+    card.add_auto_stat()
 
     logging.info("All done!")
     card.dump()

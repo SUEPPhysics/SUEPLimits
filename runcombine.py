@@ -5,6 +5,7 @@ from multiprocessing.pool import ThreadPool
 import subprocess
 import shlex
 import argparse
+import yaml
 
 # HTCondor script template
 condor_script_template = '''
@@ -12,6 +13,10 @@ condor_script_template = '''
 echo "Setting up environment"
 export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
 source $VO_CMS_SW_DIR/cmsset_default.sh
+
+cmssw-cc7 --command-to-run << 'EOF'
+
+echo "Inside Singularity image"
 export SCRAM_ARCH=slc7_amd64_gcc700
 cmsrel CMSSW_10_2_13
 cd CMSSW_10_2_13/src
@@ -51,8 +56,7 @@ echo "{text2workspace_command}"
 echo "{combine_command}"
 {combine_command}
 
-xrdcp *HybridNew*.root root://submit50.mit.edu/{condor_out_dir}
-xrdcp *Asymptotic*.root root://submit50.mit.edu/{condor_out_dir}
+xrdcp *.root root://submit50.mit.edu/{condor_out_dir}
 '''
 
 # HTCondor submission script
@@ -76,10 +80,10 @@ max_retries           = 3
 use_x509userproxy     = True
 x509userproxy         = /home/submit/{user}/{proxy}
 +AccountingGroup      = "analysis.{user}"
-Requirements          = ( BOSCOCluster =!= "t3serv008.mit.edu" && BOSCOCluster =!= "ce03.cmsaf.mit.edu" && BOSCOCluster =!= "eofe8.mit.edu" && (OpSysAndVer =?= "CentOS7"))
+Requirements          = ( BOSCOCluster =!= "t3serv008.mit.edu" && BOSCOCluster =!= "ce03.cmsaf.mit.edu" && BOSCOCluster =!= "eofe8.mit.edu")
 +DESIRED_Sites        = "mit_tier2,mit_tier3,T2_AT_Vienna,T2_BE_IIHE,T2_BE_UCL,T2_BR_SPRACE,T2_BR_UERJ,T2_CH_CERN,T2_CH_CERN_AI,T2_CH_CERN_HLT,T2_CH_CERN_Wigner,T2_CH_CSCS,T2_CH_CSCS_HPC,T2_CN_Beijing,T2_DE_DESY,T2_DE_RWTH,T2_EE_Estonia,T2_ES_CIEMAT,T2_ES_IFCA,T2_FI_HIP,T2_FR_CCIN2P3,T2_FR_GRIF_IRFU,T2_FR_GRIF_LLR,T2_FR_IPHC,T2_GR_Ioannina,T2_HU_Budapest,T2_IN_TIFR,T2_IT_Bari,T2_IT_Legnaro,T2_IT_Pisa,T2_IT_Rome,T2_KR_KISTI,T2_MY_SIFIR,T2_MY_UPM_BIRUNI,T2_PK_NCP,T2_PL_Swierk,T2_PL_Warsaw,T2_PT_NCG_Lisbon,T2_RU_IHEP,T2_RU_INR,T2_RU_ITEP,T2_RU_JINR,T2_RU_PNPI,T2_RU_SINP,T2_TH_CUNSTDA,T2_TR_METU,T2_TW_NCHC,T2_UA_KIPT,T2_UK_London_IC,T2_UK_SGrid_Bristol,T2_UK_SGrid_RALPP,T2_US_Caltech,T2_US_Florida,T2_US_Nebraska,T2_US_Purdue,T2_US_UCSD,T2_US_Vanderbilt,T2_US_Wisconsin,T3_CH_CERN_CAF,T3_CH_CERN_DOMA,T3_CH_CERN_HelixNebula,T3_CH_CERN_HelixNebula_REHA,T3_CH_CMSAtHome,T3_CH_Volunteer,T3_US_HEPCloud,T3_US_NERSC,T3_US_OSG,T3_US_PSC,T3_US_SDSC,T3_US_MIT"
 +JobFlavour           = "{queue}"
-
+#+SingularityImage     = "/cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/cc7\:x86_64-latest"
 queue 1
 '''
 
@@ -94,9 +98,23 @@ slurm_script_template = '''#!/bin/bash
 #SBATCH --tasks-per-node {cpus}
 #SBATCH --oversubscribe
 
-source ~/.bashrc
+echo "Landed on $(hostname)"
+
+echo "Checking if singularity image exists"
+if [ ! -d /cvmfs/cvmfs.cmsaf.mit.edu/submit/work/submit/submit-software/centos/centos7p9 ]; then
+    echo "Singularity image not found, exiting"
+    exit 1
+fi
+
+echo "Launching singularity"
+singularity exec --bind /cvmfs,/work,/data /cvmfs/cvmfs.cmsaf.mit.edu/submit/work/submit/submit-software/centos/centos7p9 /bin/bash << 'EOF'
+
+# This will all be executed inside the singularity
+echo "source /cvmfs/cms.cern.ch/cmsset_default.sh"
+source /cvmfs/cms.cern.ch/cmsset_default.sh
 echo "cd {work_dir}"
 cd {work_dir}
+
 echo "cmsenv"
 cmsenv
 echo "{rm_command}"
@@ -110,6 +128,35 @@ echo "{combine_command}"
 
 '''
 
+local_script_tempate = """#!/bin/bash
+
+echo "Checking if singularity image exists"
+if [ ! -d /cvmfs/cvmfs.cmsaf.mit.edu/submit/work/submit/submit-software/centos/centos7p9 ]; then
+    echo "Singularity image not found, exiting"
+    exit 1
+fi
+
+echo "Launching singularity"
+singularity exec --bind /cvmfs,/work,/data /cvmfs/cvmfs.cmsaf.mit.edu/submit/work/submit/submit-software/centos/centos7p9 /bin/bash << 'EOF'
+
+# This will all be executed inside the singularity
+echo "source /cvmfs/cms.cern.ch/cmsset_default.sh"
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+echo "cd {work_dir}"
+cd {work_dir}
+
+echo "cmsenv"
+cmsenv
+echo "{rm_command}"
+{rm_command}
+echo "{combine_card_command}"
+{combine_card_command}
+echo "{text2workspace_command}"
+{text2workspace_command}
+echo "{combine_command}"
+{combine_command}
+
+"""
 
 def call_combine(cmd):
     p = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -118,6 +165,7 @@ def call_combine(cmd):
 
 
 parser = argparse.ArgumentParser()
+parser.add_argument("-a", "--analysis", type=str, required=True, help="YAML file with analysis configuration.")
 parser.add_argument(
         "-m", "--method", type=str, default="iterative", choices=['iterative', 'slurm', 'multithread', 'condor'], help="How to execute the code."
 )
@@ -131,19 +179,24 @@ parser.add_argument("-d"  , "--dry", action='store_true', help="Dry run, does no
 parser.add_argument("-includeAll", "--includeAll", type=str, default='', help="Pass a '-' separated list of strings you want all your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' AND 'mPhi300' in the name.")
 parser.add_argument("-includeAny", "--includeAny", type=str, default='', help="Pass a '-' separated list of strings you want any of your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' OR 'mPhi300' in the name.")
 parser.add_argument("-q", "--quantiles", action='store_true', default=False, help="When running '-M HybridNew' or '-M HybridNewAuto', use this option to run the following quantiles (0.025, 0.16, 0.5, 0.84, 0.975) as well as the observed limit, automatically. Equivalent to running this script with '-o '--expectedFromGrid <QUANTILE>'' for all quantiles.") 
+parser.add_argument("--cores", type=int, help="Maximum number of cores to run multithread on.", default=10, required=False)
 options = parser.parse_args()
+
+# read the analysis.yaml file
+with open(options.analysis) as f:
+    analysis = yaml.safe_load(f.read())['runcombine']
 
 # change cwd to the input tag: combine will read the cards from here and will make the higgsCombine file here
 os.chdir(options.input)
 print("Working in", options.input)
-print("Running with", options.method, "method,")
+print("Running with", options.method, "method")
 
 # define method-specific variables
 if options.method == 'multithread':
-    pool = ThreadPool(multiprocessing.cpu_count())
+    pool = ThreadPool(min(multiprocessing.cpu_count(), options.cores))
     results = []
 elif options.method == 'iterative':
-    print("Make sure you have the correct CMSSW environment set up! i.e. run cmsenv before running this script.")
+    work_dir = os.getcwd()
 elif options.method == 'slurm':
     work_dir = os.getcwd()
     log_dir = '/work/submit/{}/SUEP/logs/{}_{}/'.format(os.environ['USER'], 'slurm_runcombine', options.input)
@@ -181,9 +234,7 @@ toProcess = 0
 for dc in dcards:
 
     name= dc.replace("cards-", "")
-    if "SUEP" not in name:
-        continue
-
+    
     quantilesToRun = ['']
     if 'HybridNew' in options.combineMethod:
         if options.quantiles and "expectedFromGrid" in options.combineOptions:
@@ -223,57 +274,8 @@ for dc in dcards:
         # remove the old combined cards
         rm_command = "rm -rf cards-{}/combined.dat".format(name)
 
-        # make the combined.dat cards
-        combine_card_command = ("combineCards.py -S "
-                "catcrA2016=cards-{name}/shapes-cat_crA2016.dat "
-                "catcrB2016=cards-{name}/shapes-cat_crB2016.dat "
-                "catcrC2016=cards-{name}/shapes-cat_crC2016.dat "
-                "catcrD2016=cards-{name}/shapes-cat_crD2016.dat "
-                "catcrE2016=cards-{name}/shapes-cat_crE2016.dat "
-                "Bin0crF2016=cards-{name}/shapes-Bin0crF2016.dat "
-                "Bin1crF2016=cards-{name}/shapes-Bin1crF2016.dat "
-                "Bin2crF2016=cards-{name}/shapes-Bin2crF2016.dat "
-                "Bin3crF2016=cards-{name}/shapes-Bin3crF2016.dat "
-                "Bin4crF2016=cards-{name}/shapes-Bin4crF2016.dat "
-                "catcrG2016=cards-{name}/shapes-cat_crG2016.dat "
-                "catcrH2016=cards-{name}/shapes-cat_crH2016.dat "
-                "Bin1Sig2016=cards-{name}/shapes-Bin1Sig2016.dat "
-                "Bin2Sig2016=cards-{name}/shapes-Bin2Sig2016.dat "
-                "Bin3Sig2016=cards-{name}/shapes-Bin3Sig2016.dat "
-                "Bin4Sig2016=cards-{name}/shapes-Bin4Sig2016.dat "
-                "catcrA2017=cards-{name}/shapes-cat_crA2017.dat "
-                "catcrB2017=cards-{name}/shapes-cat_crB2017.dat "
-                "catcrC2017=cards-{name}/shapes-cat_crC2017.dat "
-                "catcrD2017=cards-{name}/shapes-cat_crD2017.dat "
-                "catcrE2017=cards-{name}/shapes-cat_crE2017.dat "
-                "Bin0crF2017=cards-{name}/shapes-Bin0crF2017.dat "
-                "Bin1crF2017=cards-{name}/shapes-Bin1crF2017.dat "
-                "Bin2crF2017=cards-{name}/shapes-Bin2crF2017.dat "
-                "Bin3crF2017=cards-{name}/shapes-Bin3crF2017.dat "
-                "Bin4crF2017=cards-{name}/shapes-Bin4crF2017.dat "
-                "catcrG2017=cards-{name}/shapes-cat_crG2017.dat "
-                "catcrH2017=cards-{name}/shapes-cat_crH2017.dat "
-                "Bin1Sig2017=cards-{name}/shapes-Bin1Sig2017.dat "
-                "Bin2Sig2017=cards-{name}/shapes-Bin2Sig2017.dat "
-                "Bin3Sig2017=cards-{name}/shapes-Bin3Sig2017.dat "
-                "Bin4Sig2017=cards-{name}/shapes-Bin4Sig2017.dat "
-                "catcrA2018=cards-{name}/shapes-cat_crA2018.dat "
-                "catcrB2018=cards-{name}/shapes-cat_crB2018.dat "
-                "catcrC2018=cards-{name}/shapes-cat_crC2018.dat "
-                "catcrD2018=cards-{name}/shapes-cat_crD2018.dat "
-                "catcrE2018=cards-{name}/shapes-cat_crE2018.dat "
-                "Bin0crF2018=cards-{name}/shapes-Bin0crF2018.dat "
-                "Bin1crF2018=cards-{name}/shapes-Bin1crF2018.dat "
-                "Bin2crF2018=cards-{name}/shapes-Bin2crF2018.dat "
-                "Bin3crF2018=cards-{name}/shapes-Bin3crF2018.dat "
-                "Bin4crF2018=cards-{name}/shapes-Bin4crF2018.dat "
-                "catcrG2018=cards-{name}/shapes-cat_crG2018.dat "
-                "catcrH2018=cards-{name}/shapes-cat_crH2018.dat "
-                "Bin1Sig2018=cards-{name}/shapes-Bin1Sig2018.dat "
-                "Bin2Sig2018=cards-{name}/shapes-Bin2Sig2018.dat "
-                "Bin3Sig2018=cards-{name}/shapes-Bin3Sig2018.dat "
-                "Bin4Sig2018=cards-{name}/shapes-Bin4Sig2018.dat "        
-                "> cards-{name}/combined.dat").format(name=name)
+        # make the combined.dat cards -- analysis-specific command
+        combine_card_command = analysis['combineCards'].format(name=name)
 
         # converts .dat to .root
         text2workspace_command = "text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root".format(name=name)
@@ -291,7 +293,7 @@ for dc in dcards:
             " {combine_method}"
             " -m 125 --cl 0.95 --name {name}"
             " {options}"
-            " --rAbsAcc 0.000001 --rRelAcc 0.001 "
+            " --rAbsAcc 0.000001 --rRelAcc 0.01 "
             " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH ".format(
                 name=name,
                 combine_method=combine_method,
@@ -309,7 +311,7 @@ for dc in dcards:
                 " --datacard cards-{name}/combined.root "
                 " -M AsymptoticLimits "
                 " -m 125 --cl 0.95 --name {name}"
-                " --rAbsAcc 0.00001 --rRelAcc 0.0001 "
+                " --rAbsAcc 0.00001 --rRelAcc 0.001 "
                 " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH > asymptotic_output-{name}.txt ".format(
                     name=name,
                     options=options.combineOptions
@@ -343,11 +345,26 @@ for dc in dcards:
         if options.dry: continue
 
         # run the commands!
-        if options.method == 'multithread':
-            os.system(rm_command)
-            os.system(combine_card_command)
-            os.system(text2workspace_command)
-            results.append(pool.apply_async(call_combine, (combine_command,)))
+        if options.method in ['multithread', 'iterative']:
+            local_script_content = local_script_tempate.format(
+                rm_command=rm_command,
+                combine_card_command=combine_card_command,
+                text2workspace_command=text2workspace_command,
+                combine_command=combine_command,
+                work_dir=work_dir,
+                outFile=strippedOutFile
+            )
+
+            local_script_file = f'/tmp/submit_{strippedOutFile}.sh'
+            with open(local_script_file, 'w') as f:
+                f.write(local_script_content)
+
+            if options.method == 'multithread':
+                results.append(pool.apply_async(call_combine, (f'bash {local_script_file}', f'rm {local_script_file}')))
+
+            elif options.method == 'iterative':
+                subprocess.run(['bash', local_script_file])
+                os.remove(local_script_file)
 
         elif options.method == 'slurm':
 
@@ -383,13 +400,6 @@ for dc in dcards:
 
             # Submit the SLURM job
             subprocess.run(['sbatch', slurm_script_file])
-
-        elif options.method == 'iterative':
-            subprocess.run('cmsenv', shell=True)
-            subprocess.run(rm_command, shell=True)
-            subprocess.run(combine_card_command, shell=True)
-            subprocess.run(text2workspace_command, shell=True)
-            subprocess.run(combine_command, shell=True)
 
         elif options.method == 'condor':
 

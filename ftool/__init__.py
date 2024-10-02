@@ -8,42 +8,15 @@ import re
 from . import methods
 import hist
 import boost_histogram as bh
+import logging
 from sympy import symbols, diff, sqrt
 
 __all__ = ['datacard', 'datagroup', "plot", "methods"]
 
-def draw_ratio(nom, uph, dwh, name):
-     import matplotlib.pyplot as plt
-     plt.style.use('physics.mplstyle')
-     _up = uph.frequencies
-     _dw = dwh.frequencies
-     _nm = nom.frequencies
-     x = nom.bin_centers
-     plt.figure(figsize=(7,4))
-     plt.title(name)
-     plt.hist(
-          nom.bin_centers, bins=nom.numpy_bins,
-          weights=np.divide(_up-_nm, _nm, out=np.zeros_like(_up), where=_nm!=0),
-          histtype="step", label="up", lw=2
-     )
-     plt.hist(
-          nom.bin_centers, bins=nom.numpy_bins,
-          weights=np.divide(_dw-_nm, _nm, out=np.zeros_like(_dw), where=_nm!=0),
-          histtype="step", label="down", lw=2
-     )
-     plt.axhline(0, ls="--", color="black", alpha=0.5)
-     plt.legend(loc="best")
-     plt.xlabel("observable")
-     plt.ylabel("ratio to nominal")
-     #plt.ylim([-2,2])
-     plt.xlim([min(nom.numpy_bins),max(nom.numpy_bins)])
-     plt.savefig("plots/"+name + ".png")
-
 class datagroup:
-     def __init__(self, files, observable="SUEP_nconst_Cluster ", era = 2018,  
-                  name = "QCD", channel="", kfactor=1.0, ptype="background",
-                  luminosity= 1.0, rebin=1, bins=[], normalise=True,
-                  xsections=None, mergecat=True, binrange=None):
+
+     def __init__(self, files, observable, era, name, channel, ptype,
+                  kfactor=1.0, luminosity= 1.0, rebin=1, bins=[], normalise=True, xsections=1.0):
           self._files  = files
           self.observable = observable
           self.era     = era
@@ -51,31 +24,117 @@ class datagroup:
           self.ptype   = ptype
           self.lumi    = luminosity
           self.xsec    = xsections
+          self.kfactor = kfactor
           self.outfile = None
           self.channel = channel
           self.nominal = {}
           self.systvar = set()
           self.rebin   = rebin
-          self.bins = np.array(bins).astype(np.float)
-          self.binrange= binrange # dropping bins the same way as droping elements in numpy arrays a[1:3]
+          self.bins = np.array(bins).astype(np.float64)
+          self.normalise = normalise
+          self.histograms = self.get_histograms()
+
+     def get_histograms(self):
+          pass
+     
+     def check_shape(self, histogram):
+          for ibin in range(histogram.numbins+1):
+               if histogram[ibin] < 0:
+                    histogram[ibin] = 0
+          return histogram
+
+     def get(self, systvar):
+          shapeUp, shapeDown= None, None
+          for n, hist in self.histograms.items():
+               if "up" not in n and "down" not in n and systvar=="nom":
+                    return hist
+               elif systvar in n:
+                    if "up" in n:
+                         shapeUp = hist
+                    if "down" in n:
+                         shapeDown= hist
+          return (shapeUp, shapeDown)
+     
+     def rebin_piecewise(self, h_in, bins, histtype='hist'):
+         """
+         Inputs:
+             h : histogram
+             bins: list of bins as real numbers
+             histtype: one of allowed_histtypes to return
+     
+         Returns:
+             h_out: a histogram of type 'histtype', rebinned according to desired bins
+         """
+     
+         # only 1D hists supported for now
+         if len(h_in.shape) != 1:
+             raise Exception("Only 1D hists supported for now")
+     
+         # only hist and bh supported
+         allowed_histtypes = ['hist', 'bh']
+         if histtype not in allowed_histtypes:
+             raise Exception("histtype in not in allowed_histtypes")
+     
+         # check that the bins are real numbers
+         if any([x.imag != 0 for x in bins]):
+             raise Exception("Only pass real-valued bins")
+     
+         # split the histogram by the bins
+         # and for each bin, calculate total amount of events and variance
+         z_vals, z_vars = [], []
+         for iBin in range(len(bins)-1): 
+             
+             if histtype == 'hist':
+                 bin_lo = bins[iBin]*1.0j
+                 bin_hi = bins[iBin+1]*1.0j            
+             elif histtype == 'bh':
+                 bin_lo = bh.loc(bins[iBin])
+                 bin_hi = bh.loc(bins[iBin+1])
+             h_fragment = h_in[bin_lo:bin_hi]    
+             z_vals.append(h_fragment.sum().value)
+             z_vars.append(h_fragment.sum().variance)
+     
+         # fill the histograms
+         if histtype == 'hist':
+             h_out = hist.Hist(hist.axis.Variable(bins), storage=hist.storage.Weight())
+             h_out[:] = np.stack([z_vals, z_vars], axis=-1)
+     
+         elif histtype == 'bh':
+             h_out = bh.Histogram(bh.axis.Variable(bins), storage=bh.storage.Weight())
+             h_out[:] = np.stack([z_vals, z_vars], axis=-1)
+     
+         return h_out
+
+     def add(self, other):
+          """
+          Adds a datagroup to this one. The result is stored in this object.
+          """
+          if not isinstance(other, datagroup):
+               raise ValueError("Can only add datagroup objects")
+          for key, hist in other.histograms.items():
+               if key in self.histograms:
+                    self.histograms[key] += hist
+               else:
+                    self.histograms[key] = hist
+     
+class ggf_datagroup(datagroup):
+
+     def __init__(self, files, observable, era, name, channel, ptype, kfactor=1, luminosity=1, rebin=1, bins=[], normalise=True, xsections=1):
+          super().__init__(files, observable, era, name, channel, ptype, kfactor, luminosity, rebin, bins, normalise, xsections)
+
+     def get_histograms(self):
+
+          _histograms = {}
 
           for fn in self._files:
 
-               _proc = os.path.basename(fn).replace(".root","")
                _file = uproot.open(fn)
                if not _file:
-                    raise ValueError("%s is not a valid rootfile" % self.name)
-
-               histograms = None
+                    raise ValueError("%s is not a valid rootfile" % fn)
 
                _scale = 1
-               if ptype.lower() != "data":
-                   if '2016apv' in fn.lower():
-                    _scale = 19.497 * self.xs_scale(proc=self.name) # To treat the special 2016 case where 2016 and 2016 apv have different lumis
-                   elif '2016' in fn:
-                    _scale = 16.811 * self.xs_scale(proc=self.name)
-                   else:
-                    _scale = self.lumi * self.xs_scale(proc=self.name)
+               if self.normalise:
+                    _scale = self.lumi * self.xsec * self.kfactor
 
                if self.name == "expected" and "I_" in self.observable:
                     sum_var = 'x' #Change this to a y to look at the sphericity instead of nconst
@@ -133,16 +192,15 @@ class datagroup:
                         
                         name = self.channel + "_" + name
                         newhist.name = name
-                        if name in self.nominal.keys():
-                             self.nominal[name] += newhist# * 0.0 + 1.0
+                        if name in _histograms.keys():
+                             _histograms[name] += newhist# * 0.0 + 1.0
                         else:
-                             self.nominal[name] = newhist#  * 0.0 + 1.0
+                             _histograms[name] = newhist#  * 0.0 + 1.0
 
                         try:
                              self.systvar.add(re.search("sys_[\w.]+", name).group())
                         except:
                              pass
-
 
                else:
                     for name in _file.keys():
@@ -161,102 +219,124 @@ class datagroup:
                         
                         name = self.channel + "_" + name
                         newhist.name = name
-                        if name in self.nominal.keys():
-                             self.nominal[name] += newhist
+                        if name in _histograms.keys():
+                             _histograms[name] += newhist
                         else:
-                             self.nominal[name] = newhist
+                             _histograms[name] = newhist
+
+                        try:
+                             self.systvar.add(re.search("sys_[\w.]+", name).group())
+                        except:
+                             pass
+                        
+          return _histograms
+     
+
+class wh_datagroup(datagroup):
+
+     def __init__(self, files, observable, era, name, channel, ptype, kfactor=1, luminosity=1, rebin=1, bins=[], normalise=True, xsections=1):
+          super().__init__(files, observable, era, name, channel, ptype, kfactor, luminosity, rebin, bins, normalise, xsections)
+
+     def get_histograms(self):
+
+          _histograms = {}
+
+          for fn in self._files:
+
+               _file = uproot.open(fn)
+               if not _file:
+                    raise ValueError("%s is not a valid rootfile" % fn)
+
+               _scale = 1
+               if self.normalise:
+                    _scale = self.lumi * self.xsec * self.kfactor
+
+               if "expected" in self.name and "F_" in self.observable:
+                    sum_var = 'x'
+                    systs = [] 
+                    D = {}
+                    for name in _file.keys():
+                        name = name.replace(";1","")
+                        ABCD_obs = self.observable.split("F_")[1]
+                        if "2D" in name: continue
+                        if ABCD_obs not in name: continue
+                        if "up" in name or "down" in name:
+                            plotting_tag = "_" + name.split("_")[-1]
+                            sys = name.replace(plotting_tag, "")
+                            systs.append(sys)
+                        else:
+                            sys = ""
+                            if "F_" in name: systs.append("nom")
+                        if sum_var == 'x':
+                            if "D_"+ABCD_obs == name: D["nom"] = _file["D_"+ABCD_obs].to_boost()
+                            if "D_"+ABCD_obs+"_"+sys == name: D[sys] = _file["D_"+ABCD_obs+"_"+sys].to_boost()
+                        elif sum_var == 'y': 
+                            raise ValueError('ERROR: Not implemented yet!')
+                        else:
+                            raise ValueError('ERROR: Appropriate variable not chosen!')
+
+                    for syst in systs:
+                        name = ABCD_obs+"_"+syst
+                        if sum_var == 'x':
+                            newhist=D[syst].copy()
+                        elif sum_var == 'y':
+                            raise ValueError('ERROR: Not implemented yet!')
+                        else:
+                            raise ValueError('ERROR: Systematic plots not found for expected!')
+
+                        #### merge bins
+                        if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
+                            newhist = newhist[::bh.rebin(self.rebin)]
+                        
+                        ####merge bins to specified array
+                        if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
+                            newhist = self.rebin_piecewise(newhist, self.bins, 'bh')
+                        
+                        name = self.channel + "_" + name
+                        newhist.name = name
+                        if name in _histograms.keys():
+                             _histograms[name] += newhist# * 0.0 + 1.0
+                        else:
+                             _histograms[name] = newhist#  * 0.0 + 1.0
 
                         try:
                              self.systvar.add(re.search("sys_[\w.]+", name).group())
                         except:
                              pass
 
-          self.merged = {}
-          self.merged = {i: (i, c) for i,c  in self.nominal.items()}
+               else:
 
+                    for name in _file.keys():
+                         name = name.replace(";1", "")
+                         if self.observable not in name: continue
+                         if ";" in name:
+                              print("Found multiple versions of the same histogram. Continuing with the first one (;1), I hope it's correct.")
+                              continue
+                         roothist = _file[name]
+                         newhist = roothist.to_boost() * _scale
 
-     
-     def check_shape(self, histogram):
-          for ibin in range(histogram.numbins+1):
-               if histogram[ibin] < 0:
-                    histogram[ibin] = 0
-          return histogram
+                         #### merge bins
+                         if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
+                              newhist = newhist[::bh.rebin(self.rebin)]
 
-     def get(self, systvar, merged=True):
-          shapeUp, shapeDown= None, None
-          for n, hist in self.merged.items():
-               if "Inverted" in n: continue
-               if "up" not in n and "down" not in n and systvar=="nom":
-                    return hist[1]
-               elif systvar in n:
-                    if "up" in n:
-                         shapeUp = hist[1]
-                    if "down" in n:
-                         shapeDown= hist[1]
-          return (shapeUp, shapeDown)
-     
-     def rebin_piecewise(self, h_in, bins, histtype='hist'):
-         """
-         Inputs:
-             h : histogram
-             bins: list of bins as real numbers
-             histtype: one of allowed_histtypes to return
-     
-         Returns:
-             h_out: a histogram of type 'histtype', rebinned according to desired bins
-         """
-     
-         # only 1D hists supported for now
-         if len(h_in.shape) != 1:
-             raise Exception("Only 1D hists supported for now")
-     
-         # only hist and bh supported
-         allowed_histtypes = ['hist', 'bh']
-         if histtype not in allowed_histtypes:
-             raise Exception("histtype in not in allowed_histtypes")
-     
-         # check that the bins are real numbers
-         if any([x.imag != 0 for x in bins]):
-             raise Exception("Only pass real-valued bins")
-     
-         # split the histogram by the bins
-         # and for each bin, calculate total amount of events and variance
-         z_vals, z_vars = [], []
-         for iBin in range(len(bins)-1): 
-             
-             if histtype == 'hist':
-                 bin_lo = bins[iBin]*1.0j
-                 bin_hi = bins[iBin+1]*1.0j            
-             elif histtype == 'bh':
-                 bin_lo = bh.loc(bins[iBin])
-                 bin_hi = bh.loc(bins[iBin+1])
-             h_fragment = h_in[bin_lo:bin_hi]    
-             z_vals.append(h_fragment.sum().value)
-             z_vars.append(h_fragment.sum().variance)
-     
-         # fill the histograms
-         if histtype == 'hist':
-             h_out = hist.Hist(hist.axis.Variable(bins), storage=hist.storage.Weight())
-             h_out[:] = np.stack([z_vals, z_vars], axis=-1)
-     
-         elif histtype == 'bh':
-             h_out = bh.Histogram(bh.axis.Variable(bins), storage=bh.storage.Weight())
-             h_out[:] = np.stack([z_vals, z_vars], axis=-1)
-     
-         return h_out
+                         ####merge bins to specified array
+                         if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
+                              newhist = self.rebin_piecewise(newhist, self.bins, 'bh')
 
-     def xs_scale(self, proc):
-         xsec = 1.0
-         xsec_file = "config/xsections_{self.era}.json"
-         if 'SUEP' in proc: xsec_file = "config/xsections_SUEP.json"
-         with open(xsec_file) as file:
-            MC_xsecs = json.load(file)
-         xsec  = MC_xsecs[proc]["xsec"]
-         xsec *= MC_xsecs[proc]["kr"]
-         xsec *= MC_xsecs[proc]["br"]
-         xsec *= 1000.0
-         assert xsec > 0, "{} has a null cross section!".format(proc)
-         return xsec
+                         name = self.channel + "_" + name
+                         newhist.name = name
+                         if name in _histograms.keys():
+                              _histograms[name] += newhist
+                         else:
+                              _histograms[name] = newhist
+
+                         try:
+                              self.systvar.add(re.search("sys_[\w.]+", name).group())
+                         except:
+                              pass
+                        
+          return _histograms
+
 
 class datacard:
      def __init__(self, name, channel="ch1", tag="."):
@@ -300,7 +380,7 @@ class datacard:
           self.nuisances[name][process] = value
 
      def add_nominal(self, process, channel,  shape):
-          if process == 'expected': 
+          if 'expected' in process: 
                shape = shape * 0.0 + 1.0#values will come from rate_params
                shape.view().variance = shape.variances() * 0.0
           value = shape.values(flow=False).sum()
@@ -344,6 +424,7 @@ class datacard:
                vmax = vmax
           )
           self.extras.add(template)
+
      def add_ABCD_rate_param(self, name, channel, process, era, F):
           # name rateParam bin process initial_value [min,max]
           rera = "r" + era
@@ -354,6 +435,32 @@ class datacard:
                process = process,
                rera = rera,
                F = F
+          )
+          self.extras.add(template)
+
+     def add_6ABCD_rate_param(self, name, channel, process, era, bin_cr, region=""):
+          """
+          This function assumes the following form of ABCD regions:
+
+          # const.
+          |  B  |  D  |  F  
+          + ----+-----+----
+          |  A  |  C  |  E
+          + ----+-----+---- S1
+
+          And calculates:
+          F^{pred}_i = D_i * (D_0+D_1+D_2+D_3+D_4) * E * A / (B * C * C)
+          """
+          # name rateParam bin process initial_value [min,max]
+          rera = "r" + era
+          template = "{name} rateParam {channel} {process} @3*(@4+@5+@6+@7+@8)*@9*@0/(@1*@2*@2) {rera}_{region}crA,{rera}_{region}crB,{rera}_{region}crC,{rera}_{bin_cr},{rera}_{region}crD0,{rera}_{region}crD1,{rera}_{region}crD2,{rera}_{region}crD3,{rera}_{region}crD4,{rera}_{region}crE"
+          template = template.format(
+               name = name,
+               channel = channel,
+               process = process,
+               rera = rera,
+               bin_cr = bin_cr,
+               region=region
           )
           self.extras.add(template)
 
@@ -379,7 +486,10 @@ class datacard:
           for i, tup in enumerate(self.rates):
                bins_line += "{0:>15}".format(self.channel)
                proc_line += "{0:>15}".format(tup[0])
-               indx_line += "{0:>15}".format(i - self.nsignal + 1)
+               if self.process_indx_map:
+                    indx_line += "{0:>15}".format(self.process_indx_map[tup[0]])
+               else:
+                    indx_line += "{0:>15}".format(i - self.nsignal + 1)
                rate_line += "{0:>15}".format("%.3f" % tup[1])
           self.dc_file.append(bins_line)
           self.dc_file.append(proc_line)
@@ -396,5 +506,6 @@ class datacard:
                          line_ += "{0:>15}".format("-")
                self.dc_file.append(line_)
           self.dc_file += self.extras
+          logging.debug("Writing datacard to {}".format(self.dc_name))
           with open(self.dc_name, "w") as fout:
                fout.write("\n".join(self.dc_file))
