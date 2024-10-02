@@ -2,18 +2,18 @@ era: 2016
 
 data:
   files:
-    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016F-UL2016_MiniAODv2-v2+MINIAOD_fix_JEC_final.root
-    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016G-UL2016_MiniAODv2-v2+MINIAOD_fix_JEC_final.root
-    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016H-UL2016_MiniAODv2-v2+MINIAOD_fix_JEC_final.root
+    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016F-UL2016_MiniAODv2-v2+MINIAOD_ggF_PRL.root
+    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016G-UL2016_MiniAODv2-v2+MINIAOD_ggF_PRL.root
+    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016H-UL2016_MiniAODv2-v2+MINIAOD_ggF_PRL.root
   type:
     data
   color: 895
 
 expected:
   files:
-    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016F-UL2016_MiniAODv2-v2+MINIAOD_fix_JEC_final.root
-    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016G-UL2016_MiniAODv2-v2+MINIAOD_fix_JEC_final.root
-    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016H-UL2016_MiniAODv2-v2+MINIAOD_fix_JEC_final.root
+    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016F-UL2016_MiniAODv2-v2+MINIAOD_ggF_PRL.root
+    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016G-UL2016_MiniAODv2-v2+MINIAOD_ggF_PRL.root
+    - /data/submit/lavezzo/SUEP/outputs/JetHT+Run2016H-UL2016_MiniAODv2-v2+MINIAOD_ggF_PRL.root
   type:
     data
   color: 895
