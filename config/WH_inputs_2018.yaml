@@ -1,0 +1,233 @@
+era: 2018
+
+WJHSdata:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-0To50_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-100To250_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-250To400_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-400To650_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-50To100_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-650ToInf_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_1000to1400_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_120to170_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_1400to1800_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_15to30_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_170to300_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_1800to2400_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_2400to3200_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_300to470_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_30to50_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_3200toInf_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_3200toInf_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-pilot_106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_470to600_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_50to80_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_600to800_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_800to1000_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_80to120_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_t-channel_antitop_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_tW_Dilept_5f_DR_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTWJetsToQQ_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WJetsToLNu_Pt-100To250_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WJetsToLNu_Pt-250To400_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WJetsToLNu_Pt-400To600_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WJetsToLNu_Pt-600ToInf_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WWTo1L1Nu2Q_4f_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WWTo2L2Nu_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1_ext1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WZTo1L1Nu2Q_4f_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WZTo1L3Nu_4f_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v3+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WZTo2Q2L_mllmin4p0_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WZTo3LNu_mllmin4p0_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WminusH_HToBB_WToLNu_M-125_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WplusH_HToBB_WToLNu_M-125_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ZGToLLG_01J_5f_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ZZTo2L2Nu_TuneCP5_13TeV_powheg_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ZZTo2Q2L_mllmin4p0_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ZZTo4L_TuneCP5_13TeV_powheg_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ZZZ_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1_ext1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ttHToNonbb_M125_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ttHTobb_M125_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ttZJets_TuneCP5_13TeV_madgraphMLM_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_s-channel_4f_leptonDecays_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/VHToNonbb_M125_TuneCP5_13TeV-amcatnloFXFX_madspin_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+  type:
+    data
+  color: 895
+
+WJHSexpected:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-0To50_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-100To250_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-250To400_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-400To650_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-50To100_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/DYJetsToLL_LHEFilterPtZ-650ToInf_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_1000to1400_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_120to170_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_1400to1800_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_15to30_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_170to300_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_1800to2400_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_2400to3200_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_300to470_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_30to50_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_3200toInf_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_3200toInf_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-pilot_106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_470to600_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_50to80_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_600to800_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_800to1000_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/QCD_Pt_80to120_TuneCP5_13TeV_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_t-channel_antitop_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_tW_Dilept_5f_DR_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTWJetsToQQ_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WJetsToLNu_Pt-100To250_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WJetsToLNu_Pt-250To400_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WJetsToLNu_Pt-400To600_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WJetsToLNu_Pt-600ToInf_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WWTo1L1Nu2Q_4f_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WWTo2L2Nu_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1_ext1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WZTo1L1Nu2Q_4f_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WZTo1L3Nu_4f_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v3+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WZTo2Q2L_mllmin4p0_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WZTo3LNu_mllmin4p0_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WminusH_HToBB_WToLNu_M-125_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WplusH_HToBB_WToLNu_M-125_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ZGToLLG_01J_5f_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ZZTo2L2Nu_TuneCP5_13TeV_powheg_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ZZTo2Q2L_mllmin4p0_TuneCP5_13TeV-amcatnloFXFX-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ZZTo4L_TuneCP5_13TeV_powheg_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ZZZ_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1_ext1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ttHToNonbb_M125_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ttHTobb_M125_TuneCP5_13TeV-powheg-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ttZJets_TuneCP5_13TeV_madgraphMLM_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/ST_s-channel_4f_leptonDecays_TuneCP5_13TeV-amcatnlo-pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v1+MINIAODSIM_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/VHToNonbb_M125_TuneCP5_13TeV-amcatnloFXFX_madspin_pythia8+RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2+MINIAODSIM_testWHlimits.root
+  type:
+    data
+  color: 895
+
+WJLSdata:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018A-UL2018_MiniAODv2-v1+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018B-UL2018_MiniAODv2-v1+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018C-UL2018_MiniAODv2-v1+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018D-UL2018_MiniAODv2-v2+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SingleMuon+Run2018A-UL2018_MiniAODv2-v3+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SingleMuon+Run2018B-UL2018_MiniAODv2-v2+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SingleMuon+Run2018C-UL2018_MiniAODv2-v2+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SingleMuon+Run2018D-UL2018_MiniAODv2-v3+MINIAOD_testWHlimits.root
+  type:
+    data
+  color: 797
+
+WJLSexpected:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018A-UL2018_MiniAODv2-v1+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018B-UL2018_MiniAODv2-v1+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018C-UL2018_MiniAODv2-v1+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018D-UL2018_MiniAODv2-v2+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SingleMuon+Run2018A-UL2018_MiniAODv2-v3+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SingleMuon+Run2018B-UL2018_MiniAODv2-v2+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SingleMuon+Run2018C-UL2018_MiniAODv2-v2+MINIAOD_testWHlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SingleMuon+Run2018D-UL2018_MiniAODv2-v3+MINIAOD_testWHlimits.root
+  type:
+    data
+  color: 797
+
+GJLSdata:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018A-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018B-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018C-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018D-UL2018_MiniAODv2-v2+MINIAOD_testVRGJlimits.root
+  type:
+    data
+  color: 797
+
+GJLSexpected:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018A-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018B-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018C-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018D-UL2018_MiniAODv2-v2+MINIAOD_testVRGJlimits.root
+  type:
+    data
+  color: 797
+
+GJHSdata:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018A-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018B-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018C-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018D-UL2018_MiniAODv2-v2+MINIAOD_testVRGJlimits.root
+  type:
+    data
+  color: 797
+
+GJHSexpected:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018A-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018B-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018C-UL2018_MiniAODv2-v1+MINIAOD_testVRGJlimits.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/EGamma+Run2018D-UL2018_MiniAODv2-v2+MINIAOD_testVRGJlimits.root
+  type:
+    data
+  color: 797
+
+SUEP_mS125.000_mPhi1.000_T0.250_modeleptonic:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SUEP_mS125.000_mPhi1.000_T0.250_modeleptonic_testLimits.root
+  sample: SUEP_mS125.000_mPhi1.000_T0.250_modeleptonic
+  type:
+    signal
+
+SUEP_mS125.000_mPhi3.000_T3.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SUEP_mS125.000_mPhi3.000_T3.000_modegeneric_testLimits.root
+  sample: SUEP_mS125.000_mPhi3.000_T3.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi8.000_T8.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SUEP_mS125.000_mPhi8.000_T8.000_modegeneric_testLimits.root
+  sample: SUEP_mS125.000_mPhi8.000_T8.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi2.000_T2.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SUEP_mS125.000_mPhi2.000_T2.000_modegeneric_testLimits.root
+  sample: SUEP_mS125.000_mPhi2.000_T2.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi4.000_T4.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/SUEP_mS125.000_mPhi4.000_T4.000_modegeneric_testLimits.root
+  sample: SUEP_mS125.000_mPhi4.000_T4.000_modegeneric
+  type:
+    signal
+
