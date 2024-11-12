@@ -592,8 +592,10 @@ def plot_mPhi_temp_limits(
         showPoints:bool=False,
         method:str='AsymptoticLimits',
         showTheoryLines:bool=False,
+        showObserved:bool=True,
         autoRange:bool=True,
-        analysis:str='ggf-offline'): 
+        analysis:str='ggf-offline'
+    ): 
     """
     Make 2D limit plot on the cross section for some choice of mS and decay, scanning over T and mPhi.
     Inputs:
@@ -704,7 +706,7 @@ def plot_mPhi_temp_limits(
     ax.plot(x2, y2, linestyle = "--", color ='#00ffff' , label=r"Median expected",linewidth =4)
     ax.plot(x1, y1, linestyle = "--", color='yellow', label=r"Expected $68\%$ CL",linewidth =4)
     ax.plot(x3, y3, linestyle = "--", color='yellow', linewidth =4)
-    ax.plot(x5, y5, linestyle = "-", color='#00008b', label=r"Observed",linewidth =4)
+    if showObserved: ax.plot(x5, y5, linestyle = "-", color='#00008b', label=r"Observed",linewidth =4)
 
     # set the range of the plot
     ax.set_xlim([2*mA[decay]-1.0, 9.0])

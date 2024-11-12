@@ -12,35 +12,35 @@ import glob
 #### PARAMETERS #########################################################
 # input directory
 histDirectory = '/ceph/submit/data/user/{}/{}/SUEP/outputs/'.format(os.environ['USER'][0], os.environ['USER'])
-signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/test.txt"
+signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_signal_generic.txt"
 dataList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_MC_WH.txt"
 crwjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_WH.txt"
 vrgjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_VRGJ.txt"
 # make a dictionary, keys are years, values are histogram tags
 signalTags = {
-    '2018': 'testLimits',
+    '2018': 'WH_11_3_signals_limits_S0p6_v2_2018',
 }
 dataTags = {
-    '2018': 'testWHlimits',
+    '2018': 'WH_11_3_limits_S0p6_v2_2018',
 }
 crwjTags = {
-    '2018': 'testWHlimits',
+    '2018': 'WH_CRWJ_limits_10_24',
 }
 vrgjTags = {
-    '2018': 'testVRGJlimits',
+    '2018': 'WH_11_3_limits_S0p6_v2_VRGJ_2018',
 }
 combine2016 = True
 #########################################################################
 
 def get_file_list(year, tag, file_list_path, hist_directory):
     file_list = []
-    tag_files = glob.glob(hist_directory + '*' + tag + '*.root')
+    tag_files = glob.glob(hist_directory + '/' + tag + '/*' + '.root')
     with open(file_list_path.format(year), 'r') as f:
         samples = f.read().splitlines()
     samples = [s.split("/")[-1].replace(".root", "") for s in samples]
     missing_samples = []
     for s in samples:
-        s_file = hist_directory + s + '_' + tag + '.root'
+        s_file = hist_directory + '/' + tag + '/' + s + '.root'
         if s_file in tag_files:
             file_list.append(s_file)
         else:
@@ -91,7 +91,7 @@ def generate_yaml(year, data_file_list, crwj_file_list, vrgj_file_list, signal_f
         process = sample
         files = '- {f}\n  sample: {sample}\n'.format(f=f, sample=sample)
         output += "{process}:\n  files:\n    {files}  type:\n    signal\n\n".format(process=process, files=files)
-    outfile = 'WH_inputs_{}.yaml'.format(year)
+    outfile = 'WH_S0p6_inputs_{}.yaml'.format(year)
 
     with open(outfile, 'w') as f:
         f.write(output)

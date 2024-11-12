@@ -33,36 +33,33 @@ lumi_corr1718 = {
     "2018" : 1.002
 }
 
-# ABCD systematic from CRWJ
-ABCD_systematic_Bin0 = {
-    "2016" : 1.01,
-    "2017" : 1.01,
-    "2018" : 1.01,
-    "all": 1.01
+ABCD_yield_systematic = {
+    "WJHS": {
+        "2018": 1.06,
+    },
+    # "WJLS": {
+    #     "2018": 1.13,
+    # },
+    "GJHS": {
+        "2018": 1.06,
+    },
+    # "GJLS": {
+    #     "2018": 1.13,
+    # }
 }
-ABCD_systematic_Bin1 = {
-    "2016" : 1.14,
-    "2017" : 1.20,
-    "2018" : 1.15,
-    "all": 1.16
-}
-ABCD_systematic_Bin2 = {
-    "2016" : 1.28,
-    "2017" : 1.43,
-    "2018" : 1.32,
-    "all": 1.55
-}
-ABCD_systematic_Bin3 = {
-    "2016" : 1.5,
-    "2017" : 1.76,
-    "2018" : 1.56,
-    "all": 2.0
-}
-ABCD_systematic_Bin4 = {
-    "2016" : 2.00,
-    "2017" : 2.00,
-    "2018" : 2.00,
-    "all": 2.00
+ABCD_shape_systematic = {
+    "WJHS": {
+     "2018": [1.0, 1.02, 1.04, 1.07, 1.09]
+    },
+    # "WJLS": {
+    #     "2018": [1.00571259, 1.07931558, 1.17344668, 1.37640079, 2.0]
+    # },
+    "GJHS": {
+        "2018": [1.0, 1.02, 1.04, 1.07, 1.09]
+    },
+    # "GJLS" : {
+    #     "2018": [1.00571259, 1.07931558, 1.17344668, 1.37640079, 2.0]
+    # }
 }
 
 
@@ -81,16 +78,17 @@ def xs_scale(proc, era):
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str, default="config/WH_inputs_2018.yaml")
-    parser.add_argument("-tag"  , "--tag"   , type=str, default=".")
+    parser.add_argument("-t"  , "--tag"   , type=str, default=".")
     parser.add_argument("-v"  , "--variable", type=str, required=True)
     parser.add_argument("-c"  , "--channel" , type=str)
     parser.add_argument("-s"  , "--signal"  , nargs='+', type=str)
-    parser.add_argument("-t"  , "--stack"   , nargs='+', type=str)
+    parser.add_argument("--stack"   , nargs='+', type=str)
     parser.add_argument("-era", "--era"     , type=str, default="2017")
     parser.add_argument("-f"  , "--force"   , action="store_true")
     parser.add_argument("-ns" , "--nostatuncert", action="store_false")
     parser.add_argument("--rebin" ,type=int, default=1)
     parser.add_argument("--bins",'--list', nargs='*', help='<Required> Set flag', required=False,default=[])
+    parser.add_argument("--bias", type=str, default=None, help="Name of signal model you want to inject.")
     parser.add_argument("--verbose", action="store_true", help="Print out more information.")
 
     options = parser.parse_args()
@@ -155,6 +153,25 @@ def main():
             )
             p.add(p_merge)
 
+        if options.bias and inputs[dg]["type"] != "signal":
+            logging.info("Injecting signal in data.")
+            # Note this is a lazy way to do this, we should generate toys instead of adding the same signal we are extracting
+            p_bias = ftool.wh_datagroup(
+                inputs[options.bias]["files"],
+                ptype      = "signal",
+                observable = options.variable,
+                era        = options.era,
+                name       = options.bias,
+                kfactor    = inputs[options.bias].get("kfactor", 1.0),
+                channel    = options.channel,
+                rebin      = options.rebin,
+                bins       = options.bins,
+                luminosity = lumis[options.era],
+                xsections  = xs_scale(inputs[options.bias].get("sample", options.bias), options.era),
+                normalise  = True
+            )
+            p.add(p_bias)
+
         datasets[p.name] = p
 
     card_name = "ch"+options.era
@@ -199,27 +216,30 @@ def main():
         name = "Signal" if p.ptype=="signal" else p.name
         if p.ptype=="data" and p.name == data_sample: continue #Skip the data_obs
 
+        region = ""
+        if "WJHS" in options.channel: region = "WJHS"
+        elif "WJLS" in options.channel: region = "WJLS"
+        elif "GJHS" in options.channel: region = "GJHS"
+        elif "GJLS" in options.channel: region = "GJLS"
+
         #Look at expected and add in the rate_params
         card.add_nominal(name,options.channel, p.get("nom"))
         if "sr" in options.channel:
             if "expected" in p.name and p.ptype == "data" :
 
-                # the bin of the E histogram that is used for the ABCD prediction of this channel 
-                Bin_cr = options.channel.replace("sr","crD")
+                # the bin of the F histogram that is used for the ABCD prediction of this channel 
+                Bin_cr = options.channel.replace("sr","crF")
 
                 # ABCD prediction as a rate parameter
-                region = ""
-                if "WJHS" in options.channel: region = "WJHS"
-                elif "WJLS" in options.channel: region = "WJLS"
-                elif "GJHS" in options.channel: region = "GJHS"
-                elif "GJLS" in options.channel: region = "GJLS"
-                card.add_6ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, bin_cr=Bin_cr, region=region)
+                card.add_9ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, bin_cr=Bin_cr, region=region)
                 
                 # add systematics for the ABCD prediction
 
                 # correlated between the regions, bins, uncorrelated between years
                 # TODO need to derive these values. non closure?
-                # card.add_nuisance(name, "{:<21}  lnN".format("ABCD_{}".format(options.era)), shape_syst)
+                # NB assuming that options.channel looks something like "WJHScrF1"
+                card.add_nuisance(name, "{:<21}  lnN".format("ABCD_yield_{}_{}".format(region, options.era)), ABCD_yield_systematic[region][options.era])
+                card.add_nuisance(name, "{:<21}  lnN".format("ABCD_shape_{}_{}_{}".format(region, options.channel[4:], options.era)), ABCD_shape_systematic[region][options.era][int(options.channel[-1])])
 
         else:
             rate_nom = p.get("nom").values().sum()
@@ -246,17 +266,23 @@ def main():
             card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr1718"), lumi_corr1718[options.era])
 
         #Shape based uncertainties
-        # TODO missing: btag, lepton scale factors, lepton ID
-        # card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JES"))
-        # card.add_shape_nuisance(name, "CMS_JER", p.get("JER"))
-        # card.add_shape_nuisance(name, "CMS_PU", p.get("puweights"))
+        # TODO missing: trigger SFs!
+        card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JES"))
+        card.add_shape_nuisance(name, "CMS_JER", p.get("JER"))
+        card.add_shape_nuisance(name, "CMS_PU", p.get("puweights"))
         # card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"))
-        # card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
-        # card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
-        # card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"))
-        # card.add_shape_nuisance(name, "CMS_Higgs", p.get("higgs_weights"))
-        # if options.era == "2016" or options.era == "2017":
-        #      card.add_shape_nuisance(name, "CMS_Prefire", p.get("prefire"))
+        card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
+        card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
+        card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"))
+        card.add_shape_nuisance(name, "CMS_Higgs", p.get("higgs_weights"))
+        card.add_shape_nuisance(name, "CMS_LepSFEl", p.get("LepSFEl"))
+        card.add_shape_nuisance(name, "CMS_LepSFMu", p.get("LepSFMu"))
+        card.add_shape_nuisance(name, "CMS_bTagWeight_HFcorrelated", p.get("bTagWeight_HFcorrelated"))
+        card.add_shape_nuisance(name, "CMS_bTagWeight_HFuncorrelated", p.get("bTagWeight_HFuncorrelated"))
+        card.add_shape_nuisance(name, "CMS_bTagWeight_LFcorrelated", p.get("bTagWeight_LFcorrelated"))
+        card.add_shape_nuisance(name, "CMS_bTagWeight_LFuncorrelated", p.get("bTagWeight_LFuncorrelated"))
+        if options.era in ["2016apv", "2016", "2017"]:
+             card.add_shape_nuisance(name, "CMS_Prefire", p.get("prefire"))
              
     card.add_auto_stat()
 

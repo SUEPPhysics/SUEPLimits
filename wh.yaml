@@ -5,64 +5,37 @@ runcards:
     - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrC --variable C_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
     - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrD --variable D_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
     - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrE --variable E_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrD0 --variable D_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrD1 --variable D_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrD2 --variable D_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrD3 --variable D_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrD4 --variable D_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr0 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr1 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr2 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr3 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr4 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLScrA --variable A_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLScrB --variable B_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLScrC --variable C_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLScrD --variable D_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLScrE --variable E_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLScrD0 --variable D_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLScrD1 --variable D_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLScrD2 --variable D_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLScrD3 --variable D_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLScrD4 --variable D_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLSsr0 --variable F_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLSsr1 --variable F_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLSsr2 --variable F_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLSsr3 --variable F_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJLSsr4 --variable F_SUEP_nconst_CRWJ --stack {n} WJLSexpected WJLSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF0 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF1 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF2 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF3 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF4 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrG --variable G_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrH --variable H_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr0 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr1 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr2 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr3 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr4 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
 
     - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrA --variable A_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
     - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrB --variable B_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
     - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrC --variable C_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
     - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrD --variable D_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
     - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrE --variable E_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrD0 --variable D_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrD1 --variable D_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrD2 --variable D_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrD3 --variable D_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrD4 --variable D_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr0 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr1 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr2 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr3 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr4 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrF0 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrF1 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrF2 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrF3 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrF4 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrG --variable G_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrH --variable H_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr0 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr1 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr2 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr3 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr4 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
 
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLScrA --variable A_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLScrB --variable B_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLScrC --variable C_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLScrD --variable D_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLScrE --variable E_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLScrD0 --variable D_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLScrD1 --variable D_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLScrD2 --variable D_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLScrD3 --variable D_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLScrD4 --variable D_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLSsr0 --variable F_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLSsr1 --variable F_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLSsr2 --variable F_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLSsr3 --variable F_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJLSsr4 --variable F_SUEP_nconst_VRGJlowS --stack {n} GJLSexpected GJLSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
   eras:
     - '2018'
   config:
@@ -76,59 +49,33 @@ runcombine:
     WJHScrC2018=cards-{name}/shapes-WJHScrC2018.dat 
     WJHScrD2018=cards-{name}/shapes-WJHScrD2018.dat 
     WJHScrE2018=cards-{name}/shapes-WJHScrE2018.dat 
-    WJHScrD02018=cards-{name}/shapes-WJHScrD02018.dat 
-    WJHScrD12018=cards-{name}/shapes-WJHScrD12018.dat 
-    WJHScrD22018=cards-{name}/shapes-WJHScrD22018.dat 
-    WJHScrD32018=cards-{name}/shapes-WJHScrD32018.dat 
-    WJHScrD42018=cards-{name}/shapes-WJHScrD42018.dat 
+    WJHScrF02018=cards-{name}/shapes-WJHScrF02018.dat 
+    WJHScrF12018=cards-{name}/shapes-WJHScrF12018.dat 
+    WJHScrF22018=cards-{name}/shapes-WJHScrF22018.dat 
+    WJHScrF32018=cards-{name}/shapes-WJHScrF32018.dat 
+    WJHScrF42018=cards-{name}/shapes-WJHScrF42018.dat 
+    WJHScrG2018=cards-{name}/shapes-WJHScrG2018.dat 
+    WJHScrH2018=cards-{name}/shapes-WJHScrH2018.dat 
     WJHSsr02018=cards-{name}/shapes-WJHSsr02018.dat 
     WJHSsr12018=cards-{name}/shapes-WJHSsr12018.dat 
     WJHSsr22018=cards-{name}/shapes-WJHSsr22018.dat 
     WJHSsr32018=cards-{name}/shapes-WJHSsr32018.dat 
     WJHSsr42018=cards-{name}/shapes-WJHSsr42018.dat
-    WJLScrA2018=cards-{name}/shapes-WJLScrA2018.dat
-    WJLScrB2018=cards-{name}/shapes-WJLScrB2018.dat 
-    WJLScrC2018=cards-{name}/shapes-WJLScrC2018.dat 
-    WJLScrD2018=cards-{name}/shapes-WJLScrD2018.dat 
-    WJLScrE2018=cards-{name}/shapes-WJLScrE2018.dat 
-    WJLScrD02018=cards-{name}/shapes-WJLScrD02018.dat 
-    WJLScrD12018=cards-{name}/shapes-WJLScrD12018.dat 
-    WJLScrD22018=cards-{name}/shapes-WJLScrD22018.dat 
-    WJLScrD32018=cards-{name}/shapes-WJLScrD32018.dat 
-    WJLScrD42018=cards-{name}/shapes-WJLScrD42018.dat 
-    WJLSsr02018=cards-{name}/shapes-WJLSsr02018.dat 
-    WJLSsr12018=cards-{name}/shapes-WJLSsr12018.dat 
-    WJLSsr22018=cards-{name}/shapes-WJLSsr22018.dat 
-    WJLSsr32018=cards-{name}/shapes-WJLSsr32018.dat 
-    WJLSsr42018=cards-{name}/shapes-WJLSsr42018.dat
-    GJLScrA2018=cards-{name}/shapes-GJLScrA2018.dat
-    GJLScrB2018=cards-{name}/shapes-GJLScrB2018.dat 
-    GJLScrC2018=cards-{name}/shapes-GJLScrC2018.dat 
-    GJLScrD2018=cards-{name}/shapes-GJLScrD2018.dat 
-    GJLScrE2018=cards-{name}/shapes-GJLScrE2018.dat 
-    GJLScrD02018=cards-{name}/shapes-GJLScrD02018.dat 
-    GJLScrD12018=cards-{name}/shapes-GJLScrD12018.dat 
-    GJLScrD22018=cards-{name}/shapes-GJLScrD22018.dat 
-    GJLScrD32018=cards-{name}/shapes-GJLScrD32018.dat 
-    GJLScrD42018=cards-{name}/shapes-GJLScrD42018.dat 
-    GJLSsr02018=cards-{name}/shapes-GJLSsr02018.dat 
-    GJLSsr12018=cards-{name}/shapes-GJLSsr12018.dat 
-    GJLSsr22018=cards-{name}/shapes-GJLSsr22018.dat 
-    GJLSsr32018=cards-{name}/shapes-GJLSsr32018.dat 
-    GJLSsr42018=cards-{name}/shapes-GJLSsr42018.dat
     GJHScrA2018=cards-{name}/shapes-GJHScrA2018.dat
     GJHScrB2018=cards-{name}/shapes-GJHScrB2018.dat 
     GJHScrC2018=cards-{name}/shapes-GJHScrC2018.dat 
     GJHScrD2018=cards-{name}/shapes-GJHScrD2018.dat 
     GJHScrE2018=cards-{name}/shapes-GJHScrE2018.dat 
-    GJHScrD02018=cards-{name}/shapes-GJHScrD02018.dat 
-    GJHScrD12018=cards-{name}/shapes-GJHScrD12018.dat 
-    GJHScrD22018=cards-{name}/shapes-GJHScrD22018.dat 
-    GJHScrD32018=cards-{name}/shapes-GJHScrD32018.dat 
-    GJHScrD42018=cards-{name}/shapes-GJHScrD42018.dat 
+    GJHScrF02018=cards-{name}/shapes-GJHScrF02018.dat 
+    GJHScrF12018=cards-{name}/shapes-GJHScrF12018.dat 
+    GJHScrF22018=cards-{name}/shapes-GJHScrF22018.dat 
+    GJHScrF32018=cards-{name}/shapes-GJHScrF32018.dat 
+    GJHScrF42018=cards-{name}/shapes-GJHScrF42018.dat 
+    GJHScrG2018=cards-{name}/shapes-GJHScrG2018.dat 
+    GJHScrH2018=cards-{name}/shapes-GJHScrH2018.dat 
     GJHSsr02018=cards-{name}/shapes-GJHSsr02018.dat 
     GJHSsr12018=cards-{name}/shapes-GJHSsr12018.dat 
     GJHSsr22018=cards-{name}/shapes-GJHSsr22018.dat 
     GJHSsr32018=cards-{name}/shapes-GJHSsr32018.dat 
     GJHSsr42018=cards-{name}/shapes-GJHSsr42018.dat
-    > cards-{name}/combined.dat
+    > cards-{name}/combined.dat    

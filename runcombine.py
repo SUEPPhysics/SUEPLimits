@@ -6,6 +6,7 @@ import subprocess
 import shlex
 import argparse
 import yaml
+from tqdm import tqdm
 
 # HTCondor script template
 condor_script_template = '''
@@ -159,6 +160,7 @@ echo "{combine_command}"
 """
 
 def call_combine(cmd):
+    print(" ---- [%] :", cmd)
     p = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
     return (out, err)
@@ -188,21 +190,21 @@ with open(options.analysis) as f:
 
 # change cwd to the input tag: combine will read the cards from here and will make the higgsCombine file here
 os.chdir(options.input)
+work_dir = os.getcwd()
 print("Working in", options.input)
 print("Running with", options.method, "method")
 
 # define method-specific variables
+
 if options.method == 'multithread':
     pool = ThreadPool(min(multiprocessing.cpu_count(), options.cores))
     results = []
 elif options.method == 'iterative':
-    work_dir = os.getcwd()
+    pass
 elif options.method == 'slurm':
-    work_dir = os.getcwd()
     log_dir = '/work/submit/{}/SUEP/logs/{}_{}/'.format(os.environ['USER'], 'slurm_runcombine', options.input)
     if not os.path.isdir(log_dir): os.mkdir(log_dir)
 elif options.method == 'condor':
-    work_dir =os.getcwd()
     log_dir = '/work/submit/{}/SUEP/logs/{}_{}/'.format(os.environ['USER'], 'condor_runcombine', options.input)
     condor_out_dir = "/store/user/{}/SUEP/{}_{}".format(os.environ['USER'], 'condor_runcombine', options.input)
     out_dir = '/data/submit/cms/store/user/{}/SUEP/{}_{}/'.format(os.environ['USER'], 'condor_runcombine', options.input)
@@ -360,7 +362,7 @@ for dc in dcards:
                 f.write(local_script_content)
 
             if options.method == 'multithread':
-                results.append(pool.apply_async(call_combine, (f'bash {local_script_file}', f'rm {local_script_file}')))
+                results.append(pool.apply_async(call_combine, (f'bash {local_script_file} ; rm {local_script_file}',)))
 
             elif options.method == 'iterative':
                 subprocess.run(['bash', local_script_file])
@@ -445,13 +447,15 @@ for dc in dcards:
                 
 if options.method == 'multithread':
     pool.close()
+    for result in tqdm(results, desc="Processing", unit="job"):
+        result.get()
     pool.join()
-
+    print()
+    print(" ----------------- ")
     for result in results:
         out, err = result.get()
-        if "error" in str(err).lower():
-            print(str(err))
-            print(" ----------------- ")
-            print()
+        print(err.decode('utf-8'))
+        print(" ----------------- ")
+        print()
 
 print("Processed jobs for", toProcess, "samples.")

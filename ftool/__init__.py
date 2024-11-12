@@ -13,6 +13,56 @@ from sympy import symbols, diff, sqrt
 
 __all__ = ['datacard', 'datagroup', "plot", "methods"]
 
+def rebin_piecewise(h_in, bins, histtype='hist'):
+     """
+     Inputs:
+          h : histogram
+          bins: list of bins as real numbers
+          histtype: one of allowed_histtypes to return
+
+     Returns:
+          h_out: a histogram of type 'histtype', rebinned according to desired bins
+     """
+
+     # only 1D hists supported for now
+     if len(h_in.shape) != 1:
+          raise Exception("Only 1D hists supported for now")
+
+     # only hist and bh supported
+     allowed_histtypes = ['hist', 'bh']
+     if histtype not in allowed_histtypes:
+          raise Exception("histtype in not in allowed_histtypes")
+
+     # check that the bins are real numbers
+     if any([x.imag != 0 for x in bins]):
+          raise Exception("Only pass real-valued bins")
+
+     # split the histogram by the bins
+     # and for each bin, calculate total amount of events and variance
+     z_vals, z_vars = [], []
+     for iBin in range(len(bins)-1): 
+          
+          if histtype == 'hist':
+               bin_lo = bins[iBin]*1.0j
+               bin_hi = bins[iBin+1]*1.0j            
+          elif histtype == 'bh':
+               bin_lo = bh.loc(bins[iBin])
+               bin_hi = bh.loc(bins[iBin+1])
+          h_fragment = h_in[bin_lo:bin_hi]    
+          z_vals.append(h_fragment.sum().value)
+          z_vars.append(h_fragment.sum().variance)
+
+     # fill the histograms
+     if histtype == 'hist':
+          h_out = hist.Hist(hist.axis.Variable(bins), storage=hist.storage.Weight())
+          h_out[:] = np.stack([z_vals, z_vars], axis=-1)
+
+     elif histtype == 'bh':
+          h_out = bh.Histogram(bh.axis.Variable(bins), storage=bh.storage.Weight())
+          h_out[:] = np.stack([z_vals, z_vars], axis=-1)
+
+     return h_out
+
 class datagroup:
 
      def __init__(self, files, observable, era, name, channel, ptype,
@@ -49,61 +99,11 @@ class datagroup:
                if "up" not in n and "down" not in n and systvar=="nom":
                     return hist
                elif systvar in n:
-                    if "up" in n:
+                    if "up" in n.lower():
                          shapeUp = hist
-                    if "down" in n:
+                    if "down" in n.lower() or "dn" in n.lower():
                          shapeDown= hist
           return (shapeUp, shapeDown)
-     
-     def rebin_piecewise(self, h_in, bins, histtype='hist'):
-         """
-         Inputs:
-             h : histogram
-             bins: list of bins as real numbers
-             histtype: one of allowed_histtypes to return
-     
-         Returns:
-             h_out: a histogram of type 'histtype', rebinned according to desired bins
-         """
-     
-         # only 1D hists supported for now
-         if len(h_in.shape) != 1:
-             raise Exception("Only 1D hists supported for now")
-     
-         # only hist and bh supported
-         allowed_histtypes = ['hist', 'bh']
-         if histtype not in allowed_histtypes:
-             raise Exception("histtype in not in allowed_histtypes")
-     
-         # check that the bins are real numbers
-         if any([x.imag != 0 for x in bins]):
-             raise Exception("Only pass real-valued bins")
-     
-         # split the histogram by the bins
-         # and for each bin, calculate total amount of events and variance
-         z_vals, z_vars = [], []
-         for iBin in range(len(bins)-1): 
-             
-             if histtype == 'hist':
-                 bin_lo = bins[iBin]*1.0j
-                 bin_hi = bins[iBin+1]*1.0j            
-             elif histtype == 'bh':
-                 bin_lo = bh.loc(bins[iBin])
-                 bin_hi = bh.loc(bins[iBin+1])
-             h_fragment = h_in[bin_lo:bin_hi]    
-             z_vals.append(h_fragment.sum().value)
-             z_vars.append(h_fragment.sum().variance)
-     
-         # fill the histograms
-         if histtype == 'hist':
-             h_out = hist.Hist(hist.axis.Variable(bins), storage=hist.storage.Weight())
-             h_out[:] = np.stack([z_vals, z_vars], axis=-1)
-     
-         elif histtype == 'bh':
-             h_out = bh.Histogram(bh.axis.Variable(bins), storage=bh.storage.Weight())
-             h_out[:] = np.stack([z_vals, z_vars], axis=-1)
-     
-         return h_out
 
      def add(self, other):
           """
@@ -188,7 +188,7 @@ class ggf_datagroup(datagroup):
                         
                         ####merge bins to specified array
                         if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                            newhist = self.rebin_piecewise(newhist, self.bins, 'bh')
+                            newhist = rebin_piecewise(newhist, self.bins, 'bh')
                         
                         name = self.channel + "_" + name
                         newhist.name = name
@@ -215,7 +215,7 @@ class ggf_datagroup(datagroup):
                         
                         ####merge bins to specified array
                         if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                            newhist = self.rebin_piecewise(newhist, self.bins, 'bh')
+                            newhist = rebin_piecewise(newhist, self.bins, 'bh')
                         
                         name = self.channel + "_" + name
                         newhist.name = name
@@ -254,13 +254,13 @@ class wh_datagroup(datagroup):
                if "expected" in self.name and "F_" in self.observable:
                     sum_var = 'x'
                     systs = [] 
-                    D = {}
+                    ref_hist = {} # reference histogram that we use to make an ABCD prediction
                     for name in _file.keys():
                         name = name.replace(";1","")
                         ABCD_obs = self.observable.split("F_")[1]
                         if "2D" in name: continue
                         if ABCD_obs not in name: continue
-                        if "up" in name or "down" in name:
+                        if "up" in name.lower() or "down" in name.lower() or "Dn" in name.lower():
                             plotting_tag = "_" + name.split("_")[-1]
                             sys = name.replace(plotting_tag, "")
                             systs.append(sys)
@@ -268,8 +268,8 @@ class wh_datagroup(datagroup):
                             sys = ""
                             if "F_" in name: systs.append("nom")
                         if sum_var == 'x':
-                            if "D_"+ABCD_obs == name: D["nom"] = _file["D_"+ABCD_obs].to_boost()
-                            if "D_"+ABCD_obs+"_"+sys == name: D[sys] = _file["D_"+ABCD_obs+"_"+sys].to_boost()
+                            if "F_"+ABCD_obs == name: ref_hist["nom"] = _file["F_"+ABCD_obs].to_boost()
+                            if "F_"+ABCD_obs+"_"+sys == name: ref_hist[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
                         elif sum_var == 'y': 
                             raise ValueError('ERROR: Not implemented yet!')
                         else:
@@ -278,7 +278,7 @@ class wh_datagroup(datagroup):
                     for syst in systs:
                         name = ABCD_obs+"_"+syst
                         if sum_var == 'x':
-                            newhist=D[syst].copy()
+                            newhist=ref_hist[syst].copy()
                         elif sum_var == 'y':
                             raise ValueError('ERROR: Not implemented yet!')
                         else:
@@ -290,7 +290,7 @@ class wh_datagroup(datagroup):
                         
                         ####merge bins to specified array
                         if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                            newhist = self.rebin_piecewise(newhist, self.bins, 'bh')
+                            newhist = rebin_piecewise(newhist, self.bins, 'bh')
                         
                         name = self.channel + "_" + name
                         newhist.name = name
@@ -321,7 +321,7 @@ class wh_datagroup(datagroup):
 
                          ####merge bins to specified array
                          if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                              newhist = self.rebin_piecewise(newhist, self.bins, 'bh')
+                              newhist = rebin_piecewise(newhist, self.bins, 'bh')
 
                          name = self.channel + "_" + name
                          newhist.name = name
@@ -357,7 +357,7 @@ class datacard:
           self.extras = set()
           self.dc_name = "{}/cards-{}/shapes-{}.dat".format(self.tag, name, channel)
           if not os.path.isdir(os.path.dirname(self.dc_name)):
-               os.mkdir(os.path.dirname(self.dc_name))
+               os.makedirs(os.path.dirname(self.dc_name), exist_ok=True)
           self.shape_file = uproot.recreate(
                "{}/cards-{}/shapes-{}.root".format(self.tag, name, channel)
           )
@@ -438,15 +438,28 @@ class datacard:
           )
           self.extras.add(template)
 
+     def add_9ABCD_rate_param(self, name, channel, process, era, bin_cr, region=""):
+          # name rateParam bin process initial_value [min,max]
+          rera = "r" + era
+          template = "{name} rateParam {channel} {process} @5*(@8+@9+@10+@11+@12)*@7*@7*@3*@3*@1*@1/(@6*@2*@0*@4*@4*@4*@4) {rera}_{region}crA,{rera}_{region}crB,{rera}_{region}crC,{rera}_{region}crD,{rera}_{region}crE,{rera}_{bin_cr},{rera}_{region}crG,{rera}_{region}crH,{rera}_{region}crF1,{rera}_{region}crF2,{rera}_{region}crF3,{rera}_{region}crF4,{rera}_{region}crF0"
+          template = template.format(
+               name = name,
+               channel = channel,
+               process = process,
+               rera = rera,
+               bin_cr = bin_cr,
+               region=region
+          )
+          self.extras.add(template)
+
      def add_6ABCD_rate_param(self, name, channel, process, era, bin_cr, region=""):
           """
           This function assumes the following form of ABCD regions:
 
-          # const.
           |  B  |  D  |  F  
           + ----+-----+----
           |  A  |  C  |  E
-          + ----+-----+---- S1
+          + ----+-----+----
 
           And calculates:
           F^{pred}_i = D_i * (D_0+D_1+D_2+D_3+D_4) * E * A / (B * C * C)
