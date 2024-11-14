@@ -15,19 +15,18 @@ echo "Setting up environment"
 export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
 source $VO_CMS_SW_DIR/cmsset_default.sh
 
-cmssw-cc7 --command-to-run << 'EOF'
+cmssw-el9--command-to-run << 'EOF'
 
 echo "Inside Singularity image"
-export SCRAM_ARCH=slc7_amd64_gcc700
-cmsrel CMSSW_10_2_13
-cd CMSSW_10_2_13/src
+cmsrel CMSSW_14_1_0_pre4
+cd CMSSW_14_1_0_pre4/src
 cmsenv
 
 echo "Fetching HiggsAnalysis combine"
 git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
 cd $CMSSW_BASE/src/HiggsAnalysis/CombinedLimit
 git fetch origin
-git checkout v8.0.1
+git checkout v10.0.2
 
 echo "Fetching CombineHarvester"
 cd $CMSSW_BASE/src
