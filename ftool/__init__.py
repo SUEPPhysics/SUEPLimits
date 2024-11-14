@@ -445,7 +445,7 @@ class datacard:
                if bin in bin_cr:
                     F_bins.remove(bin)
           rera = "r" + era
-          template = "{name} rateParam {channel} {process} (@7*(@7+@8+@9+@10+@11)*@7*@7*@3*@3*@1*@1/(@6*@2*@0*@4*@4*@4*@4)) {rera}_{region}crA,{rera}_{region}crB,{rera}_{region}crC,{rera}_{region}crD,{rera}_{region}crE,{rera}_{region}crG,{rera}_{region}crH,{rera}_{bin_cr},{rera}_{region}cr{other_bin_cr},{rera}_{region}cr{other1_bin_cr},{rera}_{region}cr{other2_bin_cr},{rera}_{region}cr{other3_bin_cr}"
+          template = "{name} rateParam {channel} {process} (@7*(@7+@8+@9+@10+@11)*@6*@6*@3*@3*@1*@1/(@5*@2*@0*@4*@4*@4*@4)) {rera}_{region}crA,{rera}_{region}crB,{rera}_{region}crC,{rera}_{region}crD,{rera}_{region}crE,{rera}_{region}crG,{rera}_{region}crH,{rera}_{bin_cr},{rera}_{region}cr{other_bin_cr},{rera}_{region}cr{other1_bin_cr},{rera}_{region}cr{other2_bin_cr},{rera}_{region}cr{other3_bin_cr}"
           template = template.format(
                name = name,
                channel = channel,
