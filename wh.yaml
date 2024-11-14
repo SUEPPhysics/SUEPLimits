@@ -43,21 +43,4 @@ runcombine:
     WJHSsr22018=cards-{name}/shapes-WJHSsr22018.dat 
     WJHSsr32018=cards-{name}/shapes-WJHSsr32018.dat 
     WJHSsr42018=cards-{name}/shapes-WJHSsr42018.dat
-    GJHScrA2018=cards-{name}/shapes-GJHScrA2018.dat
-    GJHScrB2018=cards-{name}/shapes-GJHScrB2018.dat 
-    GJHScrC2018=cards-{name}/shapes-GJHScrC2018.dat 
-    GJHScrD2018=cards-{name}/shapes-GJHScrD2018.dat 
-    GJHScrE2018=cards-{name}/shapes-GJHScrE2018.dat 
-    GJHScrF02018=cards-{name}/shapes-GJHScrF02018.dat 
-    GJHScrF12018=cards-{name}/shapes-GJHScrF12018.dat 
-    GJHScrF22018=cards-{name}/shapes-GJHScrF22018.dat 
-    GJHScrF32018=cards-{name}/shapes-GJHScrF32018.dat 
-    GJHScrF42018=cards-{name}/shapes-GJHScrF42018.dat 
-    GJHScrG2018=cards-{name}/shapes-GJHScrG2018.dat 
-    GJHScrH2018=cards-{name}/shapes-GJHScrH2018.dat 
-    GJHSsr02018=cards-{name}/shapes-GJHSsr02018.dat 
-    GJHSsr12018=cards-{name}/shapes-GJHSsr12018.dat 
-    GJHSsr22018=cards-{name}/shapes-GJHSsr22018.dat 
-    GJHSsr32018=cards-{name}/shapes-GJHSsr32018.dat 
-    GJHSsr42018=cards-{name}/shapes-GJHSsr42018.dat
     > cards-{name}/combined.dat    
