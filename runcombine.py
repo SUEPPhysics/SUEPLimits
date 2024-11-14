@@ -99,18 +99,13 @@ slurm_script_template = '''#!/bin/bash
 
 echo "Landed on $(hostname)"
 
-echo "Checking if singularity image exists"
-if [ ! -d /cvmfs/cvmfs.cmsaf.mit.edu/submit/work/submit/submit-software/centos/centos7p9 ]; then
-    echo "Singularity image not found, exiting"
-    exit 1
-fi
+echo "Setting up environment"
+export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
+source $VO_CMS_SW_DIR/cmsset_default.sh
 
-echo "Launching singularity"
-singularity exec --bind /cvmfs,/work,/data /cvmfs/cvmfs.cmsaf.mit.edu/submit/work/submit/submit-software/centos/centos7p9 /bin/bash << 'EOF'
+cmssw-el9 --bind /data,/work,/cvmfs --command-to-run << 'EOF'
 
 # This will all be executed inside the singularity
-echo "source /cvmfs/cms.cern.ch/cmsset_default.sh"
-source /cvmfs/cms.cern.ch/cmsset_default.sh
 echo "cd {work_dir}"
 cd {work_dir}
 
@@ -129,21 +124,13 @@ echo "{combine_command}"
 
 local_script_tempate = """#!/bin/bash
 
-echo "Checking if singularity image exists"
-if [ ! -d /cvmfs/cvmfs.cmsaf.mit.edu/submit/work/submit/submit-software/centos/centos7p9 ]; then
-    echo "Singularity image not found, exiting"
-    exit 1
-fi
+echo "Setting up environment"
+export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
+source $VO_CMS_SW_DIR/cmsset_default.sh
 
-echo "Launching singularity"
-singularity exec --bind /cvmfs,/work,/data /cvmfs/cvmfs.cmsaf.mit.edu/submit/work/submit/submit-software/centos/centos7p9 /bin/bash << 'EOF'
+cmssw-el9 --bind /data,/work,/cvmfs --command-to-run << 'EOF'
 
 # This will all be executed inside the singularity
-echo "source /cvmfs/cms.cern.ch/cmsset_default.sh"
-source /cvmfs/cms.cern.ch/cmsset_default.sh
-echo "cd {work_dir}"
-cd {work_dir}
-
 echo "cmsenv"
 cmsenv
 echo "{rm_command}"
@@ -364,7 +351,6 @@ for dc in dcards:
                 combine_card_command=combine_card_command,
                 text2workspace_command=text2workspace_command,
                 combine_command=combine_command,
-                work_dir=work_dir,
                 outFile=strippedOutFile
             )
 
