@@ -440,14 +440,22 @@ class datacard:
 
      def add_9ABCD_rate_param(self, name, channel, process, era, bin_cr, region=""):
           # name rateParam bin process initial_value [min,max]
+          F_bins = ["F0", "F1", "F2", "F3", "F4"]
+          for bin in F_bins:
+               if bin in bin_cr:
+                    F_bins.remove(bin)
           rera = "r" + era
-          template = "{name} rateParam {channel} {process} @5*(@8+@9+@10+@11+@12)*@7*@7*@3*@3*@1*@1/(@6*@2*@0*@4*@4*@4*@4) {rera}_{region}crA,{rera}_{region}crB,{rera}_{region}crC,{rera}_{region}crD,{rera}_{region}crE,{rera}_{bin_cr},{rera}_{region}crG,{rera}_{region}crH,{rera}_{region}crF1,{rera}_{region}crF2,{rera}_{region}crF3,{rera}_{region}crF4,{rera}_{region}crF0"
+          template = "{name} rateParam {channel} {process} (@7*(@7+@8+@9+@10+@11)*@7*@7*@3*@3*@1*@1/(@6*@2*@0*@4*@4*@4*@4)) {rera}_{region}crA,{rera}_{region}crB,{rera}_{region}crC,{rera}_{region}crD,{rera}_{region}crE,{rera}_{region}crG,{rera}_{region}crH,{rera}_{bin_cr},{rera}_{region}cr{other_bin_cr},{rera}_{region}cr{other1_bin_cr},{rera}_{region}cr{other2_bin_cr},{rera}_{region}cr{other3_bin_cr}"
           template = template.format(
                name = name,
                channel = channel,
                process = process,
                rera = rera,
                bin_cr = bin_cr,
+               other_bin_cr = F_bins[0],
+               other1_bin_cr = F_bins[1],
+               other2_bin_cr = F_bins[2],
+               other3_bin_cr = F_bins[3],
                region=region
           )
           self.extras.add(template)
