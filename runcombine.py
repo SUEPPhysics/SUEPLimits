@@ -56,7 +56,7 @@ echo "{text2workspace_command}"
 echo "{combine_command}"
 {combine_command}
 
-xrdcp *.root root://submit50.mit.edu/{condor_out_dir}
+xrdcp *.root {redirector}/{condor_out_dir}
 '''
 
 # HTCondor submission script
@@ -83,7 +83,6 @@ x509userproxy         = /home/submit/{user}/{proxy}
 Requirements          = ( BOSCOCluster =!= "t3serv008.mit.edu" && BOSCOCluster =!= "ce03.cmsaf.mit.edu" && BOSCOCluster =!= "eofe8.mit.edu")
 +DESIRED_Sites        = "mit_tier2,mit_tier3,T2_AT_Vienna,T2_BE_IIHE,T2_BE_UCL,T2_BR_SPRACE,T2_BR_UERJ,T2_CH_CERN,T2_CH_CERN_AI,T2_CH_CERN_HLT,T2_CH_CERN_Wigner,T2_CH_CSCS,T2_CH_CSCS_HPC,T2_CN_Beijing,T2_DE_DESY,T2_DE_RWTH,T2_EE_Estonia,T2_ES_CIEMAT,T2_ES_IFCA,T2_FI_HIP,T2_FR_CCIN2P3,T2_FR_GRIF_IRFU,T2_FR_GRIF_LLR,T2_FR_IPHC,T2_GR_Ioannina,T2_HU_Budapest,T2_IN_TIFR,T2_IT_Bari,T2_IT_Legnaro,T2_IT_Pisa,T2_IT_Rome,T2_KR_KISTI,T2_MY_SIFIR,T2_MY_UPM_BIRUNI,T2_PK_NCP,T2_PL_Swierk,T2_PL_Warsaw,T2_PT_NCG_Lisbon,T2_RU_IHEP,T2_RU_INR,T2_RU_ITEP,T2_RU_JINR,T2_RU_PNPI,T2_RU_SINP,T2_TH_CUNSTDA,T2_TR_METU,T2_TW_NCHC,T2_UA_KIPT,T2_UK_London_IC,T2_UK_SGrid_Bristol,T2_UK_SGrid_RALPP,T2_US_Caltech,T2_US_Florida,T2_US_Nebraska,T2_US_Purdue,T2_US_UCSD,T2_US_Vanderbilt,T2_US_Wisconsin,T3_CH_CERN_CAF,T3_CH_CERN_DOMA,T3_CH_CERN_HelixNebula,T3_CH_CERN_HelixNebula_REHA,T3_CH_CMSAtHome,T3_CH_Volunteer,T3_US_HEPCloud,T3_US_NERSC,T3_US_OSG,T3_US_PSC,T3_US_SDSC,T3_US_MIT"
 +JobFlavour           = "{queue}"
-#+SingularityImage     = "/cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/cc7\:x86_64-latest"
 queue 1
 '''
 
@@ -194,23 +193,36 @@ print("Working in", options.input)
 print("Running with", options.method, "method")
 
 # define method-specific variables
-
 if options.method == 'multithread':
     pool = ThreadPool(min(multiprocessing.cpu_count(), options.cores))
     results = []
+
 elif options.method == 'iterative':
     pass
+
 elif options.method == 'slurm':
+
+    # declare and create log dir
     log_dir = '/work/submit/{}/SUEP/logs/{}_{}/'.format(os.environ['USER'], 'slurm_runcombine', options.input.split("/")[-1])
     if not os.path.isdir(log_dir): os.mkdir(log_dir)
+
 elif options.method == 'condor':
+
+    # declare and create log dir
     log_dir = '/work/submit/{}/SUEP/logs/{}_{}/'.format(os.environ['USER'], 'condor_runcombine', options.input.split("/")[-1])
-    condor_out_dir = "/store/user/{}/SUEP/{}_{}".format(os.environ['USER'], 'condor_runcombine', options.input.split("/")[-1])
-    out_dir = '/data/submit/cms/store/user/{}/SUEP/{}_{}/'.format(os.environ['USER'], 'condor_runcombine', options.input.split("/")[-1])
     if not os.path.isdir(log_dir): os.mkdir(log_dir)
-    if not os.path.isdir(out_dir): os.mkdir(out_dir)
-    
-    # tar up the cards for transferring, if using condor
+
+    # delcerea and create condor output dir
+    redirector = "root://submit50.mit.edu/"
+    condor_out_dir = "/data/group/cms/store/user/{}/SUEP/{}_{}".format(os.environ['USER'], 'condor_runcombine', options.input.split("/")[-1])
+    check_dir_command = f"xrdfs {redirector} stat {condor_out_dir}"
+    _sample_dir_exists = subprocess.call(check_dir_command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) == 0
+    if not _sample_dir_exists:
+        os.system(f"xrdfs {redirector} mkdir -p {condor_out_dir}")
+    else:
+        print(f"Output directory {redirector+condor_out_dir} already exists! Will not delete it, but data there might be ovewritten.")
+
+    # tar up the cards for transferring
     if not os.path.isfile('cards.tar.gz'):
         os.system("find . -type d -name 'cards*' -exec tar -czvf cards.tar.gz {} +")
     transfer_file = os.path.join(os.getcwd(), 'cards.tar.gz')
@@ -421,7 +433,9 @@ for dc in dcards:
                                         combine_card_command=combine_card_command,
                                         text2workspace_command=text2workspace_command,
                                         combine_command=combine_command,
-                                        condor_out_dir=condor_out_dir)
+                                        condor_out_dir=condor_out_dir,
+                                        redirector=redirector
+            )
             condor_script_file = f'{log_dir}submit_{strippedOutFile}.sh'
             with open(condor_script_file, 'w') as f:
                 f.write(condor_script_content)
