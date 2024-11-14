@@ -13,21 +13,21 @@ import glob
 # input directory
 histDirectory = '/ceph/submit/data/user/{}/{}/SUEP/outputs/'.format(os.environ['USER'][0], os.environ['USER'])
 signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_signal_generic.txt"
-dataList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_MC_WH.txt"
-crwjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_WH.txt"
+dataList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_WH.txt"
+#crwjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_WH.txt"
 vrgjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_VRGJ.txt"
 # make a dictionary, keys are years, values are histogram tags
 signalTags = {
-    '2018': 'WH_11_3_signals_limits_S0p6_v2_2018',
+    '2018': 'WH_11_2_signals_limits_2018',
 }
 dataTags = {
-    '2018': 'WH_11_3_limits_S0p6_v2_2018',
+    '2018': 'WH_11_14_data_limits_2018',
 }
-crwjTags = {
-    '2018': 'WH_CRWJ_limits_10_24',
-}
+# crwjTags = {
+#     '2018': 'WH_CRWJ_limits_10_24',
+# }
 vrgjTags = {
-    '2018': 'WH_11_3_limits_S0p6_v2_VRGJ_2018',
+    '2018': 'WH_VRGJ_limits_10_24',
 }
 combine2016 = True
 #########################################################################
@@ -62,20 +62,20 @@ def generate_yaml(year, data_file_list, crwj_file_list, vrgj_file_list, signal_f
     output += data_obs.replace("WJHSdata:", "WJHSexpected:")
 
     # CRWJ
-    crwj = 'WJLSdata:\n  files:\n'
-    for f in crwj_file_list:
-        crwj += '    - {f}\n'.format(f=f)
-    crwj += '  type:\n    data\n  color: 797\n\n'
-    output += crwj
-    output += crwj.replace("WJLSdata:", "WJLSexpected:")
+    # crwj = 'WJLSdata:\n  files:\n'
+    # for f in crwj_file_list:
+    #     crwj += '    - {f}\n'.format(f=f)
+    # crwj += '  type:\n    data\n  color: 797\n\n'
+    # output += crwj
+    # output += crwj.replace("WJLSdata:", "WJLSexpected:")
 
     # VRGJlowS
-    vrgjlow = 'GJLSdata:\n  files:\n'
-    for f in vrgj_file_list:
-        vrgjlow += '    - {f}\n'.format(f=f)
-    vrgjlow += '  type:\n    data\n  color: 797\n\n'
-    output += vrgjlow
-    output += vrgjlow.replace("GJLSdata:", "GJLSexpected:")
+    # vrgjlow = 'GJLSdata:\n  files:\n'
+    # for f in vrgj_file_list:
+    #     vrgjlow += '    - {f}\n'.format(f=f)
+    # vrgjlow += '  type:\n    data\n  color: 797\n\n'
+    # output += vrgjlow
+    # output += vrgjlow.replace("GJLSdata:", "GJLSexpected:")
 
     # VRGJhighS
     vrgjhigh = 'GJHSdata:\n  files:\n'
@@ -91,7 +91,7 @@ def generate_yaml(year, data_file_list, crwj_file_list, vrgj_file_list, signal_f
         process = sample
         files = '- {f}\n  sample: {sample}\n'.format(f=f, sample=sample)
         output += "{process}:\n  files:\n    {files}  type:\n    signal\n\n".format(process=process, files=files)
-    outfile = 'WH_S0p6_inputs_{}.yaml'.format(year)
+    outfile = 'WH_inputs_{}.yaml'.format(year)
 
     with open(outfile, 'w') as f:
         f.write(output)
@@ -107,13 +107,13 @@ def main():
         signal_filelists[year] = get_file_list(year, tag, signalList, histDirectory)
     for year, tag in dataTags.items():
         data_filelists[year] = get_file_list(year, tag, dataList, histDirectory)
-    for year, tag in crwjTags.items():
-        crwj_filelists[year] = get_file_list(year, tag, crwjList, histDirectory)
+    # for year, tag in crwjTags.items():
+    #     crwj_filelists[year] = get_file_list(year, tag, crwjList, histDirectory)
     for year, tag in vrgjTags.items():
         vrgj_filelists[year] = get_file_list(year, tag, vrgjList, histDirectory)
 
     for year, tag in signalTags.items():
-        generate_yaml(year, data_filelists[year], crwj_filelists[year], vrgj_filelists[year], signal_filelists[year], tag)
+        generate_yaml(year, data_filelists[year], [], vrgj_filelists[year], signal_filelists[year], tag)
 
 if __name__ == "__main__":
     main()

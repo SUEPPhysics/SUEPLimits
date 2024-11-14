@@ -202,12 +202,12 @@ if options.method == 'multithread':
 elif options.method == 'iterative':
     pass
 elif options.method == 'slurm':
-    log_dir = '/work/submit/{}/SUEP/logs/{}_{}/'.format(os.environ['USER'], 'slurm_runcombine', options.input)
+    log_dir = '/work/submit/{}/SUEP/logs/{}_{}/'.format(os.environ['USER'], 'slurm_runcombine', options.input.split("/")[-1])
     if not os.path.isdir(log_dir): os.mkdir(log_dir)
 elif options.method == 'condor':
-    log_dir = '/work/submit/{}/SUEP/logs/{}_{}/'.format(os.environ['USER'], 'condor_runcombine', options.input)
-    condor_out_dir = "/store/user/{}/SUEP/{}_{}".format(os.environ['USER'], 'condor_runcombine', options.input)
-    out_dir = '/data/submit/cms/store/user/{}/SUEP/{}_{}/'.format(os.environ['USER'], 'condor_runcombine', options.input)
+    log_dir = '/work/submit/{}/SUEP/logs/{}_{}/'.format(os.environ['USER'], 'condor_runcombine', options.input.split("/")[-1])
+    condor_out_dir = "/store/user/{}/SUEP/{}_{}".format(os.environ['USER'], 'condor_runcombine', options.input.split("/")[-1])
+    out_dir = '/data/submit/cms/store/user/{}/SUEP/{}_{}/'.format(os.environ['USER'], 'condor_runcombine', options.input.split("/")[-1])
     if not os.path.isdir(log_dir): os.mkdir(log_dir)
     if not os.path.isdir(out_dir): os.mkdir(out_dir)
     

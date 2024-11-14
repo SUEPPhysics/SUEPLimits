@@ -1,0 +1,46 @@
+runcards:
+  commands:
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrA --variable A_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrB --variable B_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrC --variable C_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrD --variable D_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrE --variable E_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrF0 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrF1 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrF2 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrF3 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrF4 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrG --variable G_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHScrH --variable H_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHSsr0 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHSsr1 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHSsr2 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHSsr3 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --gamma --tag {tag} --channel GJHSsr4 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+
+  eras:
+    - '2018'
+  config:
+    "config/WH_inputs_{era}.yaml"
+
+runcombine:
+  combineCards: >
+    combineCards.py -S 
+    GJHScrA2018=cards-{name}/shapes-GJHScrA2018.dat
+    GJHScrB2018=cards-{name}/shapes-GJHScrB2018.dat 
+    GJHScrC2018=cards-{name}/shapes-GJHScrC2018.dat 
+    GJHScrD2018=cards-{name}/shapes-GJHScrD2018.dat 
+    GJHScrE2018=cards-{name}/shapes-GJHScrE2018.dat 
+    GJHScrF02018=cards-{name}/shapes-GJHScrF02018.dat 
+    GJHScrF12018=cards-{name}/shapes-GJHScrF12018.dat 
+    GJHScrF22018=cards-{name}/shapes-GJHScrF22018.dat 
+    GJHScrF32018=cards-{name}/shapes-GJHScrF32018.dat 
+    GJHScrF42018=cards-{name}/shapes-GJHScrF42018.dat 
+    GJHScrG2018=cards-{name}/shapes-GJHScrG2018.dat 
+    GJHScrH2018=cards-{name}/shapes-GJHScrH2018.dat 
+    GJHSsr02018=cards-{name}/shapes-GJHSsr02018.dat 
+    GJHSsr12018=cards-{name}/shapes-GJHSsr12018.dat 
+    GJHSsr22018=cards-{name}/shapes-GJHSsr22018.dat 
+    GJHSsr32018=cards-{name}/shapes-GJHSsr32018.dat 
+    GJHSsr42018=cards-{name}/shapes-GJHSsr42018.dat
+    > cards-{name}/combined.dat    

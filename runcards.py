@@ -14,16 +14,11 @@ Authors: Luca Lavezzo, Chad Freer, Pieter van Steenweghen
 
 import argparse
 import yaml
-import glob
 import os
 import multiprocessing
 import subprocess
 import shlex
-import numpy as np
 from multiprocessing.pool import ThreadPool
-
-import makeOfflineDataCard
-import makeScoutingDataCard
 
 def call_makeDataCard(cmd):
     """ This runs in a separate thread. """
@@ -43,7 +38,7 @@ slurm_script_template = '''#!/bin/bash
 
 source ~/.bashrc
 cd {work_dir}
-conda activate SUEP
+conda activate suep
 {cmd}
 '''
 
@@ -92,7 +87,7 @@ def main():
         print("Running on slurm")
         
     if not os.path.isdir(options.tag):
-        os.mkdir(options.tag)
+        os.makedirs(options.tag)
         print("Created", options.tag)
     print("Writing out to", options.tag)
     

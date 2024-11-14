@@ -35,31 +35,11 @@ lumi_corr1718 = {
 
 ABCD_yield_systematic = {
     "WJHS": {
-        "2018": 1.06,
+        "2018": 1.04,
     },
-    # "WJLS": {
-    #     "2018": 1.13,
-    # },
     "GJHS": {
-        "2018": 1.06,
+        "2018": 1.04,
     },
-    # "GJLS": {
-    #     "2018": 1.13,
-    # }
-}
-ABCD_shape_systematic = {
-    "WJHS": {
-     "2018": [1.0, 1.02, 1.04, 1.07, 1.09]
-    },
-    # "WJLS": {
-    #     "2018": [1.00571259, 1.07931558, 1.17344668, 1.37640079, 2.0]
-    # },
-    "GJHS": {
-        "2018": [1.0, 1.02, 1.04, 1.07, 1.09]
-    },
-    # "GJLS" : {
-    #     "2018": [1.00571259, 1.07931558, 1.17344668, 1.37640079, 2.0]
-    # }
 }
 
 
@@ -89,6 +69,7 @@ def main():
     parser.add_argument("--rebin" ,type=int, default=1)
     parser.add_argument("--bins",'--list', nargs='*', help='<Required> Set flag', required=False,default=[])
     parser.add_argument("--bias", type=str, default=None, help="Name of signal model you want to inject.")
+    parser.add_argument("--gamma", action='store_true', help="Use gamma region as your background.")
     parser.add_argument("--verbose", action="store_true", help="Print out more information.")
 
     options = parser.parse_args()
@@ -111,17 +92,24 @@ def main():
     for dg in options.stack:
         logging.info(dg)
 
+        observable = options.variable
         if inputs[dg]["type"] == "signal":
             if signal == "":
                 signal = dg
             else:
                 raise ValueError("I wasn't expecting multiple signals in the same card.")
-            if 'GJ' in options.channel: continue  # TODO for now skip signal in the gamma+jets
+            if 'GJ' in options.channel:
+                if options.gamma:
+                    # in this case, use gamma as background, and signal as signal
+                    observable = options.variable.replace("VRGJhighS", "SR")
+                else:
+                    # skip signal in gamma+jets region
+                    continue
             
         p = ftool.wh_datagroup( 
             inputs[dg]["files"],
             ptype      = inputs[dg]["type"], 
-            observable = options.variable,
+            observable = observable,
             era        = options.era,
             name       = dg,
             kfactor    = inputs[dg].get("kfactor", 1.0),
@@ -140,7 +128,7 @@ def main():
             p_merge = ftool.wh_datagroup(
                 inputs2016apv[sample2016apv]["files"],
                 ptype      = inputs2016apv[sample2016apv]["type"],
-                observable = options.variable,
+                observable = observable,
                 era        = "2016apv",
                 name       = sample2016apv,
                 kfactor    = inputs2016apv[sample2016apv].get("kfactor", 1.0),
@@ -159,7 +147,7 @@ def main():
             p_bias = ftool.wh_datagroup(
                 inputs[options.bias]["files"],
                 ptype      = "signal",
-                observable = options.variable,
+                observable = observable,
                 era        = options.era,
                 name       = options.bias,
                 kfactor    = inputs[options.bias].get("kfactor", 1.0),
@@ -239,7 +227,6 @@ def main():
                 # TODO need to derive these values. non closure?
                 # NB assuming that options.channel looks something like "WJHScrF1"
                 card.add_nuisance(name, "{:<21}  lnN".format("ABCD_yield_{}_{}".format(region, options.era)), ABCD_yield_systematic[region][options.era])
-                card.add_nuisance(name, "{:<21}  lnN".format("ABCD_shape_{}_{}_{}".format(region, options.channel[4:], options.era)), ABCD_shape_systematic[region][options.era][int(options.channel[-1])])
 
         else:
             rate_nom = p.get("nom").values().sum()

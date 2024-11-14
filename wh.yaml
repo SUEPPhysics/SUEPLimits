@@ -18,24 +18,6 @@ runcards:
     - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr3 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
     - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr4 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
 
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrA --variable A_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrB --variable B_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrC --variable C_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrD --variable D_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrE --variable E_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrF0 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrF1 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrF2 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrF3 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrF4 --variable F_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrG --variable G_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHScrH --variable H_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr0 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 30 40 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr1 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 40 50 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr2 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 50 60 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr3 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 60 80 --input=config/WH_inputs_{era}.yaml --era={era}"
-    - "python3 makeWHDataCard.py --tag {tag} --channel GJHSsr4 --variable I_SUEP_nconst_VRGJhighS --stack {n} GJHSexpected GJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
-
   eras:
     - '2018'
   config:
