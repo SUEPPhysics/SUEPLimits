@@ -20,6 +20,8 @@ runcards:
 
   eras:
     - '2018'
+    - '2017'
+    - '2016'
   config:
     "config/WH_inputs_{era}.yaml"
 
@@ -43,4 +45,38 @@ runcombine:
     WJHSsr22018=cards-{name}/shapes-WJHSsr22018.dat 
     WJHSsr32018=cards-{name}/shapes-WJHSsr32018.dat 
     WJHSsr42018=cards-{name}/shapes-WJHSsr42018.dat
+    WJHScrA2017=cards-{name}/shapes-WJHScrA2017.dat
+    WJHScrB2017=cards-{name}/shapes-WJHScrB2017.dat 
+    WJHScrC2017=cards-{name}/shapes-WJHScrC2017.dat 
+    WJHScrD2017=cards-{name}/shapes-WJHScrD2017.dat 
+    WJHScrE2017=cards-{name}/shapes-WJHScrE2017.dat 
+    WJHScrF02017=cards-{name}/shapes-WJHScrF02017.dat 
+    WJHScrF12017=cards-{name}/shapes-WJHScrF12017.dat 
+    WJHScrF22017=cards-{name}/shapes-WJHScrF22017.dat 
+    WJHScrF32017=cards-{name}/shapes-WJHScrF32017.dat 
+    WJHScrF42017=cards-{name}/shapes-WJHScrF42017.dat 
+    WJHScrG2017=cards-{name}/shapes-WJHScrG2017.dat 
+    WJHScrH2017=cards-{name}/shapes-WJHScrH2017.dat 
+    WJHSsr02017=cards-{name}/shapes-WJHSsr02017.dat 
+    WJHSsr12017=cards-{name}/shapes-WJHSsr12017.dat 
+    WJHSsr22017=cards-{name}/shapes-WJHSsr22017.dat 
+    WJHSsr32017=cards-{name}/shapes-WJHSsr32017.dat 
+    WJHSsr42017=cards-{name}/shapes-WJHSsr42017.dat
+    WJHScrA2016=cards-{name}/shapes-WJHScrA2016.dat
+    WJHScrB2016=cards-{name}/shapes-WJHScrB2016.dat 
+    WJHScrC2016=cards-{name}/shapes-WJHScrC2016.dat 
+    WJHScrD2016=cards-{name}/shapes-WJHScrD2016.dat 
+    WJHScrE2016=cards-{name}/shapes-WJHScrE2016.dat 
+    WJHScrF02016=cards-{name}/shapes-WJHScrF02016.dat 
+    WJHScrF12016=cards-{name}/shapes-WJHScrF12016.dat 
+    WJHScrF22016=cards-{name}/shapes-WJHScrF22016.dat 
+    WJHScrF32016=cards-{name}/shapes-WJHScrF32016.dat 
+    WJHScrF42016=cards-{name}/shapes-WJHScrF42016.dat 
+    WJHScrG2016=cards-{name}/shapes-WJHScrG2016.dat 
+    WJHScrH2016=cards-{name}/shapes-WJHScrH2016.dat 
+    WJHSsr02016=cards-{name}/shapes-WJHSsr02016.dat 
+    WJHSsr12016=cards-{name}/shapes-WJHSsr12016.dat 
+    WJHSsr22016=cards-{name}/shapes-WJHSsr22016.dat 
+    WJHSsr32016=cards-{name}/shapes-WJHSsr32016.dat 
+    WJHSsr42016=cards-{name}/shapes-WJHSsr42016.dat
     > cards-{name}/combined.dat    

@@ -1,0 +1,177 @@
+era: 2016
+
+WJHSdata:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleElectron+Run2016F-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleElectron+Run2016G-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleElectron+Run2016H-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleMuon+Run2016F-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleMuon+Run2016G-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleMuon+Run2016H-UL2016_MiniAODv2-v2+MINIAOD.root
+  type:
+    data
+  color: 895
+
+WJHSexpected:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleElectron+Run2016F-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleElectron+Run2016G-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleElectron+Run2016H-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleMuon+Run2016F-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleMuon+Run2016G-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_18_data_limits_2016/SingleMuon+Run2016H-UL2016_MiniAODv2-v2+MINIAOD.root
+  type:
+    data
+  color: 895
+
+GJHSdata:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_VRGJ_11_20_limits_2016/SinglePhoton+Run2016F-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_VRGJ_11_20_limits_2016/SinglePhoton+Run2016G-UL2016_MiniAODv2-v3+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_VRGJ_11_20_limits_2016/SinglePhoton+Run2016H-UL2016_MiniAODv2-v2+MINIAOD.root
+  type:
+    data
+  color: 797
+
+GJHSexpected:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_VRGJ_11_20_limits_2016/SinglePhoton+Run2016F-UL2016_MiniAODv2-v2+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_VRGJ_11_20_limits_2016/SinglePhoton+Run2016G-UL2016_MiniAODv2-v3+MINIAOD.root
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_VRGJ_11_20_limits_2016/SinglePhoton+Run2016H-UL2016_MiniAODv2-v2+MINIAOD.root
+  type:
+    data
+  color: 797
+
+SUEP_mS125.000_mPhi2.000_T0.500_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi2.000_T0.500_modegeneric.root
+  sample: SUEP_mS125.000_mPhi2.000_T0.500_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi2.000_T1.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi2.000_T1.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi2.000_T1.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi2.000_T2.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi2.000_T2.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi2.000_T2.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi2.000_T4.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi2.000_T4.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi2.000_T4.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi3.000_T0.750_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi3.000_T0.750_modegeneric.root
+  sample: SUEP_mS125.000_mPhi3.000_T0.750_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi3.000_T1.500_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi3.000_T1.500_modegeneric.root
+  sample: SUEP_mS125.000_mPhi3.000_T1.500_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi3.000_T12.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi3.000_T12.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi3.000_T12.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi3.000_T3.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi3.000_T3.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi3.000_T3.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi3.000_T6.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi3.000_T6.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi3.000_T6.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi4.000_T1.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi4.000_T1.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi4.000_T1.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi4.000_T16.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi4.000_T16.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi4.000_T16.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi4.000_T2.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi4.000_T2.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi4.000_T2.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi4.000_T4.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi4.000_T4.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi4.000_T4.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi4.000_T8.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi4.000_T8.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi4.000_T8.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi8.000_T16.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi8.000_T16.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi8.000_T16.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi8.000_T2.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi8.000_T2.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi8.000_T2.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi8.000_T32.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi8.000_T32.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi8.000_T32.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi8.000_T4.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi8.000_T4.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi8.000_T4.000_modegeneric
+  type:
+    signal
+
+SUEP_mS125.000_mPhi8.000_T8.000_modegeneric:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs//WH_11_20_signal_2016/SUEP_mS125.000_mPhi8.000_T8.000_modegeneric.root
+  sample: SUEP_mS125.000_mPhi8.000_T8.000_modegeneric
+  type:
+    signal
+

@@ -18,16 +18,25 @@ dataList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_W
 vrgjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_VRGJ.txt"
 # make a dictionary, keys are years, values are histogram tags
 signalTags = {
-    '2018': 'WH_11_2_signals_limits_2018',
+    '2018':     'WH_11_20_signal_2018',
+    '2017':     'WH_11_20_signal_2017',
+    '2016':     'WH_11_20_signal_2016',
+    '2016apv':  'WH_11_20_signal_2016apv',
 }
 dataTags = {
-    '2018': 'WH_11_14_data_limits_2018',
+    '2018':     'WH_11_14_data_limits_2018',
+    '2017':     'WH_11_18_data_limits_2017',
+    '2016':     'WH_11_18_data_limits_2016',
+    '2016apv':  'WH_11_18_data_limits_2016apv',
 }
 # crwjTags = {
 #     '2018': 'WH_CRWJ_limits_10_24',
 # }
 vrgjTags = {
-    '2018': 'WH_VRGJ_limits_10_24',
+    '2018':     'WH_VRGJ_limits_10_24',
+    '2017':     'WH_VRGJ_11_20_limits_2017',
+    '2016':     'WH_VRGJ_11_20_limits_2016',
+    '2016apv':  'WH_VRGJ_11_20_limits_2016apv',
 }
 combine2016 = True
 #########################################################################

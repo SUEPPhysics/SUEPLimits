@@ -103,6 +103,8 @@ class datagroup:
                          shapeUp = hist
                     if "down" in n.lower() or "dn" in n.lower():
                          shapeDown= hist
+          if shapeUp is None or shapeDown is None:
+               raise ValueError("Could not find up and down variations for systematic %s" % systvar)
           return (shapeUp, shapeDown)
 
      def add(self, other):
@@ -424,7 +426,7 @@ class datacard:
                vmax = vmax
           )
           self.extras.add(template)
-
+     
      def add_ABCD_rate_param(self, name, channel, process, era, F):
           # name rateParam bin process initial_value [min,max]
           rera = "r" + era
@@ -444,19 +446,52 @@ class datacard:
           for bin in F_bins:
                if bin in bin_cr:
                     F_bins.remove(bin)
-          rera = "r" + era
-          template = "{name} rateParam {channel} {process} (@7*(@7+@8+@9+@10+@11)*@6*@6*@3*@3*@1*@1/(@5*@2*@0*@4*@4*@4*@4)) {rera}_{region}crA,{rera}_{region}crB,{rera}_{region}crC,{rera}_{region}crD,{rera}_{region}crE,{rera}_{region}crG,{rera}_{region}crH,{rera}_{bin_cr},{rera}_{region}cr{other_bin_cr},{rera}_{region}cr{other1_bin_cr},{rera}_{region}cr{other2_bin_cr},{rera}_{region}cr{other3_bin_cr}"
+          template = "{name} rateParam {channel} {process} (@7*(@7+@8+@9+@10+@11)*@6*@6*@3*@3*@1*@1/(@5*@2*@0*@4*@4*@4*@4)) r_{region}crA{era},r_{region}crB{era},r_{region}crC{era},r_{region}crD{era},r_{region}crE{era},r_{region}crG{era},r_{region}crH{era},r_{bin_cr}{era},r_{region}cr{other_bin_cr}{era},r_{region}cr{other1_bin_cr}{era},r_{region}cr{other2_bin_cr}{era},r_{region}cr{other3_bin_cr}{era}"
           template = template.format(
                name = name,
                channel = channel,
                process = process,
-               rera = rera,
+               era = era,
                bin_cr = bin_cr,
                other_bin_cr = F_bins[0],
                other1_bin_cr = F_bins[1],
                other2_bin_cr = F_bins[2],
                other3_bin_cr = F_bins[3],
                region=region
+          )
+          self.extras.add(template)
+
+     def add_9ABCD_rate_param_eras_combined(self, name, channel, process, eras, bin_cr, region=""):
+          # name rateParam bin process initial_value [min,max]
+          F_bins = ["F0", "F1", "F2", "F3", "F4"]
+          for bin in F_bins:
+               if bin in bin_cr:
+                    F_bins.remove(bin)
+          template = "{name} rateParam {channel} {process} ((@7+@19+@31)*((@7+@19+@31)+(@8+@20+@32)+(@9+@21+@33)+(@10+@22+@34)+(@11+@23+@35))*(@6+@18+@30)*(@6+@18+@30)*(@3+@15+@27)*(@3+@15+@27)*(@1+@13+@25)*(@1+@13+@25)/((@5+@17+@29)*(@2+@14+@26)*(@0+@12+@24)*(@4+@16+@28)*(@4+@16+@28)*(@4+@16+@28)*(@4+@16+@28))) {rate_params}"
+          rate_params_template = "r_{region}crA{era},r_{region}crB{era},r_{region}crC{era},r_{region}crD{era},r_{region}crE{era},r_{region}crG{era},r_{region}crH{era},r_{bin_cr}{era},r_{region}cr{other_bin_cr}{era},r_{region}cr{other1_bin_cr}{era},r_{region}cr{other2_bin_cr}{era},r_{region}cr{other3_bin_cr}{era}"
+          rate_params = []
+          for era in eras:
+               rate_params.append(rate_params_template.format(
+                    region=region,
+                    era=era,
+                    bin_cr=bin_cr,
+                    other_bin_cr=F_bins[0],
+                    other1_bin_cr=F_bins[1],
+                    other2_bin_cr=F_bins[2],
+                    other3_bin_cr=F_bins[3]
+               ))
+          template = template.format(
+               name = name,
+               channel = channel,
+               process = process,
+               era = era,
+               bin_cr = bin_cr,
+               other_bin_cr = F_bins[0],
+               other1_bin_cr = F_bins[1],
+               other2_bin_cr = F_bins[2],
+               other3_bin_cr = F_bins[3],
+               region=region,
+               rate_params=",".join(rate_params)
           )
           self.extras.add(template)
 

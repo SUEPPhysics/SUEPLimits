@@ -247,7 +247,13 @@ def get_unique_combinations(variables: list, ms=None, mphi=None, temp=None, deca
     return unique_combinations
         
 
-def get_scan_limits(ms=None, mphi=None, temp=None, decay=None, path="../", file='../config/xsections_2018.json', method='AsymptoticLimits', analysis='ggf-offline'):
+def get_scan_limits(
+    ms=None, mphi=None, temp=None, decay=None,
+    path="../", file='../config/xsections_2018.json',
+    method='AsymptoticLimits',
+    analysis='ggf-offline',
+    return_xsec=True
+    ):
     """
     Get all existing limits for a given set of parameters.
     Leave a parameter blank as None to get all possible values for that parameter.
@@ -282,7 +288,7 @@ def get_scan_limits(ms=None, mphi=None, temp=None, decay=None, path="../", file=
             else:
                 raise ValueError(f"Method {method} not recognized.")
             if limit.shape == (2,6):
-                limit[1,:] *= sample[4] # scale the r limit by the theoretical xsec to get limit on xsec
+                if return_xsec: limit[1,:] *= sample[4] # scale the r limit by the theoretical xsec to get limit on xsec
                 good_selected_params.append([sample, limit])
             else:
                 print('Bad limits', get_SUEP_file(path=path, ms=sample[0], mphi=sample[1], temp=sample[2], decay=sample[3], method=method, analysis=analysis))
@@ -594,7 +600,8 @@ def plot_mPhi_temp_limits(
         showTheoryLines:bool=False,
         showObserved:bool=True,
         autoRange:bool=True,
-        analysis:str='ggf-offline'
+        analysis:str='ggf-offline',
+        muLimit:bool=False
     ): 
     """
     Make 2D limit plot on the cross section for some choice of mS and decay, scanning over T and mPhi.
@@ -610,6 +617,8 @@ def plot_mPhi_temp_limits(
         method: 'AsymptoticLimits' or 'HybridNew'
         showTheoryLines: if True, the theory line is shown
         autoRange: if True, the range of the plot is automatically set
+        analysis: 'ggf-offline', 'ggf-scouting', 'ggf-tth', 'wh'
+        muLimit: if True, the limit is on mu, not on the cross section
     Outputs:
         fig: figure object
     """
@@ -617,7 +626,7 @@ def plot_mPhi_temp_limits(
     if tricontour not in ['log','lin']: #tricontour decides whether we interpolate through mu ('lin') or log(mu) ('log')
         raise Exception("tricontour should be 'log' or 'lin'")
 
-    scan_limits = get_scan_limits(path=path, ms=ms, decay=decay, method=method, analysis=analysis)
+    scan_limits = get_scan_limits(path=path, ms=ms, decay=decay, method=method, analysis=analysis, return_xsec=not muLimit)
         
     # Reorganize data
     limit_xsec = np.stack([s[1] for s in scan_limits]) 
@@ -646,12 +655,14 @@ def plot_mPhi_temp_limits(
     ax = fig.subplots()
     
     if tricontour == 'log':
-        levels = np.linspace(min(data['obs']),max(data['obs']))
+        levels = np.linspace(min(data['obs']), max(data['obs']))
         triang = tri.Triangulation(limit_mphi, limit_temp)
         contour = ax.tricontourf(triang, data['obs'], levels=levels, cmap="plasma")
-        #contour = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels, cmap="plasma")
         cb = fig.colorbar(contour)
-        cb.ax.set_ylabel(r'$95\%$ CL obs. upper limit on $\sigma$ (pb)', loc='top', rotation=90, fontsize=25)
+        if muLimit:
+            cb.ax.set_ylabel(r'$95\%$ CL obs. upper limit on $\mu$', loc='top', rotation=90, fontsize=25)
+        else:    
+            cb.ax.set_ylabel(r'$95\%$ CL obs. upper limit on $\sigma$ (pb)', loc='top', rotation=90, fontsize=25)
         ticks = (np.array(range(math.ceil(min(data['obs'])), math.floor(max(data['obs'])) + 1)))
         cb.set_ticks(ticks)
         labels = ['$10^{'+str(i)+'}$' for i in ticks]

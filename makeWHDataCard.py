@@ -34,12 +34,20 @@ lumi_corr1718 = {
 }
 
 ABCD_yield_systematic = {
-    "WJHS": {
-        "2018": 1.04,
-    },
-    "GJHS": {
-        "2018": 1.04,
-    },
+    "WJHS": 1.02,
+    "GJHS": 1.02
+}
+ABCD_shape_systematic = {
+    "WJHSsr0": 1.03,
+    "WJHSsr1": 1.06,
+    "WJHSsr2": 1.06,
+    "WJHSsr3": 1.5,
+    "WJHSsr4": 1.5,
+    "GJHSsr0": 1.03,
+    "GJHSsr1": 1.06,
+    "GJHSsr2": 1.06,
+    "GJHSsr3": 1.5,
+    "GJHSsr4": 1.5,
 }
 
 
@@ -219,14 +227,17 @@ def main():
                 Bin_cr = options.channel.replace("sr","crF")
 
                 # ABCD prediction as a rate parameter
-                card.add_9ABCD_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, options.era, bin_cr=Bin_cr, region=region)
+                #if options.era == "2018":
+                #    card.add_9ABCD_rate_param_eras_combined("r_" + options.channel + options.era, options.channel + options.era, name, options.era, bin_cr=Bin_cr, region=region)
+                card.add_9ABCD_rate_param("r_" + options.channel + options.era, options.channel + options.era, name, options.era, bin_cr=Bin_cr, region=region)
                 
                 # add systematics for the ABCD prediction
 
                 # correlated between the regions, bins, uncorrelated between years
                 # TODO need to derive these values. non closure?
                 # NB assuming that options.channel looks something like "WJHScrF1"
-                card.add_nuisance(name, "{:<21}  lnN".format("ABCD_yield_{}_{}".format(region, options.era)), ABCD_yield_systematic[region][options.era])
+                card.add_nuisance(name, "{:<21}  lnN".format("ABCD_yield_{}_{}".format(region, options.era)), ABCD_yield_systematic[region])
+                #card.add_nuisance(name, "{:<21}  lnN".format("ABCD_shape_{}_{}".format(options.channel, options.era)), ABCD_shape_systematic[options.channel])
 
         else:
             rate_nom = p.get("nom").values().sum()
@@ -239,8 +250,8 @@ def main():
                 rate_nom = 0.0001
                 rate_up = 20
                 rate_down = 0
-            if "expected" in p.name and p.ptype == "data" :
-                card.add_rate_param("r" + options.era + "_" + options.channel, options.channel + options.era, name, rate=rate_nom, vmin=rate_down, vmax=rate_up )
+            if "expected" in p.name and p.ptype == "data":
+                card.add_rate_param("r_" + options.channel + options.era, options.channel + options.era, name, rate=rate_nom, vmin=rate_down, vmax=rate_up )
 
         if p.ptype=="data": continue #Now that we have expected nom we skip data
 
