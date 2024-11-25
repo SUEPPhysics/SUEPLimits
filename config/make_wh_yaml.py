@@ -18,10 +18,10 @@ dataList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_W
 vrgjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_VRGJ.txt"
 # make a dictionary, keys are years, values are histogram tags
 signalTags = {
-    '2018':     'WH_11_20_signal_2018',
-    '2017':     'WH_11_20_signal_2017',
-    '2016':     'WH_11_20_signal_2016',
-    '2016apv':  'WH_11_20_signal_2016apv',
+    '2018':     'WH_11_24_signal_2018',
+    '2017':     'WH_11_24_signal_2017',
+    '2016':     'WH_11_24_signal_2016',
+    '2016apv':  'WH_11_24_signal_2016apv',
 }
 dataTags = {
     '2018':     'WH_11_14_data_limits_2018',

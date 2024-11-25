@@ -63,18 +63,12 @@ def main():
     )
     parser.add_argument("-includeAll", "--includeAll", type=str, default='', help="Pass a '-' separated list of strings you want all your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' AND 'mPhi300' in the name.")
     parser.add_argument("-includeAny", "--includeAny", type=str, default='', help="Pass a '-' separated list of strings you want any of your samples to include. e.g. generic-mPhi300 will only run samples that contain 'generic' OR 'mPhi300' in the name.")
-    parser.add_argument("-file"  , "--file", type=str, required=False, help='List of samples you want to make datacards for.')
     parser.add_argument("-v", "--verbose", action="store_true", help="Print out more information.")
     options = parser.parse_args()
 
     with open(options.analysis) as f:
         analysis = yaml.safe_load(f.read())
         analysis = analysis['runcards']
-    eras = analysis['eras']
-
-    if options.file:
-        with open(options.file) as f:
-            samplesToRun = f.read().splitlines()
 
     if options.method == 'multithread':
         n_cpus = min(multiprocessing.cpu_count(), options.cores)
@@ -92,67 +86,58 @@ def main():
     print("Writing out to", options.tag)
     
     results = []
-    for era in eras:
+    for sample in analysis['samples']:
 
-        with open(analysis['config'].format(era=era)) as f: 
-            inputs = yaml.safe_load(f.read())
-           
-        for n, sam in inputs.items():
-            if type(sam) != dict or sam.get('type') != 'signal': continue
-
-            # select samples based on include
-            if options.includeAll != '' and options.includeAny != '':
-                raise Exception("Either run with --includeAll or --includeAny or neither, not both")
-            elif options.includeAny != '':
-                if all([i not in n for i in options.includeAny.split('-')]): continue
-            elif options.includeAll != '':
-                if any([i not in n for i in options.includeAll.split('-')]): continue
-            
-            # select samples based on file
-            if options.file:
-                if n not in samplesToRun: continue
-
-            # grab the commands and bins for this sample
-            commands = analysis['commands']
-            commands = [com.format(era=era, n=n, tag=options.tag) for com in commands]
-
-            # either force the run, or check whether the file already exist before running
-            bins_to_run = [com.split('--channel ')[1].split()[0] for com in commands]
-            if not options.force:
-                completed = []
-                for bin_name in bins_to_run: 
-                    for eof in ['dat','root']:
-                        path = '{}/cards-{}/shapes-{}{}.{}'.format(options.tag, n,bin_name,era,eof)
-                        if os.path.exists(path) and os.path.getsize(path) > 0: 
-                            completed.append(bin_name)
-                bins_to_run = list(set(bins_to_run) - set(completed))
-                if len(bins_to_run) == 0: 
-                    print("Cards for this sample are completed, skipping (use -f to overwrite):", n, era)
-                    continue
+        # select samples based on include
+        if options.includeAll != '' and options.includeAny != '':
+            raise Exception("Either run with --includeAll or --includeAny or neither, not both")
+        elif options.includeAny != '':
+            if all([i not in sample for i in options.includeAny.split('-')]): continue
+        elif options.includeAll != '':
+            if any([i not in sample for i in options.includeAll.split('-')]): continue
         
-            # only run the commands for the bins that are not already completed
-            commands = [com for com in commands if com.split('--channel ')[1].split()[0] in bins_to_run]
+        # grab the commands and bins for this sample
+        commands = analysis['commands']
+        commands = [com.format(n=sample, tag=options.tag) for com in commands]
 
-            print(" ===== processing : ", n, era, bins_to_run)
+        # either force the run, or check whether the file already exist before running
+        bins_to_run = [com.split('--channel ')[1].split()[0] for com in commands]
+        eras_to_run = [com.split('--era ')[1].split()[0] for com in commands]
+        if not options.force:
+            completed = []
+            for bin_name, era in zip(bins_to_run, eras_to_run): 
+                for eof in ['dat','root']:
+                    path = '{}/cards-{}/shapes-{}{}.{}'.format(options.tag, sample, bin_name, era, eof)
+                    if os.path.exists(path) and os.path.getsize(path) > 0: 
+                        completed.append(bin_name)
+            bins_to_run = list(set(bins_to_run) - set(completed))
+            if len(bins_to_run) == 0: 
+                print("Cards for this sample are completed, skipping (use -f to overwrite):", sample, era)
+                continue
+    
+        # only run the commands for the bins that are not already completed
+        commands = [com for com in commands if com.split('--channel ')[1].split()[0] in bins_to_run]
 
-            if options.method == 'multithread':
-                for cmd in commands:
-                    results.append(pool.apply_async(call_makeDataCard, (cmd,)))
+        print(" ===== processing : ", sample, bins_to_run)
+
+        if options.method == 'multithread':
+            for cmd in commands:
+                results.append(pool.apply_async(call_makeDataCard, (cmd,)))
+        
+        elif options.method == 'slurm':
+            slurm_script_content = slurm_script_template.format(
+                                        cmd='\n'.join(commands),
+                                        work_dir=work_dir,
+                                        log_dir=log_dir,
+                                        sample=sample+'_'+era)
             
-            elif options.method == 'slurm':
-                slurm_script_content = slurm_script_template.format(
-                                            cmd='\n'.join(commands),
-                                            work_dir=work_dir,
-                                            log_dir=log_dir,
-                                            sample=n+'_'+era)
-                
-                # Write the SLURM script to a file
-                slurm_script_file = f'{log_dir}{n}.sh'
-                with open(slurm_script_file, 'w') as f:
-                    f.write(slurm_script_content)
+            # Write the SLURM script to a file
+            slurm_script_file = f'{log_dir}{sample}.sh'
+            with open(slurm_script_file, 'w') as f:
+                f.write(slurm_script_content)
 
-                # Submit the SLURM job
-                subprocess.run(['sbatch', slurm_script_file])
+            # Submit the SLURM job
+            subprocess.run(['sbatch', slurm_script_file])
                 
     # Close the pool and wait for each running task to complete
     if options.method == 'multithread':

@@ -49,6 +49,11 @@ done
 # Move to the specified directory
 cd "$path" || { echo "Error: Could not navigate to directory '$path'"; exit 1; }
 
+# activate environment
+export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
+source $VO_CMS_SW_DIR/cmsset_default.sh
+cmsenv
+
 # Run main commands with optional extra arguments
 combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit --robustFit 1 $extra_args
 combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits $extra_args

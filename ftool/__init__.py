@@ -9,6 +9,7 @@ from . import methods
 import hist
 import boost_histogram as bh
 import logging
+import numbers
 from sympy import symbols, diff, sqrt
 
 __all__ = ['datacard', 'datagroup', "plot", "methods"]
@@ -94,18 +95,12 @@ class datagroup:
           return histogram
 
      def get(self, systvar):
-          shapeUp, shapeDown= None, None
-          for n, hist in self.histograms.items():
-               if "up" not in n and "down" not in n and systvar=="nom":
-                    return hist
-               elif systvar in n:
-                    if "up" in n.lower():
-                         shapeUp = hist
-                    if "down" in n.lower() or "dn" in n.lower():
-                         shapeDown= hist
-          if shapeUp is None or shapeDown is None:
-               raise ValueError("Could not find up and down variations for systematic %s" % systvar)
-          return (shapeUp, shapeDown)
+          if systvar == 'nom':
+               return self.histograms[self.observable]
+          else:
+               shapeUp = self.histograms[self.observable + "_" + systvar + "_Up"]
+               shapeDown = self.histograms[self.observable + "_" + systvar + "_Down"]
+               return (shapeUp, shapeDown)
 
      def add(self, other):
           """
@@ -236,8 +231,31 @@ class ggf_datagroup(datagroup):
 
 class wh_datagroup(datagroup):
 
-     def __init__(self, files, observable, era, name, channel, ptype, kfactor=1, luminosity=1, rebin=1, bins=[], normalise=True, xsections=1):
+     def __init__(self, files, observable, era, name, channel, ptype, kfactor=1, luminosity=1, rebin=1, bins=[], normalise=True, xsections=1, variations={}):
+          self.variations = variations
           super().__init__(files, observable, era, name, channel, ptype, kfactor, luminosity, rebin, bins, normalise, xsections)
+
+     def store_hist(self, _file, in_name: str, _histograms: dict, _out_name: str, _scale: float = 1) -> None:
+
+          if self.normalise:
+               _scale *= self.lumi * self.xsec * self.kfactor
+
+          roothist = _file[in_name]
+          newhist = roothist.to_boost() * _scale
+
+          #### merge bins
+          if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
+               newhist = newhist[::bh.rebin(self.rebin)]
+
+          ####merge bins to specified array
+          if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
+               newhist = rebin_piecewise(newhist, self.bins, 'bh')
+
+          newhist.name = _out_name
+          if _out_name in _histograms.keys():
+               _histograms[_out_name] += newhist
+          else:
+               _histograms[_out_name] = newhist
 
      def get_histograms(self):
 
@@ -248,94 +266,78 @@ class wh_datagroup(datagroup):
                _file = uproot.open(fn)
                if not _file:
                     raise ValueError("%s is not a valid rootfile" % fn)
+               
+               # if "expected" in self.name and "F_" in self.observable:
+               #      sum_var = 'x'
+               #      systs = [] 
+               #      ref_hist = {} # reference histogram that we use to make an ABCD prediction
+               #      for name in _file.keys():
+               #          name = name.replace(";1","")
+               #          ABCD_obs = self.observable.split("F_")[1]
+               #          if "2D" in name: continue
+               #          if ABCD_obs not in name: continue
+               #          print("SKEET", name)
+               #          if "up" in name.lower() or "down" in name.lower() or "dn" in name.lower():
+               #              plotting_tag = "_" + name.split("_")[-1]
+               #              sys = name.replace(plotting_tag, "")
+               #              systs.append(sys)
+               #          else:
+               #              sys = ""
+               #              if "F_" in name: systs.append("nom")
+               #          if sum_var == 'x':
+               #              if "F_"+ABCD_obs == name: ref_hist["nom"] = _file["F_"+ABCD_obs].to_boost()
+               #              if "F_"+ABCD_obs+"_"+sys == name: ref_hist[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
+               #          elif sum_var == 'y': 
+               #              raise ValueError('ERROR: Not implemented yet!')
+               #          else:
+               #              raise ValueError('ERROR: Appropriate variable not chosen!')
 
-               _scale = 1
-               if self.normalise:
-                    _scale = self.lumi * self.xsec * self.kfactor
+               #      for syst in systs:
+               #           name = ABCD_obs+"_"+syst
+               #           if sum_var == 'x':
+               #              newhist=ref_hist[syst].copy()
+               #           elif sum_var == 'y':
+               #              raise ValueError('ERROR: Not implemented yet!')
+               #           else:
+               #              raise ValueError('ERROR: Systematic plots not found for expected!')
 
-               if "expected" in self.name and "F_" in self.observable:
-                    sum_var = 'x'
-                    systs = [] 
-                    ref_hist = {} # reference histogram that we use to make an ABCD prediction
-                    for name in _file.keys():
-                        name = name.replace(";1","")
-                        ABCD_obs = self.observable.split("F_")[1]
-                        if "2D" in name: continue
-                        if ABCD_obs not in name: continue
-                        if "up" in name.lower() or "down" in name.lower() or "Dn" in name.lower():
-                            plotting_tag = "_" + name.split("_")[-1]
-                            sys = name.replace(plotting_tag, "")
-                            systs.append(sys)
-                        else:
-                            sys = ""
-                            if "F_" in name: systs.append("nom")
-                        if sum_var == 'x':
-                            if "F_"+ABCD_obs == name: ref_hist["nom"] = _file["F_"+ABCD_obs].to_boost()
-                            if "F_"+ABCD_obs+"_"+sys == name: ref_hist[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
-                        elif sum_var == 'y': 
-                            raise ValueError('ERROR: Not implemented yet!')
-                        else:
-                            raise ValueError('ERROR: Appropriate variable not chosen!')
-
-                    for syst in systs:
-                        name = ABCD_obs+"_"+syst
-                        if sum_var == 'x':
-                            newhist=ref_hist[syst].copy()
-                        elif sum_var == 'y':
-                            raise ValueError('ERROR: Not implemented yet!')
-                        else:
-                            raise ValueError('ERROR: Systematic plots not found for expected!')
-
-                        #### merge bins
-                        if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
-                            newhist = newhist[::bh.rebin(self.rebin)]
+               #           #### merge bins
+               #           if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
+               #              newhist = newhist[::bh.rebin(self.rebin)]
                         
-                        ####merge bins to specified array
-                        if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                            newhist = rebin_piecewise(newhist, self.bins, 'bh')
+               #           ####merge bins to specified array
+               #           if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
+               #              newhist = rebin_piecewise(newhist, self.bins, 'bh')
                         
-                        name = self.channel + "_" + name
-                        newhist.name = name
-                        if name in _histograms.keys():
-                             _histograms[name] += newhist# * 0.0 + 1.0
-                        else:
-                             _histograms[name] = newhist#  * 0.0 + 1.0
+               #           name = self.channel + "_" + name
+               #           newhist.name = name
+               #           if name in _histograms.keys():
+               #               _histograms[name] += newhist# * 0.0 + 1.0
+               #           else:
+               #               _histograms[name] = newhist#  * 0.0 + 1.0
 
-                        try:
-                             self.systvar.add(re.search("sys_[\w.]+", name).group())
-                        except:
-                             pass
+               #           print("WE HERE", name, syst)
 
-               else:
+               #           try:
+               #               self.systvar.add(re.search("sys_[\w.]+", name).group())
+               #           except:
+               #               pass
 
-                    for name in _file.keys():
-                         name = name.replace(";1", "")
-                         if self.observable not in name: continue
-                         if ";" in name:
-                              print("Found multiple versions of the same histogram. Continuing with the first one (;1), I hope it's correct.")
-                              continue
-                         roothist = _file[name]
-                         newhist = roothist.to_boost() * _scale
+               # else:
 
-                         #### merge bins
-                         if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
-                              newhist = newhist[::bh.rebin(self.rebin)]
+               self.store_hist(_file, self.observable, _histograms, self.observable)
 
-                         ####merge bins to specified array
-                         if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-                              newhist = rebin_piecewise(newhist, self.bins, 'bh')
+               for var_name, var in self.variations.items():
 
-                         name = self.channel + "_" + name
-                         newhist.name = name
-                         if name in _histograms.keys():
-                              _histograms[name] += newhist
-                         else:
-                              _histograms[name] = newhist
+                    if type(var) is list and len(var) == 2:
 
-                         try:
-                              self.systvar.add(re.search("sys_[\w.]+", name).group())
-                         except:
-                              pass
+                         self.store_hist(_file, self.observable + "_" + var[0], _histograms, self.observable + "_" + var_name + "_Up")
+                         self.store_hist(_file, self.observable + "_" + var[1], _histograms, self.observable + "_" + var_name + "_Down")
+
+                    if isinstance(var, numbers.Number):
+
+                         self.store_hist(_file, self.observable, _histograms, self.observable + "_" + var_name + "_Up", var)
+                         self.store_hist(_file, self.observable, _histograms, self.observable + "_" + var_name + "_Down", 1/var)
                         
           return _histograms
 

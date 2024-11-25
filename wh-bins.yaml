@@ -1,0 +1,62 @@
+runcards:
+  commands:
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrA --variable A_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrB --variable B_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrC --variable C_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrD --variable D_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrE --variable E_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF0 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 30 35 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF1 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 35 40 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF2 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 40 45 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF3 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 45 50 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF4 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 50 55 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF5 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 55 60 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF6 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 60 70 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF7 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 70 80 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF8 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrG --variable G_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrH --variable H_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr0 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 30 35 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr1 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 35 40 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr2 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 40 45 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr3 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 45 50 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr4 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 50 55 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr5 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 55 60 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr6 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 60 70 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr7 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 70 80 --input=config/WH_inputs_{era}.yaml --era={era}"
+    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr8 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 80 2000 --input=config/WH_inputs_{era}.yaml --era={era}"
+
+  eras:
+    - '2018'
+  config:
+    "config/WH_inputs_{era}.yaml"
+
+runcombine:
+  combineCards: >
+    combineCards.py -S 
+    WJHScrA2018=cards-{name}/shapes-WJHScrA2018.dat
+    WJHScrB2018=cards-{name}/shapes-WJHScrB2018.dat 
+    WJHScrC2018=cards-{name}/shapes-WJHScrC2018.dat 
+    WJHScrD2018=cards-{name}/shapes-WJHScrD2018.dat 
+    WJHScrE2018=cards-{name}/shapes-WJHScrE2018.dat 
+    WJHScrF02018=cards-{name}/shapes-WJHScrF02018.dat 
+    WJHScrF12018=cards-{name}/shapes-WJHScrF12018.dat 
+    WJHScrF22018=cards-{name}/shapes-WJHScrF22018.dat 
+    WJHScrF32018=cards-{name}/shapes-WJHScrF32018.dat 
+    WJHScrF42018=cards-{name}/shapes-WJHScrF42018.dat 
+    WJHScrF52018=cards-{name}/shapes-WJHScrF52018.dat
+    WJHScrF62018=cards-{name}/shapes-WJHScrF62018.dat
+    WJHScrF72018=cards-{name}/shapes-WJHScrF72018.dat
+    WJHScrF82018=cards-{name}/shapes-WJHScrF82018.dat
+    WJHScrG2018=cards-{name}/shapes-WJHScrG2018.dat 
+    WJHScrH2018=cards-{name}/shapes-WJHScrH2018.dat 
+    WJHSsr02018=cards-{name}/shapes-WJHSsr02018.dat 
+    WJHSsr12018=cards-{name}/shapes-WJHSsr12018.dat 
+    WJHSsr22018=cards-{name}/shapes-WJHSsr22018.dat 
+    WJHSsr32018=cards-{name}/shapes-WJHSsr32018.dat 
+    WJHSsr42018=cards-{name}/shapes-WJHSsr42018.dat
+    WJHSsr52018=cards-{name}/shapes-WJHSsr52018.dat
+    WJHSsr62018=cards-{name}/shapes-WJHSsr62018.dat
+    WJHSsr72018=cards-{name}/shapes-WJHSsr72018.dat
+    WJHSsr82018=cards-{name}/shapes-WJHSsr82018.dat
+    > cards-{name}/combined.dat    

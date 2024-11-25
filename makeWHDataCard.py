@@ -16,21 +16,96 @@ lumis = {
     "2018" : 59.817
 }
 
-lumi_uncorr = {
-    "2016" : 1.010,
-    "2017" : 1.020,
-    "2018" : 1.015
-}
-
-lumi_corr = {
-    "2016" : 1.006,
-    "2017" : 1.009,
-    "2018" : 1.020
-}
-
-lumi_corr1718 = {
-    "2017" : 1.006,
-    "2018" : 1.002
+signal_variations = {
+    "2018": {
+        # era dependent
+        "Lumi_Uncorr_18": 1.015,
+        "Lumi_Corr_1718": 1.002,
+        "JES_18": ["JES_up", "JES_down"],
+        "PS_ISR_18": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "PS_FSR_18": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "Track_Eff_18": ["track_up", "track_down"],
+        # era independent
+        "Lumi_Corr": 1.020,
+        "JER": ["JER_up", "JER_down"],
+        "Unclustered": ["Unclustered_up", "Unclustered_down"],
+        "PU": ["puweights_up", "puweights_down"],
+        "HiggsPt_Reweight": ["higgs_weights_up", "higgs_weights_down"],
+        "LepSF_El": ["LepSFElUp", "LepSFElDown"],
+        "LepSF_Mu": ["LepSFMuUp", "LepSFMuDown"],
+        "BTag_HFcorrelated": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "BTag_HFuncorrelated": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "BTag_LFcorrelated": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "BTag_LFuncorrelated": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "MuScale": ["MuScaleUp", "MuScaleDown"],
+    },
+    "2017": {
+        # era dependent
+        "Lumi_Uncorr_17": 1.009,
+        "Lumi_Corr_1718": 1.006,
+        "JES_17": ["JES_up", "JES_down"],
+        "PS_ISR_17": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "PS_FSR_17": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "Track_Eff_17": ["track_up", "track_down"],
+        # era independent
+        "Lumi_Corr": 1.020,
+        "Prefire": ["prefire_up", "prefire_down"],
+        "JER": ["JER_up", "JER_down"],
+        "Unclustered": ["Unclustered_up", "Unclustered_down"],
+        "PU": ["puweights_up", "puweights_down"],
+        "HiggsPt_Reweight": ["higgs_weights_up", "higgs_weights_down"],
+        "LepSF_El": ["LepSFElUp", "LepSFElDown"],
+        "LepSF_Mu": ["LepSFMuUp", "LepSFMuDown"],
+        "BTag_HFcorrelated": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "BTag_HFuncorrelated": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "BTag_LFcorrelated": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "BTag_LFuncorrelated": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "MuScale": ["MuScaleUp", "MuScaleDown"],
+    },
+    "2016": {
+        # era dependent
+        "Lumi_Uncorr_16": 1.010,
+        "JES_16": ["JES_up", "JES_down"],
+        "PS_ISR_16": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "PS_FSR_16": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "Track_Eff_16": ["track_up", "track_down"],
+        # era independent
+        "Lumi_Corr": 1.006,
+        "Prefire": ["prefire_up", "prefire_down"],
+        "JER": ["JER_up", "JER_down"],
+        "Unclustered": ["Unclustered_up", "Unclustered_down"],
+        "PU": ["puweights_up", "puweights_down"],
+        "HiggsPt_Reweight": ["higgs_weights_up", "higgs_weights_down"],
+        "LepSF_El": ["LepSFElUp", "LepSFElDown"],
+        "LepSF_Mu": ["LepSFMuUp", "LepSFMuDown"],
+        "BTag_HFcorrelated": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "BTag_HFuncorrelated": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "BTag_LFcorrelated": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "BTag_LFuncorrelated": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "MuScale": ["MuScaleUp", "MuScaleDown"],
+    },
+    "2016apv": {
+        # era dependent
+        "Lumi_Uncorr_16": 1.010,
+        "JES_16": ["JES_up", "JES_down"],
+        "PS_ISR_16": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "PS_FSR_16": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "Track_Eff_16": ["track_up", "track_down"],
+        # era independent
+        "Lumi_Corr": 1.006,
+        "Prefire": ["prefire_up", "prefire_down"],
+        "JER": ["JER_up", "JER_down"],
+        "Unclustered": ["Unclustered_up", "Unclustered_down"],
+        "PU": ["puweights_up", "puweights_down"],
+        "HiggsPt_Reweight": ["higgs_weights_up", "higgs_weights_down"],
+        "LepSF_El": ["LepSFElUp", "LepSFElDown"],
+        "LepSF_Mu": ["LepSFMuUp", "LepSFMuDown"],
+        "BTag_HFcorrelated": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "BTag_HFuncorrelated": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "BTag_LFcorrelated": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "BTag_LFuncorrelated": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "MuScale": ["MuScaleUp", "MuScaleDown"],
+    }
 }
 
 ABCD_yield_systematic = {
@@ -65,7 +140,7 @@ def xs_scale(proc, era):
 
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
-    parser.add_argument("-i"  , "--input"   , type=str, default="config/WH_inputs_2018.yaml")
+    parser.add_argument("-i"  , "--input"   , type=str, default="config/WH_inputs_{era}.yaml")
     parser.add_argument("-t"  , "--tag"   , type=str, default=".")
     parser.add_argument("-v"  , "--variable", type=str, required=True)
     parser.add_argument("-c"  , "--channel" , type=str)
@@ -86,87 +161,88 @@ def main():
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)
+
+    if options.era == 'all':
+        eras = ["2016", "2017", "2018"]
+    elif options.era == '2016':
+        eras = ["2016", "2016apv"]
+    else:
+        eras = [options.era]
         
-    with open(options.input) as f:
-        inputs = yaml.safe_load(f.read())
-    if options.era == "2016":
-        with open(options.input.replace("2016","2016apv")) as f:
-            inputs2016apv = yaml.safe_load(f.read())
+    inputs_by_era = {}
+    for era in eras:
+        with open(options.input.format(era=era)) as f:
+            inputs_by_era[era] = yaml.safe_load(f.read())
+
+    active_variations = {era: signal_variations[era] for era in eras}
+    for era in eras:
+        era_vars = active_variations[era]
+        for other_era in active_variations.keys():
+            if era == other_era: continue
+            for var, val in active_variations[other_era].items():
+                if var not in era_vars.keys():
+                    era_vars[var] = 1
     
     # make datasets per process
     datasets = {}
-    nsignals = 0
     signal = ""
     for dg in options.stack:
         logging.info(dg)
 
-        observable = options.variable
-        if inputs[dg]["type"] == "signal":
-            if signal == "":
-                signal = dg
+        for iera, era in enumerate(eras):
+
+            observable = options.variable
+            if inputs_by_era[era][dg]["type"] == "signal":
+                if signal == "":
+                    signal = dg
+                if signal != dg:
+                    raise ValueError("I wasn't expecting multiple signals in the same card.")
+                if 'GJ' in options.channel:
+                    if options.gamma:
+                        # in this case, use gamma as background, and signal as signal
+                        observable = options.variable.replace("VRGJhighS", "SR")
+                    else:
+                        # skip signal in gamma+jets region
+                        continue
+                
+            p_era = ftool.wh_datagroup( 
+                inputs_by_era[era][dg]["files"],
+                ptype      = inputs_by_era[era][dg]["type"], 
+                observable = observable,
+                era        = era,
+                name       = dg,
+                kfactor    = inputs_by_era[era][dg].get("kfactor", 1.0),
+                channel    = options.channel,
+                rebin      = options.rebin,
+                bins       = options.bins,
+                luminosity = lumis[era],
+                xsections  = xs_scale(inputs_by_era[era][dg].get("sample", dg), era) if inputs_by_era[era][dg]["type"] == "signal" else 1,
+                normalise  = (inputs_by_era[era][dg]["type"] == "signal"),
+                variations = signal_variations[era] if inputs_by_era[era][dg]["type"] == "signal" else {}
+            )
+            if iera == 0: 
+                p = p_era
             else:
-                raise ValueError("I wasn't expecting multiple signals in the same card.")
-            if 'GJ' in options.channel:
-                if options.gamma:
-                    # in this case, use gamma as background, and signal as signal
-                    observable = options.variable.replace("VRGJhighS", "SR")
-                else:
-                    # skip signal in gamma+jets region
-                    continue
-            
-        p = ftool.wh_datagroup( 
-            inputs[dg]["files"],
-            ptype      = inputs[dg]["type"], 
-            observable = observable,
-            era        = options.era,
-            name       = dg,
-            kfactor    = inputs[dg].get("kfactor", 1.0),
-            channel    = options.channel,
-            rebin      = options.rebin,
-            bins       = options.bins,
-            luminosity = lumis[options.era],
-            xsections  = xs_scale(inputs[dg].get("sample", dg), options.era) if inputs[dg]["type"] == "signal" else 1,
-            normalise  = (inputs[dg]["type"] == "signal")
-        )
+                p.add(p_era)
 
-        # merge 2016apv with 2016
-        if options.era == "2016":
-            sample2016apv = dg.replace("2016","2016apv").replace("UL16", "UL16APV")
-            logging.info("Merging with 2016apv sample: " + sample2016apv)
-            p_merge = ftool.wh_datagroup(
-                inputs2016apv[sample2016apv]["files"],
-                ptype      = inputs2016apv[sample2016apv]["type"],
-                observable = observable,
-                era        = "2016apv",
-                name       = sample2016apv,
-                kfactor    = inputs2016apv[sample2016apv].get("kfactor", 1.0),
-                channel    = options.channel,
-                rebin      = options.rebin,
-                bins       = options.bins,
-                luminosity = lumis["2016apv"],
-                xsections  = xs_scale(inputs2016apv[sample2016apv].get("sample", sample2016apv), "2016apv") if inputs2016apv[sample2016apv]["type"] == "signal" else 1,
-                normalise  = (inputs2016apv[sample2016apv]["type"] == "signal")
-            )
-            p.add(p_merge)
-
-        if options.bias and inputs[dg]["type"] != "signal":
-            logging.info("Injecting signal in data.")
-            # Note this is a lazy way to do this, we should generate toys instead of adding the same signal we are extracting
-            p_bias = ftool.wh_datagroup(
-                inputs[options.bias]["files"],
-                ptype      = "signal",
-                observable = observable,
-                era        = options.era,
-                name       = options.bias,
-                kfactor    = inputs[options.bias].get("kfactor", 1.0),
-                channel    = options.channel,
-                rebin      = options.rebin,
-                bins       = options.bins,
-                luminosity = lumis[options.era],
-                xsections  = xs_scale(inputs[options.bias].get("sample", options.bias), options.era),
-                normalise  = True
-            )
-            p.add(p_bias)
+            if options.bias and inputs_by_era[era][dg]["type"] != "signal":
+                logging.info("Injecting signal in data.")
+                # Note this is a lazy way to do this, we should generate toys instead of adding the same signal we are extracting
+                p_bias = ftool.wh_datagroup(
+                    inputs_by_era[era][options.bias]["files"],
+                    ptype      = "signal",
+                    observable = observable,
+                    era        = era,
+                    name       = options.bias,
+                    kfactor    = inputs_by_era[era][options.bias].get("kfactor", 1.0),
+                    channel    = options.channel,
+                    rebin      = options.rebin,
+                    bins       = options.bins,
+                    luminosity = lumis[era],
+                    xsections  = xs_scale(inputs_by_era[era][options.bias].get("sample", options.bias), era),
+                    normalise  = True
+                )
+                p.add(p_bias)
 
         datasets[p.name] = p
 
@@ -237,13 +313,10 @@ def main():
                 # TODO need to derive these values. non closure?
                 # NB assuming that options.channel looks something like "WJHScrF1"
                 card.add_nuisance(name, "{:<21}  lnN".format("ABCD_yield_{}_{}".format(region, options.era)), ABCD_yield_systematic[region])
-                #card.add_nuisance(name, "{:<21}  lnN".format("ABCD_shape_{}_{}".format(options.channel, options.era)), ABCD_shape_systematic[options.channel])
+                card.add_nuisance(name, "{:<21}  lnN".format("ABCD_shape_{}_{}".format(options.channel, options.era)), ABCD_shape_systematic[options.channel])
 
         else:
-            rate_nom = p.get("nom").values().sum()
-            # minor workaround for MC
-            if rate_nom < 0:
-                rate_nom = 0
+            rate_nom = max(p.get("nom").values().sum(), 0)
             rate_up = rate_nom*5
             rate_down = 0
             if rate_up == 0: 
@@ -255,32 +328,38 @@ def main():
 
         if p.ptype=="data": continue #Now that we have expected nom we skip data
 
-        # add rate param
-        
-        #Add lnN nuisances
-        card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_uncorr_{}".format(options.era)), lumi_uncorr[options.era])
-        card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr"), lumi_corr[options.era])
-        if options.era in ["2017","2018"]:
-            card.add_nuisance(name, "{:<21}  lnN".format("CMS_lumi_corr1718"), lumi_corr1718[options.era])
-
-        #Shape based uncertainties
+        # add nuisances
         # TODO missing: trigger SFs!
-        card.add_shape_nuisance(name, "CMS_JES_{}".format(options.era), p.get("JES"))
-        card.add_shape_nuisance(name, "CMS_JER", p.get("JER"))
-        card.add_shape_nuisance(name, "CMS_PU", p.get("puweights"))
-        # card.add_shape_nuisance(name, "CMS_trigSF_{}".format(options.era), p.get("trigSF"))
-        card.add_shape_nuisance(name, "CMS_PS_ISR_{}".format(options.era), p.get("PSWeight_ISR"))
-        card.add_shape_nuisance(name, "CMS_PS_FSR_{}".format(options.era), p.get("PSWeight_FSR"))
-        card.add_shape_nuisance(name, "CMS_trk_kill_{}".format(options.era), p.get("track"))
-        card.add_shape_nuisance(name, "CMS_Higgs", p.get("higgs_weights"))
-        card.add_shape_nuisance(name, "CMS_LepSFEl", p.get("LepSFEl"))
-        card.add_shape_nuisance(name, "CMS_LepSFMu", p.get("LepSFMu"))
-        card.add_shape_nuisance(name, "CMS_bTagWeight_HFcorrelated", p.get("bTagWeight_HFcorrelated"))
-        card.add_shape_nuisance(name, "CMS_bTagWeight_HFuncorrelated", p.get("bTagWeight_HFuncorrelated"))
-        card.add_shape_nuisance(name, "CMS_bTagWeight_LFcorrelated", p.get("bTagWeight_LFcorrelated"))
-        card.add_shape_nuisance(name, "CMS_bTagWeight_LFuncorrelated", p.get("bTagWeight_LFuncorrelated"))
-        if options.era in ["2016apv", "2016", "2017"]:
-             card.add_shape_nuisance(name, "CMS_Prefire", p.get("prefire"))
+        # card.add_shape_nuisance(name, "trigSF_{}".format(options.era), p.get("trigSF"))
+        card.add_shape_nuisance(name, "JES_16", p.get("JES_16"))
+        card.add_shape_nuisance(name, "JES_17", p.get("JES_17"))
+        card.add_shape_nuisance(name, "JES_18", p.get("JES_18"))
+        card.add_shape_nuisance(name, "JER", p.get("JER"))
+        card.add_shape_nuisance(name, "PU", p.get("PU"))
+        card.add_shape_nuisance(name, "Unclustered", p.get("Unclustered"))
+        card.add_shape_nuisance(name, "PS_ISR_16".format(options.era), p.get("PS_ISR_16"))
+        card.add_shape_nuisance(name, "PS_ISR_17".format(options.era), p.get("PS_ISR_17"))
+        card.add_shape_nuisance(name, "PS_ISR_18".format(options.era), p.get("PS_ISR_18"))
+        card.add_shape_nuisance(name, "PS_FSR_18".format(options.era), p.get("PS_FSR_18"))
+        card.add_shape_nuisance(name, "PS_FSR_17".format(options.era), p.get("PS_FSR_17"))
+        card.add_shape_nuisance(name, "PS_FSR_16".format(options.era), p.get("PS_FSR_16"))
+        card.add_shape_nuisance(name, "Track_Eff_18".format(options.era), p.get("Track_Eff_18"))
+        card.add_shape_nuisance(name, "Track_Eff_17".format(options.era), p.get("Track_Eff_17"))
+        card.add_shape_nuisance(name, "Track_Eff_16".format(options.era), p.get("Track_Eff_16"))
+        card.add_shape_nuisance(name, "HiggsPt_Reweight", p.get("HiggsPt_Reweight"))
+        card.add_shape_nuisance(name, "LepSF_El", p.get("LepSF_El"))
+        card.add_shape_nuisance(name, "LepSF_Mu", p.get("LepSF_Mu"))
+        card.add_shape_nuisance(name, "MuScale", p.get("MuScale"))
+        card.add_shape_nuisance(name, "BTag_HFcorrelated", p.get("BTag_HFcorrelated"))
+        card.add_shape_nuisance(name, "BTag_HFuncorrelated", p.get("BTag_HFuncorrelated"))
+        card.add_shape_nuisance(name, "BTag_LFcorrelated", p.get("BTag_LFcorrelated"))
+        card.add_shape_nuisance(name, "BTag_LFuncorrelated", p.get("BTag_LFuncorrelated"))
+        card.add_shape_nuisance(name, "Prefire", p.get("Prefire"))
+        card.add_shape_nuisance(name, "Lumi_Uncorr_18", p.get("Lumi_Uncorr_18"))
+        card.add_shape_nuisance(name, "Lumi_Uncorr_17", p.get("Lumi_Uncorr_17"))
+        card.add_shape_nuisance(name, "Lumi_Uncorr_16", p.get("Lumi_Uncorr_16"))
+        card.add_shape_nuisance(name, "Lumi_Corr", p.get("Lumi_Corr"))
+        card.add_shape_nuisance(name, "Lumi_Corr_1718", p.get("Lumi_Corr_1718"))
              
     card.add_auto_stat()
 
