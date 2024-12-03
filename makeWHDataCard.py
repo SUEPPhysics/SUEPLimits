@@ -109,20 +109,20 @@ signal_variations = {
 }
 
 ABCD_yield_systematic = {
-    "WJHS": 1.02,
-    "GJHS": 1.02
+    "WJHS": 1.04,
+    "GJHS": 1.04
 }
 ABCD_shape_systematic = {
-    "WJHSsr0": 1.03,
-    "WJHSsr1": 1.06,
-    "WJHSsr2": 1.06,
+    "WJHSsr0": 1.005,
+    "WJHSsr1": 1.05,
+    "WJHSsr2": 1.05,
     "WJHSsr3": 1.5,
-    "WJHSsr4": 1.5,
-    "GJHSsr0": 1.03,
-    "GJHSsr1": 1.06,
-    "GJHSsr2": 1.06,
-    "GJHSsr3": 1.5,
-    "GJHSsr4": 1.5,
+    "WJHSsr4": 2.0,
+    "GJHSsr0": 1.0,
+    "GJHSsr1": 1.0,
+    "GJHSsr2": 1.0,
+    "GJHSsr3": 1.3,
+    "GJHSsr4": 1.0,
 }
 
 
