@@ -9,17 +9,10 @@ Using SUEP histograms from coffea producer
 
 ## Get combine
 Follow instructions on the [combine documentation](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/) to get the combine tool.
-At the time of writing, this code has been tested with the latest and reccomended version, v9.
+At the time of writing, this code has been tested with the latest and reccomended version, v10.
 
 ## Get CombineTool
 You can follow the instructions on the [combine documentation](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/#combine-tool), reported here for your convenience:
-```bash
-cd $CMSSW_BASE/src
-git clone https://github.com/cms-analysis/CombineHarvester.git CombineHarvester
-
-cd $CMSSW_BASE/src/
-scramv1 b clean; scramv1 b -j 10
-```
 
 ## Additional software
 To run some of the plotting tools, you need third party pakages such as uproot. You can install by:
