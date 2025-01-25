@@ -55,9 +55,13 @@ source $VO_CMS_SW_DIR/cmsset_default.sh
 cmsenv
 
 # Run main commands with optional extra arguments
+echo "combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit --robustFit 1 $extra_args"
 combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit --robustFit 1 $extra_args
+echo "combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits $extra_args"
 combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits $extra_args
+echo "combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits $extra_args"
 combineTool.py -M Impacts -d combined.root -m 125 -o impacts.json $extra_args
+echo "plotImpacts.py -i impacts.json -o impacts"
 plotImpacts.py -i impacts.json -o impacts
 
 # Copy impacts.json to the output path if specified

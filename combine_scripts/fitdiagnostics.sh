@@ -53,5 +53,5 @@ cd $path
 
 # Run main commands
 echo "Running combine."
-echo "combine -M FitDiagnostics combined.root -m 200 --rMin -1 --saveShapes --saveWithUncertainties $extra_args"
-combine -M FitDiagnostics combined.root -m 200 --rMin -1 --saveShapes --saveWithUncertainties $extra_args
+echo "combine -M FitDiagnostics combined.root -m 200 --saveShapes --saveWithUncertainties $extra_args"
+combine -M FitDiagnostics combined.root -m 200 --saveShapes --saveWithUncertainties $extra_args

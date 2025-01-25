@@ -96,10 +96,10 @@ class datagroup:
 
      def get(self, systvar):
           if systvar == 'nom':
-               return self.histograms[self.observable]
+               return self.histograms['nom']
           else:
-               shapeUp = self.histograms[self.observable + "_" + systvar + "_Up"]
-               shapeDown = self.histograms[self.observable + "_" + systvar + "_Down"]
+               shapeUp = self.histograms[systvar + "_Up"]
+               shapeDown = self.histograms[systvar + "_Down"]
                return (shapeUp, shapeDown)
 
      def add(self, other):
@@ -240,8 +240,12 @@ class wh_datagroup(datagroup):
           if self.normalise:
                _scale *= self.lumi * self.xsec * self.kfactor
 
-          roothist = _file[in_name]
-          newhist = roothist.to_boost() * _scale
+          try:
+               roothist = _file[in_name]
+               newhist = roothist.to_boost() * _scale
+          except uproot.exceptions.KeyInFileError:
+               print("I am a silly little histogram: {in_name} in channel {channel}".format(in_name=in_name, channel=self.channel))
+               newhist = hist.Hist.new.Reg(100,0,100).Weight()
 
           #### merge bins
           if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
@@ -266,81 +270,23 @@ class wh_datagroup(datagroup):
                _file = uproot.open(fn)
                if not _file:
                     raise ValueError("%s is not a valid rootfile" % fn)
-               
-               # if "expected" in self.name and "F_" in self.observable:
-               #      sum_var = 'x'
-               #      systs = [] 
-               #      ref_hist = {} # reference histogram that we use to make an ABCD prediction
-               #      for name in _file.keys():
-               #          name = name.replace(";1","")
-               #          ABCD_obs = self.observable.split("F_")[1]
-               #          if "2D" in name: continue
-               #          if ABCD_obs not in name: continue
-               #          print("SKEET", name)
-               #          if "up" in name.lower() or "down" in name.lower() or "dn" in name.lower():
-               #              plotting_tag = "_" + name.split("_")[-1]
-               #              sys = name.replace(plotting_tag, "")
-               #              systs.append(sys)
-               #          else:
-               #              sys = ""
-               #              if "F_" in name: systs.append("nom")
-               #          if sum_var == 'x':
-               #              if "F_"+ABCD_obs == name: ref_hist["nom"] = _file["F_"+ABCD_obs].to_boost()
-               #              if "F_"+ABCD_obs+"_"+sys == name: ref_hist[sys] = _file["F_"+ABCD_obs+"_"+sys].to_boost()
-               #          elif sum_var == 'y': 
-               #              raise ValueError('ERROR: Not implemented yet!')
-               #          else:
-               #              raise ValueError('ERROR: Appropriate variable not chosen!')
 
-               #      for syst in systs:
-               #           name = ABCD_obs+"_"+syst
-               #           if sum_var == 'x':
-               #              newhist=ref_hist[syst].copy()
-               #           elif sum_var == 'y':
-               #              raise ValueError('ERROR: Not implemented yet!')
-               #           else:
-               #              raise ValueError('ERROR: Systematic plots not found for expected!')
-
-               #           #### merge bins
-               #           if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now
-               #              newhist = newhist[::bh.rebin(self.rebin)]
-                        
-               #           ####merge bins to specified array
-               #           if len(self.bins)!=0 and newhist.values().ndim == 1:#written only for 1D right now
-               #              newhist = rebin_piecewise(newhist, self.bins, 'bh')
-                        
-               #           name = self.channel + "_" + name
-               #           newhist.name = name
-               #           if name in _histograms.keys():
-               #               _histograms[name] += newhist# * 0.0 + 1.0
-               #           else:
-               #               _histograms[name] = newhist#  * 0.0 + 1.0
-
-               #           print("WE HERE", name, syst)
-
-               #           try:
-               #               self.systvar.add(re.search("sys_[\w.]+", name).group())
-               #           except:
-               #               pass
-
-               # else:
-
-               self.store_hist(_file, self.observable, _histograms, self.observable)
+               self.store_hist(_file, self.observable, _histograms, 'nom')
 
                for var_name, var in self.variations.items():
 
                     if type(var) is list and len(var) == 2:
 
-                         self.store_hist(_file, self.observable + "_" + var[0], _histograms, self.observable + "_" + var_name + "_Up")
-                         self.store_hist(_file, self.observable + "_" + var[1], _histograms, self.observable + "_" + var_name + "_Down")
+                         self.store_hist(_file, self.observable + "_" + var[0], _histograms, var_name + "_Up")
+                         self.store_hist(_file, self.observable + "_" + var[1], _histograms, var_name + "_Down")
 
                     if isinstance(var, numbers.Number):
 
-                         self.store_hist(_file, self.observable, _histograms, self.observable + "_" + var_name + "_Up", var)
-                         self.store_hist(_file, self.observable, _histograms, self.observable + "_" + var_name + "_Down", 1/var)
+                         self.store_hist(_file, self.observable, _histograms, var_name + "_Up", var)
+                         self.store_hist(_file, self.observable, _histograms, var_name + "_Down", 1/var)
                         
           return _histograms
-
+     
 
 class datacard:
      def __init__(self, name, channel="ch1", tag="."):
@@ -365,6 +311,7 @@ class datacard:
           self.shape_file = uproot.recreate(
                "{}/cards-{}/shapes-{}.root".format(self.tag, name, channel)
           )
+          self.do_manualMCstats = []
 
      def shapes_headers(self):
           filename = self.dc_name.replace("dat", "root")
@@ -522,10 +469,47 @@ class datacard:
           )
           self.extras.add(template)
 
-     def add_auto_stat(self):
-          self.extras.add(
-               "{} autoMCStats 0 0 1".format(self.channel)
-          )
+     def add_manual_MCstats(self, process):
+          """
+          Declare that a process should have a manual MC stats uncertainty added.
+          The actual adding of MC stats to the card is done after all processes are added.
+          """
+          self.do_manualMCstats += [process]
+
+     def _add_manual_MCstats(self, process):
+          """
+          Add gamma uncertainty to account for poor MC stats for a process.
+          For non-zero yields, we extract the raw count and scale factor from the shape histogram.
+          (This is an approximation, and is not valid for histograms with events with large weights.)
+          For zero yields, don't include a systematic.
+          """
+          line = "manualMCStats_{bin} gmN {prologue} {raw_count} {scale_factor} {epilogue}"
+          shape = self.shape_file[process]
+          if len(shape.values()) > 1: raise ValueError("Written to support only one bin.")
+          val = shape.values()[0]
+          var = shape.variances()[0]
+          
+          if var == 0:
+               return
+          else:
+               raw_count = ((val**2) / var) # raw_count = ( raw_count * scale_factor )**2 / ( sqrt(raw_count) * scale_factor )**2
+               scale_factor = val / raw_count # scale_factor = raw_count * scale_factor / raw_count
+               logging.info("RAW COUNT " + str(raw_count))
+               raw_count = max(round(raw_count), 0)
+               scale_factor = round(scale_factor, 5)
+          logging.info("Adding manualMCStats for process: " + process + " with raw_count: " +  str(raw_count) + " and scale_factor: " + str(scale_factor))
+     
+          prologue, epilogue = "", ""
+          found_process = False
+          for iprocess, _ in self.rates:
+               if iprocess == process: 
+                    found_process = True
+                    continue
+               if not found_process: prologue += " - "
+               if found_process: epilogue += " - "
+
+          line = line.format(bin=self.channel, raw_count=raw_count, scale_factor=scale_factor, prologue=prologue, epilogue=epilogue)
+          self.dc_file.append(line)
 
      def dump(self):
           # adding shapes
@@ -564,6 +548,9 @@ class datacard:
                          line_ += "{0:>15}".format("-")
                self.dc_file.append(line_)
           self.dc_file += self.extras
+          for process, _ in self.rates:
+               if process in self.do_manualMCstats:
+                    self._add_manual_MCstats(process)
           logging.debug("Writing datacard to {}".format(self.dc_name))
           with open(self.dc_name, "w") as fout:
                fout.write("\n".join(self.dc_file))

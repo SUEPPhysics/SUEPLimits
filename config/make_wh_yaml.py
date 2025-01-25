@@ -12,44 +12,56 @@ import glob
 #### PARAMETERS #########################################################
 # input directory
 histDirectory = '/ceph/submit/data/user/{}/{}/SUEP/outputs/'.format(os.environ['USER'][0], os.environ['USER'])
-signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_signal_generic.txt"
+signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_signal.txt"
 dataList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_WH.txt"
 #crwjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_WH.txt"
 vrgjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_VRGJ.txt"
 # make a dictionary, keys are years, values are histogram tags
 signalTags = {
-    '2018':     'WH_11_24_signal_2018',
-    '2017':     'WH_11_24_signal_2017',
-    '2016':     'WH_11_24_signal_2016',
-    '2016apv':  'WH_11_24_signal_2016apv',
+    '2018': 'WH_1_1_signal_2018_limits_byLepton',
+    '2017': 'WH_1_1_signal_2017_limits_byLepton',
+    '2016': 'WH_1_1_signal_2016_limits_byLepton',
+    '2016apv': 'WH_1_1_signal_2016apv_limits_byLepton'
+    # '2018':     'WH_1_8_signal_2018_limits',
+    # '2017':     'WH_1_8_signal_2017_limits',
+    # '2016':     'WH_1_8_signal_2016_limits',
+    # '2016apv':  'WH_1_8_signal_2016apv_limits',
 }
 dataTags = {
-    '2018':     'WH_11_14_data_limits_2018',
-    '2017':     'WH_11_18_data_limits_2017',
-    '2016':     'WH_11_18_data_limits_2016',
-    '2016apv':  'WH_11_18_data_limits_2016apv',
+    '2018':     'WH_1_22_Data_2018_limits_v2',
+    '2017':     '/ceph/submit/data/user/p/pmlugato/SUEP/outputs/WH_1_22_Data_2017_limits_v2',
+    '2016':     '/ceph/submit/data/user/p/pmlugato/SUEP/outputs/WH_1_22_Data_2016_limits_v2',
+    '2016apv':  '/ceph/submit/data/user/p/pmlugato/SUEP/outputs/WH_1_22_Data_2016apv_limits_v2',
+    # '2018':     'WH_11_14_data_limits_2018',
+    # '2017':     'WH_11_18_data_limits_2017',
+    # '2016':     'WH_11_18_data_limits_2016',
+    # '2016apv':  'WH_11_18_data_limits_2016apv',
 }
 # crwjTags = {
 #     '2018': 'WH_CRWJ_limits_10_24',
 # }
 vrgjTags = {
-    '2018':     'WH_VRGJ_limits_10_24',
-    '2017':     'WH_VRGJ_11_20_limits_2017',
-    '2016':     'WH_VRGJ_11_20_limits_2016',
-    '2016apv':  'WH_VRGJ_11_20_limits_2016apv',
+    # '2018':     'WH_12_10_Data_2018_VRGJ_limits',
+    # '2017':     'WH_12_10_Data_2017_VRGJ_limits',
+    # '2016':     'WH_12_10_Data_2016_VRGJ_limits',
+    # '2016apv':  'WH_12_10_Data_2016apv_VRGJ_limits',
 }
 combine2016 = True
 #########################################################################
 
 def get_file_list(year, tag, file_list_path, hist_directory):
     file_list = []
-    tag_files = glob.glob(hist_directory + '/' + tag + '/*' + '.root')
+    if tag.startswith('/'):
+        _hist_directory = ''
+    else:
+        _hist_directory = hist_directory
+    tag_files = glob.glob(_hist_directory + tag + '/*' + '.root')
     with open(file_list_path.format(year), 'r') as f:
         samples = f.read().splitlines()
     samples = [s.split("/")[-1].replace(".root", "") for s in samples]
     missing_samples = []
     for s in samples:
-        s_file = hist_directory + '/' + tag + '/' + s + '.root'
+        s_file = _hist_directory + tag + '/' + s + '.root'
         if s_file in tag_files:
             file_list.append(s_file)
         else:
@@ -122,7 +134,7 @@ def main():
         vrgj_filelists[year] = get_file_list(year, tag, vrgjList, histDirectory)
 
     for year, tag in signalTags.items():
-        generate_yaml(year, data_filelists[year], [], vrgj_filelists[year], signal_filelists[year], tag)
+        generate_yaml(year, data_filelists[year], [], [], signal_filelists[year], tag)
 
 if __name__ == "__main__":
     main()

@@ -160,6 +160,9 @@ def get_params_from_sample_name_tth(sample):
         return None, None, None, None
 
 def get_params_from_sample_name_wh(sample):
+    """
+    Returns mS, mPhi, temp, decay from a sample name.
+    """
     pattern = r'SUEP_mS(\d+\.\d+)_mPhi(\d+\.\d+)_T(\d+\.\d+)_mode(\w+)'
 
     # Use re.search to find the first occurrence of the pattern in the sample name

@@ -108,32 +108,42 @@ signal_variations = {
     }
 }
 
+# ABCD_yield_systematic = {
+#     "WJHS": 1.04,
+#     "GJHS": 1.04
+#     #"GJHS": 1.00
+# }
+# ABCD_shape_systematic = {
+#     "WJHSsr0": 1.005,
+#     "WJHSsr1": 1.05,
+#     "WJHSsr2": 1.05,
+#     "WJHSsr3": 1.5,
+#     "WJHSsr4": 2.0,
+#     "GJHSsr0": 1.005,
+#     "GJHSsr1": 1.05,
+#     "GJHSsr2": 1.05,
+#     "GJHSsr3": 1.5,
+#     "GJHSsr4": 2.0,
+#     # "GJHSsr0": 1.0,
+#     # "GJHSsr1": 1.0,
+#     # "GJHSsr2": 1.0,
+#     # "GJHSsr3": 1.0,
+#     # "GJHSsr4": 1.0,
+# }
 ABCD_yield_systematic = {
     "WJHS": 1.04,
-    "GJHS": 1.04
-    #"GJHS": 1.00
 }
 ABCD_shape_systematic = {
-    # "WJHSsr0": 1.005,
-    # "WJHSsr1": 1.05,
-    # "WJHSsr2": 1.05,
-    # "WJHSsr3": 1.5,
-    # "WJHSsr4": 2.0,
-    "WJHSsr0": 1.005,
-    "WJHSsr1": 1.05,
-    "WJHSsr2": 1.05,
-    "WJHSsr3": 1.2,
-    "WJHSsr4": 2.0,
-    # "GJHSsr0": 1.005,
-    # "GJHSsr1": 1.05,
-    # "GJHSsr2": 1.05,
-    # "GJHSsr3": 1.5,
-    # "GJHSsr4": 2.0,
-    # "GJHSsr0": 1.0,
-    # "GJHSsr1": 1.0,
-    # "GJHSsr2": 1.0,
-    # "GJHSsr3": 1.0,
-    # "GJHSsr4": 1.0,
+    "WJHSmusr0": 1.01,
+    "WJHSmusr1": 1.05,
+    "WJHSmusr2": 1.05,
+    "WJHSmusr3": 1.05,
+    "WJHSmusr4": 2.0,
+    "WJHSesr0": 1.00,
+    "WJHSesr1": 1.04,
+    "WJHSesr2": 1.04,
+    "WJHSesr3": 1.04,
+    "WJHSesr4": 2.0,
 }
 
 
@@ -161,6 +171,7 @@ def main():
     parser.add_argument("-f"  , "--force"   , action="store_true")
     parser.add_argument("-ns" , "--nostatuncert", action="store_false")
     parser.add_argument("--rebin" ,type=int, default=1)
+    parser.add_argument("--flavor", choices=["e", "mu"], required=True)
     parser.add_argument("--bins",'--list', nargs='*', help='<Required> Set flag', required=False,default=[])
     parser.add_argument("--biasSample", type=str, default=None, help="Name of signal model you want to inject.")
     parser.add_argument("--biasStrength", type=float, default=1.0, help="Strength of signal model you want to inject.")
@@ -173,6 +184,8 @@ def main():
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)
+
+    logging.info("Starting to make datacard for {} in {}".format(options.variable, options.channel))
 
     if options.era == 'all':
         eras = ["2016apv", "2016", "2017", "2018"]
@@ -202,6 +215,7 @@ def main():
         logging.info(dg)
 
         for iera, era in enumerate(eras):
+            logging.info(era)
 
             observable = options.variable
             if inputs_by_era[era][dg]["type"] == "signal":
@@ -309,7 +323,7 @@ def main():
         elif "GJLS" in options.channel: region = "GJLS"
 
         #Look at expected and add in the rate_params
-        card.add_nominal(name, options.channel, p.get("nom"))
+        card.add_nominal(name,options.channel, p.get("nom"))
         if "sr" in options.channel:
             if "expected" in p.name and p.ptype == "data" :
 
@@ -317,7 +331,7 @@ def main():
                 Bin_cr = options.channel.replace("sr","crF")
 
                 # ABCD prediction as a rate parameter
-                card.add_9ABCD_rate_param("r_" + options.channel + options.era, options.channel + options.era, name, options.era, bin_cr=Bin_cr, region=region)
+                card.add_9ABCD_rate_param("r_" + options.channel + options.era, options.channel + options.era, name, options.era, bin_cr=Bin_cr, region=region + options.flavor)
                 
                 # add systematics for the ABCD prediction
 

@@ -7,11 +7,11 @@ extra_args=""
 usage() {
   echo "Usage: $0 <path> [-e <extra_args>]"
   echo
-  echo "Check the nuisance correlations for a given datacard."
+  echo "Run the combine a given card-containing directory."
   echo
   echo "Options:"
-  echo "  <path>            Required. The .root datacard to operate with."
-  echo "  -e <extra_args>   Optional. Extra arguments passed to combine."
+  echo "  <path>            Required. The path to operate in, where combined.root lives."
+  echo "  -e <extra_args>   Optional. Extra arguments for combineTool.py."
   exit 1
 }
 
@@ -53,6 +53,5 @@ cd $path
 
 # Run main commands
 echo "Running combine."
-echo "combine -M MultiDimFit combined.root -m 125 --robustHesse 1 --robustHesseSave 1 --saveFitResult $extra_args"
-combine -M MultiDimFit combined.root -m 125 --robustHesse 1 --robustHesseSave 1 --saveFitResult $extra_args
-echo "All done! The output can be found in $path/robustHesseTest.root"
+echo "combine -M Significance combined.root $extra_args"
+combine -M Significance combined.root $extra_args

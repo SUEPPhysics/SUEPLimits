@@ -15,7 +15,7 @@ At the time of writing, this code has been tested with the latest and reccomende
 You can follow the instructions on the [combine documentation](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/#combine-tool), reported here for your convenience:
 ```bash
 cd $CMSSW_BASE/src
-bash <(curl -s https://raw.githubusercontent.com/cms-analysis/CombineHarvester/master/CombineTools/scripts/sparse-checkout-https.sh)
+git clone https://github.com/cms-analysis/CombineHarvester.git CombineHarvester
 
 cd $CMSSW_BASE/src/
 scramv1 b clean; scramv1 b -j 10
