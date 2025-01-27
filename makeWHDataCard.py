@@ -174,6 +174,8 @@ def main():
     else:
         logging.basicConfig(level=logging.INFO)
 
+    logging.info("Starting to make datacard for {} in {}".format(options.variable, options.channel))
+
     if options.era == 'all':
         eras = ["2016apv", "2016", "2017", "2018"]
     elif options.era == '2016':
@@ -375,8 +377,8 @@ def main():
         card.add_shape_nuisance(name, "Lumi_Corr", p.get("Lumi_Corr"))
         card.add_shape_nuisance(name, "Lumi_Corr_1718", p.get("Lumi_Corr_1718"))
              
-    logging.info("All done!")
     card.dump()
+    logging.info("All done!")
 
 if __name__ == "__main__":
     main()

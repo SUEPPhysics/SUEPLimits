@@ -32,7 +32,7 @@ git checkout v10.0.2
 
 echo "Fetching CombineHarvester"
 cd $CMSSW_BASE/src
-bash <(curl -s https://raw.githubusercontent.com/cms-analysis/CombineHarvester/master/CombineTools/scripts/sparse-checkout-https.sh)
+git clone https://github.com/cms-analysis/CombineHarvester.git CombineHarvester
 
 echo "scramv1"
 cd $CMSSW_BASE/src/
@@ -105,7 +105,7 @@ echo "Setting up environment"
 export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
 source $VO_CMS_SW_DIR/cmsset_default.sh
 
-cmssw-el9 --bind /data,/work,/cvmfs --command-to-run << 'EOF'
+cmssw-el9 --bind /ceph,/work,/cvmfs --command-to-run << 'EOF'
 
 # This will all be executed inside the singularity
 echo "cd {work_dir}"
@@ -130,7 +130,7 @@ echo "Setting up environment"
 export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
 source $VO_CMS_SW_DIR/cmsset_default.sh
 
-cmssw-el9 --bind /data,/work,/cvmfs --command-to-run << 'EOF'
+cmssw-el9 --bind /ceph,/work,/cvmfs --command-to-run << 'EOF'
 
 # This will all be executed inside the singularity
 echo "cmsenv"
