@@ -92,9 +92,8 @@ def main ():
         with open(args.analysis) as f:
             analysis = yaml.safe_load(f.read())
             analysis = analysis['runcards']
-        eras = analysis['eras']
-        config_file = analysis['config']
-        bins = analysis['bins']
+        samples = analysis['samples']
+        commands = analysis['commands']
 
         missingCardsSamples = []
         for era in eras:

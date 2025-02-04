@@ -101,22 +101,21 @@ def main():
         commands = [com.format(n=sample, tag=options.tag) for com in commands]
 
         # either force the run, or check whether the file already exist before running
-        bins_to_run = [com.split('--channel ')[1].split()[0] for com in commands]
-        eras_to_run = [com.split('--era ')[1].split()[0] for com in commands]
+        bins_to_run = [com.split('--dcname ')[1].split()[0] for com in commands]
         if not options.force:
             completed = []
-            for bin_name, era in zip(bins_to_run, eras_to_run): 
+            for bin_name in bins_to_run: 
                 for eof in ['dat','root']:
-                    path = '{}/cards-{}/shapes-{}{}.{}'.format(options.tag, sample, bin_name, era, eof)
+                    path = '{}/cards-{}/{}.{}'.format(options.tag, sample, bin_name, eof)
                     if os.path.exists(path) and os.path.getsize(path) > 0: 
                         completed.append(bin_name)
             bins_to_run = list(set(bins_to_run) - set(completed))
             if len(bins_to_run) == 0: 
-                print("Cards for this sample are completed, skipping (use -f to overwrite):", sample, era)
+                print("Cards for this sample are completed, skipping (use -f to overwrite):", bin_name)
                 continue
     
         # only run the commands for the bins that are not already completed
-        commands = [com for com in commands if com.split('--channel ')[1].split()[0] in bins_to_run]
+        commands = [com for com in commands if com.split('--dcname ')[1].split()[0] in bins_to_run]
 
         print(" ===== processing : ", sample, bins_to_run)
 

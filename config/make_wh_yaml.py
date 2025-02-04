@@ -18,20 +18,20 @@ dataList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_W
 vrgjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_VRGJ.txt"
 # make a dictionary, keys are years, values are histogram tags
 signalTags = {
-    '2018': 'WH_1_1_signal_2018_limits_byLepton',
-    '2017': 'WH_1_1_signal_2017_limits_byLepton',
-    '2016': 'WH_1_1_signal_2016_limits_byLepton',
-    '2016apv': 'WH_1_1_signal_2016apv_limits_byLepton'
+    '2018': 'WH_1_25_signal_2018_limits',
+    '2017': 'WH_1_25_signal_2017_limits',
+    '2016': 'WH_1_25_signal_2016_limits',
+    '2016apv': 'WH_1_25_signal_2016apv_limits'
     # '2018':     'WH_1_8_signal_2018_limits',
     # '2017':     'WH_1_8_signal_2017_limits',
     # '2016':     'WH_1_8_signal_2016_limits',
     # '2016apv':  'WH_1_8_signal_2016apv_limits',
 }
 dataTags = {
-    '2018':     'WH_1_22_Data_2018_limits_v2',
-    '2017':     '/ceph/submit/data/user/p/pmlugato/SUEP/outputs/WH_1_22_Data_2017_limits_v2',
-    '2016':     '/ceph/submit/data/user/p/pmlugato/SUEP/outputs/WH_1_22_Data_2016_limits_v2',
-    '2016apv':  '/ceph/submit/data/user/p/pmlugato/SUEP/outputs/WH_1_22_Data_2016apv_limits_v2',
+    '2018':     'WH_1_24_Data_2018_limits_SRe_SR',
+    '2017':     'WH_1_22_Data_2017_e_SR_limits',
+    '2016':     'WH_1_24_Data_2016_SR_SRe_limits',
+    '2016apv':  'WH_1_24_Data_2016apv_SR_SRe_limits',
     # '2018':     'WH_11_14_data_limits_2018',
     # '2017':     'WH_11_18_data_limits_2017',
     # '2016':     'WH_11_18_data_limits_2016',
@@ -75,12 +75,12 @@ def generate_yaml(year, data_file_list, crwj_file_list, vrgj_file_list, signal_f
     output = 'era: {year}\n\n'.format(year=year)
 
     # SR
-    data_obs = 'WJHSdata:\n  files:\n'
+    data_obs = 'obs:\n  files:\n'
     for f in data_file_list:
         data_obs += '    - {f}\n'.format(f=f)
     data_obs += '  type:\n    data\n  color: 895\n\n'
     output += data_obs
-    output += data_obs.replace("WJHSdata:", "WJHSexpected:")
+    output += data_obs.replace("obs:", "bkg:")
 
     # CRWJ
     # crwj = 'WJLSdata:\n  files:\n'

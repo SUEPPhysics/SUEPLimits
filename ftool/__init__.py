@@ -289,12 +289,13 @@ class wh_datagroup(datagroup):
      
 
 class datacard:
-     def __init__(self, name, channel="ch1", tag="."):
+     def __init__(self, name, channel="ch1", tag=".", analysis="CMS", dcname=''):
           self.dc_file = []
           self.name = []
           self.nsignal = 1
           self.channel = channel
           self.tag = tag
+          self.analysis = analysis
           self.dc_file.append("imax * number of categories")
           self.dc_file.append("jmax * number of samples minus one")
           self.dc_file.append("kmax * number of nuisance parameters")
@@ -305,11 +306,12 @@ class datacard:
           self.rates = []
           self.nuisances = {}
           self.extras = set()
-          self.dc_name = "{}/cards-{}/shapes-{}.dat".format(self.tag, name, channel)
+          base_dc_name = dcname if dcname != '' else "{}/cards-{}/shapes-{}".format(self.tag, name, channel)
+          self.dc_name = base_dc_name + ".dat"
           if not os.path.isdir(os.path.dirname(self.dc_name)):
                os.makedirs(os.path.dirname(self.dc_name), exist_ok=True)
           self.shape_file = uproot.recreate(
-               "{}/cards-{}/shapes-{}.root".format(self.tag, name, channel)
+               bsae_dc_name + ".root"
           )
           self.do_manualMCstats = []
 
@@ -331,7 +333,7 @@ class datacard:
           self.nuisances[name][process] = value
 
      def add_nominal(self, process, channel,  shape):
-          if 'expected' in process: 
+          if 'bkg' in process: 
                shape = shape * 0.0 + 1.0#values will come from rate_params
                shape.view().variance = shape.variances() * 0.0
           value = shape.values(flow=False).sum()
@@ -389,13 +391,13 @@ class datacard:
           )
           self.extras.add(template)
 
-     def add_9ABCD_rate_param(self, name, channel, process, era, bin_cr, region=""):
+     def add_9ABCD_rate_param(self, name, channel, process, bin_cr, region="SR", era=""):
           # name rateParam bin process initial_value [min,max]
-          F_bins = ["F0", "F1", "F2", "F3", "F4"]
+          F_bins = ["F_Fbin0", "F_Fbin1", "F_Fbin2", "F_Fbin3", "F_Fbin4"]
           for bin in F_bins:
                if bin in bin_cr:
                     F_bins.remove(bin)
-          template = "{name} rateParam {channel} {process} (@7*(@7+@8+@9+@10+@11)*@6*@6*@3*@3*@1*@1/(@5*@2*@0*@4*@4*@4*@4)) r_{region}crA{era},r_{region}crB{era},r_{region}crC{era},r_{region}crD{era},r_{region}crE{era},r_{region}crG{era},r_{region}crH{era},r_{bin_cr}{era},r_{region}cr{other_bin_cr}{era},r_{region}cr{other1_bin_cr}{era},r_{region}cr{other2_bin_cr}{era},r_{region}cr{other3_bin_cr}{era}"
+          template = "{name} rateParam {channel} {process} (@7*(@7+@8+@9+@10+@11)*@6*@6*@3*@3*@1*@1/(@5*@2*@0*@4*@4*@4*@4)) {analysis}_{region}_A{era},{analysis}_{region}_B{era},{analysis}_{region}_C{era},{analysis}_{region}_D{era},{analysis}_{region}_E{era},{analysis}_{region}_G{era},{analysis}_{region}_H{era},{analysis}_{bin_cr}{era},{analysis}_{region}_{other_bin_cr}{era},{analysis}_{region}_{other1_bin_cr}{era},{analysis}_{region}_{other2_bin_cr}{era},{analysis}_{region}_{other3_bin_cr}{era}"
           template = template.format(
                name = name,
                channel = channel,
@@ -406,7 +408,8 @@ class datacard:
                other1_bin_cr = F_bins[1],
                other2_bin_cr = F_bins[2],
                other3_bin_cr = F_bins[3],
-               region=region
+               region=region,
+               analysis=self.analysis
           )
           self.extras.add(template)
 
@@ -483,7 +486,7 @@ class datacard:
           (This is an approximation, and is not valid for histograms with events with large weights.)
           For zero yields, don't include a systematic.
           """
-          line = "manualMCStats_{bin} gmN {prologue} {raw_count} {scale_factor} {epilogue}"
+          line = "{analysis}_statSignal_{bin} gmN {prologue} {raw_count} {scale_factor} {epilogue}"
           shape = self.shape_file[process]
           if len(shape.values()) > 1: raise ValueError("Written to support only one bin.")
           val = shape.values()[0]
@@ -494,7 +497,6 @@ class datacard:
           else:
                raw_count = ((val**2) / var) # raw_count = ( raw_count * scale_factor )**2 / ( sqrt(raw_count) * scale_factor )**2
                scale_factor = val / raw_count # scale_factor = raw_count * scale_factor / raw_count
-               logging.info("RAW COUNT " + str(raw_count))
                raw_count = max(round(raw_count), 0)
                scale_factor = round(scale_factor, 5)
           logging.info("Adding manualMCStats for process: " + process + " with raw_count: " +  str(raw_count) + " and scale_factor: " + str(scale_factor))
@@ -508,7 +510,7 @@ class datacard:
                if not found_process: prologue += " - "
                if found_process: epilogue += " - "
 
-          line = line.format(bin=self.channel, raw_count=raw_count, scale_factor=scale_factor, prologue=prologue, epilogue=epilogue)
+          line = line.format(analysis=self.analysis, bin=self.channel, raw_count=raw_count, scale_factor=scale_factor, prologue=prologue, epilogue=epilogue)
           self.dc_file.append(line)
 
      def dump(self):

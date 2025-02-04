@@ -18,100 +18,77 @@ lumis = {
 
 signal_variations = {
     "2018": {
-        # era dependent
-        "Lumi_Uncorr_18": 1.015,
-        "Lumi_Corr_1718": 1.002,
-        "JES_18": ["JES_up", "JES_down"],
-        "PS_ISR_18": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
-        "PS_FSR_18": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
-        "Track_Eff_18": ["track_up", "track_down"],
-        # era independent
-        "Lumi_Corr": 1.020,
-        "JER": ["JER_up", "JER_down"],
-        "Unclustered": ["Unclustered_up", "Unclustered_down"],
-        "PU": ["puweights_up", "puweights_down"],
-        "HiggsPt_Reweight": ["higgs_weights_up", "higgs_weights_down"],
-        "LepSF_El": ["LepSFElUp", "LepSFElDown"],
-        "LepSF_Mu": ["LepSFMuUp", "LepSFMuDown"],
-        "BTag_HFcorrelated": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
-        "BTag_HFuncorrelated": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
-        "BTag_LFcorrelated": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
-        "BTag_LFuncorrelated": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
-        "MuScale": ["MuScaleUp", "MuScaleDown"],
+        "CMS_scale_j": ["JES_up", "JES_down"],
+        "ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "CMS_EXO24030_tracking": ["track_up", "track_down"],
+        "CMS_res_j": ["JER_up", "JER_down"],
+        "CMS_scale_met_unclustered_energy": ["Unclustered_up", "Unclustered_down"],
+        "CMS_pileup": ["puweights_up", "puweights_down"],
+        "CMS_eff_e": ["LepSFElUp", "LepSFElDown"],
+        "CMS_eff_m": ["LepSFMuUp", "LepSFMuDown"],
+        "CMS_EXO24030_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "CMS_EXO240030_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "CMS_scale_m": ["MuScaleUp", "MuScaleDown"],
     },
     "2017": {
-        # era dependent
-        "Lumi_Uncorr_17": 1.009,
-        "Lumi_Corr_1718": 1.006,
-        "JES_17": ["JES_up", "JES_down"],
-        "PS_ISR_17": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
-        "PS_FSR_17": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
-        "Track_Eff_17": ["track_up", "track_down"],
-        # era independent
-        "Lumi_Corr": 1.020,
-        "Prefire": ["prefire_up", "prefire_down"],
-        "JER": ["JER_up", "JER_down"],
-        "Unclustered": ["Unclustered_up", "Unclustered_down"],
-        "PU": ["puweights_up", "puweights_down"],
-        "HiggsPt_Reweight": ["higgs_weights_up", "higgs_weights_down"],
-        "LepSF_El": ["LepSFElUp", "LepSFElDown"],
-        "LepSF_Mu": ["LepSFMuUp", "LepSFMuDown"],
-        "BTag_HFcorrelated": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
-        "BTag_HFuncorrelated": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
-        "BTag_LFcorrelated": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
-        "BTag_LFuncorrelated": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
-        "MuScale": ["MuScaleUp", "MuScaleDown"],
+        "CMS_scale_j": ["JES_up", "JES_down"],
+        "ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "CMS_EXO24030_tracking": ["track_up", "track_down"],
+        "CMS_l1_ecal_prefiring": ["prefire_up", "prefire_down"],
+        "CMS_res_j": ["JER_up", "JER_down"],
+        "CMS_scale_met_unclustered_energy": ["Unclustered_up", "Unclustered_down"],
+        "CMS_pileup": ["puweights_up", "puweights_down"],
+        "CMS_eff_e": ["LepSFElUp", "LepSFElDown"],
+        "CMS_eff_m": ["LepSFMuUp", "LepSFMuDown"],
+        "CMS_EXO24030_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "CMS_EXO240030_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "CMS_scale_m": ["MuScaleUp", "MuScaleDown"],
     },
     "2016": {
-        # era dependent
-        "Lumi_Uncorr_16": 1.010,
-        "JES_16": ["JES_up", "JES_down"],
-        "PS_ISR_16": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
-        "PS_FSR_16": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
-        "Track_Eff_16": ["track_up", "track_down"],
-        # era independent
-        "Lumi_Corr": 1.006,
-        "Prefire": ["prefire_up", "prefire_down"],
-        "JER": ["JER_up", "JER_down"],
-        "Unclustered": ["Unclustered_up", "Unclustered_down"],
-        "PU": ["puweights_up", "puweights_down"],
-        "HiggsPt_Reweight": ["higgs_weights_up", "higgs_weights_down"],
-        "LepSF_El": ["LepSFElUp", "LepSFElDown"],
-        "LepSF_Mu": ["LepSFMuUp", "LepSFMuDown"],
-        "BTag_HFcorrelated": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
-        "BTag_HFuncorrelated": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
-        "BTag_LFcorrelated": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
-        "BTag_LFuncorrelated": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
-        "MuScale": ["MuScaleUp", "MuScaleDown"],
+        "CMS_scale_j": ["JES_up", "JES_down"],
+        "ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "CMS_EXO24030_tracking": ["track_up", "track_down"],
+        "CMS_l1_ecal_prefiring": ["prefire_up", "prefire_down"],
+        "CMS_res_j": ["JER_up", "JER_down"],
+        "CMS_scale_met_unclustered_energy": ["Unclustered_up", "Unclustered_down"],
+        "CMS_pileup": ["puweights_up", "puweights_down"],
+        "CMS_eff_e": ["LepSFElUp", "LepSFElDown"],
+        "CMS_eff_m": ["LepSFMuUp", "LepSFMuDown"],
+        "CMS_EXO24030_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "CMS_EXO24030_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "CMS_scale_m": ["MuScaleUp", "MuScaleDown"],
     },
     "2016apv": {
-        # era dependent
-        "Lumi_Uncorr_16": 1.010,
-        "JES_16": ["JES_up", "JES_down"],
-        "PS_ISR_16": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
-        "PS_FSR_16": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
-        "Track_Eff_16": ["track_up", "track_down"],
-        # era independent
-        "Lumi_Corr": 1.006,
-        "Prefire": ["prefire_up", "prefire_down"],
-        "JER": ["JER_up", "JER_down"],
-        "Unclustered": ["Unclustered_up", "Unclustered_down"],
-        "PU": ["puweights_up", "puweights_down"],
-        "HiggsPt_Reweight": ["higgs_weights_up", "higgs_weights_down"],
-        "LepSF_El": ["LepSFElUp", "LepSFElDown"],
-        "LepSF_Mu": ["LepSFMuUp", "LepSFMuDown"],
-        "BTag_HFcorrelated": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
-        "BTag_HFuncorrelated": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
-        "BTag_LFcorrelated": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
-        "BTag_LFuncorrelated": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
-        "MuScale": ["MuScaleUp", "MuScaleDown"],
+        "CMS_scale_j": ["JES_up", "JES_down"],
+        "ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "CMS_EXO24030_tracking": ["track_up", "track_down"],
+        "CMS_l1_ecal_prefiring": ["prefire_up", "prefire_down"],
+        "CMS_res_j": ["JER_up", "JER_down"],
+        "CMS_scale_met_unclustered_energy": ["Unclustered_up", "Unclustered_down"],
+        "CMS_pileup": ["puweights_up", "puweights_down"],
+        "CMS_eff_e": ["LepSFElUp", "LepSFElDown"],
+        "CMS_eff_m": ["LepSFMuUp", "LepSFMuDown"],
+        "CMS_EXO24030_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "CMS_EXO240030_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "CMS_scale_m": ["MuScaleUp", "MuScaleDown"],
     }
 }
 
 ABCD_yield_systematic = {
-    "WJHS": 1.04,
-    "GJHS": 1.04
-    #"GJHS": 1.00
+    "bkg": 1.04,
+    #"GJHS": 1.04
 }
 ABCD_shape_systematic = {
     # "WJHSsr0": 1.005,
@@ -119,11 +96,11 @@ ABCD_shape_systematic = {
     # "WJHSsr2": 1.05,
     # "WJHSsr3": 1.5,
     # "WJHSsr4": 2.0,
-    "WJHSsr0": 1.005,
-    "WJHSsr1": 1.05,
-    "WJHSsr2": 1.05,
-    "WJHSsr3": 1.2,
-    "WJHSsr4": 2.0,
+    "SR_SR_SRbin0": 1.005,
+    "SR_SR_SRbin1": 1.05,
+    "SR_SR_SRbin2": 1.05,
+    "SR_SR_SRbin3": 1.2,
+    "SR_SR_SRbin4": 2.0,
     # "GJHSsr0": 1.005,
     # "GJHSsr1": 1.05,
     # "GJHSsr2": 1.05,
@@ -164,6 +141,7 @@ def main():
     parser.add_argument("--bins",'--list', nargs='*', help='<Required> Set flag', required=False,default=[])
     parser.add_argument("--biasSample", type=str, default=None, help="Name of signal model you want to inject.")
     parser.add_argument("--biasStrength", type=float, default=1.0, help="Strength of signal model you want to inject.")
+    parser.add_argument("--dcname", type=str, required=False, default='', help="Name of the datacard to be created.")
     parser.add_argument("--gamma", action='store_true', help="Use gamma region as your background.")
     parser.add_argument("--verbose", action="store_true", help="Print out more information.")
 
@@ -264,7 +242,7 @@ def main():
 
     card_name = "ch"+options.era
     if isinstance(options.channel, str):
-        card_name = options.channel+options.era 
+        card_name = options.channel 
     elif isinstance(options.channel, list):
         if np.all(["signal" in c.lower() for c in options.channel]):
             card_name = "catSig"+options.era
@@ -272,20 +250,22 @@ def main():
     card = ftool.datacard(
         name = signal,
         channel= card_name,
-        tag = options.tag
+        tag = options.tag,
+        analysis="CMS_EXO24030",
+        dcname=options.dcname,
     )
     card.shapes_headers()
 
     card.process_indx_map = {
         "Signal" : 0,
-        "WJHSdata" : 1,
-        "WJHSexpected" : 2,
-        "WJLSdata" : 3,
-        "WJLSexpected" : 4,
-        "GJLSdata" : 5,
-        "GJLSexpected" : 6,
-        "GJHSdata" : 7,
-        "GJHSexpected" : 8
+        #"WJHSdata" : 1,
+        "bkg" : 1,
+        #"WJLSdata" : 3,
+        # "WJLSexpected" : 4,
+        # "GJLSdata" : 5,
+        # "GJLSexpected" : 6,
+        # "GJHSdata" : 7,
+        # "GJHSexpected" : 8
     }
 
     # add the observed data for this channel
@@ -293,7 +273,7 @@ def main():
     data_samples = []
     for _, p in datasets.items():
         if p.ptype != 'data': continue
-        if 'data' in p.name: data_samples.append(dg)
+        if 'obs' in p.name: data_samples.append(dg)
     if len(data_samples) != 1: raise Exception("Need exactly one data sample, found {}".format(len(data_samples)))
     data_sample = data_samples[0]
     data_obs = datasets[data_sample].get("nom") 
@@ -304,31 +284,31 @@ def main():
         name = "Signal" if p.ptype=="signal" else p.name
         if p.ptype=="data" and p.name == data_sample: continue #Skip the data_obs
 
-        region = ""
-        if "WJHS" in options.channel: region = "WJHS"
-        elif "WJLS" in options.channel: region = "WJLS"
-        elif "GJHS" in options.channel: region = "GJHS"
-        elif "GJLS" in options.channel: region = "GJLS"
-
         #Look at expected and add in the rate_params
         card.add_nominal(name, options.channel, p.get("nom"))
-        if "sr" in options.channel:
-            if "expected" in p.name and p.ptype == "data" :
+        if "SR_SR" in options.channel:
+            if "bkg" in p.name and p.ptype == "data" :
 
                 # the bin of the F histogram that is used for the ABCD prediction of this channel 
-                Bin_cr = options.channel.replace("sr","crF")
+                Bin_cr = options.channel.replace("SR_SR_SR","SR_F_F")
 
                 # ABCD prediction as a rate parameter
-                card.add_9ABCD_rate_param("r_" + options.channel + options.era, options.channel + options.era, name, options.era, bin_cr=Bin_cr, region=region)
+                card.add_9ABCD_rate_param(
+                    "CMS_EXO24030_" + options.channel,
+                    options.channel,
+                    process=name,
+                    bin_cr=Bin_cr,
+                    region="SR"
+                )
                 
                 # add systematics for the ABCD prediction
 
                 # correlated between the regions, bins, uncorrelated between years
-                # NB assuming that options.channel looks something like "WJHScrF1"
-                card.add_nuisance(name, "{:<21}  lnN".format("ABCD_yield_{}_{}".format(region, options.era)), ABCD_yield_systematic[region])
-                card.add_nuisance(name, "{:<21}  lnN".format("ABCD_shape_{}_{}".format(options.channel, options.era)), ABCD_shape_systematic[options.channel])
+                # NB assuming that options.channel looks something like "SR_SR_SRbin1" since we use the last character to determine the bin
+                card.add_nuisance(name, "{:<21}  lnN".format("CMS_EXO24030_ABCDClosure_Yield"), ABCD_yield_systematic[name])
+                card.add_nuisance(name, "{:<21}  lnN".format("CMS_EXO24030_ABCDClosure_bin" + options.channel[-1]), ABCD_shape_systematic[options.channel])
 
-        else:
+        elif ("bkg" in p.name and p.ptype == "data"):
             rate_nom = max(p.get("nom").values().sum(), 0)
             rate_up = rate_nom*5
             rate_down = 0
@@ -336,8 +316,15 @@ def main():
                 rate_nom = 0.0001
                 rate_up = 20
                 rate_down = 0
-            if "expected" in p.name and p.ptype == "data":
-                card.add_rate_param("r_" + options.channel + options.era, options.channel + options.era, name, rate=rate_nom, vmin=rate_down, vmax=rate_up )
+
+            card.add_rate_param(
+                "CMS_EXO24030_" + options.channel,
+                options.channel,
+                name,
+                rate=rate_nom,
+                vmin=rate_down,
+                vmax=rate_up
+            )
 
         if p.ptype=="data": continue #Now that we have expected nom we skip data
 
@@ -347,35 +334,22 @@ def main():
         # add nuisances
         # TODO missing: trigger SFs!
         # card.add_shape_nuisance(name, "trigSF_{}".format(options.era), p.get("trigSF"))
-        card.add_shape_nuisance(name, "JES_16", p.get("JES_16"))
-        card.add_shape_nuisance(name, "JES_17", p.get("JES_17"))
-        card.add_shape_nuisance(name, "JES_18", p.get("JES_18"))
-        card.add_shape_nuisance(name, "JER", p.get("JER"))
-        card.add_shape_nuisance(name, "PU", p.get("PU"))
-        card.add_shape_nuisance(name, "Unclustered", p.get("Unclustered"))
-        card.add_shape_nuisance(name, "PS_ISR_16".format(options.era), p.get("PS_ISR_16"))
-        card.add_shape_nuisance(name, "PS_ISR_17".format(options.era), p.get("PS_ISR_17"))
-        card.add_shape_nuisance(name, "PS_ISR_18".format(options.era), p.get("PS_ISR_18"))
-        card.add_shape_nuisance(name, "PS_FSR_18".format(options.era), p.get("PS_FSR_18"))
-        card.add_shape_nuisance(name, "PS_FSR_17".format(options.era), p.get("PS_FSR_17"))
-        card.add_shape_nuisance(name, "PS_FSR_16".format(options.era), p.get("PS_FSR_16"))
-        card.add_shape_nuisance(name, "Track_Eff_18".format(options.era), p.get("Track_Eff_18"))
-        card.add_shape_nuisance(name, "Track_Eff_17".format(options.era), p.get("Track_Eff_17"))
-        card.add_shape_nuisance(name, "Track_Eff_16".format(options.era), p.get("Track_Eff_16"))
-        card.add_shape_nuisance(name, "HiggsPt_Reweight", p.get("HiggsPt_Reweight"))
-        card.add_shape_nuisance(name, "LepSF_El", p.get("LepSF_El"))
-        card.add_shape_nuisance(name, "LepSF_Mu", p.get("LepSF_Mu"))
-        card.add_shape_nuisance(name, "MuScale", p.get("MuScale"))
-        card.add_shape_nuisance(name, "BTag_HFcorrelated", p.get("BTag_HFcorrelated"))
-        card.add_shape_nuisance(name, "BTag_HFuncorrelated", p.get("BTag_HFuncorrelated"))
-        card.add_shape_nuisance(name, "BTag_LFcorrelated", p.get("BTag_LFcorrelated"))
-        card.add_shape_nuisance(name, "BTag_LFuncorrelated", p.get("BTag_LFuncorrelated"))
-        card.add_shape_nuisance(name, "Prefire", p.get("Prefire"))
-        card.add_shape_nuisance(name, "Lumi_Uncorr_18", p.get("Lumi_Uncorr_18"))
-        card.add_shape_nuisance(name, "Lumi_Uncorr_17", p.get("Lumi_Uncorr_17"))
-        card.add_shape_nuisance(name, "Lumi_Uncorr_16", p.get("Lumi_Uncorr_16"))
-        card.add_shape_nuisance(name, "Lumi_Corr", p.get("Lumi_Corr"))
-        card.add_shape_nuisance(name, "Lumi_Corr_1718", p.get("Lumi_Corr_1718"))
+        card.add_shape_nuisance(name, "CMS_scale_j", p.get("CMS_scale_j"))
+        card.add_shape_nuisance(name, "CMS_res_j", p.get("CMS_res_j"))
+        card.add_shape_nuisance(name, "CMS_pileup", p.get("CMS_pileup"))
+        card.add_shape_nuisance(name, "CMS_scale_met_unclustered_energy", p.get("CMS_scale_met_unclustered_energy"))
+        card.add_shape_nuisance(name, "ps_fsr", p.get("ps_fsr"))
+        card.add_shape_nuisance(name, "ps_isr", p.get("ps_isr"))
+        card.add_shape_nuisance(name, "CMS_EXO24030_tracking", p.get("CMS_EXO24030_tracking"))
+        card.add_shape_nuisance(name, "CMS_eff_e", p.get("CMS_eff_e"))
+        card.add_shape_nuisance(name, "CMS_eff_m", p.get("CMS_eff_m"))
+        card.add_shape_nuisance(name, "CMS_scale_m", p.get("CMS_scale_m"))
+        card.add_shape_nuisance(name, "CMS_EXO24030_btag_heavy_corr", p.get("CMS_EXO24030_btag_heavy_corr"))
+        card.add_shape_nuisance(name, "CMS_EXO24030_btag_heavy_uncorr", p.get("CMS_EXO24030_btag_heavy_uncorr"))
+        card.add_shape_nuisance(name, "CMS_EXO24030_btag_light_corr", p.get("CMS_EXO24030_btag_light_corr"))
+        card.add_shape_nuisance(name, "CMS_EXO240030_btag_light_uncorr", p.get("CMS_EXO240030_btag_light_uncorr"))
+        card.add_shape_nuisance(name, "CMS_l1_ecal_prefiring", p.get("CMS_l1_ecal_prefiring"))
+        card.add_nuisance(name, "{:<21}  lnN".format("lumi_13TeV"), 1.016)
              
     card.dump()
     logging.info("All done!")

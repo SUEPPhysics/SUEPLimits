@@ -1,22 +1,22 @@
 runcards:
   commands:
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrA --variable A_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrB --variable B_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrC --variable C_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrD --variable D_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrE --variable E_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF0 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 30 40 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF1 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 40 50 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF2 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 50 60 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF3 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 60 80 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrF4 --variable F_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 80 2000 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrG --variable G_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHScrH --variable H_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 0 2000 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr0 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 30 40 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr1 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 40 50 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr2 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 50 60 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr3 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 60 80 --era all"
-    - "python3 makeWHDataCard.py --tag {tag} --channel WJHSsr4 --variable I_SUEP_nconst_SR --stack {n} WJHSexpected WJHSdata --bins 80 2000 --era all"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_A --variable A_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_A"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_B --variable B_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_B"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_C --variable C_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_C"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_D --variable D_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_D"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_E --variable E_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_E"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin0 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 30 40 --era all --dcname shapes-SR_F_Fbin0"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin1 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 40 50 --era all --dcname shapes-SR_F_Fbin1"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin2 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 50 60 --era all --dcname shapes-SR_F_Fbin2"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin3 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 60 80 --era all --dcname shapes-SR_F_Fbin3"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin4 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 80 2000 --era all --dcname shapes-SR_F_Fbin4"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_G --variable G_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_G"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_H --variable H_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_H"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin0 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 30 40 --era all --dcname shapes-SR_SR_SRbin0"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin1 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 40 50 --era all --dcname shapes-SR_SR_SRbin1"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin2 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 50 60 --era all --dcname shapes-SR_SR_SRbin2"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin3 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 60 80 --era all --dcname shapes-SR_SR_SRbin3"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin4 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 80 2000 --era all --dcname shapes-SR_SR_SRbin4"
   samples:
     - SUEP_mS125.000_mPhi2.000_T0.500_modegeneric
     - SUEP_mS125.000_mPhi2.000_T1.000_modegeneric
@@ -92,21 +92,21 @@ runcards:
 runcombine:
   combineCards: >
     combineCards.py -S 
-    WJHScrAall=cards-{name}/shapes-WJHScrAall.dat
-    WJHScrBall=cards-{name}/shapes-WJHScrBall.dat 
-    WJHScrCall=cards-{name}/shapes-WJHScrCall.dat 
-    WJHScrDall=cards-{name}/shapes-WJHScrDall.dat 
-    WJHScrEall=cards-{name}/shapes-WJHScrEall.dat 
-    WJHScrF0all=cards-{name}/shapes-WJHScrF0all.dat 
-    WJHScrF1all=cards-{name}/shapes-WJHScrF1all.dat 
-    WJHScrF2all=cards-{name}/shapes-WJHScrF2all.dat 
-    WJHScrF3all=cards-{name}/shapes-WJHScrF3all.dat 
-    WJHScrF4all=cards-{name}/shapes-WJHScrF4all.dat 
-    WJHScrGall=cards-{name}/shapes-WJHScrGall.dat 
-    WJHScrHall=cards-{name}/shapes-WJHScrHall.dat 
-    WJHSsr0all=cards-{name}/shapes-WJHSsr0all.dat 
-    WJHSsr1all=cards-{name}/shapes-WJHSsr1all.dat 
-    WJHSsr2all=cards-{name}/shapes-WJHSsr2all.dat 
-    WJHSsr3all=cards-{name}/shapes-WJHSsr3all.dat 
-    WJHSsr4all=cards-{name}/shapes-WJHSsr4all.dat
+    SR_A=cards-{name}/shapes-SR_A.dat
+    SR_B=cards-{name}/shapes-SR_B.dat 
+    SR_C=cards-{name}/shapes-SR_C.dat 
+    SR_D=cards-{name}/shapes-SR_D.dat 
+    SR_E=cards-{name}/shapes-SR_E.dat 
+    SR_F_Fbin0=cards-{name}/shapes-SR_F_Fbin0.dat 
+    SR_F_Fbin1=cards-{name}/shapes-SR_F_Fbin1.dat 
+    SR_F_Fbin2=cards-{name}/shapes-SR_F_Fbin2.dat 
+    SR_F_Fbin3=cards-{name}/shapes-SR_F_Fbin3.dat 
+    SR_F_Fbin4=cards-{name}/shapes-SR_F_Fbin4.dat 
+    SR_G=cards-{name}/shapes-SR_G.dat 
+    SR_H=cards-{name}/shapes-SR_H.dat 
+    SR_SR_SRbin0=cards-{name}/shapes-SR_SR_SRbin0.dat 
+    SR_SR_SRbin1=cards-{name}/shapes-SR_SR_SRbin1.dat 
+    SR_SR_SRbin2=cards-{name}/shapes-SR_SR_SRbin2.dat 
+    SR_SR_SRbin3=cards-{name}/shapes-SR_SR_SRbin3.dat 
+    SR_SR_SRbin4=cards-{name}/shapes-SR_SR_SRbin4.dat
     > cards-{name}/combined.dat    
