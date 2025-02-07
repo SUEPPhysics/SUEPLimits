@@ -90,7 +90,8 @@ runcards:
     - SUEP_mS125.000_mPhi8.000_T8.000_modehadronic
 
 runcombine:
-  combineCards: >
+  rm_command: "rm -rf cards-{name}/combined.dat"
+  combineCards_command: >
     combineCards.py -S 
     SR_A=cards-{name}/shapes-SR_A.dat
     SR_B=cards-{name}/shapes-SR_B.dat 
@@ -110,3 +111,5 @@ runcombine:
     SR_SR_SRbin3=cards-{name}/shapes-SR_SR_SRbin3.dat 
     SR_SR_SRbin4=cards-{name}/shapes-SR_SR_SRbin4.dat
     > cards-{name}/combined.dat    
+  text2workspace_command: text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root
+  combine_command: combine  --datacard cards-{name}/combined.root  {combine_method} -m 125 --cl 0.95 --name {name} {options} --rAbsAcc 0.000001 --rRelAcc 0.05  --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH

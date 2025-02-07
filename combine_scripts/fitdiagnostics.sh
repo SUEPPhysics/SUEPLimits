@@ -10,18 +10,18 @@ usage() {
   echo "Run the impacts tool for a given card-containing directory."
   echo
   echo "Options:"
-  echo "  <path>            Required. The directory path to operate in, where combined.root lives."
-  echo "  -e <extra_args>   Optional. Extra arguments for combineTool.py."
+  echo "  <datacard>            Required. The datacard.root."
+  echo "  -e <extra_args>   Optional. Extra arguments for combine."
   exit 1
 }
 
-# Check if at least one argument (the path) is provided
+# Check if at least one argument (the datacard) is provided
 if [ "$#" -lt 1 ]; then
   usage
 fi
 
-# Capture the required path argument
-path=$1
+# Capture the required datacard argument
+datacard=$1
 shift
 
 # Parse optional flags
@@ -48,10 +48,12 @@ source $VO_CMS_SW_DIR/cmsset_default.sh
 cmsenv
 
 # Move to the specified directory
+path=$(dirname $datacard)
+card=$(basename $datacard)
 echo "Navigating to directory $path."
 cd $path
 
 # Run main commands
 echo "Running combine."
-echo "combine -M FitDiagnostics combined.root -m 200 --saveShapes --saveWithUncertainties $extra_args"
-combine -M FitDiagnostics combined.root -m 200 --saveShapes --saveWithUncertainties $extra_args
+echo "combine -M FitDiagnostics $card -m 200 --saveShapes --saveWithUncertainties $extra_args"
+combine -M FitDiagnostics $card -m 200 --saveShapes --saveWithUncertainties $extra_args

@@ -22,7 +22,8 @@ file = {
     'ggf-offline': "{path}higgsCombineGluGluToSUEP_HT1000_T{tem}_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}_TuneCP5_13TeV-pythia8.{method}.mH125{quant}.root",
     'ggf-scouting': "{path}higgsCombineGluGluToSUEP_HT400_T{tem}_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}_TuneCP5_13TeV-pythia8.{method}.mH125{quant}.root",
     'ggf-tth': "{path}higgsCombinettHpythia_{mode}_M{mS:.1f}_MD{mPhi:.2f}_T{T:.2f}_HT-1.{method}.mH125{quant}.root",
-    'wh': "{path}higgsCombineSUEP_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH125{quant}.root"
+    'wh': "{path}higgsCombineSUEP_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH125{quant}.root",
+    "vh": "{path}higgsCombinecombinedWZ_mD{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH120{quant}.root"
 }
 decaysLabels = {
     'hadronic' : r"$A^' \rightarrow e^{+}e^{-}$ ($15\%$), $\mu^{+}\mu^{-}$ ($15\%$), $\pi^{+}\pi^{-}$ ($70\%$)",
@@ -117,6 +118,8 @@ def get_params_from_sample_name(sample, analysis='ggf-offline'):
         return get_params_from_sample_name_tth(sample)
     elif analysis == 'wh':
         return get_params_from_sample_name_wh(sample)
+    elif analysis == 'vh':
+        return get_params_from_sample_name_wh(sample)
     else:
         raise ValueError(f"Analysis {analysis} not recognized.")
 
@@ -195,6 +198,8 @@ def get_sample_name_from_params(ms, mphi, temp, decay, analysis='ggf-offline'):
     elif analysis == 'ggf-tth':
         return f"ttHpythia_{decay}_M{ms:.1f}_MD{mphi:.2f}_T{temp:.2f}_HT-1_UL18_NANOAOD"
     elif analysis == 'wh':
+        return f"SUEP_mS{ms:.3f}_mPhi{mphi:.3f}_T{temp:.3f}_mode{decay}"
+    elif analysis == 'vh':
         return f"SUEP_mS{ms:.3f}_mPhi{mphi:.3f}_T{temp:.3f}_mode{decay}"
 
 def filter_samples(ms=None, mphi=None, temp=None, decay=None, file='../config/xsections_SUEP.json', analysis='ggf-offline'):
@@ -588,6 +593,97 @@ def plot_temp_limits(mphi, ms, decay, path='../', verbose=False, method='Asympto
     fig.set_label("limits1D_mS{:.1f}_mPhi{:.1f}_{}".format(ms, mphi, decay))
 
     return fig
+
+def plot_mphi_by_T_limits(
+        temp_by_mphi, ms, decay, 
+        path='../', method='AsymptoticLimits', analysis='wh', 
+        fig=None, ax=None, obs_marker='o', exp_alpha=1.0,mu_limit=False, bands=True, color='#F0240Bff', legend_label=''
+    ):
+    """
+    Make 1D Brazil plot for some choice of mPi/TD, mS, and decay, scanning over TD.
+    """
+    
+    limits = get_scan_limits(path=path, ms=ms, decay=decay, method=method, analysis=analysis, return_xsec=not mu_limit)
+    temp_over_mphi = np.array([l[0][2]/l[0][1] for l in limits])  
+    limits = [l for l, tom in zip(limits, temp_over_mphi) if tom == temp_by_mphi]
+
+    mphi = np.array([l[0][1] for l in limits])
+    temp = np.array([l[0][2] for l in limits])
+    xsec = np.array([l[0][4] for l in limits])
+    if mu_limit: xsec = np.array([1]*len(limits))
+
+    _exp = np.array([l[1][1][2] for l in limits])
+    _s1p = np.array([l[1][1][1] for l in limits]) 
+    _s1m = np.array([l[1][1][3] for l in limits]) 
+    _s2p = np.array([l[1][1][0] for l in limits]) 
+    _s2m = np.array([l[1][1][4] for l in limits]) 
+    _obs = np.array([l[1][1][5] for l in limits]) 
+        
+    # Define interpolation
+    exp_limit = log_interp1d(temp, _exp) 
+    s1p_limit = log_interp1d(temp, _s1p)
+    s1m_limit = log_interp1d(temp, _s1m)
+    s2p_limit = log_interp1d(temp, _s2p)
+    s2m_limit = log_interp1d(temp, _s2m)
+    obs_limit = log_interp1d(temp, _obs)
+    th_limit =  log_interp1d(temp, xsec)
+
+    # Make 1D limit plot
+    if ax is None:
+        fig = plt.figure(figsize=(10,10))
+        ax = fig.subplots()
+        
+    T_min = 2*mA[decay]*temp_by_mphi # kinematic constraint
+    xvar = np.linspace(T_min, max(temp)+2, 1000)
+
+    # plot theory
+    if bands:
+        ax.plot(xvar, th_limit(xvar), "-", ms=12, color='blue', label="$\sigma_{theory}$")
+
+    # Plot observed limits
+    ax.scatter(temp, _obs, marker=obs_marker, s=70, color=color, label=legend_label + "Observed")
+    
+    #Plot expected limits including brazil bands
+    ax.plot(xvar, exp_limit(xvar), ls="-", ms=12, color=color, label=legend_label + "Median expected")
+    if bands:
+        ax.fill_between(xvar, s2m_limit(xvar), s2p_limit(xvar), color="#FFDF7Fff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL")
+        ax.fill_between(xvar, s1m_limit(xvar), s1p_limit(xvar), color="#85D1FBff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL")
+ 
+    
+    # Just to make everything look nice
+    ax.plot([T_min]*50, np.linspace(1e-4,1e7,50),color='black', linestyle='--', alpha =0.5)
+    ax.text(
+        T_min-0.15, 5e-2, r"$T_{D}<2m_{A^'} \times "+"{:.2f}$".format(temp_by_mphi),
+        horizontalalignment='right', verticalalignment='center',fontsize=20,rotation=-90
+    )
+    if mu_limit:
+        ax.set_ylabel(r"$\mu \equiv \sigma_{\mathrm{obs.}}/\sigma_{\mathrm{theory}}$")
+    else:
+        ax.set_ylabel(r"$\sigma$ (pb)")
+    ax.set_xlabel(r"$T_D$ [GeV]") 
+    ax.legend(loc="upper left", fontsize=20)
+    _ = ax.text(
+        0.65, 0., "$T_D/m_{{\phi}}$ = {}""\n""{}".format(temp_by_mphi,decaysLabelsWithLineBreaks[decay]),
+        fontsize=20, horizontalalignment='left', 
+        verticalalignment='top', 
+        transform=ax.transAxes,
+    )
+    ax.grid(visible=True, which='major', color='grey', linestyle='--', alpha=0.3)
+    ax.set_ylim(1e-4, 1e7)
+    ax.set_xlim(0)
+    ax.set_yscale("log")
+    y_major = ticker.LogLocator(base = 10.0, numticks = 20)
+    ax.yaxis.set_major_locator(y_major)
+    y_minor = ticker.LogLocator(base = 10.0, subs = np.arange(1.0, 10.0) * 0.1, numticks = 100)
+    ax.yaxis.set_minor_locator(y_minor)
+    ax.yaxis.set_minor_formatter(ticker.NullFormatter())
+
+    if fig is not None:
+        fig.tight_layout()
+        fig.set_label("limits1D_mphi_by_T_{:.2f}_{}".format(temp_by_mphi, decay))
+        return fig
+    else:
+        return ax
 
 
 def plot_mPhi_temp_limits(

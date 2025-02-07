@@ -279,14 +279,18 @@ for dc in dcards:
 
         # Write combine commmands
 
-        # remove the old combined cards
-        rm_command = "rm -rf cards-{}/combined.dat".format(name)
+        rm_command = analysis.get('rm_command', '').format(name=name)
+        combine_card_command = analysis.get('combineCards_command', '').format(name=name)
+        text2workspace_command = analysis.get('text2workspace_command', '').format(name=name)
 
-        # make the combined.dat cards -- analysis-specific command
-        combine_card_command = analysis['combineCards'].format(name=name)
+        # # remove the old combined cards
+        # rm_command = "rm -rf cards-{}/combined.dat".format(name)
 
-        # converts .dat to .root
-        text2workspace_command = "text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root".format(name=name)
+        # # make the combined.dat cards -- analysis-specific command
+        # combine_card_command = analysis['combineCards'].format(name=name)
+
+        # # converts .dat to .root
+        # text2workspace_command = "text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root".format(name=name)
 
         # this is the command running combine. Some options are passed through the parser
         if 'HybridNew' in options.combineMethod:
@@ -295,19 +299,20 @@ for dc in dcards:
                  combine_method += f" --expectedFromGrid {quant} "
         elif options.combineMethod == 'AsymptoticLimits':
             combine_method = " -M AsymptoticLimits "
-        combine_command = (
-            "combine "
-            " --datacard cards-{name}/combined.root "
-            " {combine_method}"
-            " -m 125 --cl 0.95 --name {name}"
-            " {options}"
-            " --rAbsAcc 0.000001 --rRelAcc 0.01 "
-            " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH ".format(
-                name=name,
-                combine_method=combine_method,
-                options=options.combineOptions
-            )
-        )
+        # combine_command = (
+        #     "combine "
+        #     " --datacard cards-{name}/combined.root "
+        #     " {combine_method}"
+        #     " -m 125 --cl 0.95 --name {name}"
+        #     " {options}"
+        #     " --rAbsAcc 0.000001 --rRelAcc 0.01 "
+        #     " --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH ".format(
+        #         name=name,
+        #         combine_method=combine_method,
+        #         options=options.combineOptions
+        #     )
+        # )
+        combine_command = analysis.get('combine_command', '').format(name=name, combine_method=combine_method, options=options.combineOptions)
         
         if options.combineMethod == 'HybridNewAuto':
             if 'rMin' in options.combineOptions or 'rMax' in options.combineOptions:
@@ -347,7 +352,7 @@ for dc in dcards:
             print('--- removing old combined datacard:', rm_command)
             print('--- combining datacards:', combine_card_command)
             print('--- text2workspace:', text2workspace_command)
-            print('--- running combine:', combine_command)
+            print('--- combine:', combine_command)
 
         # if dry run, skip the rest
         if options.dry: continue

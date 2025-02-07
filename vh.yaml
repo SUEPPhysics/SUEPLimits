@@ -1,0 +1,2 @@
+runcombine:
+  combine_command: combine --datacard cards-{name}/{name}.dat.root {combine_method} -m 125 --cl 0.95 --name {name} {options} --rAbsAcc 0.000001 --rRelAcc 0.01 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH
