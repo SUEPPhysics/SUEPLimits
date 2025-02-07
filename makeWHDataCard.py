@@ -143,6 +143,7 @@ def main():
     parser.add_argument("--biasStrength", type=float, default=1.0, help="Strength of signal model you want to inject.")
     parser.add_argument("--dcname", type=str, required=False, default='', help="Name of the datacard to be created.")
     parser.add_argument("--gamma", action='store_true', help="Use gamma region as your background.")
+    parser.add_argument("--agnostic", action='store_true', help="Do signal agnostic datacard.")
     parser.add_argument("--verbose", action="store_true", help="Print out more information.")
 
     options = parser.parse_args()
@@ -177,7 +178,7 @@ def main():
     
     # make datasets per process
     datasets = {}
-    signal = ""
+    signal = "agnostic" # default value if no signal is found
     for dg in options.stack:
         logging.info(dg)
 
@@ -185,7 +186,7 @@ def main():
 
             observable = options.variable
             if inputs_by_era[era][dg]["type"] == "signal":
-                if signal == "":
+                if signal == "agnostic":
                     signal = dg
                 if signal != dg:
                     raise ValueError("I wasn't expecting multiple signals in the same card.")
@@ -258,6 +259,7 @@ def main():
 
     card.process_indx_map = {
         "Signal" : 0,
+        "agnostic": 0,
         #"WJHSdata" : 1,
         "bkg" : 1,
         #"WJLSdata" : 3,
@@ -286,11 +288,12 @@ def main():
 
         #Look at expected and add in the rate_params
         card.add_nominal(name, options.channel, p.get("nom"))
+
         if "SR_SR" in options.channel:
             if "bkg" in p.name and p.ptype == "data" :
 
                 # the bin of the F histogram that is used for the ABCD prediction of this channel 
-                Bin_cr = options.channel.replace("SR_SR_SR","SR_F_F")
+                Bin_cr = options.channel.replace("SR_SR_SRbin","SR_F_Fbin")
 
                 # ABCD prediction as a rate parameter
                 card.add_9ABCD_rate_param(
@@ -298,7 +301,8 @@ def main():
                     options.channel,
                     process=name,
                     bin_cr=Bin_cr,
-                    region="SR"
+                    region="SR",
+                    agnostic=options.agnostic
                 )
                 
                 # add systematics for the ABCD prediction
@@ -306,7 +310,8 @@ def main():
                 # correlated between the regions, bins, uncorrelated between years
                 # NB assuming that options.channel looks something like "SR_SR_SRbin1" since we use the last character to determine the bin
                 card.add_nuisance(name, "{:<21}  lnN".format("CMS_EXO24030_ABCDClosure_Yield"), ABCD_yield_systematic[name])
-                card.add_nuisance(name, "{:<21}  lnN".format("CMS_EXO24030_ABCDClosure_bin" + options.channel[-1]), ABCD_shape_systematic[options.channel])
+                if not options.agnostic:
+                    card.add_nuisance(name, "{:<21}  lnN".format("CMS_EXO24030_ABCDClosure_bin" + options.channel[-1]), ABCD_shape_systematic[options.channel])
 
         elif ("bkg" in p.name and p.ptype == "data"):
             rate_nom = max(p.get("nom").values().sum(), 0)
@@ -331,6 +336,9 @@ def main():
         # add manual MC stats
         card.add_manual_MCstats(name)
 
+        # no systematics for agnostic
+        if options.agnostic: continue
+
         # add nuisances
         # TODO missing: trigger SFs!
         # card.add_shape_nuisance(name, "trigSF_{}".format(options.era), p.get("trigSF"))
@@ -350,6 +358,10 @@ def main():
         card.add_shape_nuisance(name, "CMS_EXO240030_btag_light_uncorr", p.get("CMS_EXO240030_btag_light_uncorr"))
         card.add_shape_nuisance(name, "CMS_l1_ecal_prefiring", p.get("CMS_l1_ecal_prefiring"))
         card.add_nuisance(name, "{:<21}  lnN".format("lumi_13TeV"), 1.016)
+
+    # add signal yield of 1 for SR in signal agnostic case
+    if options.agnostic and "SR_SR" in options.channel:
+         card.add_nominal_yield("agnostic", options.channel, 1)
              
     card.dump()
     logging.info("All done!")

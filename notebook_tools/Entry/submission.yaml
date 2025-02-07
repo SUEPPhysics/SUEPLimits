@@ -1,0 +1,149 @@
+---
+additional_resources:
+- description: Created with hepdata_lib 0.17.0
+  location: https://doi.org/10.5281/zenodo.1217998
+comment: ''
+data_license:
+  description: CC0 enables reusers to distribute, remix, adapt, and build upon the
+    material in any medium or format, with no conditions.
+  name: CC0
+  url: https://creativecommons.org/publicdomain/zero/1.0/
+---
+additional_resources:
+- description: Image file
+  location: BR_XSec_1D.png
+- description: Thumbnail image file
+  location: thumb_BR_XSec_1D.png
+data_file: figure_ul_hadronic_(observed_&_expected).yaml
+description: Observed and Expected UL exclusions on the $\sigma\times BR(H\to S) \times
+  BR(Z\to ll)$ of hadronic signals with $m_{A'} = 0.7\;GeV$ and $BR(A' \rightarrow
+  ee) = BR(A' \rightarrow \mu\mu) = 0.15$ and $BR(A' \rightarrow \pi\pi) = 0.7$.
+keywords: []
+location: Figure 3 (Hadronic)
+name: Figure UL Hadronic (Observed & Expected)
+---
+additional_resources:
+- description: Image file
+  location: BR_XSec_1D.png
+- description: Thumbnail image file
+  location: thumb_BR_XSec_1D.png
+data_file: figure_ul_leptonic_(observed_&_expected).yaml
+description: Observed and Expected UL exclusions on the $\sigma\times BR(H\to S) \times
+  BR(Z\to ll)$ of leptonic signals with $m_{A'} = 0.5\;GeV$ and $BR(A' \rightarrow
+  ee) = BR(A' \rightarrow \mu\mu) = 0.2$ and $BR(A' \rightarrow \pi\pi) = 0.6$.
+keywords: []
+location: Figure 3 (Leptonic)
+name: Figure UL Leptonic (Observed & Expected)
+---
+additional_resources:
+- description: Image file
+  location: BR_XSec_1D.png
+- description: Thumbnail image file
+  location: thumb_BR_XSec_1D.png
+data_file: figure_ul_generic_(observed_&_expected).yaml
+description: Observed and Expected UL exclusions on the $\sigma\times BR(H\to S) \times
+  BR(Z\to ll)$ of generic signals with $m_{A'} = 1.0\;GeV$ and $BR(A' \rightarrow
+  \pi\pi) = 1.0$.
+keywords: []
+location: Figure 3 (Generic)
+name: Figure UL Generic (Observed & Expected)
+---
+additional_resources:
+- description: Image file
+  location: scan_agnostic.png
+- description: Thumbnail image file
+  location: thumb_scan_agnostic.png
+data_file: model_agnostic_limits.yaml
+description: Observed and Expected UL exclusions on the number of 'signal' yields
+  in sideband A from the model agnostic fit, assuming no 'SUEP-like' signal contamination
+  in the CRs.
+keywords: []
+location: Figure 3 (Agnostic)
+name: Model Agnostic Limits
+---
+additional_resources:
+- description: Image file
+  location: SR_Postfit_forPaper.png
+- description: Thumbnail image file
+  location: thumb_SR_Postfit_forPaper.png
+data_file: sr_b-only_post-fit.yaml
+description: Postfit values for SR in the B-Only CR+SR and CR-Only fits with the prefit
+  signal overlayed for reference
+keywords: []
+location: Data from Figure 2 (SR)
+name: SR B-Only Post-Fit
+---
+additional_resources:
+- description: Image file
+  location: PR_Postfit_forPaper.png
+- description: Thumbnail image file
+  location: thumb_PR_Postfit_forPaper.png
+data_file: pr_b-only_post-fit.yaml
+description: Postfit values for PR in the B-Only CR+SR and CR-Only fits with the prefit
+  signal overlayed for reference
+keywords: []
+location: Data from Figure 4 (PR)
+name: PR B-Only Post-Fit
+---
+additional_resources:
+- description: Image file
+  location: CRDY_Postfit_forPaper.png
+- description: Thumbnail image file
+  location: thumb_CRDY_Postfit_forPaper.png
+data_file: crdy_b-only_post-fit.yaml
+description: Postfit values for CRDY in the B-Only CR+SR and CR-Only fits with the
+  prefit signal overlayed for reference
+keywords: []
+location: Data from Figure 4 (CRDY)
+name: CRDY B-Only Post-Fit
+---
+additional_resources:
+- description: Image file
+  location: CRTT_Postfit_forPaper.png
+- description: Thumbnail image file
+  location: thumb_CRTT_Postfit_forPaper.png
+data_file: crtt_b-only_post-fit.yaml
+description: Postfit values for CRTT in the B-Only CR+SR and CR-Only fits with the
+  prefit signal overlayed for reference
+keywords: []
+location: Data from Figure 4 (CRTT)
+name: CRTT B-Only Post-Fit
+---
+data_file: signal_efficiency_table.yaml
+description: 'Per-selection efficiencies on Generic - $m_{A''} = 1.0\;GeV$ $BR(A''
+  \rightarrow \pi\pi) = 1.0$
+
+  Hadronic - $m_{A''} = 0.7\;GeV$ and $BR(A'' \rightarrow ee) = BR(A'' \rightarrow
+  \mu\mu) = 0.15$ $BR(A'' \rightarrow \pi\pi) = 0.7$
+
+  Leptonic - $m_{A''} = 0.5\;GeV$ and $BR(A'' \rightarrow ee) = BR(A'' \rightarrow
+  \mu\mu) = 0.2$ and $BR(A'' \rightarrow \pi\pi) = 0.6$ samples.
+
+  Selections: 2 OSSF leptons, one SUEP cluster, $60\leq Z_{m}\leq 120$ GeV, $p_{T}^Z\geq
+  25$ GeV, veto events with b-tagged jets, $p_{T}^{SUEP} > 60\;GeV$, and $dR^{Ak4}_{Ak15}
+  < 1.5$.
+
+  Efficiencies are the ratio of the histogram size at the selection step to the previous
+  step (except twoLepton vs. initial). The final column is the total cumulative efficiency
+  (dR vs. initial).
+
+  Note that these selection numbers were all calculated using samples generated with
+  600,000 events for each signal point considered.'
+keywords: []
+location: Signal efficiencies from internal selection studies.
+name: Signal Efficiency Table
+---
+data_file: sr_(w_channel).yaml
+description: Lorem ipsum
+keywords: []
+location: Data from Figure N
+name: SR (W channel)
+---
+data_file: signal_cutflows_(w_channel).yaml
+description: Cutflow tables for the signal selection in the W channel
+keywords:
+- name: observables
+  values:
+  - cutflow
+location: Supplementary
+name: Signal Cutflows (W channel)

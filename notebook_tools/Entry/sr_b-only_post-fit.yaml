@@ -1,0 +1,614 @@
+dependent_variables:
+- header:
+    name: $p_T^{jet1}$
+    units: GeV
+  values:
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+- header:
+    name: Post-fit Background (SR+CR)
+  values:
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 311.11
+    value: 109780.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 251.38
+    value: 72032.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 148.57
+    value: 23408.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 105.1
+    value: 10344.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 67.192
+    value: 4023.5
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 35.252
+    value: 1515.5
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 20.71
+    value: 534.28
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 14.548
+    value: 203.33
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 6.8461
+    value: 55.615
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 4.4226
+    value: 17.989
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 617.97
+    value: 477790.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 446.36
+    value: 222920.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 221.92
+    value: 50064.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 124.3
+    value: 15658.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 61.201
+    value: 4544.8
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 31.365
+    value: 1186.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 14.153
+    value: 306.41
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 7.219
+    value: 80.362
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 2.9367
+    value: 16.77
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 1.3641
+    value: 4.0255
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 1052.8
+    value: 1241800.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 715.44
+    value: 567510.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 346.47
+    value: 117320.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 167.41
+    value: 29220.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 82.409
+    value: 5888.5
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 32.056
+    value: 1090.5
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 12.605
+    value: 199.29
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 4.8977
+    value: 33.32
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 1.8837
+    value: 5.6142
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 0.73737
+    value: 0.98771
+- header:
+    name: Post-fit Background (CR)
+  values:
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 334.39
+    value: 109820.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 264.64
+    value: 71948.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 151.45
+    value: 23451.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 101.81
+    value: 10348.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 70.977
+    value: 4023.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 40.998
+    value: 1517.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 21.589
+    value: 531.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 14.598
+    value: 201.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 6.8815
+    value: 55.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 4.3527
+    value: 17.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 626.5
+    value: 477710.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 452.36
+    value: 223090.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 215.77
+    value: 49976.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 126.82
+    value: 15649.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 67.839
+    value: 4546.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 31.888
+    value: 1183.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 16.571
+    value: 313.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 9.4878
+    value: 85.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 4.2151
+    value: 18.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 2.2712
+    value: 6.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 1053.0
+    value: 1241900.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 721.62
+    value: 567420.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 4639.4
+    value: 107020.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 1515.8
+    value: 27512.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 469.65
+    value: 5634.3
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 120.42
+    value: 1027.4
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 40.145
+    value: 215.48
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 11.574
+    value: 40.469
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 3.6497
+    value: 6.6322
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 2.2613
+    value: 2.3841
+- header:
+    name: Data
+  values:
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 331.4
+    value: 109820.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 268.23
+    value: 71948.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 153.14
+    value: 23451.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 101.73
+    value: 10348.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 63.427
+    value: 4023.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 38.949
+    value: 1517.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 23.043
+    value: 531.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 14.177
+    value: 201.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 7.4162
+    value: 55.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 4.1231
+    value: 17.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 691.16
+    value: 477710.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 472.32
+    value: 223090.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 223.55
+    value: 49976.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 125.1
+    value: 15649.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 67.424
+    value: 4546.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 34.395
+    value: 1183.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 17.692
+    value: 313.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 9.2195
+    value: 85.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 4.2426
+    value: 18.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 2.4495
+    value: 6.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 1114.4
+    value: 1241900.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 753.27
+    value: 567420.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 342.59
+    value: 117370.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 170.95
+    value: 29225.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 76.733
+    value: 5888.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 33.045
+    value: 1092.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 14.0
+    value: 196.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 5.5678
+    value: 31.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 2.2361
+    value: 5.0
+  - value: 0.0
+- header:
+    name: Pre-fit Signal $m_{A'} = 1.0\;GeV$ $BR(A' \rightarrow \pi\pi) = 1.0$ $m_{D}
+      = T = 2\;GeV$
+  values:
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - errors:
+    - label: Stat.
+      symerror: 2.501
+    value: 65.454
+  - errors:
+    - label: Stat.
+      symerror: 5.6958
+    value: 165.15
+  - errors:
+    - label: Stat.
+      symerror: 7.7029
+    value: 239.26
+  - errors:
+    - label: Stat.
+      symerror: 7.856
+    value: 240.75
+  - errors:
+    - label: Stat.
+      symerror: 6.0881
+    value: 186.24
+  - errors:
+    - label: Stat.
+      symerror: 4.1596
+    value: 119.96
+  - errors:
+    - label: Stat.
+      symerror: 2.473
+    value: 60.755
+  - errors:
+    - label: Stat.
+      symerror: 4.9409
+    value: 35.683
+- header:
+    name: Pre-fit Signal $m_{A'} = 1.0\;GeV$ $BR(A' \rightarrow \pi\pi) = 1.0$ $m_{D}
+      = 6$ $T = 3\;GeV$
+  values:
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - errors:
+    - label: Stat.
+      symerror: 12.739
+    value: 334.19
+  - errors:
+    - label: Stat.
+      symerror: 10.88
+    value: 280.63
+  - errors:
+    - label: Stat.
+      symerror: 5.9878
+    value: 146.99
+  - errors:
+    - label: Stat.
+      symerror: 2.1937
+    value: 50.362
+  - errors:
+    - label: Stat.
+      symerror: 0.66872
+    value: 12.047
+  - errors:
+    - label: Stat.
+      symerror: 0.23822
+    value: 2.5332
+  - errors:
+    - label: Stat.
+      symerror: 0.091432
+    value: 0.47312
+  - errors:
+    - label: Stat.
+      symerror: 0.010382
+    value: 0.065905
+independent_variables:
+- header:
+    name: Region
+  values:
+  - value: E2
+  - value: E1
+  - value: B2_1
+  - value: B2_2
+  - value: B2_3
+  - value: B2_4
+  - value: B2_5
+  - value: B2_6
+  - value: B2_7
+  - value: B2_8
+  - value: D2
+  - value: D1
+  - value: B1_1
+  - value: B1_2
+  - value: B1_3
+  - value: B1_4
+  - value: B1_5
+  - value: B1_6
+  - value: B1_7
+  - value: B1_8
+  - value: C2
+  - value: C1
+  - value: A_1
+  - value: A_2
+  - value: A_3
+  - value: A_4
+  - value: A_5
+  - value: A_6
+  - value: A_7
+  - value: A_8
+- header:
+    name: $N_{tracks}$
+  values:
+  - high: 14
+    low: 0
+  - high: 21
+    low: 14
+  - high: 26
+    low: 21
+  - high: 31
+    low: 26
+  - high: 36
+    low: 31
+  - high: 41
+    low: 36
+  - high: 46
+    low: 41
+  - high: 51
+    low: 46
+  - high: 56
+    low: 51
+  - high: .inf
+    low: 56
+  - high: 14
+    low: 0
+  - high: 21
+    low: 14
+  - high: 26
+    low: 21
+  - high: 31
+    low: 26
+  - high: 36
+    low: 31
+  - high: 41
+    low: 36
+  - high: 46
+    low: 41
+  - high: 51
+    low: 46
+  - high: 56
+    low: 51
+  - high: .inf
+    low: 56
+  - high: 14
+    low: 0
+  - high: 21
+    low: 14
+  - high: 26
+    low: 21
+  - high: 31
+    low: 26
+  - high: 36
+    low: 31
+  - high: 41
+    low: 36
+  - high: 46
+    low: 41
+  - high: 51
+    low: 46
+  - high: 56
+    low: 51
+  - high: .inf
+    low: 56

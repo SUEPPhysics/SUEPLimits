@@ -306,12 +306,12 @@ class datacard:
           self.rates = []
           self.nuisances = {}
           self.extras = set()
-          base_dc_name = dcname if dcname != '' else "{}/cards-{}/shapes-{}".format(self.tag, name, channel)
+          base_dc_name = "{}/cards-{}/{}".format(self.tag, name, dcname) if dcname != '' else "{}/cards-{}/shapes-{}".format(self.tag, name, channel)
           self.dc_name = base_dc_name + ".dat"
           if not os.path.isdir(os.path.dirname(self.dc_name)):
                os.makedirs(os.path.dirname(self.dc_name), exist_ok=True)
           self.shape_file = uproot.recreate(
-               bsae_dc_name + ".root"
+               base_dc_name + ".root"
           )
           self.do_manualMCstats = []
 
@@ -338,6 +338,13 @@ class datacard:
                shape.view().variance = shape.variances() * 0.0
           value = shape.values(flow=False).sum()
           self.rates.append((process, value))
+          self.shape_file[process] = shape
+          self.nominal_hist = shape
+
+     def add_nominal_yield(self, process, channel, value):
+          self.rates.append((process, value))
+          shape = hist.Hist.new.Reg(1,0,1000).Weight()
+          shape.fill(0)
           self.shape_file[process] = shape
           self.nominal_hist = shape
 
@@ -391,26 +398,45 @@ class datacard:
           )
           self.extras.add(template)
 
-     def add_9ABCD_rate_param(self, name, channel, process, bin_cr, region="SR", era=""):
-          # name rateParam bin process initial_value [min,max]
-          F_bins = ["F_Fbin0", "F_Fbin1", "F_Fbin2", "F_Fbin3", "F_Fbin4"]
-          for bin in F_bins:
-               if bin in bin_cr:
-                    F_bins.remove(bin)
-          template = "{name} rateParam {channel} {process} (@7*(@7+@8+@9+@10+@11)*@6*@6*@3*@3*@1*@1/(@5*@2*@0*@4*@4*@4*@4)) {analysis}_{region}_A{era},{analysis}_{region}_B{era},{analysis}_{region}_C{era},{analysis}_{region}_D{era},{analysis}_{region}_E{era},{analysis}_{region}_G{era},{analysis}_{region}_H{era},{analysis}_{bin_cr}{era},{analysis}_{region}_{other_bin_cr}{era},{analysis}_{region}_{other1_bin_cr}{era},{analysis}_{region}_{other2_bin_cr}{era},{analysis}_{region}_{other3_bin_cr}{era}"
-          template = template.format(
-               name = name,
-               channel = channel,
-               process = process,
-               era = era,
-               bin_cr = bin_cr,
-               other_bin_cr = F_bins[0],
-               other1_bin_cr = F_bins[1],
-               other2_bin_cr = F_bins[2],
-               other3_bin_cr = F_bins[3],
-               region=region,
-               analysis=self.analysis
-          )
+     def add_9ABCD_rate_param(self, name, channel, process, bin_cr, region="SR", era="", agnostic=False):
+          if not agnostic:
+               # name rateParam bin process initial_value [min,max]
+               F_bins = ["F_Fbin0", "F_Fbin1", "F_Fbin2", "F_Fbin3", "F_Fbin4"]
+               for bin in F_bins:
+                    if bin in bin_cr:
+                         F_bins.remove(bin)
+               template = "{name} rateParam {channel} {process} (@7*(@7+@8+@9+@10+@11)*@6*@6*@3*@3*@1*@1/(@5*@2*@0*@4*@4*@4*@4)) {analysis}_{region}_A{era},{analysis}_{region}_B{era},{analysis}_{region}_C{era},{analysis}_{region}_D{era},{analysis}_{region}_E{era},{analysis}_{region}_G{era},{analysis}_{region}_H{era},{analysis}_{bin_cr}{era},{analysis}_{region}_{other_bin_cr}{era},{analysis}_{region}_{other1_bin_cr}{era},{analysis}_{region}_{other2_bin_cr}{era},{analysis}_{region}_{other3_bin_cr}{era}"
+               template = template.format(
+                    name = name,
+                    channel = channel,
+                    process = process,
+                    era = era,
+                    bin_cr = bin_cr,
+                    other_bin_cr = F_bins[0],
+                    other1_bin_cr = F_bins[1],
+                    other2_bin_cr = F_bins[2],
+                    other3_bin_cr = F_bins[3],
+                    region=region,
+                    analysis=self.analysis
+               )
+          else:
+               f_bin_map = {
+                    "SR_F_Fbin0": "(@7+@8+@9+@10+@11)",
+                    "SR_F_Fbin1": "(@8+@9+@10+@11)",
+                    "SR_F_Fbin2": "(@9+@10+@11)",
+                    "SR_F_Fbin3": "(@10+@11)",
+                    "SR_F_Fbin4": "(@11)"
+               }
+               template = "{name} rateParam {channel} {process} ({f_bin}*(@7+@8+@9+@10+@11)*@6*@6*@3*@3*@1*@1/(@5*@2*@0*@4*@4*@4*@4)) {analysis}_{region}_A{era},{analysis}_{region}_B{era},{analysis}_{region}_C{era},{analysis}_{region}_D{era},{analysis}_{region}_E{era},{analysis}_{region}_G{era},{analysis}_{region}_H{era},{analysis}_{region}_F_Fbin0{era},{analysis}_{region}_F_Fbin1{era},{analysis}_{region}_F_Fbin2{era},{analysis}_{region}_F_Fbin3{era},{analysis}_{region}_F_Fbin4{era}"
+               template = template.format(
+                    name = name,
+                    channel = channel,
+                    process = process,
+                    era = era,
+                    f_bin = f_bin_map[bin_cr],
+                    region=region,
+                    analysis=self.analysis
+               )
           self.extras.add(template)
 
      def add_9ABCD_rate_param_eras_combined(self, name, channel, process, eras, bin_cr, region=""):

@@ -1,0 +1,255 @@
+dependent_variables:
+- header:
+    name: $S^{\mathrm{SUEP}}_{\mathrm{boosted}}$
+  values:
+  - value: 0.3 - 0.4
+  - value: 0.3 - 0.4
+  - value: 0.3 - 0.4
+  - value: 0.4 - 0.5
+  - value: 0.4 - 0.5
+  - value: 0.4 - 0.5
+  - value: 0.4 - 0.5
+  - value: 0.4 - 0.5
+  - value: 0.4 - 0.5
+  - value: 0.4 - 0.5
+  - value: 0.5 - 1.0
+  - value: 0.5 - 1.0
+  - value: 0.5 - 1.0
+  - value: 0.5 - 1.0
+  - value: 0.5 - 1.0
+  - value: 0.5 - 1.0
+  - value: 0.5 - 1.0
+- header:
+    name: Post-fit Background
+  values:
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 1152.1
+    value: 1436700.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 553.36
+    value: 279820.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 148.26
+    value: 22032.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 899.21
+    value: 1012100.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 547.09
+    value: 290360.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 145.15
+    value: 23518.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 36.616
+    value: 1694.7
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 8.3026
+    value: 141.91
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 2.4295
+    value: 12.522
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 3.834e-05
+    value: 6.6741e-09
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 1108.6
+    value: 1168900.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 736.44
+    value: 559240.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 217.33
+    value: 56227.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 65.699
+    value: 4033.8
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 16.548
+    value: 340.09
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 4.732
+    value: 29.482
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 0.00016937
+    value: 1.5959e-08
+- header:
+    name: Data
+  values:
+  - errors:
+    - asymerror:
+        minus: 1198.6
+        plus: 1199.6
+      label: Poissonian Unc.
+    value: 1436700.0
+  - errors:
+    - asymerror:
+        minus: 529.01
+        plus: 530.01
+      label: Poissonian Unc.
+    value: 279840.0
+  - errors:
+    - asymerror:
+        minus: 148.41
+        plus: 149.41
+      label: Poissonian Unc.
+    value: 22024.0
+  - errors:
+    - asymerror:
+        minus: 1006.1
+        plus: 1007.1
+      label: Poissonian Unc.
+    value: 1012100.0
+  - errors:
+    - asymerror:
+        minus: 538.83
+        plus: 539.83
+      label: Poissonian Unc.
+    value: 290330.0
+  - errors:
+    - asymerror:
+        minus: 153.4
+        plus: 154.41
+      label: Poissonian Unc.
+    value: 23532.0
+  - errors:
+    - asymerror:
+        minus: 41.191
+        plus: 42.204
+      label: Poissonian Unc.
+    value: 1697.0
+  - errors:
+    - asymerror:
+        minus: 11.86
+        plus: 12.903
+      label: Poissonian Unc.
+    value: 141.0
+  - errors:
+    - asymerror:
+        minus: 3.5587
+        plus: 4.6977
+      label: Poissonian Unc.
+    value: 13.0
+  - errors:
+    - asymerror:
+        minus: 0.0
+        plus: 1.8411
+      label: Poissonian Unc.
+    value: 0.0
+  - errors:
+    - asymerror:
+        minus: 1081.2
+        plus: 1082.2
+      label: Poissonian Unc.
+    value: 1168900.0
+  - errors:
+    - asymerror:
+        minus: 747.85
+        plus: 748.85
+      label: Poissonian Unc.
+    value: 559260.0
+  - errors:
+    - asymerror:
+        minus: 237.11
+        plus: 238.11
+      label: Poissonian Unc.
+    value: 56220.0
+  - errors:
+    - asymerror:
+        minus: 63.497
+        plus: 64.505
+      label: Poissonian Unc.
+    value: 4032.0
+  - errors:
+    - asymerror:
+        minus: 18.458
+        plus: 19.485
+      label: Poissonian Unc.
+    value: 341.0
+  - errors:
+    - asymerror:
+        minus: 5.354
+        plus: 6.4472
+      label: Poissonian Unc.
+    value: 29.0
+  - errors:
+    - asymerror:
+        minus: 0.0
+        plus: 1.8411
+      label: Poissonian Unc.
+    value: 0.0
+independent_variables:
+- header:
+    name: Region
+  values:
+  - value: A
+  - value: B
+  - value: C
+  - value: D
+  - value: E
+  - value: F_Fbin0
+  - value: F_Fbin1
+  - value: F_Fbin2
+  - value: F_Fbin3
+  - value: F_Fbin4
+  - value: G
+  - value: H
+  - value: SR_SRbin0
+  - value: SR_SRbin1
+  - value: SR_SRbin2
+  - value: SR_SRbin3
+  - value: SR_SRbin4
+- header:
+    name: $n^{\mathrm{SUEP}}_{\mathrm{constituent}}$
+  values:
+  - high: 20
+    low: 10
+  - high: 30
+    low: 20
+  - high: .inf
+    low: 30
+  - high: 20
+    low: 10
+  - high: 30
+    low: 20
+  - high: 40
+    low: 30
+  - high: 50
+    low: 40
+  - high: 60
+    low: 50
+  - high: 80
+    low: 60
+  - high: .inf
+    low: 80
+  - high: 20
+    low: 10
+  - high: 30
+    low: 20
+  - high: 40
+    low: 30
+  - high: 50
+    low: 40
+  - high: 60
+    low: 50
+  - high: 80
+    low: 60
+  - high: .inf
+    low: 80

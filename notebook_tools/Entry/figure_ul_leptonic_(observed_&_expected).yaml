@@ -1,0 +1,953 @@
+dependent_variables:
+- header:
+    name: Observed
+    units: fb
+  values:
+  - value: 116.36
+  - value: 27.674
+  - value: 8.2617
+  - value: 3.6006
+  - value: 2.6661
+  - value: 3.2483
+  - value: 7.2265
+  - value: 31.589
+  - value: 219.63
+  - value: 2.6064
+  - value: 2.7379
+  - value: 3.5284
+  - value: 6.622
+  - value: 19.242
+  - value: 96.346
+  - value: 639.09
+  - value: 4658.9
+  - value: 29437.0
+  - value: 2.6862
+  - value: 4.4968
+  - value: 10.543
+  - value: 198950.0
+  - value: 37.22
+  - value: 217.78
+  - value: 1546.1
+  - value: 12819.0
+  - value: 61047.0
+  - value: 5.4545
+  - value: 12.038
+  - value: 284170.0
+  - value: 474480.0
+  - value: 41.797
+  - value: 219.62
+  - value: 1459.3
+  - value: 11396.0
+  - value: 69804.0
+  - value: 14.483
+  - value: 42.361
+  - value: 133630.0
+  - value: 480730.0
+  - value: 165.15
+  - value: 458760.0
+  - value: 920.93
+  - value: 7111.1
+  - value: 43733.0
+  - value: 43.606
+  - value: 352850.0
+  - value: 582530.0
+  - value: 141.88
+  - value: 1062500.0
+  - value: 594.84
+  - value: 4093.9
+  - value: 26442.0
+  - value: 112760.0
+  - value: 124.82
+  - value: 294320.0
+  - value: 658170.0
+  - value: 441.31
+  - value: 832130.0
+  - value: 2062.8
+  - value: 10335.0
+  - value: 49663.0
+  - value: 218040.0
+  - value: 326390.0
+  - value: 555270.0
+  - value: 334.9
+  - value: 1206.5
+  - value: 944100.0
+  - value: 1034700.0
+  - value: 4552.4
+  - value: 25261.0
+  - value: 104850.0
+- header:
+    name: Expected
+    units: fb
+  values:
+  - errors:
+    - asymerror:
+        minus: -59.208
+        plus: 176.04
+      label: $1\sigma$
+    - asymerror:
+        minus: -81.067
+        plus: 256.05
+      label: $2\sigma$
+    value: 117.5
+  - errors:
+    - asymerror:
+        minus: -14.573
+        plus: 44.479
+      label: $1\sigma$
+    - asymerror:
+        minus: -20.008
+        plus: 65.676
+      label: $2\sigma$
+    value: 29.375
+  - errors:
+    - asymerror:
+        minus: -4.4891
+        plus: 13.883
+      label: $1\sigma$
+    - asymerror:
+        minus: -6.1898
+        plus: 20.539
+      label: $2\sigma$
+    value: 9.1207
+  - errors:
+    - asymerror:
+        minus: -2.0022
+        plus: 6.1759
+      label: $1\sigma$
+    - asymerror:
+        minus: -2.7446
+        plus: 9.1036
+      label: $2\sigma$
+    value: 4.0679
+  - errors:
+    - asymerror:
+        minus: -1.5439
+        plus: 4.6157
+      label: $1\sigma$
+    - asymerror:
+        minus: -2.0816
+        plus: 6.7495
+      label: $2\sigma$
+    value: 3.0402
+  - errors:
+    - asymerror:
+        minus: -1.9788
+        plus: 5.6984
+      label: $1\sigma$
+    - asymerror:
+        minus: -2.698
+        plus: 8.125
+      label: $2\sigma$
+    value: 3.8966
+  - errors:
+    - asymerror:
+        minus: -5.0551
+        plus: 13.265
+      label: $1\sigma$
+    - asymerror:
+        minus: -6.7098
+        plus: 18.091
+      label: $2\sigma$
+    value: 9.3776
+  - errors:
+    - asymerror:
+        minus: -23.657
+        plus: 58.799
+      label: $1\sigma$
+    - asymerror:
+        minus: -31.224
+        plus: 77.906
+      label: $2\sigma$
+    value: 42.649
+  - errors:
+    - asymerror:
+        minus: -142.51
+        plus: 350.12
+      label: $1\sigma$
+    - asymerror:
+        minus: -188.1
+        plus: 459.59
+      label: $2\sigma$
+    value: 256.92
+  - errors:
+    - asymerror:
+        minus: -1.4542
+        plus: 4.4621
+      label: $1\sigma$
+    - asymerror:
+        minus: -1.9934
+        plus: 6.6173
+      label: $2\sigma$
+    value: 2.9546
+  - errors:
+    - asymerror:
+        minus: -1.5874
+        plus: 4.7457
+      label: $1\sigma$
+    - asymerror:
+        minus: -2.1643
+        plus: 6.9024
+      label: $2\sigma$
+    value: 3.1259
+  - errors:
+    - asymerror:
+        minus: -2.1858
+        plus: 6.2331
+      label: $1\sigma$
+    - asymerror:
+        minus: -2.9559
+        plus: 8.8078
+      label: $2\sigma$
+    value: 4.2392
+  - errors:
+    - asymerror:
+        minus: -4.4814
+        plus: 11.966
+      label: $1\sigma$
+    - asymerror:
+        minus: -5.9951
+        plus: 16.51
+      label: $2\sigma$
+    value: 8.4356
+  - errors:
+    - asymerror:
+        minus: -14.292
+        plus: 35.982
+      label: $1\sigma$
+    - asymerror:
+        minus: -18.846
+        plus: 48.055
+      label: $2\sigma$
+    value: 25.949
+  - errors:
+    - asymerror:
+        minus: -69.546
+        plus: 170.86
+      label: $1\sigma$
+    - asymerror:
+        minus: -91.791
+        plus: 224.28
+      label: $2\sigma$
+    value: 125.38
+  - errors:
+    - asymerror:
+        minus: -383.07
+        plus: 941.11
+      label: $1\sigma$
+    - asymerror:
+        minus: -505.6
+        plus: 1230.8
+      label: $2\sigma$
+    value: 690.61
+  - errors:
+    - asymerror:
+        minus: -2219.4
+        plus: 5484.4
+      label: $1\sigma$
+    - asymerror:
+        minus: -2915.4
+        plus: 7207.2
+      label: $2\sigma$
+    value: 4001.1
+  - errors:
+    - asymerror:
+        minus: -8944.3
+        plus: 22679.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -11897.0
+        plus: 29971.0
+      label: $2\sigma$
+    value: 16355.0
+  - errors:
+    - asymerror:
+        minus: -1.6309
+        plus: 4.7221
+      label: $1\sigma$
+    - asymerror:
+        minus: -2.2236
+        plus: 6.7317
+      label: $2\sigma$
+    value: 3.2115
+  - errors:
+    - asymerror:
+        minus: -2.9362
+        plus: 8.069
+      label: $1\sigma$
+    - asymerror:
+        minus: -3.9804
+        plus: 11.229
+      label: $2\sigma$
+    value: 5.6095
+  - errors:
+    - asymerror:
+        minus: -7.6809
+        plus: 19.588
+      label: $1\sigma$
+    - asymerror:
+        minus: -10.167
+        plus: 26.361
+      label: $2\sigma$
+    value: 14.045
+  - errors:
+    - asymerror:
+        minus: -52851.0
+        plus: 134780.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -69956.0
+        plus: 182630.0
+      label: $2\sigma$
+    value: 96641.0
+  - errors:
+    - asymerror:
+        minus: -27.932
+        plus: 69.024
+      label: $1\sigma$
+    - asymerror:
+        minus: -36.692
+        plus: 91.035
+      label: $2\sigma$
+    value: 50.357
+  - errors:
+    - asymerror:
+        minus: -145.55
+        plus: 357.58
+      label: $1\sigma$
+    - asymerror:
+        minus: -192.11
+        plus: 469.39
+      label: $2\sigma$
+    value: 262.4
+  - errors:
+    - asymerror:
+        minus: -842.15
+        plus: 2075.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -1111.5
+        plus: 2710.4
+      label: $2\sigma$
+    value: 1518.2
+  - errors:
+    - asymerror:
+        minus: -4730.6
+        plus: 11690.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -6243.8
+        plus: 15307.0
+      label: $2\sigma$
+    value: 8528.4
+  - errors:
+    - asymerror:
+        minus: -17893.0
+        plus: 46556.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -23870.0
+        plus: 62912.0
+      label: $2\sigma$
+    value: 33193.0
+  - errors:
+    - asymerror:
+        minus: -3.7625
+        plus: 9.9288
+      label: $1\sigma$
+    - asymerror:
+        minus: -5.0192
+        plus: 13.591
+      label: $2\sigma$
+    value: 6.9797
+  - errors:
+    - asymerror:
+        minus: -8.922
+        plus: 22.622
+      label: $1\sigma$
+    - asymerror:
+        minus: -11.81
+        plus: 30.213
+      label: $2\sigma$
+    value: 16.315
+  - errors:
+    - asymerror:
+        minus: -68958.0
+        plus: 195040.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -93756.0
+        plus: 275230.0
+      label: $2\sigma$
+    value: 133740.0
+  - errors:
+    - asymerror:
+        minus: -107520.0
+        plus: 312020.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -148040.0
+        plus: 437000.0
+      label: $2\sigma$
+    value: 213360.0
+  - errors:
+    - asymerror:
+        minus: -31.257
+        plus: 77.241
+      label: $1\sigma$
+    - asymerror:
+        minus: -41.06
+        plus: 101.14
+      label: $2\sigma$
+    value: 56.352
+  - errors:
+    - asymerror:
+        minus: -147.83
+        plus: 364.25
+      label: $1\sigma$
+    - asymerror:
+        minus: -195.12
+        plus: 475.79
+      label: $2\sigma$
+    value: 266.51
+  - errors:
+    - asymerror:
+        minus: -817.83
+        plus: 2020.9
+      label: $1\sigma$
+    - asymerror:
+        minus: -1079.4
+        plus: 2646.2
+      label: $2\sigma$
+    value: 1474.4
+  - errors:
+    - asymerror:
+        minus: -4854.3
+        plus: 12151.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -6400.8
+        plus: 16099.0
+      label: $2\sigma$
+    value: 8813.4
+  - errors:
+    - asymerror:
+        minus: -22876.0
+        plus: 58338.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -30280.0
+        plus: 78513.0
+      label: $2\sigma$
+    value: 41831.0
+  - errors:
+    - asymerror:
+        minus: -10.896
+        plus: 27.274
+      label: $1\sigma$
+    - asymerror:
+        minus: -14.368
+        plus: 36.137
+      label: $2\sigma$
+    value: 19.783
+  - errors:
+    - asymerror:
+        minus: -31.638
+        plus: 77.953
+      label: $1\sigma$
+    - asymerror:
+        minus: -41.757
+        plus: 102.2
+      label: $2\sigma$
+    value: 57.037
+  - errors:
+    - asymerror:
+        minus: -41318.0
+        plus: 119580.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -56572.0
+        plus: 166720.0
+      label: $2\sigma$
+    value: 81996.0
+  - errors:
+    - asymerror:
+        minus: -96044.0
+        plus: 348450.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -136520.0
+        plus: 520510.0
+      label: $2\sigma$
+    value: 213800.0
+  - errors:
+    - asymerror:
+        minus: -114.39
+        plus: 281.03
+      label: $1\sigma$
+    - asymerror:
+        minus: -150.98
+        plus: 368.89
+      label: $2\sigma$
+    value: 206.22
+  - errors:
+    - asymerror:
+        minus: -102940.0
+        plus: 393340.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -146020.0
+        plus: 644890.0
+      label: $2\sigma$
+    value: 231170.0
+  - errors:
+    - asymerror:
+        minus: -533.56
+        plus: 1310.8
+      label: $1\sigma$
+    - asymerror:
+        minus: -704.23
+        plus: 1720.7
+      label: $2\sigma$
+    value: 961.92
+  - errors:
+    - asymerror:
+        minus: -2991.6
+        plus: 7392.6
+      label: $1\sigma$
+    - asymerror:
+        minus: -3948.5
+        plus: 9679.7
+      label: $2\sigma$
+    value: 5393.3
+  - errors:
+    - asymerror:
+        minus: -14635.0
+        plus: 36846.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -19298.0
+        plus: 49037.0
+      label: $2\sigma$
+    value: 26572.0
+  - errors:
+    - asymerror:
+        minus: -32.588
+        plus: 80.06
+      label: $1\sigma$
+    - asymerror:
+        minus: -43.011
+        plus: 105.09
+      label: $2\sigma$
+    value: 58.749
+  - errors:
+    - asymerror:
+        minus: -62857.0
+        plus: 215730.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -88700.0
+        plus: 322970.0
+      label: $2\sigma$
+    value: 136370.0
+  - errors:
+    - asymerror:
+        minus: -124040.0
+        plus: 395910.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -172520.0
+        plus: 591780.0
+      label: $2\sigma$
+    value: 256070.0
+  - errors:
+    - asymerror:
+        minus: -97.668
+        plus: 239.24
+      label: $1\sigma$
+    - asymerror:
+        minus: -128.91
+        plus: 312.13
+      label: $2\sigma$
+    value: 176.08
+  - errors:
+    - asymerror:
+        minus: -176760.0
+        plus: 705940.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -252900.0
+        plus: 1063900.0
+      label: $2\sigma$
+    value: 350780.0
+  - errors:
+    - asymerror:
+        minus: -363.31
+        plus: 892.56
+      label: $1\sigma$
+    - asymerror:
+        minus: -479.52
+        plus: 1163.1
+      label: $2\sigma$
+    value: 654.98
+  - errors:
+    - asymerror:
+        minus: -1843.1
+        plus: 4509.6
+      label: $1\sigma$
+    - asymerror:
+        minus: -2423.4
+        plus: 5890.5
+      label: $2\sigma$
+    value: 3299.6
+  - errors:
+    - asymerror:
+        minus: -8220.8
+        plus: 20374.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -10850.0
+        plus: 26837.0
+      label: $2\sigma$
+    value: 14821.0
+  - errors:
+    - asymerror:
+        minus: -31021.0
+        plus: 82228.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -41337.0
+        plus: 111980.0
+      label: $2\sigma$
+    value: 57967.0
+  - errors:
+    - asymerror:
+        minus: -86.109
+        plus: 210.07
+      label: $1\sigma$
+    - asymerror:
+        minus: -113.22
+        plus: 273.73
+      label: $2\sigma$
+    value: 154.15
+  - errors:
+    - asymerror:
+        minus: -81755.0
+        plus: 232500.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -110550.0
+        plus: 327090.0
+      label: $2\sigma$
+    value: 158550.0
+  - errors:
+    - asymerror:
+        minus: -156270.0
+        plus: 441080.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -210470.0
+        plus: 627930.0
+      label: $2\sigma$
+    value: 300800.0
+  - errors:
+    - asymerror:
+        minus: -269.06
+        plus: 661.02
+      label: $1\sigma$
+    - asymerror:
+        minus: -355.13
+        plus: 861.34
+      label: $2\sigma$
+    value: 485.07
+  - errors:
+    - asymerror:
+        minus: -163830.0
+        plus: 524100.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -226870.0
+        plus: 807080.0
+      label: $2\sigma$
+    value: 335520.0
+  - errors:
+    - asymerror:
+        minus: -1024.6
+        plus: 2531.8
+      label: $1\sigma$
+    - asymerror:
+        minus: -1352.3
+        plus: 3315.1
+      label: $2\sigma$
+    value: 1847.1
+  - errors:
+    - asymerror:
+        minus: -4031.4
+        plus: 9962.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -5320.9
+        plus: 13044.0
+      label: $2\sigma$
+    value: 7267.8
+  - errors:
+    - asymerror:
+        minus: -14418.0
+        plus: 37729.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -19234.0
+        plus: 51526.0
+      label: $2\sigma$
+    value: 26747.0
+  - errors:
+    - asymerror:
+        minus: -55344.0
+        plus: 140730.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -73615.0
+        plus: 189660.0
+      label: $2\sigma$
+    value: 101200.0
+  - errors:
+    - asymerror:
+        minus: -68893.0
+        plus: 204840.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -94327.0
+        plus: 294640.0
+      label: $2\sigma$
+    value: 136720.0
+  - errors:
+    - asymerror:
+        minus: -115740.0
+        plus: 341490.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -157810.0
+        plus: 502170.0
+      label: $2\sigma$
+    value: 227920.0
+  - errors:
+    - asymerror:
+        minus: -214.32
+        plus: 521.31
+      label: $1\sigma$
+    - asymerror:
+        minus: -281.79
+        plus: 677.61
+      label: $2\sigma$
+    value: 383.67
+  - errors:
+    - asymerror:
+        minus: -652.13
+        plus: 1590.9
+      label: $1\sigma$
+    - asymerror:
+        minus: -857.46
+        plus: 2073.1
+      label: $2\sigma$
+    value: 1167.5
+  - errors:
+    - asymerror:
+        minus: -178130.0
+        plus: 594080.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -248270.0
+        plus: 900530.0
+      label: $2\sigma$
+    value: 350780.0
+  - errors:
+    - asymerror:
+        minus: -152100.0
+        plus: 624840.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -226610.0
+        plus: 966580.0
+      label: $2\sigma$
+    value: 350780.0
+  - errors:
+    - asymerror:
+        minus: -2316.7
+        plus: 5724.8
+      label: $1\sigma$
+    - asymerror:
+        minus: -3057.7
+        plus: 7495.9
+      label: $2\sigma$
+    value: 4176.5
+  - errors:
+    - asymerror:
+        minus: -8416.5
+        plus: 21068.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -11098.0
+        plus: 27914.0
+      label: $2\sigma$
+    value: 15281.0
+  - errors:
+    - asymerror:
+        minus: -20609.0
+        plus: 61425.0
+      label: $1\sigma$
+    - asymerror:
+        minus: -28176.0
+        plus: 87139.0
+      label: $2\sigma$
+    value: 41217.0
+independent_variables:
+- header:
+    name: $m_{\phi}$
+    units: GeV
+  values:
+  - value: 1.0
+  - value: 1.0
+  - value: 1.0
+  - value: 1.0
+  - value: 1.0
+  - value: 1.0
+  - value: 1.0
+  - value: 1.0
+  - value: 1.0
+  - value: 2.0
+  - value: 2.0
+  - value: 2.0
+  - value: 2.0
+  - value: 2.0
+  - value: 2.0
+  - value: 2.0
+  - value: 2.0
+  - value: 2.0
+  - value: 3.0
+  - value: 3.0
+  - value: 3.0
+  - value: 3.0
+  - value: 3.0
+  - value: 3.0
+  - value: 3.0
+  - value: 3.0
+  - value: 3.0
+  - value: 4.0
+  - value: 4.0
+  - value: 4.0
+  - value: 4.0
+  - value: 4.0
+  - value: 4.0
+  - value: 4.0
+  - value: 4.0
+  - value: 4.0
+  - value: 5.0
+  - value: 5.0
+  - value: 5.0
+  - value: 5.0
+  - value: 5.0
+  - value: 5.0
+  - value: 5.0
+  - value: 5.0
+  - value: 5.0
+  - value: 6.0
+  - value: 6.0
+  - value: 6.0
+  - value: 6.0
+  - value: 6.0
+  - value: 6.0
+  - value: 6.0
+  - value: 6.0
+  - value: 6.0
+  - value: 7.0
+  - value: 7.0
+  - value: 7.0
+  - value: 7.0
+  - value: 7.0
+  - value: 7.0
+  - value: 7.0
+  - value: 7.0
+  - value: 7.0
+  - value: 8.0
+  - value: 8.0
+  - value: 8.0
+  - value: 8.0
+  - value: 8.0
+  - value: 8.0
+  - value: 8.0
+  - value: 8.0
+  - value: 8.0
+- header:
+    name: $\log_2(T/m_{\phi})$
+  values:
+  - value: -2.0
+  - value: -1.5146
+  - value: -1.0
+  - value: -0.49411
+  - value: 0.0
+  - value: 0.4957
+  - value: 1.0
+  - value: 1.5008
+  - value: 2.0
+  - value: -2.0
+  - value: -1.4941
+  - value: -1.0
+  - value: -0.5043
+  - value: 0.0
+  - value: 0.5008
+  - value: 1.0
+  - value: 1.5008
+  - value: 2.0
+  - value: -2.0
+  - value: -1.5009
+  - value: -1.0
+  - value: 2.0
+  - value: -0.5009
+  - value: 0.0
+  - value: 0.4991
+  - value: 1.0
+  - value: 1.5008
+  - value: -2.0
+  - value: -1.5043
+  - value: 1.4995
+  - value: 2.0
+  - value: -1.0
+  - value: -0.4992
+  - value: 0.0
+  - value: 0.5008
+  - value: 1.0
+  - value: -2.0
+  - value: -1.4982
+  - value: 1.0
+  - value: 1.4998
+  - value: -1.0
+  - value: 2.0
+  - value: -0.49818
+  - value: 0.0
+  - value: 0.49978
+  - value: -2.0
+  - value: 1.0
+  - value: 1.5
+  - value: -1.5009
+  - value: 2.0
+  - value: -1.0
+  - value: -0.5009
+  - value: 0.0
+  - value: 0.5008
+  - value: -2.0
+  - value: 1.0
+  - value: 1.5001
+  - value: -1.5028
+  - value: 2.0
+  - value: -1.0
+  - value: -0.49993
+  - value: 0.0
+  - value: 0.50007
+  - value: 0.49953
+  - value: 1.0
+  - value: -2.0
+  - value: -1.4992
+  - value: 1.5002
+  - value: 2.0
+  - value: -1.0
+  - value: -0.4992
+  - value: 0.0

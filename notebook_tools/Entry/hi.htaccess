@@ -1,0 +1,5 @@
+AuthType None
+Require all granted
+Options +ExecCGI
+Options +Indexes
+SetHandler cgi-script

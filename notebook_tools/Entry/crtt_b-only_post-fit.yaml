@@ -1,0 +1,437 @@
+dependent_variables:
+- header:
+    name: $p_T^{jet1}$
+    units: GeV
+  values:
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: < 135
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 135 - 220
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+  - value: 220 <=
+- header:
+    name: Post-fit Background (SR+CR)
+  values:
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 103.67
+    value: 11607.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 93.979
+    value: 8814.6
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 60.551
+    value: 3851.4
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 44.521
+    value: 2072.9
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 29.045
+    value: 1042.7
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 20.949
+    value: 455.46
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 18.818
+    value: 324.07
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 170.4
+    value: 28920.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 99.967
+    value: 18107.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 63.153
+    value: 5384.6
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 33.733
+    value: 2190.1
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 20.087
+    value: 848.59
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 11.522
+    value: 291.17
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 7.7597
+    value: 140.85
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 189.74
+    value: 35062.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 152.25
+    value: 27347.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 80.164
+    value: 8087.3
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 53.826
+    value: 2796.9
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 23.376
+    value: 776.7
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 13.237
+    value: 214.43
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 7.2152
+    value: 68.072
+- header:
+    name: Post-fit Background (CR)
+  values:
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 103.77
+    value: 11580.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 100.99
+    value: 8869.9
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 62.117
+    value: 3822.5
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 46.653
+    value: 2071.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 30.319
+    value: 1044.1
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 21.382
+    value: 455.43
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 18.995
+    value: 325.87
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 171.16
+    value: 28975.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 111.79
+    value: 17998.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 73.119
+    value: 5442.6
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 44.492
+    value: 2193.7
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 26.441
+    value: 845.97
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 14.149
+    value: 291.11
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 8.5936
+    value: 137.26
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 188.87
+    value: 35035.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 151.74
+    value: 27402.0
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 79.882
+    value: 8058.4
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 55.631
+    value: 2795.4
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 24.39
+    value: 778.04
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 13.835
+    value: 214.46
+  - errors:
+    - label: Stat. + Syst.
+      symerror: 7.6797
+    value: 69.879
+- header:
+    name: Data
+  values:
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 107.49
+    value: 11555.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 94.446
+    value: 8920.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 61.555
+    value: 3789.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 45.64
+    value: 2083.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 32.265
+    value: 1041.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 21.213
+    value: 450.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 18.193
+    value: 331.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 170.37
+    value: 29025.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 133.78
+    value: 17897.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 74.223
+    value: 5509.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 46.583
+    value: 2170.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 29.189
+    value: 852.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 17.378
+    value: 302.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 11.269
+    value: 127.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 187.11
+    value: 35010.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 165.69
+    value: 27452.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 89.582
+    value: 8025.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 52.981
+    value: 2807.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 27.839
+    value: 775.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 14.457
+    value: 209.0
+  - errors:
+    - label: Poissonian Unc.
+      symerror: 8.6603
+    value: 75.0
+- header:
+    name: Pre-fit Signal $m_{A'} = 1.0\;GeV$ $BR(A' \rightarrow \pi\pi) = 1.0$ $m_{D}
+      = T = 2\;GeV$
+  values:
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - errors:
+    - label: Stat.
+      symerror: 0.08026
+    value: 0.25134
+  - errors:
+    - label: Stat.
+      symerror: 0.14192
+    value: 0.6758
+  - errors:
+    - label: Stat.
+      symerror: 0.18564
+    value: 1.0475
+  - errors:
+    - label: Stat.
+      symerror: 0.20007
+    value: 1.2567
+  - errors:
+    - label: Stat.
+      symerror: 0.35257
+    value: 3.0431
+- header:
+    name: Pre-fit Signal $m_{A'} = 1.0\;GeV$ $BR(A' \rightarrow \pi\pi) = 1.0$ $m_{D}
+      = 6$ $T = 3\;GeV$
+  values:
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - value: 0.0
+  - errors:
+    - label: Stat.
+      symerror: 0.32932
+    value: 2.2934
+  - errors:
+    - label: Stat.
+      symerror: 0.4091
+    value: 3.0497
+  - errors:
+    - label: Stat.
+      symerror: 0.30488
+    value: 2.1054
+  - errors:
+    - label: Stat.
+      symerror: 0.09159
+    value: 0.26817
+  - errors:
+    - label: Stat.
+      symerror: 0.065699
+    value: 0.17464
+independent_variables:
+- header:
+    name: Region
+  values:
+  - value: E2
+  - value: E1
+  - value: B2_1
+  - value: B2_2
+  - value: B2_3
+  - value: B2_4
+  - value: B2_5
+  - value: D2
+  - value: D1
+  - value: B1_1
+  - value: B1_2
+  - value: B1_3
+  - value: B1_4
+  - value: B1_5
+  - value: C2
+  - value: C1
+  - value: A_1
+  - value: A_2
+  - value: A_3
+  - value: A_4
+  - value: A_5
+- header:
+    name: $N_{tracks}$
+  values:
+  - high: 14
+    low: 0
+  - high: 21
+    low: 14
+  - high: 26
+    low: 21
+  - high: 31
+    low: 26
+  - high: 36
+    low: 31
+  - high: 41
+    low: 36
+  - high: .inf
+    low: 41
+  - high: 14
+    low: 0
+  - high: 21
+    low: 14
+  - high: 26
+    low: 21
+  - high: 31
+    low: 26
+  - high: 36
+    low: 31
+  - high: 41
+    low: 36
+  - high: .inf
+    low: 41
+  - high: 14
+    low: 0
+  - high: 21
+    low: 14
+  - high: 26
+    low: 21
+  - high: 31
+    low: 26
+  - high: 36
+    low: 31
+  - high: 41
+    low: 36
+  - high: .inf
+    low: 41

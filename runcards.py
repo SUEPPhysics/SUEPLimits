@@ -128,7 +128,7 @@ def main():
                                         cmd='\n'.join(commands),
                                         work_dir=work_dir,
                                         log_dir=log_dir,
-                                        sample=sample+'_'+era)
+                                        sample=sample)
             
             # Write the SLURM script to a file
             slurm_script_file = f'{log_dir}{sample}.sh'
