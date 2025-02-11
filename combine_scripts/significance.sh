@@ -10,18 +10,18 @@ usage() {
   echo "Run the combine a given card-containing directory."
   echo
   echo "Options:"
-  echo "  <path>            Required. The path to operate in, where combined.root lives."
+  echo "  <datacard>            Required. .root datacard."
   echo "  -e <extra_args>   Optional. Extra arguments for combineTool.py."
   exit 1
 }
 
-# Check if at least one argument (the path) is provided
+# Check if at least one argument (the datacard) is provided
 if [ "$#" -lt 1 ]; then
   usage
 fi
 
-# Capture the required path argument
-path=$1
+# Capture the required datacard argument
+datacard=$1
 shift
 
 # Parse optional flags
@@ -47,11 +47,14 @@ export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
 source $VO_CMS_SW_DIR/cmsset_default.sh
 cmsenv
 
+path=$(dirname "$datacard")
+card_name=$(basename "$datacard")
+
 # Move to the specified directory
 echo "Navigating to directory $path."
 cd $path
 
 # Run main commands
 echo "Running combine."
-echo "combine -M Significance combined.root $extra_args"
-combine -M Significance combined.root $extra_args
+echo "combine -M Significance $card_name $extra_args"
+combine -M Significance $card_name $extra_args

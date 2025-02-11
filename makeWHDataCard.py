@@ -346,7 +346,7 @@ def main():
         card.add_shape_nuisance(name, "CMS_res_j", p.get("CMS_res_j"))
         card.add_shape_nuisance(name, "CMS_pileup", p.get("CMS_pileup"))
         card.add_shape_nuisance(name, "CMS_scale_met_unclustered_energy", p.get("CMS_scale_met_unclustered_energy"))
-        card.add_shape_nuisance(name, "ps_fsr", p.get("ps_fsr"))
+        card.add_shape_nuisance(name, "CMS_EXO24030_ps_fsr", p.get("ps_fsr"))
         card.add_shape_nuisance(name, "ps_isr", p.get("ps_isr"))
         card.add_shape_nuisance(name, "CMS_EXO24030_tracking", p.get("CMS_EXO24030_tracking"))
         card.add_shape_nuisance(name, "CMS_eff_e", p.get("CMS_eff_e"))

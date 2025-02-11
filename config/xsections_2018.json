@@ -8864,5 +8864,1247 @@
     "kr": 1,
     "xsec": 1.358,
     "signal": 1
+  },
+  "SUEP_generic_mS125_mD2.0_T0.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD2.0_T0.71": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD2.0_T1.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD2.0_T1.41": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD2.0_T2.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD2.0_T2.83": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD2.0_T4.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD2.0_T5.66": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD2.0_T8.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD3.0_T0.75": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD3.0_T1.06": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD3.0_T1.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD3.0_T12.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD3.0_T2.12": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD3.0_T3.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD3.0_T4.24": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD3.0_T6.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD3.0_T8.49": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD4.0_T1.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD4.0_T1.41": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD4.0_T11.31": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD4.0_T16.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD4.0_T2.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD4.0_T2.83": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD4.0_T4.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD4.0_T5.66": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD4.0_T8.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD5.0_T1.25": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD5.0_T1.77": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD5.0_T10.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD5.0_T14.14": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD5.0_T2.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD5.0_T20.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD5.0_T3.54": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD5.0_T5.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD5.0_T7.07": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD6.0_T1.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD6.0_T12.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD6.0_T16.97": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD6.0_T2.12": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD6.0_T24.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD6.0_T3.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD6.0_T4.24": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD6.0_T6.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD6.0_T8.49": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD7.0_T1.75": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD7.0_T14.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD7.0_T19.80": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD7.0_T2.47": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD7.0_T28.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD7.0_T3.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD7.0_T4.95": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD7.0_T7.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD7.0_T9.90": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD8.0_T11.31": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD8.0_T16.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD8.0_T2.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD8.0_T2.83": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD8.0_T22.63": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD8.0_T32.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD8.0_T4.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD8.0_T5.66": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_generic_mS125_mD8.0_T8.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD1.4_T0.35": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD1.4_T0.49": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD1.4_T0.70": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD1.4_T0.99": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD1.4_T1.40": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD1.4_T1.98": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD1.4_T2.80": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD1.4_T3.96": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD1.4_T5.60": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD2.0_T0.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD2.0_T0.71": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD2.0_T1.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD2.0_T1.41": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD2.0_T2.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD2.0_T2.83": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD2.0_T4.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD2.0_T5.66": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD2.0_T8.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD3.0_T0.75": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD3.0_T1.06": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD3.0_T1.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD3.0_T12.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD3.0_T2.12": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD3.0_T3.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD3.0_T4.24": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD3.0_T6.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD3.0_T8.49": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD4.0_T1.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD4.0_T1.41": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD4.0_T11.31": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD4.0_T16.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD4.0_T2.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD4.0_T2.83": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD4.0_T4.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD4.0_T5.66": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD4.0_T8.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD5.0_T1.25": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD5.0_T1.77": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD5.0_T10.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD5.0_T14.14": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD5.0_T2.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD5.0_T20.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD5.0_T3.54": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD5.0_T5.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD5.0_T7.07": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD6.0_T1.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD6.0_T12.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD6.0_T16.97": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD6.0_T2.12": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD6.0_T24.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD6.0_T3.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD6.0_T4.24": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD6.0_T6.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD6.0_T8.49": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD7.0_T1.75": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD7.0_T14.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD7.0_T19.80": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD7.0_T2.47": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD7.0_T28.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD7.0_T3.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD7.0_T4.95": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD7.0_T7.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD7.0_T9.90": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD8.0_T11.31": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD8.0_T16.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD8.0_T2.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD8.0_T2.83": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD8.0_T22.63": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD8.0_T32.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD8.0_T4.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD8.0_T5.66": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_hadronic_mS125_mD8.0_T8.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD1.0_T0.25": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD1.0_T0.35": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD1.0_T0.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD1.0_T0.71": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD1.0_T1.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD1.0_T1.41": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD1.0_T2.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD1.0_T2.83": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD1.0_T4.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD2.0_T0.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD2.0_T0.71": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD2.0_T1.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD2.0_T1.41": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD2.0_T2.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD2.0_T2.83": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD2.0_T4.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD2.0_T5.66": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD2.0_T8.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD3.0_T0.75": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD3.0_T1.06": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD3.0_T1.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD3.0_T12.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD3.0_T2.12": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD3.0_T3.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD3.0_T4.24": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD3.0_T6.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD3.0_T8.49": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD4.0_T1.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD4.0_T1.41": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD4.0_T11.31": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD4.0_T16.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD4.0_T2.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD4.0_T2.83": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD4.0_T4.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD4.0_T5.66": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD4.0_T8.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD5.0_T1.25": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD5.0_T1.77": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD5.0_T10.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD5.0_T14.14": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD5.0_T2.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD5.0_T20.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD5.0_T3.54": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD5.0_T5.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD5.0_T7.07": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD6.0_T1.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD6.0_T12.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD6.0_T16.97": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD6.0_T2.12": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD6.0_T24.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD6.0_T3.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD6.0_T4.24": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD6.0_T6.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD6.0_T8.49": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD7.0_T1.75": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD7.0_T14.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD7.0_T19.80": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD7.0_T2.47": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD7.0_T28.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD7.0_T3.50": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD7.0_T4.95": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD7.0_T7.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD7.0_T9.90": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD8.0_T11.31": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD8.0_T16.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD8.0_T2.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD8.0_T2.83": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD8.0_T22.63": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD8.0_T32.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD8.0_T4.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD8.0_T5.66": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
+  },
+  "SUEP_leptonic_mS125_mD8.0_T8.00": {
+    "br": 0.1008,
+    "kr": 1,
+    "signal": 1,
+    "xsec": 0.909
   }
 }

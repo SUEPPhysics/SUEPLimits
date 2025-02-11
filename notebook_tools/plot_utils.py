@@ -23,7 +23,8 @@ file = {
     'ggf-scouting': "{path}higgsCombineGluGluToSUEP_HT400_T{tem}_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}_TuneCP5_13TeV-pythia8.{method}.mH125{quant}.root",
     'ggf-tth': "{path}higgsCombinettHpythia_{mode}_M{mS:.1f}_MD{mPhi:.2f}_T{T:.2f}_HT-1.{method}.mH125{quant}.root",
     'wh': "{path}higgsCombineSUEP_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH125{quant}.root",
-    "vh": "{path}higgsCombinecombinedWZ_mD{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH120{quant}.root"
+    "vh": "{path}higgsCombinecombinedWZ_mD{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH120{quant}.root",
+    "zh": "{path}higgsCombineCombinedSRCR_SUEP_{mode}_mS125_mD{mPhi:.1f}_T{T:.2f}.AsymptoticLimits.mH120.root"
 }
 decaysLabels = {
     'hadronic' : r"$A^' \rightarrow e^{+}e^{-}$ ($15\%$), $\mu^{+}\mu^{-}$ ($15\%$), $\pi^{+}\pi^{-}$ ($70\%$)",
@@ -120,6 +121,8 @@ def get_params_from_sample_name(sample, analysis='ggf-offline'):
         return get_params_from_sample_name_wh(sample)
     elif analysis == 'vh':
         return get_params_from_sample_name_wh(sample)
+    elif analysis == 'zh':
+        return get_params_from_sample_name_zh(sample)
     else:
         raise ValueError(f"Analysis {analysis} not recognized.")
 
@@ -184,6 +187,28 @@ def get_params_from_sample_name_wh(sample):
         # Return None if no match is found
         return None, None, None, None
 
+def get_params_from_sample_name_zh(sample):
+    """
+    Returns mS, mPhi, temp, decay from a sample name.
+    """
+    pattern = r'SUEP_(\w+)_mS(\d+)_mD(\d+\.\d+)_T(\d+\.\d+)'
+
+    # Use re.search to find the first occurrence of the pattern in the sample name
+    match = re.search(pattern, sample)
+
+    if match:
+        # Extract the matched groups and convert them to the appropriate data types
+        temp = float(match.group(4))
+        mS = float(match.group(2))
+        mPhi = float(match.group(3))
+        decay = match.group(1)
+
+        # Return the extracted parameters as a tuple
+        return mS, mPhi, temp, decay
+    else:
+        # Return None if no match is found
+        return None, None, None, None
+
 def get_sample_name_from_params(ms, mphi, temp, decay, analysis='ggf-offline'):
     temp_p = temp
     if temp_p > 10:
@@ -201,8 +226,12 @@ def get_sample_name_from_params(ms, mphi, temp, decay, analysis='ggf-offline'):
         return f"SUEP_mS{ms:.3f}_mPhi{mphi:.3f}_T{temp:.3f}_mode{decay}"
     elif analysis == 'vh':
         return f"SUEP_mS{ms:.3f}_mPhi{mphi:.3f}_T{temp:.3f}_mode{decay}"
+    elif analysis == 'zh':
+        return f"SUEP_{decay}_mS{ms:.0f}_mD{mphi:.1f}_T{temp:.2f}"
+    else:
+        raise ValueError(f"Analysis {analysis} not recognized.")
 
-def filter_samples(ms=None, mphi=None, temp=None, decay=None, file='../config/xsections_SUEP.json', analysis='ggf-offline'):
+def filter_samples(ms=None, mphi=None, temp=None, decay=None, file='../config/xsections_2018.json', analysis='ggf-offline'):
     """
     Get all possible combinations of parmaters from the full sample list.
     """
@@ -597,7 +626,7 @@ def plot_temp_limits(mphi, ms, decay, path='../', verbose=False, method='Asympto
 def plot_mphi_by_T_limits(
         temp_by_mphi, ms, decay, 
         path='../', method='AsymptoticLimits', analysis='wh', 
-        fig=None, ax=None, obs_marker='o', exp_alpha=1.0,mu_limit=False, bands=True, color='#F0240Bff', legend_label=''
+        ax=None, obs_marker='o', exp_alpha=1.0,mu_limit=False, bands=True, color='#F0240Bff', legend_label=''
     ):
     """
     Make 1D Brazil plot for some choice of mPi/TD, mS, and decay, scanning over TD.
@@ -629,7 +658,9 @@ def plot_mphi_by_T_limits(
     th_limit =  log_interp1d(temp, xsec)
 
     # Make 1D limit plot
+    init_fig = False
     if ax is None:
+        init_fig = True
         fig = plt.figure(figsize=(10,10))
         ax = fig.subplots()
         
@@ -641,14 +672,13 @@ def plot_mphi_by_T_limits(
         ax.plot(xvar, th_limit(xvar), "-", ms=12, color='blue', label="$\sigma_{theory}$")
 
     # Plot observed limits
-    ax.scatter(temp, _obs, marker=obs_marker, s=70, color=color, label=legend_label + "Observed")
+    ax.scatter(temp, _obs, marker=obs_marker, s=70, color=color, label=legend_label + "Observed", zorder=5)
     
     #Plot expected limits including brazil bands
     ax.plot(xvar, exp_limit(xvar), ls="-", ms=12, color=color, label=legend_label + "Median expected")
     if bands:
         ax.fill_between(xvar, s2m_limit(xvar), s2p_limit(xvar), color="#FFDF7Fff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL")
         ax.fill_between(xvar, s1m_limit(xvar), s1p_limit(xvar), color="#85D1FBff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL")
- 
     
     # Just to make everything look nice
     ax.plot([T_min]*50, np.linspace(1e-4,1e7,50),color='black', linestyle='--', alpha =0.5)
@@ -663,7 +693,7 @@ def plot_mphi_by_T_limits(
     ax.set_xlabel(r"$T_D$ [GeV]") 
     ax.legend(loc="upper left", fontsize=20)
     _ = ax.text(
-        0.65, 0., "$T_D/m_{{\phi}}$ = {}""\n""{}".format(temp_by_mphi,decaysLabelsWithLineBreaks[decay]),
+        0.65, 0.75, "$T_D/m_{{\phi}}$ = {}""\n""{}".format(temp_by_mphi,decaysLabelsWithLineBreaks[decay]),
         fontsize=20, horizontalalignment='left', 
         verticalalignment='top', 
         transform=ax.transAxes,
@@ -678,7 +708,7 @@ def plot_mphi_by_T_limits(
     ax.yaxis.set_minor_locator(y_minor)
     ax.yaxis.set_minor_formatter(ticker.NullFormatter())
 
-    if fig is not None:
+    if init_fig:
         fig.tight_layout()
         fig.set_label("limits1D_mphi_by_T_{:.2f}_{}".format(temp_by_mphi, decay))
         return fig

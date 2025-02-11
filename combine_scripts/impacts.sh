@@ -6,24 +6,24 @@ extra_args=""
 
 # Function to display usage
 usage() {
-  echo "Usage: $0 <path> [-o <output>] [-e <extra_args>]"
+  echo "Usage: $0 <datacard> [-o <output>] [-e <extra_args>]"
   echo
   echo "Run the impacts tool for a given card-containing directory."
   echo
   echo "Options:"
-  echo "  <path>            Required. The directory path to operate in, where combined.root lives."
+  echo "  <datacard>        Required. .root datacard."
   echo "  -o <output>       Optional. Specify the output path."
   echo "  -e <extra_args>   Optional. Extra arguments for combineTool.py."
   exit 1
 }
 
-# Check if at least one argument (the path) is provided
+# Check if at least one argument (the datacard) is provided
 if [ "$#" -lt 1 ]; then
   usage
 fi
 
-# Capture the required path argument
-path=$1
+# Capture the required datacard argument
+datacard=$1
 shift
 
 # Parse optional flags
@@ -47,6 +47,8 @@ while getopts ":o:e:" opt; do
 done
 
 # Move to the specified directory
+path=$(dirname "$datacard")
+card_name=$(basename "$datacard")
 cd "$path" || { echo "Error: Could not navigate to directory '$path'"; exit 1; }
 
 # activate environment
@@ -55,12 +57,12 @@ source $VO_CMS_SW_DIR/cmsset_default.sh
 cmsenv
 
 # Run main commands with optional extra arguments
-echo "combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit --robustFit 1 $extra_args"
-combineTool.py -M Impacts -d combined.root -m 125 --doInitialFit --robustFit 1 $extra_args
-echo "combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits $extra_args"
-combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits $extra_args
-echo "combineTool.py -M Impacts -d combined.root -m 125 --robustFit 1 --doFits $extra_args"
-combineTool.py -M Impacts -d combined.root -m 125 -o impacts.json $extra_args
+echo "combineTool.py -M Impacts -d $card_name -m 125 --doInitialFit --robustFit 1 $extra_args"
+combineTool.py -M Impacts -d $card_name -m 125 --doInitialFit --robustFit 1 $extra_args
+echo "combineTool.py -M Impacts -d $card_name -m 125 --robustFit 1 --doFits $extra_args"
+combineTool.py -M Impacts -d $card_name -m 125 --robustFit 1 --doFits $extra_args
+echo "combineTool.py -M Impacts -d $card_name -m 125 --robustFit 1 --doFits $extra_args"
+combineTool.py -M Impacts -d $card_name -m 125 -o impacts.json $extra_args
 echo "plotImpacts.py -i impacts.json -o impacts"
 plotImpacts.py -i impacts.json -o impacts
 

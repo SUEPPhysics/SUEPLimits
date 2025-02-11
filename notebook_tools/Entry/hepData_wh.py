@@ -744,6 +744,66 @@ postFitW(
     "hepdata_fit_wh.json"
 )
 
+def theoryAgnosticW(title, description, location, image, input):
+    
+    def zero_small_values(values, uncertainties, threshold=1e-6):
+        for i in range(len(values)):
+            if values[i] < threshold:
+                values[i] = 0.0
+                uncertainties[i] = 0.0
+
+    # open input json file
+    with open(input, 'r') as f:
+        infile = json.load(f)
+
+    # --- Read Data ---
+    data = infile['data']
+    data_unc = infile['data_err']
+
+    # --- Read b_SRCR and b_SRCR_Unc ---
+    b_SR = infile['fit_b']
+    b_SR_unc = infile['fit_b_err']
+
+    # --- Now build the table ---
+    table_postfit = hlib.Table(title)
+    table_postfit.description = description
+    table_postfit.location = location
+
+    # N_tracks Variable
+    ntracks = hlib.Variable(r"$n^{\mathrm{SUEP}}_{\mathrm{constituent}}$", is_independent=True, is_binned=False)
+    ntracks.values = infile['bin_edges']
+    table_postfit.add_variable(ntracks)
+
+    # --- Add Background (SR+CR) ---
+    b_SR_var = hlib.Variable(r"Post-fit Background", is_independent=False, is_binned=False)
+    b_SR_var.values = b_SR
+    b_SR_var_unc = hlib.Uncertainty("Stat. + Syst.", is_symmetric=True)
+    b_SR_var_unc.values = b_SR_unc
+    b_SR_var.add_uncertainty(b_SR_var_unc)
+    table_postfit.add_variable(b_SR_var)
+
+    # --- Add Data ---
+    data_var = hlib.Variable(r"Data", is_independent=False, is_binned=False)
+    data_var.values = data
+    data_var_unc = hlib.Uncertainty("Poissonian Unc.", is_symmetric=False)
+    data_var_unc.values = data_unc
+    data_var.add_uncertainty(data_var_unc)
+    table_postfit.add_variable(data_var)
+
+    # Add Image
+    #table_postfit.add_image(image)
+
+    # Submit the table
+    submission.add_table(table_postfit)
+
+theoryAgnosticW(
+    "Theory Agnostic Limits (W channel)",
+    "Lorem ipsum",
+    "Data from Figure N",
+    '',
+    "hepdata_agnostic_wh.json"
+)
+
 def signalCutflowsW(table_name, description, data_file_path):
 
     data = []
@@ -761,7 +821,7 @@ def signalCutflowsW(table_name, description, data_file_path):
     table.keywords["observables"] = ["cutflow"]
     
     for i in range(len(header)):
-        variable = hlib.Variable(header[i], is_independent=False, is_binned=False, units="")
+        variable = hlib.Variable(header[i], is_independent=any([x in header[i] for x in ['$m_S$','$m_{\phi}$','$T_D$', "$m_{A'}$"]]), is_binned=False, units="")
         variable.values = [row[i] for row in data_values]
         table.add_variable(variable)
 
