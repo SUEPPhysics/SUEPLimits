@@ -693,7 +693,7 @@ def plot_mphi_by_T_limits(
     ax.set_xlabel(r"$T_D$ [GeV]") 
     ax.legend(loc="upper left", fontsize=20)
     _ = ax.text(
-        0.65, 0.75, "$T_D/m_{{\phi}}$ = {}""\n""{}".format(temp_by_mphi,decaysLabelsWithLineBreaks[decay]),
+        0.65, 0.95, "$T_D/m_{{\phi}}$ = {}""\n""{}".format(temp_by_mphi,decaysLabelsWithLineBreaks[decay]),
         fontsize=20, horizontalalignment='left', 
         verticalalignment='top', 
         transform=ax.transAxes,
@@ -843,7 +843,7 @@ def plot_mPhi_temp_limits(
     x5,y5 = interp_limit(line5, 4)
     
     #plot smoothed curve
-    ax.plot(x2, y2, linestyle = "--", color ='#00ffff' , label=r"Median expected",linewidth =4)
+    ax.plot(x2, y2, linestyle = "--", color ='#00ffff', label=r"Median expected",linewidth =4)
     ax.plot(x1, y1, linestyle = "--", color='yellow', label=r"Expected $68\%$ CL",linewidth =4)
     ax.plot(x3, y3, linestyle = "--", color='yellow', linewidth =4)
     if showObserved: ax.plot(x5, y5, linestyle = "-", color='#00008b', label=r"Observed",linewidth =4)
@@ -1146,3 +1146,90 @@ def plot_summary_limits_mS_temp(decay, path='../'):
     fig.set_label('limits3D_mS_temp_{}'.format(decay))
 
     return fig
+
+def make_mphi_by_t_array(path, analysis, ms=125, decay='generic', method='AsymptoticLimits'):
+    """
+    Creates an array of dimension (n_mphi, n_temp, 3) array with the format (mPhi, temp, obs)
+    where n_mphi, n_temp are the number of unique mPhi and temp values in the scan.
+    The idea is that each row had a unique mphi value, each column has a unique temp value,
+    and the dimension stores the value of that mphi, temp, and the observed limit
+    """
+
+    scan_limits = get_scan_limits(
+        path=path,
+        ms=ms, decay=decay,
+        method=method, analysis=analysis, return_xsec=False
+    )
+            
+    # Reorganize data
+    limit_obs = np.stack([s[1][1][-1] for s in scan_limits]) 
+    limit_mphi = np.array([s[0][1] for s in scan_limits]) 
+    limit_temp =  np.array([s[0][2] for s in scan_limits])
+
+    # create 3d array (mPhi, temp, obs)
+    data = np.zeros((len(np.unique(limit_mphi)), len(np.unique(limit_temp)), 3))
+    for i, mphi in enumerate(np.unique(limit_mphi)):
+        for j, temp in enumerate(np.unique(limit_temp)):
+            data[i, j, 0] = mphi
+            data[i, j, 1] = temp
+            limit = limit_obs[(limit_mphi == mphi) & (limit_temp == temp)]
+            if len(limit) == 1:
+                limit = limit[0]
+            elif len(limit) == 0:
+                limit = np.nan
+            else:
+                print("Couldn't find the limit. It should be here.")
+            data[i, j, 2] = limit
+
+    return data
+
+def make_best_limit_array(
+        left_path, left_analysis,
+        right_path, right_analysis,
+        ms=125, decay='generic', method='AsymptoticLimits', interpolate=False
+    ):
+    """
+    Uses make_mphi_by_t_array to create two 3d arrays for two different analyses.
+    Then, it compares the observed limits of the two analyses for each mPhi and temp value.
+
+    Returns a 3d array with the format (mPhi, temp, best_limit)
+    best_limit = np.nan if the limit is not available in one of the analyses
+    left_limit = 1 if left limit is better, 2 if right limit is better
+    """
+
+    left_data = make_mphi_by_t_array(left_path, left_analysis, ms=ms, decay=decay, method=method)
+    right_data = make_mphi_by_t_array(right_path, right_analysis, ms=ms, decay=decay, method=method)
+
+    color = np.zeros_like(left_data)
+    for i in range(left_data.shape[0]):
+        for j in range(left_data.shape[1]):
+            mphi = left_data[i, j, 0]
+            temp = left_data[i, j, 1]
+            left_limit = left_data[i, j, 2]
+            if np.isnan(left_limit): continue
+            right_limit = right_data[(right_data[:,:,0] == mphi) & (right_data[:,:,1] == temp)][0][-1]
+            color[i, j, 0] = mphi
+            color[i, j, 1] = temp
+            color[i, j, 2] = int(left_limit < right_limit) + 1
+
+    if interpolate:
+
+        from scipy.interpolate import griddata
+
+        # Get the coordinates of nonzero and zero points
+        color2d = color[:,:,2]
+        x, y = np.indices(color2d.shape)
+        nonzero_points = color2d != 0
+
+        # Interpolation using linear method
+        color2d = griddata(
+            (x[nonzero_points], y[nonzero_points]),   # Known points
+            color2d[nonzero_points],                      # Known values
+            (x, y),                                   # Grid for interpolation
+            method='linear'                           # Linear interpolation
+        )
+    
+        color[:,:,2] = color2d
+
+    color = np.where(color == 0, np.nan, color) # set to nan empty cells
+    return color
