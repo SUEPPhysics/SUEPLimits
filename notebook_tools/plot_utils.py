@@ -165,7 +165,29 @@ def get_params_from_sample_name_tth(sample):
         # Return None if no match is found
         return None, None, None, None
 
-def get_params_from_sample_name_wh(sample):
+def get_params_from_sample_name_vh(sample):
+    """
+    Extracts mD, T, and decay mode from a sample name.
+    
+    Example sample name:
+      "higgsCombinecombinedWZ_mD8.000_T32.000_modeleptonic.Significance.mH120.root"
+      
+    Returns:
+      A tuple (mD, T, mode) where mD and T are floats and mode is a string.
+      If the pattern is not found, returns (None, None, None).
+    """
+
+    pattern = r"_mD(\d+\.\d+)_T(\d+\.\d+)_mode(\w+)"
+    
+    match = re.search(pattern, sample)
+    if match:
+        mD = float(match.group(1))
+        T = float(match.group(2))
+        mode = match.group(3)
+        return mD, T, mode
+    else:
+        return None, None, None
+def get_params_from_sample_name_wh(sample, save_mS=True):
     """
     Returns mS, mPhi, temp, decay from a sample name.
     """
@@ -182,10 +204,37 @@ def get_params_from_sample_name_wh(sample):
         decay = match.group(4)
 
         # Return the extracted parameters as a tuple
-        return mS, mPhi, temp, decay
+        if save_mS:
+            return mS, mPhi, temp, decay
+        else:
+            return mPhi, temp, decay
     else:
         # Return None if no match is found
-        return None, None, None, None
+        if save_mS:
+            return None, None, None, None
+        else:
+            return None, None, None
+
+def get_params_from_sample_name_zh_no_mS(sample):
+    """
+    Returns mS, mPhi, temp, decay from a sample name.
+    """
+    pattern = r'SUEP_(\w+)_mD(\d+\.\d+)_T(\d+\.\d+)'
+
+    # Use re.search to find the first occurrence of the pattern in the sample name
+    match = re.search(pattern, sample)
+
+    if match:
+        # Extract the matched groups and convert them to the appropriate data types
+        temp = float(match.group(3))
+        mPhi = float(match.group(2))
+        decay = match.group(1)
+
+        # Return the extracted parameters as a tuple
+        return mPhi, temp, decay
+    else:
+        # Return None if no match is found
+        return None, None, None
 
 def get_params_from_sample_name_zh(sample):
     """
