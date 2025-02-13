@@ -264,7 +264,8 @@ for dc in dcards:
         
         # don't re run cards, unless running with --force
         quantName = '.quant' + quant if quant != '' else ''
-        outFile = "higgsCombine{name}.{method}.mH125{quantName}.root".format(name=name, method=options.combineMethod.replace("Auto",""), quantName=quantName)
+        default_outFile = "higgsCombine{name}.{method}.mH125{quantName}.root"
+        outFile = analysis.get('out_file', default_outFile).format(name=name, method=options.combineMethod.replace("Auto",""), quantName=quantName)
         if os.path.isfile(outFile) and not options.force:
             print(" -- skipping :", name, quant)
             continue
@@ -274,7 +275,7 @@ for dc in dcards:
             print(" --making:", name, quant)
         else:
             print(" --making:", name, quant)
-        strippedOutFile = outFile.split(".root")[0]
+        strippedOutFile = outFile.split(".root")[0].replace("/", "+")
         toProcess += 1
 
         # Write combine commmands
