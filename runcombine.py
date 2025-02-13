@@ -133,6 +133,7 @@ source $VO_CMS_SW_DIR/cmsset_default.sh
 cmssw-el9 --bind /ceph,/work,/cvmfs --command-to-run << 'EOF'
 
 # This will all be executed inside the singularity
+echo "Inside the singularity"
 echo "cmsenv"
 cmsenv
 echo "{rm_command}"
@@ -275,7 +276,7 @@ for dc in dcards:
             print(" --making:", name, quant)
         else:
             print(" --making:", name, quant)
-        strippedOutFile = outFile.split(".root")[0].replace("/", "+")
+        strippedOutFile = outFile.replace(".root", "").replace(".txt", "").replace(".dat", "").replace("/", "+")
         toProcess += 1
 
         # Write combine commmands
@@ -377,7 +378,7 @@ for dc in dcards:
 
             elif options.method == 'iterative':
                 subprocess.run(['bash', local_script_file])
-                #os.remove(local_script_file)
+                os.remove(local_script_file)
 
         elif options.method == 'slurm':
 
