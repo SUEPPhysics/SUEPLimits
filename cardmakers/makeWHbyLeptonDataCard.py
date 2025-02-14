@@ -176,6 +176,7 @@ def main():
     parser.add_argument("--biasSample", type=str, default=None, help="Name of signal model you want to inject.")
     parser.add_argument("--biasStrength", type=float, default=1.0, help="Strength of signal model you want to inject.")
     parser.add_argument("--gamma", action='store_true', help="Use gamma region as your background.")
+    parser.add_argument("--agnostic", action='store_true', help="Do signal agnostic datacard.")
     parser.add_argument("--verbose", action="store_true", help="Print out more information.")
 
     options = parser.parse_args()
@@ -355,6 +356,9 @@ def main():
 
         # add manual MC stats
         card.add_manual_MCstats(name)
+
+        # no systematics for agnostic
+        if options.agnostic: continue
 
         # add nuisances
         # TODO missing: trigger SFs!
