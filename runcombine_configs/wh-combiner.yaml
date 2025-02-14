@@ -1,0 +1,114 @@
+runcards:
+  commands:
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_A --variable A_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_A"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_B --variable B_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_B"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_C --variable C_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_C"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_D --variable D_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_D"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_E --variable E_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_E"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin0 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 30 40 --era all --dcname shapes-SR_F_Fbin0"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin1 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 40 50 --era all --dcname shapes-SR_F_Fbin1"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin2 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 50 60 --era all --dcname shapes-SR_F_Fbin2"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin3 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 60 80 --era all --dcname shapes-SR_F_Fbin3"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin4 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 80 2000 --era all --dcname shapes-SR_F_Fbin4"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_G --variable G_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_G"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_H --variable H_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_H"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin0 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 30 40 --era all --dcname shapes-SR_SR_SRbin0"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin1 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 40 50 --era all --dcname shapes-SR_SR_SRbin1"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin2 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 50 60 --era all --dcname shapes-SR_SR_SRbin2"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin3 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 60 80 --era all --dcname shapes-SR_SR_SRbin3"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin4 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 80 2000 --era all --dcname shapes-SR_SR_SRbin4"
+  samples:
+    - SUEP_mS125.000_mPhi2.000_T0.500_modegeneric
+    - SUEP_mS125.000_mPhi2.000_T1.000_modegeneric
+    - SUEP_mS125.000_mPhi2.000_T2.000_modegeneric
+    - SUEP_mS125.000_mPhi2.000_T4.000_modegeneric
+    - SUEP_mS125.000_mPhi2.000_T8.000_modegeneric
+    - SUEP_mS125.000_mPhi3.000_T0.750_modegeneric
+    - SUEP_mS125.000_mPhi3.000_T1.500_modegeneric
+    - SUEP_mS125.000_mPhi3.000_T12.000_modegeneric
+    - SUEP_mS125.000_mPhi3.000_T3.000_modegeneric
+    - SUEP_mS125.000_mPhi3.000_T6.000_modegeneric
+    - SUEP_mS125.000_mPhi4.000_T1.000_modegeneric
+    - SUEP_mS125.000_mPhi4.000_T16.000_modegeneric
+    - SUEP_mS125.000_mPhi4.000_T2.000_modegeneric
+    - SUEP_mS125.000_mPhi4.000_T4.000_modegeneric
+    - SUEP_mS125.000_mPhi4.000_T8.000_modegeneric
+    - SUEP_mS125.000_mPhi8.000_T16.000_modegeneric
+    - SUEP_mS125.000_mPhi8.000_T2.000_modegeneric
+    - SUEP_mS125.000_mPhi8.000_T32.000_modegeneric
+    - SUEP_mS125.000_mPhi8.000_T4.000_modegeneric
+    - SUEP_mS125.000_mPhi8.000_T8.000_modegeneric
+    - SUEP_mS125.000_mPhi1.000_T0.250_modeleptonic
+    - SUEP_mS125.000_mPhi1.000_T0.500_modeleptonic
+    - SUEP_mS125.000_mPhi1.000_T1.000_modeleptonic
+    - SUEP_mS125.000_mPhi1.000_T2.000_modeleptonic
+    - SUEP_mS125.000_mPhi1.000_T4.000_modeleptonic
+    - SUEP_mS125.000_mPhi2.000_T0.500_modeleptonic
+    - SUEP_mS125.000_mPhi2.000_T1.000_modeleptonic
+    - SUEP_mS125.000_mPhi2.000_T2.000_modeleptonic
+    - SUEP_mS125.000_mPhi2.000_T4.000_modeleptonic
+    - SUEP_mS125.000_mPhi2.000_T8.000_modeleptonic
+    - SUEP_mS125.000_mPhi3.000_T0.750_modeleptonic
+    - SUEP_mS125.000_mPhi3.000_T1.500_modeleptonic
+    - SUEP_mS125.000_mPhi3.000_T12.000_modeleptonic
+    - SUEP_mS125.000_mPhi3.000_T3.000_modeleptonic
+    - SUEP_mS125.000_mPhi3.000_T6.000_modeleptonic
+    - SUEP_mS125.000_mPhi4.000_T1.000_modeleptonic
+    - SUEP_mS125.000_mPhi4.000_T16.000_modeleptonic
+    - SUEP_mS125.000_mPhi4.000_T2.000_modeleptonic
+    - SUEP_mS125.000_mPhi4.000_T4.000_modeleptonic
+    - SUEP_mS125.000_mPhi4.000_T8.000_modeleptonic
+    - SUEP_mS125.000_mPhi8.000_T16.000_modeleptonic
+    - SUEP_mS125.000_mPhi8.000_T2.000_modeleptonic
+    - SUEP_mS125.000_mPhi8.000_T32.000_modeleptonic
+    - SUEP_mS125.000_mPhi8.000_T4.000_modeleptonic
+    - SUEP_mS125.000_mPhi8.000_T8.000_modeleptonic
+    - SUEP_mS125.000_mPhi1.400_T0.350_modehadronic
+    - SUEP_mS125.000_mPhi1.400_T0.700_modehadronic
+    - SUEP_mS125.000_mPhi1.400_T1.400_modehadronic
+    - SUEP_mS125.000_mPhi1.400_T2.800_modehadronic
+    - SUEP_mS125.000_mPhi1.400_T5.600_modehadronic
+    - SUEP_mS125.000_mPhi2.000_T0.500_modehadronic
+    - SUEP_mS125.000_mPhi2.000_T1.000_modehadronic
+    - SUEP_mS125.000_mPhi2.000_T2.000_modehadronic
+    - SUEP_mS125.000_mPhi2.000_T4.000_modehadronic
+    - SUEP_mS125.000_mPhi2.000_T8.000_modehadronic
+    - SUEP_mS125.000_mPhi3.000_T0.750_modehadronic
+    - SUEP_mS125.000_mPhi3.000_T1.500_modehadronic
+    - SUEP_mS125.000_mPhi3.000_T12.000_modehadronic
+    - SUEP_mS125.000_mPhi3.000_T3.000_modehadronic
+    - SUEP_mS125.000_mPhi3.000_T6.000_modehadronic
+    - SUEP_mS125.000_mPhi4.000_T1.000_modehadronic
+    - SUEP_mS125.000_mPhi4.000_T16.000_modehadronic
+    - SUEP_mS125.000_mPhi4.000_T2.000_modehadronic
+    - SUEP_mS125.000_mPhi4.000_T4.000_modehadronic
+    - SUEP_mS125.000_mPhi4.000_T8.000_modehadronic
+    - SUEP_mS125.000_mPhi8.000_T16.000_modehadronic
+    - SUEP_mS125.000_mPhi8.000_T2.000_modehadronic
+    - SUEP_mS125.000_mPhi8.000_T32.000_modehadronic
+    - SUEP_mS125.000_mPhi8.000_T4.000_modehadronic
+    - SUEP_mS125.000_mPhi8.000_T8.000_modehadronic
+
+runcombine:
+  rm_command: "rm -rf cards-{name}/combined.dat"
+  combineCards_command: >
+    combineCards.py -S 
+    SR_A=cards-{name}/shapes-SR_A.dat
+    SR_B=cards-{name}/shapes-SR_B.dat 
+    SR_C=cards-{name}/shapes-SR_C.dat 
+    SR_D=cards-{name}/shapes-SR_D.dat 
+    SR_E=cards-{name}/shapes-SR_E.dat 
+    SR_F_Fbin0=cards-{name}/shapes-SR_F_Fbin0.dat 
+    SR_F_Fbin1=cards-{name}/shapes-SR_F_Fbin1.dat 
+    SR_F_Fbin2=cards-{name}/shapes-SR_F_Fbin2.dat 
+    SR_F_Fbin3=cards-{name}/shapes-SR_F_Fbin3.dat 
+    SR_F_Fbin4=cards-{name}/shapes-SR_F_Fbin4.dat 
+    SR_G=cards-{name}/shapes-SR_G.dat 
+    SR_H=cards-{name}/shapes-SR_H.dat 
+    SR_SR_SRbin0=cards-{name}/shapes-SR_SR_SRbin0.dat 
+    SR_SR_SRbin1=cards-{name}/shapes-SR_SR_SRbin1.dat 
+    SR_SR_SRbin2=cards-{name}/shapes-SR_SR_SRbin2.dat 
+    SR_SR_SRbin3=cards-{name}/shapes-SR_SR_SRbin3.dat 
+    SR_SR_SRbin4=cards-{name}/shapes-SR_SR_SRbin4.dat
+    > cards-{name}/combined.dat    
+  text2workspace_command: text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root

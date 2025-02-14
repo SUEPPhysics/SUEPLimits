@@ -1,0 +1,3 @@
+runcombine: 
+  text2workspace_command: text2workspace.py -m 125 cards-{name}/{name}.txt -o cards-{name}/{name}.root
+  out_file: cards-{name}/{name}.root
