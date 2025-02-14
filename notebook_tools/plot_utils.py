@@ -15,6 +15,7 @@ from matplotlib.legend_handler import HandlerLine2D
 import mplhep as hep
 from scipy.ndimage import gaussian_filter1d
 import matplotlib.tri as tri
+from scipy.stats import chi2
 
 np.seterr(divide='ignore', invalid='ignore')
 
@@ -51,9 +52,17 @@ lumis = {
     2016 : 36.3, #36.308
     2017 : 41.5, #41.471 
     2018 : 59.8, #59.817
-    'combined' : round(59.8+41.5+ 36.3)
+    'combined' : round(59.8+41.5+ 36.3),
+    'all' : round(59.8+41.5+ 36.3)
 }
 
+def lumiLabel(year):
+    if year in ["2017", "2018"]:
+        return round(lumis[year], 1)
+    elif year == "2016":
+        return round((lumis[year] + lumis[year + "_apv"]), 1)
+    elif year == 'all':
+        return round(lumis[year], 1)
 
 def get_limits(fn): # Returns quantile vs limits
     f = uproot.open(fn)
@@ -61,6 +70,12 @@ def get_limits(fn): # Returns quantile vs limits
     quant = f["limit"]['quantileExpected'].array(library="np")
     return np.stack([quant,limit]) 
 
+def compute_poisson_interval(values, confidence=0.6827):
+    alpha = 1 - confidence
+    low = chi2.ppf(alpha / 2., 2 * values) / 2
+    high = chi2.ppf(1. - alpha / 2., 2 * (values + 1)) / 2
+    #low[np.isnan(low)] = 0
+    return low, high
 
 def get_SUEP_file(ms=125, mphi=2, temp=1, decay='generic', path="../", method='AsymptoticLimits', quant="", analysis='ggf-offline'): # Returns filename
     if temp < 10:
