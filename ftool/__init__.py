@@ -240,12 +240,8 @@ class wh_datagroup(datagroup):
           if self.normalise:
                _scale *= self.lumi * self.xsec * self.kfactor
 
-          try:
-               roothist = _file[in_name]
-               newhist = roothist.to_boost() * _scale
-          except uproot.exceptions.KeyInFileError:
-               print("I am a silly little histogram: {in_name} in channel {channel}".format(in_name=in_name, channel=self.channel))
-               newhist = hist.Hist.new.Reg(100,0,100).Weight()
+          roothist = _file[in_name]
+          newhist = roothist.to_boost() * _scale
 
           #### merge bins
           if self.rebin >= 1 and newhist.values().ndim == 1:#written only for 1D right now

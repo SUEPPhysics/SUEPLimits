@@ -24,7 +24,7 @@ file = {
     'ggf-scouting': "{path}higgsCombineGluGluToSUEP_HT400_T{tem}_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}_TuneCP5_13TeV-pythia8.{method}.mH125{quant}.root",
     'ggf-tth': "{path}higgsCombinettHpythia_{mode}_M{mS:.1f}_MD{mPhi:.2f}_T{T:.2f}_HT-1.{method}.mH125{quant}.root",
     'wh': "{path}higgsCombineSUEP_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH125{quant}.root",
-    "vh": "{path}higgsCombinecombinedWZ_mD{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH120{quant}.root",
+    "vh": "{path}higgsCombinecombinedWZ_mD{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH125{quant}.root",
     "zh": "{path}higgsCombineCombinedSRCR_SUEP_{mode}_mS125_mD{mPhi:.1f}_T{T:.2f}.AsymptoticLimits.mH120.root"
 }
 decaysLabels = {
@@ -49,14 +49,15 @@ decaysMarkers = {
 }
 mA = {'leptonic':0.5,'hadronic':0.7,'generic':1.0}
 lumis = {
-    2016 : 36.3, #36.308
-    2017 : 41.5, #41.471 
-    2018 : 59.8, #59.817
+    '2016' : 36.3, #36.308
+    '2017' : 41.5, #41.471 
+    '2018' : 59.8, #59.817
     'combined' : round(59.8+41.5+ 36.3),
     'all' : round(59.8+41.5+ 36.3)
 }
 
 def lumiLabel(year):
+    year = str(year)
     if year in ["2017", "2018"]:
         return round(lumis[year], 1)
     elif year == "2016":

@@ -1,5 +1,9 @@
 import os
 
+path = "cards/combined-eff_e/"
+os.chdir(path)
+print("Current directory:", os.getcwd())
+
 WH = {}
 ZH = {}
 
@@ -59,7 +63,7 @@ for tagZ in ZH:
         out_file = out_dir +"combinedWZ_mD%1.3f_T%1.3f_mode%s.dat"%(tagZ[0], tagZ[1], tagZ[2])
         if os.path.exists(out_file):
             print("File already exists:", out_file)
-            continue
+            #continue
         if not os.path.exists(out_dir):
             os.mkdir(out_dir)
         comms.append(["combineCards.py %s %s > %s"%(ZH[tagZ], WH[matchW], out_file),out_file])
