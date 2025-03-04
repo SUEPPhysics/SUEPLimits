@@ -111,6 +111,10 @@ def log_interp1d(xx, yy, kind='linear'):
     log_interp = lambda zz: np.power(np.e, lin_interp(np.log(zz)))
     return log_interp
 
+def logy_interp1d(x, y, kind='linear'):
+    # x is already in the desired scale (log₂(T/m_D)), so do not take its log
+    lin_interp = interpolate.interp1d(x, np.log(y), bounds_error=False, fill_value="extrapolate", kind=kind)
+    return lambda xx: np.exp(lin_interp(xx))
 
 def interp_limit(limit, sigma=3):
     x, y = limit.T
@@ -691,7 +695,8 @@ def plot_temp_limits(mphi, ms, decay, path='../', verbose=False, method='Asympto
 def plot_mphi_by_T_limits(
         temp_by_mphi, ms, decay, 
         path='../', method='AsymptoticLimits', analysis='wh', 
-        ax=None, obs_marker='o', exp_alpha=1.0,mu_limit=False, bands=True, color='#F0240Bff', legend_label=''
+        ax=None, obs_marker='o', exp_alpha=1.0,mu_limit=False, bands=True, color='#F0240Bff', legend_label='',
+        all_decays=False, legend_label_postfix=''
     ):
     """
     Make 1D Brazil plot for some choice of mPi/TD, mS, and decay, scanning over TD.
@@ -736,8 +741,11 @@ def plot_mphi_by_T_limits(
     if bands:
         ax.plot(xvar, th_limit(xvar), "-", ms=12, color='blue', label="$\sigma_{theory}$")
 
-    # Plot observed limits
-    ax.scatter(temp, _obs, marker=obs_marker, s=70, color=color, label=legend_label + "Observed", zorder=5)
+    # observed
+    if all_decays:
+        ax.scatter(temp, _obs, marker=obs_marker, s=70, color=color, label=legend_label + "Observed" + decaysLabels[decay], zorder=5)
+    else:
+        ax.scatter(temp, _obs, marker=obs_marker, s=70, color=color, label=legend_label + "Observed", zorder=5)
     
     #Plot expected limits including brazil bands
     ax.plot(xvar, exp_limit(xvar), ls="-", ms=12, color=color, label=legend_label + "Median expected")
@@ -747,22 +755,36 @@ def plot_mphi_by_T_limits(
     
     # Just to make everything look nice
     ax.plot([T_min]*50, np.linspace(1e-4,1e7,50),color='black', linestyle='--', alpha =0.5)
-    ax.text(
-        T_min-0.15, 5e-2, r"$T_{D}<2m_{A^'} \times "+"{:.2f}$".format(temp_by_mphi),
-        horizontalalignment='right', verticalalignment='center',fontsize=20,rotation=-90
-    )
+    if all_decays:
+        ax.text(
+            T_min-0.15, 5e-3, r"$T_{D}<2m_{A^'} \times "+"{:.2f}$".format(temp_by_mphi),
+            horizontalalignment='right', verticalalignment='center',fontsize=10,rotation=-90
+        )
+    else:
+        ax.text(
+            T_min-0.15, 5e-2, r"$T_{D}<2m_{A^'} \times "+"{:.2f}$".format(temp_by_mphi),
+            horizontalalignment='right', verticalalignment='center',fontsize=20,rotation=-90
+        )
     if mu_limit:
         ax.set_ylabel(r"$\mu \equiv \sigma_{\mathrm{obs.}}/\sigma_{\mathrm{theory}}$")
     else:
         ax.set_ylabel(r"$\sigma$ (pb)")
     ax.set_xlabel(r"$T_D$ [GeV]") 
     ax.legend(loc="upper left", fontsize=20)
-    _ = ax.text(
-        0.65, 0.95, "$T_D/m_{{\phi}}$ = {}""\n""{}".format(temp_by_mphi,decaysLabelsWithLineBreaks[decay]),
-        fontsize=20, horizontalalignment='left', 
-        verticalalignment='top', 
-        transform=ax.transAxes,
-    )
+    if all_decays:
+        _ = ax.text(
+            0.65, 0.95, "$T_D/m_{{\phi}}$ = {}".format(temp_by_mphi),
+            fontsize=20, horizontalalignment='left', 
+            verticalalignment='top', 
+            transform=ax.transAxes,
+        )
+    else:
+        _ = ax.text(
+            0.65, 0.95, "$T_D/m_{{\phi}}$ = {}""\n""{}".format(temp_by_mphi,decaysLabelsWithLineBreaks[decay]),
+            fontsize=20, horizontalalignment='left', 
+            verticalalignment='top', 
+            transform=ax.transAxes,
+        )
     ax.grid(visible=True, which='major', color='grey', linestyle='--', alpha=0.3)
     ax.set_ylim(1e-4, 1e7)
     ax.set_xlim(0)
@@ -776,6 +798,141 @@ def plot_mphi_by_T_limits(
     if init_fig:
         fig.tight_layout()
         fig.set_label("limits1D_mphi_by_T_{:.2f}_{}".format(temp_by_mphi, decay))
+        return fig
+    else:
+        return ax
+
+
+def plot_limits_log2T_by_mD(
+        ms, mD, decay, 
+        path='../', method='AsymptoticLimits', analysis='wh', 
+        ax=None, obs_marker='o', exp_alpha=1.0, mu_limit=False, bands=True, color='black', legend_label='',
+        all_decays=False, fb=False, legend_label_postfix=''
+    ):
+    """
+    Pass ms, mD, and decay to plot the limits as a function of log2(T/mD) (will grab all possible T).
+    If plotting all decay modes consecutively in the limits_wh notebook, set all_decays=True.
+    Rest is style and stuff.
+    """
+    # Load scan limits using ms, mD (note: mphi == mD)
+    limits = get_scan_limits(path=path, mphi=mD, ms=ms, decay=decay, method=method, analysis=analysis, return_xsec=not mu_limit)
+    
+    # log2(T/m_D) values
+    log2_T = np.array([np.log2(l[0][2] / mD) for l in limits])
+    
+    # relevant arrays from the scan limits
+    _exp   = np.array([l[1][1][2] for l in limits])
+    _s1p   = np.array([l[1][1][1] for l in limits])
+    _s1m   = np.array([l[1][1][3] for l in limits])
+    _s2p   = np.array([l[1][1][0] for l in limits])
+    _s2m   = np.array([l[1][1][4] for l in limits])
+    _obs   = np.array([l[1][1][5] for l in limits])
+    
+    # theory: xsec is stored in l[0][4]
+    xsec = np.array([l[0][4] for l in limits]) * .33 # B(W --> lv), scaled for fb later
+    if mu_limit:
+        xsec = np.ones(len(limits))
+    
+    # Sort the data by log2_T to ensure proper interpolation ------ not needed but keeping just in case :)
+    #order = np.argsort(log2_T)
+    #log2_T = log2_T[order]
+    #_exp   = _exp[order]
+    #_s1p   = _s1p[order]
+    #_s1m   = _s1m[order]
+    #_s2p   = _s2p[order]
+    #_s2m   = _s2m[order]
+    #_obs   = _obs[order]
+    #xsec   = xsec[order]
+
+    # interpolation between points
+    exp_limit = logy_interp1d(log2_T, _exp)
+    s1p_limit = logy_interp1d(log2_T, _s1p)
+    s1m_limit = logy_interp1d(log2_T, _s1m)
+    s2p_limit = logy_interp1d(log2_T, _s2p)
+    s2m_limit = logy_interp1d(log2_T, _s2m)
+    obs_limit = logy_interp1d(log2_T, _obs)
+    th_limit  = logy_interp1d(log2_T, xsec)
+    
+    # new figure/axis if none is provided
+    init_fig = False
+    if ax is None:
+        init_fig = True
+        fig, ax = plt.subplots(figsize=(10,10))
+    
+    # Define the x-axis range from -2 to 2 (i.e. T/m_D in [0.25, 4] as in lines drawn)
+    xvar = np.linspace(np.min(log2_T), np.max(log2_T), 1000)
+    
+    scale = 1
+    if fb:
+        scale = 1000
+    # Plot the theory curve (if bands is True)
+    if bands and init_fig:
+        ax.plot(xvar, th_limit(xvar)*scale, linestyle=(0, (3, 5, 1, 5)), color='red', label="Leptonic WH SUEP - Theory")
+    
+    # Plot observed limits -- only interpolation now! actual points commented out to follow ZH convention
+    if all_decays:
+        #ax.scatter(log2_T, _obs*scale, marker=obs_marker, s=70, color=color,
+        #           label=legend_label + "Observed (" + decaysLabels[decay]+')' + legend_label_postfix, zorder=5)
+        ax.plot(xvar, obs_limit(xvar)*scale, "-", color=color, linewidth=2, label=legend_label + "Observed (" + decaysLabels[decay]+')' + legend_label_postfix)
+    else:
+        #ax.scatter(log2_T, _obs*scale, marker=obs_marker, s=70, color=color,
+        #           label=legend_label + "Observed" + legend_label_postfix, zorder=5)
+        ax.plot(xvar, obs_limit(xvar)*scale, "-", color=color, linewidth=2, label=legend_label + "Observed" + legend_label_postfix)
+    
+    # Plot expected limits and fill in the Brazil bands
+    ax.plot(xvar, exp_limit(xvar)*scale, ls="--", color=color, linewidth=2, label=legend_label + "Median expected" + legend_label_postfix)
+    if bands and color in ['black', '#7a21dd', '#f89c20']:
+        ax.fill_between(xvar, s2m_limit(xvar)*scale, s2p_limit(xvar)*scale,
+                        color="#85D1FBff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL" + legend_label_postfix)
+        ax.fill_between(xvar, s1m_limit(xvar)*scale, s1p_limit(xvar)*scale,
+                        color="#FFDF7Fff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL" + legend_label_postfix)
+
+    if bands and color in ['#717581']:
+        ax.fill_between(xvar, s2m_limit(xvar)*scale, s2p_limit(xvar)*scale,
+                        color="#607641", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL" + legend_label_postfix)
+        ax.fill_between(xvar, s1m_limit(xvar)*scale, s1p_limit(xvar)*scale,
+                        color="#F5BB54", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL" + legend_label_postfix)
+
+    # style and labels from ZH
+    ax.axvline(x=-2, color='black', linestyle=':', linewidth=1)
+    ax.axvline(x=2, color='black', linestyle=':', linewidth=1)
+    ax.set_xlim(-2.5, 2.5)
+    ax.text(-2, 0.38, r"$T/m_{\phi}=0.25$", transform=ax.get_xaxis_transform(),
+        rotation=-90, fontsize=15, verticalalignment='bottom', horizontalalignment='left', color='black')
+    ax.text(2, 0.38, r"$T/m_{\phi}=4.00$", transform=ax.get_xaxis_transform(),
+        rotation=-90, fontsize=15, verticalalignment='bottom', horizontalalignment='right', color='black')
+    
+
+    
+    # Set labels, scales
+    if mu_limit:
+        ax.set_ylabel(r"$\mu \equiv \sigma_{\mathrm{obs.}}/\sigma_{\mathrm{theory}}$")
+    else:
+        ax.set_ylabel(r"$\sigma$ B(H $\rightarrow$ S)B(W $\rightarrow$ $\ell \nu$) (fb)")
+
+    if all_decays:
+        _ = ax.text(
+            0.85, 0.15, "$m_{{\phi}}$ = {}".format(mD),
+            fontsize=24, horizontalalignment='right', 
+            verticalalignment='bottom', 
+            transform=ax.transAxes,
+        )
+    else:
+        _ = ax.text(
+            0.85, 0.15, decaysLabelsWithLineBreaks[decay],
+            fontsize=24, horizontalalignment='right', 
+            verticalalignment='bottom', 
+            transform=ax.transAxes,
+        )
+
+    ax.set_xlabel(r"$\log_2(T/m_D)$")
+    ax.legend(loc="upper left")
+    ax.set_yscale("log")
+    
+    
+
+    if init_fig:
+        fig.tight_layout()
         return fig
     else:
         return ax
