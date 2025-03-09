@@ -99,6 +99,16 @@ ABCD_shape_systematic = {
     "SR_SR_SRbin2": 1.05,
     "SR_SR_SRbin3": 1.2,
     "SR_SR_SRbin4": 2.0,
+    #"SR_SR_SRbin0": 1.01,
+    # "SR_SR_SRbin1": 1.02,
+    # "SR_SR_SRbin2": 1.03,
+    # "SR_SR_SRbin3": 1.2,
+    # "SR_SR_SRbin4": 1.2,
+    # "SR_SR_SRbin5": 1.2,
+    # "SR_SR_SRbin6": 1.33,
+    # "SR_SR_SRbin7": 1.33,
+    # "SR_SR_SRbin8": 1.33,
+    # "SR_SR_SRbin9": 2.0,
     # "GJHSsr0": 1.005,
     # "GJHSsr1": 1.05,
     # "GJHSsr2": 1.05,
@@ -142,6 +152,7 @@ def main():
     parser.add_argument("--dcname", type=str, required=False, default='', help="Name of the datacard to be created.")
     parser.add_argument("--gamma", action='store_true', help="Use gamma region as your background.")
     parser.add_argument("--agnostic", action='store_true', help="Do signal agnostic datacard.")
+    parser.add_argument("--impactsMode", action='store_true', help="Do impacts mode datacard (constrain the ABCD rate params).")
     parser.add_argument("--verbose", action="store_true", help="Print out more information.")
 
     options = parser.parse_args()
@@ -312,9 +323,16 @@ def main():
                     card.add_nuisance(name, "{:<21}  lnN".format("CMS_EXO24030_ABCDClosure_bin" + options.channel[-1]), ABCD_shape_systematic[options.channel])
 
         elif ("bkg" in p.name and p.ptype == "data"):
+            
             rate_nom = max(p.get("nom").values().sum(), 0)
             rate_up = rate_nom*5
             rate_down = 0
+            
+            # if running impacts, it's better to constrain the ABCD systematics a bit more
+            if options.impactsMode:
+                rate_up = rate_nom + 5*np.sqrt(rate_nom)
+                rate_down = max(rate_nom - 5*np.sqrt(rate_nom),0)
+
             if rate_up == 0: 
                 rate_nom = 0.0001
                 rate_up = 20
@@ -332,7 +350,7 @@ def main():
         if p.ptype=="data": continue #Now that we have expected nom we skip data
 
         # add manual MC stats
-        card.add_manual_MCstats(name)
+        if not options.impactsMode: card.add_manual_MCstats(name)
 
         # no systematics for agnostic
         if options.agnostic: continue

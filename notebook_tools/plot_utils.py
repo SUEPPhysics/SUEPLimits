@@ -819,6 +819,8 @@ def plot_limits_log2T_by_mD(
     
     # log2(T/m_D) values
     log2_T = np.array([np.log2(l[0][2] / mD) for l in limits])
+    # sort by log2_T
+    log2_T, limits = zip(*sorted(zip(log2_T, limits)))
     
     # relevant arrays from the scan limits
     _exp   = np.array([l[1][1][2] for l in limits])
@@ -832,17 +834,7 @@ def plot_limits_log2T_by_mD(
     xsec = np.array([l[0][4] for l in limits]) * .33 # B(W --> lv), scaled for fb later
     if mu_limit:
         xsec = np.ones(len(limits))
-    
-    # Sort the data by log2_T to ensure proper interpolation ------ not needed but keeping just in case :)
-    #order = np.argsort(log2_T)
-    #log2_T = log2_T[order]
-    #_exp   = _exp[order]
-    #_s1p   = _s1p[order]
-    #_s1m   = _s1m[order]
-    #_s2p   = _s2p[order]
-    #_s2m   = _s2m[order]
-    #_obs   = _obs[order]
-    #xsec   = xsec[order]
+      
 
     # interpolation between points
     exp_limit = logy_interp1d(log2_T, _exp)
@@ -857,7 +849,7 @@ def plot_limits_log2T_by_mD(
     init_fig = False
     if ax is None:
         init_fig = True
-        fig, ax = plt.subplots(figsize=(10,10))
+        fig, ax = plt.subplots(figsize=(12,10))
     
     # Define the x-axis range from -2 to 2 (i.e. T/m_D in [0.25, 4] as in lines drawn)
     xvar = np.linspace(np.min(log2_T), np.max(log2_T), 1000)
@@ -867,42 +859,37 @@ def plot_limits_log2T_by_mD(
         scale = 1000
     # Plot the theory curve (if bands is True)
     if bands and init_fig:
-        ax.plot(xvar, th_limit(xvar)*scale, linestyle=(0, (3, 5, 1, 5)), color='red', label="Leptonic WH SUEP - Theory")
+        ax.plot(xvar, th_limit(xvar)*scale, linestyle=(0, (3, 5, 1, 5)), linewidth=3, color='red', label="Leptonic WH SUEP - Theory")
     
     # Plot observed limits -- only interpolation now! actual points commented out to follow ZH convention
     if all_decays:
-        #ax.scatter(log2_T, _obs*scale, marker=obs_marker, s=70, color=color,
-        #           label=legend_label + "Observed (" + decaysLabels[decay]+')' + legend_label_postfix, zorder=5)
-        ax.plot(xvar, obs_limit(xvar)*scale, "-", color=color, linewidth=2, label=legend_label + "Observed (" + decaysLabels[decay]+')' + legend_label_postfix)
+        ax.plot(log2_T, obs_limit(log2_T)*scale, "-", color=color, linewidth=3, markersize=14, marker=obs_marker, label=legend_label + "Observed (" + decaysLabels[decay]+')' + legend_label_postfix)
     else:
-        #ax.scatter(log2_T, _obs*scale, marker=obs_marker, s=70, color=color,
-        #           label=legend_label + "Observed" + legend_label_postfix, zorder=5)
-        ax.plot(xvar, obs_limit(xvar)*scale, "-", color=color, linewidth=2, label=legend_label + "Observed" + legend_label_postfix)
+        ax.plot(log2_T, obs_limit(log2_T)*scale, "-", color=color, linewidth=3, markersize=14, marker=obs_marker, label=legend_label + "Observed" + legend_label_postfix)
     
     # Plot expected limits and fill in the Brazil bands
-    ax.plot(xvar, exp_limit(xvar)*scale, ls="--", color=color, linewidth=2, label=legend_label + "Median expected" + legend_label_postfix)
+    ax.plot(xvar, exp_limit(xvar)*scale, ls="--", color=color, linewidth=3, label=legend_label + "Median expected")
     if bands and color in ['black', '#7a21dd', '#f89c20']:
         ax.fill_between(xvar, s2m_limit(xvar)*scale, s2p_limit(xvar)*scale,
-                        color="#85D1FBff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL" + legend_label_postfix)
+                        color="#85D1FBff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL")
         ax.fill_between(xvar, s1m_limit(xvar)*scale, s1p_limit(xvar)*scale,
-                        color="#FFDF7Fff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL" + legend_label_postfix)
+                        color="#FFDF7Fff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL")
 
     if bands and color in ['#717581']:
         ax.fill_between(xvar, s2m_limit(xvar)*scale, s2p_limit(xvar)*scale,
-                        color="#607641", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL" + legend_label_postfix)
+                        color="#607641", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL")
         ax.fill_between(xvar, s1m_limit(xvar)*scale, s1p_limit(xvar)*scale,
-                        color="#F5BB54", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL" + legend_label_postfix)
+                        color="#F5BB54", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL")
 
     # style and labels from ZH
     ax.axvline(x=-2, color='black', linestyle=':', linewidth=1)
     ax.axvline(x=2, color='black', linestyle=':', linewidth=1)
-    ax.set_xlim(-2.5, 2.5)
+    ax.set_xlim(-2.1, 2.1)
     ax.text(-2, 0.38, r"$T/m_{\phi}=0.25$", transform=ax.get_xaxis_transform(),
-        rotation=-90, fontsize=15, verticalalignment='bottom', horizontalalignment='left', color='black')
-    ax.text(2, 0.38, r"$T/m_{\phi}=4.00$", transform=ax.get_xaxis_transform(),
-        rotation=-90, fontsize=15, verticalalignment='bottom', horizontalalignment='right', color='black')
+        rotation=-90, fontsize=17, verticalalignment='bottom', horizontalalignment='left', color='black')
+    ax.text(1.98, 0.38, r"$T/m_{\phi}=4.00$", transform=ax.get_xaxis_transform(),
+        rotation=-90, fontsize=17, verticalalignment='bottom', horizontalalignment='right', color='black')
     
-
     
     # Set labels, scales
     if mu_limit:
