@@ -742,10 +742,11 @@ def plot_mphi_by_T_limits(
         ax.plot(xvar, th_limit(xvar), "-", ms=12, color='blue', label="$\sigma_{theory}$")
 
     # observed
-    if all_decays:
-        ax.scatter(temp, _obs, marker=obs_marker, s=70, color=color, label=legend_label + "Observed" + decaysLabels[decay], zorder=5)
-    else:
-        ax.scatter(temp, _obs, marker=obs_marker, s=70, color=color, label=legend_label + "Observed", zorder=5)
+    if obs_marker != '':
+        if all_decays:
+            ax.scatter(temp, _obs, marker=obs_marker, s=70, color=color, label=legend_label + "Observed" + decaysLabels[decay], zorder=5)
+        else:
+            ax.scatter(temp, _obs, marker=obs_marker, s=70, color=color, label=legend_label + "Observed", zorder=5)
     
     #Plot expected limits including brazil bands
     ax.plot(xvar, exp_limit(xvar), ls="-", ms=12, color=color, label=legend_label + "Median expected")
@@ -806,7 +807,7 @@ def plot_mphi_by_T_limits(
 def plot_limits_log2T_by_mD(
         ms, mD, decay, 
         path='../', method='AsymptoticLimits', analysis='wh', 
-        ax=None, obs_marker='o', exp_alpha=1.0, mu_limit=False, bands=True, color='black', legend_label='',
+        ax=None, obs_marker='o', exp_alpha=1.0, mu_limit=False, bands=True, bands_cmap='cms', exp_linestyle='--', color='black', legend_label='',
         all_decays=False, fb=False, legend_label_postfix=''
     ):
     """
@@ -855,64 +856,56 @@ def plot_limits_log2T_by_mD(
     xvar = np.linspace(np.min(log2_T), np.max(log2_T), 1000)
     
     scale = 1
-    if fb:
+    if fb and not mu_limit:
         scale = 1000
-    # Plot the theory curve (if bands is True)
-    if bands and init_fig:
-        ax.plot(xvar, th_limit(xvar)*scale, linestyle=(0, (3, 5, 1, 5)), linewidth=3, color='red', label="Leptonic WH SUEP - Theory")
-    
-    # Plot observed limits -- only interpolation now! actual points commented out to follow ZH convention
-    if all_decays:
-        ax.plot(log2_T, obs_limit(log2_T)*scale, "-", color=color, linewidth=3, markersize=14, marker=obs_marker, label=legend_label + "Observed (" + decaysLabels[decay]+')' + legend_label_postfix)
-    else:
-        ax.plot(log2_T, obs_limit(log2_T)*scale, "-", color=color, linewidth=3, markersize=14, marker=obs_marker, label=legend_label + "Observed" + legend_label_postfix)
+    # Plot the theory curve only the first time, since it's always the same
+    if init_fig:
+        if mu_limit:
+            ax.plot(xvar, th_limit(xvar), linestyle=(0, (3, 5, 1, 5)), linewidth=3, color='#e42536')
+            ax.plot([0], [0], linestyle=(0, (3, 5, 1, 5)), linewidth=1.5, color='#e42536', label=r"B(H $\rightarrow$ SUEP) = 1") # this time for the legend, with smaller linewidth
+        else:
+            ax.plot(xvar, th_limit(xvar)*scale, linestyle=(0, (3, 5, 1, 5)), linewidth=3, color='red', label="Leptonic WH SUEP - Theory")
+
+
+    ax.plot(log2_T, obs_limit(log2_T)*scale, "-", color=color, linewidth=3, markersize=14, marker=obs_marker)
+    ax.plot([0], [0], "-", color=color, linewidth=1.5, markersize=10, marker=obs_marker, label=legend_label + "Observed " + legend_label_postfix) # this time for the legend, with smaller linewidth
     
     # Plot expected limits and fill in the Brazil bands
-    ax.plot(xvar, exp_limit(xvar)*scale, ls="--", color=color, linewidth=3, label=legend_label + "Median expected")
-    if bands and color in ['black', '#7a21dd', '#f89c20']:
+    ax.plot(xvar, exp_limit(xvar)*scale, ls=exp_linestyle, color=color, linewidth=3)
+    ax.plot([0], [0], ls=exp_linestyle, color=color, linewidth=1.5, label=legend_label + "Median expected") # this time for the legend, with smaller linewidth
+    if bands and bands_cmap == 'cms':
         ax.fill_between(xvar, s2m_limit(xvar)*scale, s2p_limit(xvar)*scale,
                         color="#85D1FBff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL")
         ax.fill_between(xvar, s1m_limit(xvar)*scale, s1p_limit(xvar)*scale,
                         color="#FFDF7Fff", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL")
 
-    if bands and color in ['#717581']:
+    if bands and bands_cmap == 'yellow_green':
         ax.fill_between(xvar, s2m_limit(xvar)*scale, s2p_limit(xvar)*scale,
-                        color="#607641", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL")
+                        color="#F5BB54", alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL")
         ax.fill_between(xvar, s1m_limit(xvar)*scale, s1p_limit(xvar)*scale,
-                        color="#F5BB54", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL")
+                        color="#607641", alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL")
 
-    # style and labels from ZH
+    if bands and type(bands_cmap) == list:
+        ax.fill_between(xvar, s2m_limit(xvar)*scale, s2p_limit(xvar)*scale,
+                        color=bands_cmap[0], alpha=exp_alpha, lw=0, label=legend_label + "Expected 95% CL")
+        ax.fill_between(xvar, s1m_limit(xvar)*scale, s1p_limit(xvar)*scale,
+                        color=bands_cmap[1], alpha=exp_alpha, lw=0, label=legend_label + "Expected 68% CL")
+
     ax.axvline(x=-2, color='black', linestyle=':', linewidth=1)
     ax.axvline(x=2, color='black', linestyle=':', linewidth=1)
     ax.set_xlim(-2.1, 2.1)
-    ax.text(-2, 0.38, r"$T/m_{\phi}=0.25$", transform=ax.get_xaxis_transform(),
+    ax.text(-2, 0.38, r"$T_D/m_{\phi}=0.25$", transform=ax.get_xaxis_transform(),
         rotation=-90, fontsize=17, verticalalignment='bottom', horizontalalignment='left', color='black')
-    ax.text(1.98, 0.38, r"$T/m_{\phi}=4.00$", transform=ax.get_xaxis_transform(),
+    ax.text(1.98, 0.38, r"$T_D/m_{\phi}=4.00$", transform=ax.get_xaxis_transform(),
         rotation=-90, fontsize=17, verticalalignment='bottom', horizontalalignment='right', color='black')
-    
-    
+        
     # Set labels, scales
     if mu_limit:
-        ax.set_ylabel(r"$\mu \equiv \sigma_{\mathrm{obs.}}/\sigma_{\mathrm{theory}}$")
+        ax.set_ylabel(r"B(H $\rightarrow$ SUEP)")
     else:
-        ax.set_ylabel(r"$\sigma$ B(H $\rightarrow$ S)B(W $\rightarrow$ $\ell \nu$) (fb)")
+        ax.set_ylabel(r"$\sigma$ B(H $\rightarrow$ SUEP)B(W $\rightarrow$ $\ell \nu$) (fb)")
 
-    if all_decays:
-        _ = ax.text(
-            0.85, 0.15, "$m_{{\phi}}$ = {}".format(mD),
-            fontsize=24, horizontalalignment='right', 
-            verticalalignment='bottom', 
-            transform=ax.transAxes,
-        )
-    else:
-        _ = ax.text(
-            0.85, 0.15, decaysLabelsWithLineBreaks[decay],
-            fontsize=24, horizontalalignment='right', 
-            verticalalignment='bottom', 
-            transform=ax.transAxes,
-        )
-
-    ax.set_xlabel(r"$\log_2(T/m_D)$")
+    ax.set_xlabel(r"$\log_2(T_D/m_\phi)$")
     ax.legend(loc="upper left")
     ax.set_yscale("log")
     
@@ -960,7 +953,8 @@ def plot_mPhi_temp_limits(
     Outputs:
         fig: figure object
     """
-    
+    import seaborn as sns
+
     if tricontour not in ['log','lin']: #tricontour decides whether we interpolate through mu ('lin') or log(mu) ('log')
         raise Exception("tricontour should be 'log' or 'lin'")
 
@@ -991,11 +985,12 @@ def plot_mPhi_temp_limits(
     # Plot figure and obtain mu=1 (log(mu)=0) lines
     fig = plt.figure(figsize=(12,9))
     ax = fig.subplots()
-    
+
+    cmap = sns.color_palette("flare_r", as_cmap=True)    
     if tricontour == 'log':
         levels = np.linspace(min(data['obs']), max(data['obs']))
         triang = tri.Triangulation(limit_mphi, limit_temp)
-        contour = ax.tricontourf(triang, data['obs'], levels=levels, cmap="plasma")
+        contour = ax.tricontourf(triang, data['obs'], levels=levels, cmap=cmap)
         cb = fig.colorbar(contour)
         if muLimit:
             cb.ax.set_ylabel(r'$95\%$ CL obs. upper limit on $\mu$', loc='top', rotation=90, fontsize=25)
@@ -1008,7 +1003,7 @@ def plot_mPhi_temp_limits(
 
     if tricontour == 'lin':
         levels = np.logspace(np.log10(min(data['obs'])),np.log10(max(data['obs'])))
-        contour = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels,locator=ticker.LogLocator(), cmap="plasma")
+        contour = ax.tricontourf(limit_mphi, limit_temp, data['obs'], levels =levels,locator=ticker.LogLocator(), cmap=cmap)
         formatter = ticker.LogFormatter(base=10, labelOnlyBase=True) 
         cb = fig.colorbar(contour, format=formatter, label=r'$\mu$')
         cb.ax.set_ylabel(r'$95\%$ CL obs. upper limit on $\sigma$ (pb)', loc='top', rotation=90, fontsize=25)
@@ -1052,10 +1047,10 @@ def plot_mPhi_temp_limits(
     x5,y5 = interp_limit(line5, 4)
     
     #plot smoothed curve
-    ax.plot(x2, y2, linestyle = "--", color ='#00ffff', label=r"Median expected",linewidth =4)
-    ax.plot(x1, y1, linestyle = "--", color='yellow', label=r"Expected $68\%$ CL",linewidth =4)
-    ax.plot(x3, y3, linestyle = "--", color='yellow', linewidth =4)
-    if showObserved: ax.plot(x5, y5, linestyle = "-", color='#00008b', label=r"Observed",linewidth =4)
+    ax.plot(x2, y2, linestyle = "--", color ='#5790fc', label=r"Median expected",linewidth =4)
+    ax.plot(x1, y1, linestyle = "--", color='#f89c20', label=r"Expected $68\%$ CL",linewidth =4)
+    ax.plot(x3, y3, linestyle = "--", color='#f89c20', linewidth =4)
+    if showObserved: ax.plot(x5, y5, linestyle = "-", color='black', label=r"Observed",linewidth =4)
 
     # set the range of the plot
     ax.set_xlim([2*mA[decay]-1.0, 9.0])
@@ -1074,7 +1069,7 @@ def plot_mPhi_temp_limits(
         showUpperTheoryLine = ((np.max(y5) > 10) and autoRange) or (not autoRange)
         if showUpperTheoryLine: ax.text(3, 11.5, r'$T_D/m_{\phi}=4$', horizontalalignment='right', verticalalignment='center',fontsize=20,rotation =55)
         ax.text(7, 1.0, r'$T_D/m_{\phi}=0.25$', horizontalalignment='right', verticalalignment='center',fontsize=20,rotation=0)
-        
+
     ax.set_xlabel(r"$m_{\phi}$ (GeV)", x=1, ha='right')
     ax.set_ylabel(r"$T_D$ (GeV)", y=1, ha='right')
     
