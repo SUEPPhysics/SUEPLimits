@@ -932,7 +932,7 @@ def plot_mPhi_temp_limits(
         showObserved:bool=True,
         autoRange:bool=True,
         analysis:str='ggf-offline',
-        muLimit:bool=False
+        muLimit:bool=False,
     ): 
     """
     Make 2D limit plot on the cross section for some choice of mS and decay, scanning over T and mPhi.
@@ -1050,7 +1050,7 @@ def plot_mPhi_temp_limits(
     ax.plot(x2, y2, linestyle = "--", color ='#5790fc', label=r"Median expected",linewidth =4)
     ax.plot(x1, y1, linestyle = "--", color='#f89c20', label=r"Expected $68\%$ CL",linewidth =4)
     ax.plot(x3, y3, linestyle = "--", color='#f89c20', linewidth =4)
-    if showObserved: ax.plot(x5, y5, linestyle = "-", color='black', label=r"Observed",linewidth =4)
+    if showObserved: ax.plot(x5, y5, linestyle = "-", color='#7a21dd', label=r"Observed",linewidth =4)
 
     # set the range of the plot
     ax.set_xlim([2*mA[decay]-1.0, 9.0])
@@ -1076,13 +1076,13 @@ def plot_mPhi_temp_limits(
     if cmsLabel: hep.cms.label(data=True, lumi=lumis['combined'], ax=ax) # To add CMS lumi scripts
     
     _ = ax.text(
-        0.05, 0.98, r"$m_{{s}} = {}$ GeV""\n""{}".format(str(ms), decaysLabelsWithLineBreaks[decay]),
+        0.2, 0.965, r"$m_{{s}} = {}$ GeV""\n""{}".format(str(ms), decaysLabelsWithLineBreaks[decay]),
         fontsize=20, horizontalalignment='left', 
         verticalalignment='top', 
         transform=ax.transAxes
     )
     
-    ax.legend(loc="upper right", fontsize=20)
+    ax.legend(loc='upper right', bbox_to_anchor=(0.9, 1.0), fontsize=20)
     fig.tight_layout()
     
     fig.set_label("limits2D_mS{:.1f}_{}".format(ms, decay))
