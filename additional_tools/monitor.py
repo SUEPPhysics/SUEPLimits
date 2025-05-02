@@ -24,7 +24,6 @@ import yaml
 import logging
 from tqdm import tqdm
 
-
 def getExpectedLength(fname):
     """
     Get the expected length of the limit tree.

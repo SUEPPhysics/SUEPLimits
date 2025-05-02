@@ -9,13 +9,13 @@ Using SUEP histograms from coffea producer
 
 ## Get combine
 Follow instructions on the [combine documentation](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/) to get the combine tool.
-At the time of writing, this code has been tested with the latest and reccomended version, v10.
+At the time of writing, this code has been tested with the latest and recommended version, v10.
 
 ## Get CombineTool
-You can follow the instructions on the [combine documentation](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/#combine-tool), reported here for your convenience:
+You can follow the instructions on the [combine documentation](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/#combine-tool).
 
 ## Additional software
-To run some of the plotting tools, you need third party pakages such as uproot. You can install by:
+To run some of the plotting tools, you need third party packages such as uproot. You can install by:
 ```bash
 pip install uproot
 pip install thermcolor
@@ -93,6 +93,16 @@ python runcards.py -a ggf-offline.yaml -m slurm -t my_tag --file sample.txt
 ```
 
 e.g. run over multithread with 10 cores all samples with generic decay
+```
+python runcards.py -m multithread -c 10 -t my_tag --include generic
+```
+
+## 3. Running the Combine tool
+
+If there are multiple eras or datacards for different regions they will need to be used together to make a combined.root and combined.dat files, which are the input to the `combine` command.
+This is done in the runcombine.py file which subsequently runs the combine tool on the created files. If you need to modify the combine commands you can do that here.
+
+To make limits for all of the different samples you can run:
 ```bash
 python runcards.py -a ggf-offline.yaml -m multithread -c 10 -t my_tag --includeAny generic
 ```
@@ -101,19 +111,17 @@ python runcards.py -a ggf-offline.yaml -m multithread -c 10 -t my_tag --includeA
 
 Once cards for each signal sample, channel, and era are made, they need to be combined, and only then Combine can be used to obtain limits.
 
-`runcombine.py` executes both of these tasks, combinig the datacards into one per sample, and then running the limits.
+`runcombine.py` executes both of these tasks, combining the datacards into one per sample, and then running the limits.
 
 The analysis-dependent input to this script is a `yaml` file that contains the key `runcombine` which in turn contains one argument, unique for each analysis:
 - `combineCards`: a `combineCards.py` command to combine cards across different channels and eras for each sample. 
 
 The script:
 - expects an input/output tag/directory defined via `-i`.
-- supports running via any of the following options: iteratively, multithread, slurm, condor, via the `-m` option.
-   - automatically requests the correct number of CPUs, and its best guess at memory usage, in the condor and slurm jobs if using `--combineOptions "--fork N"`.
-- supports running different combine options via `--combineMethod`: `AsymptoticLimits`, `HybridNew`, `HybridNewAuto`***.
-   - *** `HybridNewAuto` is not a real combine option, it's something that we came up with out of convenience. The `AsymptoticLimits` are first ran on the sample to obtain rough bounds on `r`; these are then fed back as `--rMin` and `--rMax` when running the `HybridNew` (toys) option. This is done because the toys are extremely slow and compute-intensive, and it is thus more efficient to constrain the space that needs to be scanned by Combine. 
-- supports further options to be passed to the `combine` command via `--combineOptions`, e.g. `--combineOptions " --fork 20 --expectedFromGrid 0.5"` tells Combine to fork over 20 threads and calculate the expected limits.
-- knows not to re-run cards that already eixst under the same tag, but can be forced to via the `-f` parameter.
+- supports running via any of the following options: iteratively, multithread, slurm, condor.
+- supports running different combine options via `--combineMethod`: `AsymptoticLimits`, `HybridNew`.
+- supports further options to be passed to the `combine` command via `--combineOptions`, e.g. `--combineOptions " --fork 100 --expectedFromGrid 0.5".
+- knows not to re-run cards that already exist under the same tag, but can be forced to via the `-f` parameter.
 - can run on a subset of samples via the `--includeAny` and `--includeAll` option, e.g. `--includeAll generic-mPhi300` will only run samples that contain 'generic' and 'mPhi300' in the name, `--includeAny generic-mPhi300` will run samples that include 'generic' or 'mPhi300' in the name.
 - can run all quantiles when running toys with `--quantiles`.
 - can run on a subset of samples defined in a .txt file via the `--file` option.
@@ -125,25 +133,17 @@ Some examples:
 
 e.g. running asymptotic limits for all mS = 125 GeV samples via slurm with setting min and max values on the signal strength `r`:
 ```bash
-python runcombine.py -a ggf-offline.yaml -M AsymptoticLimits -i my_tag --includeAny mS125 -m slurm -o " --rMax 10000 --rMin 0.1 "
+python runcombine.py -M AsymptoticLimits -i my_tag --include mS125 -m slurm -o " --rMax 10000 --rMin 0.1 "
 ```
 
-e.g. running toys (need to run separately for observed, and each 'quanile': expected (0.5), +/-1 sigma (0.84, 0.16), and +/-2 sigma (0.975, 0.025)). Note that these are very computationally intensive, and work best when you are able to split them across several cores, for this example we use 10. 
-```bash
-python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --fork 10 "                            # observed
-python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --expectedFromGrid 0.025 --fork 10 "   # -2 sigma
-python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --expectedFromGrid 0.975 --fork 10 "   # +2 sigma
-python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --expectedFromGrid 0.500 --fork 10 "   # expected
-python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --expectedFromGrid 0.840 --fork 10 "   # +1 sigma
-python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --expectedFromGrid 0.160 --fork 10 "   # -1 sigma
+e.g. running toys (need to run separately for observed, and each 'quantile': expected (0.5), +/-1 sigma (0.84, 0.16), and +/-2 sigma (0.975, 0.025)). Note that these are very computationally intensive, and work best when you are able to split them across several cores, for this example we use 10.
 ```
-Alternatively, use the option `--quantiles` to run them all at the same time,
-```bash
-python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNew -o " --fork 10 " --quantiles                # runs all quantiles and observed
-```
-As aforementioned, toys also work best when the `r` space is constrained,
-```bash
-python runcombine.py -a ggf-offline.yaml -m condor -i my_tag -M HybridNewAuto -o " --fork 10 " --quantiles                # runs all quantiles and observed, running first toys to constrain the --rMin and --rMax dynamically
+python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --fork 10 "                            # observed
+python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.025 --fork 10 "   # -2 sigma
+python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.975 --fork 10 "   # +2 sigma
+python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.500 --fork 10 "   # expected
+python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.840 --fork 10 "   # +1 sigma
+python runcombine.py -m condor -i approval_higherPrecision/ -M HybridNew -o " --expectedFromGrid 0.160 --fork 10 "   # -1 sigma
 ```
 
 Some notes on running the limits:
@@ -162,7 +162,7 @@ You can use the `monitor.py` script to:
    - ```python monitor.py --checkMissingCards --tag my_tag```
 
 2. **Monitor the completion of the limits produced via combine, and verify that the they are not corrupted.**
-    Will check that for each cards-SAMPLE/ subdirectory under the directory/tag --tag, the correspodning 
+    Will check that for each cards-SAMPLE/ subdirectory under the directory/tag --tag, the corresponding 
     limit files have been produced successfully.
    - ```python monitor.py --checkMissingLimits --deleteCorruptedLimits --combineMethod HybridNew --tag my_tag```
 
@@ -185,7 +185,7 @@ For the ggF offline analysis, use `notebook_tools/limits_offline.ipynb`.
 See `prefit_postfit.ipynb`.
 This notebook plots the prefit and postift distributions using the output of the following command.
 
-After running runcards.py and runcombine.py, make a fitDiagnostics.root file containin the pre/post-fit distributions by activating cmsenv and running
+After running runcards.py and runcombine.py, make a fitDiagnostics.root file containing the pre/post-fit distributions by activating cmsenv and running
 
 ```bash
 combine -M FitDiagnostics cards-<sample>/combined.root -m 200 --rMin -1 --rMax 2 --saveShapes
