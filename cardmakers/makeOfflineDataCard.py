@@ -1,14 +1,19 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import yaml
 import uproot
-import os, sys
 import argparse
 import ftool
 import numpy as np
 from termcolor import colored
+import logging
+import json
 
 # from: https://twiki.cern.ch/twiki/bin/viewauth/CMS/LumiRecommendationsRun2#Combination_and_correlations
 lumis = {
-    "2016" : 16.811, #2016apv lumi 19.498 is applied in ftool IFF the filename contains 2016apv
+    "2016apv":  19.497, 
+    "2016" : 16.811,
     "2017" : 41.471,
     "2018" : 59.817
 }
@@ -69,6 +74,19 @@ closure_systs = {
     "2018": 1.08
 }
 
+<<<<<<<< HEAD:cardmakers/makeOfflineDataCard.py
+def xs_scale(proc, era):
+    xsec = 1.0
+    xsec_file = f"config/xsections_{era}.json"
+    with open(xsec_file) as file:
+        MC_xsecs = json.load(file)
+    xsec  = MC_xsecs[proc]["xsec"]
+    xsec *= MC_xsecs[proc]["kr"]
+    xsec *= MC_xsecs[proc]["br"]
+    xsec *= 1000.0
+    assert xsec > 0, "{} has a null cross section!".format(proc)
+    return xsec
+========
 def get_commands(options, n, year):
 
     cmd_crA = "python3 makeOfflineDataCard.py --tag {tag} --channel cat_crA "
@@ -197,6 +215,7 @@ def get_bins():
 
 def get_config_file():
     return "config/SUEP_inputs_{}.yaml"
+>>>>>>>> master:makeOfflineDataCard.py
 
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
@@ -209,58 +228,74 @@ def main():
     parser.add_argument("-era", "--era"     , type=str, default="2017")
     parser.add_argument("-f"  , "--force"   , action="store_true")
     parser.add_argument("-ns" , "--nostatuncert", action="store_false")
-    parser.add_argument("--binrange" ,nargs='+', type=int, default=100)
     parser.add_argument("--rebin" ,type=int, default=1)
     parser.add_argument("--bins",'--list', nargs='*', help='<Required> Set flag', required=False,default=[])
+    parser.add_argument("--verbose", action="store_true", help="Print out more information.")
 
     options = parser.parse_args()
-    
-    print("range =", options.binrange)
-    
-    inputs = None
-    with open(options.input) as f:
-        try:
-            inputs = yaml.safe_load(f.read())
-        except yaml.YAMLError as exc:
-            print (exc)
 
-    xsections = None
+    if options.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
+        
+    with open(options.input) as f:
+        inputs = yaml.safe_load(f.read())
+    if options.era == "2016":
+        with open(options.input.replace("2016","2016apv")) as f:
+            inputs2016apv = yaml.safe_load(f.read())
 
     if len(options.channel) == 1:
         options.channel = options.channel[0]
     
-    xsections = 1.0
     # make datasets per process
     datasets = {}
     nsignals = 0
     signal = ""
     for dg in options.stack:
-        print('dg',dg)
-                
-        p = ftool.datagroup( 
+        logging.info(dg)
+        p = ftool.ggf_datagroup( 
             inputs[dg]["files"],
             ptype      = inputs[dg]["type"], 
             observable = options.variable,
             era        = options.era,
             name       = dg,
             kfactor    = inputs[dg].get("kfactor", 1.0),
-            xsections  = xsections,
             channel    = options.channel,
             rebin      = options.rebin,
-            bins = options.bins,
-            binrange   = options.binrange,
-            luminosity = lumis[options.era]
+            bins       = options.bins,
+            luminosity = lumis[options.era],
+            xsections  = xs_scale(inputs[dg].get("sample", dg), options.era) if inputs[dg]["type"] == "signal" else 1,
+            normalise  = (inputs[dg]["type"] == "signal")
         )
-        #p.save()
+
+        # merge 2016apv with 2016
+        if options.era == "2016":
+            sample2016apv = dg.replace("2016","2016apv").replace("UL16", "UL16APV")
+            logging.info("Merging with 2016apv sample: " + sample2016apv)
+            p_merge = ftool.ggf_datagroup(
+                inputs2016apv[sample2016apv]["files"],
+                ptype      = inputs2016apv[sample2016apv]["type"],
+                observable = options.variable,
+                era        = "2016apv",
+                name       = sample2016apv,
+                kfactor    = inputs2016apv[sample2016apv].get("kfactor", 1.0),
+                channel    = options.channel,
+                rebin      = options.rebin,
+                bins       = options.bins,
+                luminosity = lumis["2016apv"],
+                xsections  = xs_scale(inputs2016apv[sample2016apv].get("sample", sample2016apv), "2016apv") if inputs2016apv[sample2016apv]["type"] == "signal" else 1,
+                normalise  = (inputs2016apv[sample2016apv]["type"] == "signal")
+            )
+            p.add(p_merge)
+
         datasets[p.name] = p
         if p.ptype == "signal":
             signal = p.name
-    print('datasets!',datasets['data'].get("nom")) #Empty already
 
     card_name = "ch"+options.era
     if isinstance(options.channel, str):
         card_name = options.channel+options.era 
-
     elif isinstance(options.channel, list):
         if np.all(["signal" in c.lower() for c in options.channel]):
             card_name = "catSig"+options.era
@@ -344,6 +379,8 @@ def main():
         if "mS125" in p.name:
              card.add_shape_nuisance(name, "CMS_Higgs", p.get("higgs_weights"))
         card.add_auto_stat()
+
+    logging.info("All done!")
     card.dump()
 
 if __name__ == "__main__":

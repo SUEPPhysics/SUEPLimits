@@ -1,6 +1,8 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import yaml
 import uproot
-import os
 import argparse
 import ftool
 import numpy as np
@@ -69,6 +71,8 @@ closure_systs = {
     "2018": 1.10
 }
 
+<<<<<<<< HEAD:cardmakers/makeScoutingDataCard.py
+========
 def get_commands(options, n, year):
     cmd_crA = "python3 makeScoutingCard.py --tag {tag} --channel cat_crA "
     cmd_crA += "--variable A_SUEP_nconst_Cluster "
@@ -196,6 +200,7 @@ def get_bins():
 def get_config_file():
     return "config/SUEP_scouting_{}.yaml"
 
+>>>>>>>> master:makeScoutingDataCard.py
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str, default="config/SUEP_scouting_2018.yaml")

@@ -1,0 +1,77 @@
+runcards:
+  commands:
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel cat_crA --variable A_SUEP_nconst_Cluster70 --stack {n} expected data --bins 0 2000 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel cat_crB --variable B_SUEP_nconst_Cluster70 --stack {n} expected data --bins 0 2000 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel cat_crC --variable C_SUEP_nconst_Cluster70 --stack {n} expected data --bins 0 2000 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel cat_crD --variable D_SUEP_nconst_Cluster70 --stack {n} expected data --bins 0 2000 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel cat_crE --variable E_SUEP_nconst_Cluster70 --stack {n} expected data --bins 0 2000 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel Bin0crF --variable F_SUEP_nconst_Cluster70 --stack {n} expected data --bins 70 90 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel Bin1crF --variable F_SUEP_nconst_Cluster70 --stack {n} expected data --bins 90 110 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel Bin2crF --variable F_SUEP_nconst_Cluster70 --stack {n} expected data --bins 110 130 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel Bin3crF --variable F_SUEP_nconst_Cluster70 --stack {n} expected data --bins 130 170 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel Bin4crF --variable F_SUEP_nconst_Cluster70 --stack {n} expected data --bins 170 2000 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel cat_crG --variable G_SUEP_nconst_Cluster70 --stack {n} expected data --bins 0 2000 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel cat_crH --variable H_SUEP_nconst_Cluster70 --stack {n} expected data --bins 0 2000 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel Bin1Sig --variable I_SUEP_nconst_Cluster70 --stack {n} expected data --bins 90 110 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel Bin2Sig --variable I_SUEP_nconst_Cluster70 --stack {n} expected data --bins 110 130 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel Bin3Sig --variable I_SUEP_nconst_Cluster70 --stack {n} expected data --bins 130 170 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+    - "python3 makeOfflineDataCard.py --tag {tag} --channel Bin4Sig --variable I_SUEP_nconst_Cluster70 --stack {n} expected data --bins 170 2000 --input=config/PRL_SUEP_inputs_{era}.yaml --era={era}"
+  eras:
+    - '2018'
+    - '2017'
+    - '2016'
+  config:
+    "config/PRL_SUEP_inputs_{era}.yaml"
+
+runcombine:
+  combineCards: >
+    combineCards.py -S 
+    catcrA2018=cards-{name}/shapes-cat_crA2018.dat
+    catcrB2018=cards-{name}/shapes-cat_crB2018.dat 
+    catcrC2018=cards-{name}/shapes-cat_crC2018.dat 
+    catcrD2018=cards-{name}/shapes-cat_crD2018.dat 
+    catcrE2018=cards-{name}/shapes-cat_crE2018.dat 
+    Bin0crF2018=cards-{name}/shapes-Bin0crF2018.dat 
+    Bin1crF2018=cards-{name}/shapes-Bin1crF2018.dat 
+    Bin2crF2018=cards-{name}/shapes-Bin2crF2018.dat 
+    Bin3crF2018=cards-{name}/shapes-Bin3crF2018.dat 
+    Bin4crF2018=cards-{name}/shapes-Bin4crF2018.dat 
+    catcrG2018=cards-{name}/shapes-cat_crG2018.dat 
+    catcrH2018=cards-{name}/shapes-cat_crH2018.dat 
+    Bin1Sig2018=cards-{name}/shapes-Bin1Sig2018.dat 
+    Bin2Sig2018=cards-{name}/shapes-Bin2Sig2018.dat 
+    Bin3Sig2018=cards-{name}/shapes-Bin3Sig2018.dat 
+    Bin4Sig2018=cards-{name}/shapes-Bin4Sig2018.dat
+    catcrA2017=cards-{name}/shapes-cat_crA2017.dat
+    catcrB2017=cards-{name}/shapes-cat_crB2017.dat 
+    catcrC2017=cards-{name}/shapes-cat_crC2017.dat 
+    catcrD2017=cards-{name}/shapes-cat_crD2017.dat 
+    catcrE2017=cards-{name}/shapes-cat_crE2017.dat 
+    Bin0crF2017=cards-{name}/shapes-Bin0crF2017.dat 
+    Bin1crF2017=cards-{name}/shapes-Bin1crF2017.dat 
+    Bin2crF2017=cards-{name}/shapes-Bin2crF2017.dat 
+    Bin3crF2017=cards-{name}/shapes-Bin3crF2017.dat 
+    Bin4crF2017=cards-{name}/shapes-Bin4crF2017.dat 
+    catcrG2017=cards-{name}/shapes-cat_crG2017.dat 
+    catcrH2017=cards-{name}/shapes-cat_crH2017.dat 
+    Bin1Sig2017=cards-{name}/shapes-Bin1Sig2017.dat 
+    Bin2Sig2017=cards-{name}/shapes-Bin2Sig2017.dat 
+    Bin3Sig2017=cards-{name}/shapes-Bin3Sig2017.dat 
+    Bin4Sig2017=cards-{name}/shapes-Bin4Sig2017.dat  
+    catcrA2016=cards-{name}/shapes-cat_crA2016.dat
+    catcrB2016=cards-{name}/shapes-cat_crB2016.dat 
+    catcrC2016=cards-{name}/shapes-cat_crC2016.dat 
+    catcrD2016=cards-{name}/shapes-cat_crD2016.dat 
+    catcrE2016=cards-{name}/shapes-cat_crE2016.dat 
+    Bin0crF2016=cards-{name}/shapes-Bin0crF2016.dat 
+    Bin1crF2016=cards-{name}/shapes-Bin1crF2016.dat 
+    Bin2crF2016=cards-{name}/shapes-Bin2crF2016.dat 
+    Bin3crF2016=cards-{name}/shapes-Bin3crF2016.dat 
+    Bin4crF2016=cards-{name}/shapes-Bin4crF2016.dat 
+    catcrG2016=cards-{name}/shapes-cat_crG2016.dat 
+    catcrH2016=cards-{name}/shapes-cat_crH2016.dat 
+    Bin1Sig2016=cards-{name}/shapes-Bin1Sig2016.dat 
+    Bin2Sig2016=cards-{name}/shapes-Bin2Sig2016.dat 
+    Bin3Sig2016=cards-{name}/shapes-Bin3Sig2016.dat 
+    Bin4Sig2016=cards-{name}/shapes-Bin4Sig2016.dat          
+    > cards-{name}/combined.dat

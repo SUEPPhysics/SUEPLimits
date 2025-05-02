@@ -133,3 +133,7 @@ dmypy.json
 cards*
 *.dat
 *.txt
+*.png
+*.jpg
+*.pdf
+*.csv

@@ -1,0 +1,3 @@
+runcombine: 
+  combine_command: combine -M Significance cards-{name}/{name}.root --name {name} -m 125
+  out_file: higgsCombine{name}.Significance.mH125.root
