@@ -44,493 +44,1452 @@ GJHSexpected:
     data
   color: 797
 
-SUEP_mS125.000_mPhi1.000_T0.250_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD2.00_T0.50_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi1.000_T0.250_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi1.000_T0.250_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD2.00_T0.50_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD2.00_T0.50_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi1.000_T0.500_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD2.00_T0.71_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi1.000_T0.500_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi1.000_T0.500_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD2.00_T0.71_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD2.00_T0.71_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi1.000_T1.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD2.00_T1.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi1.000_T1.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi1.000_T1.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD2.00_T1.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD2.00_T1.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi1.000_T2.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD2.00_T1.41_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi1.000_T2.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi1.000_T2.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD2.00_T1.41_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD2.00_T1.41_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi1.000_T4.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD2.00_T2.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi1.000_T4.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi1.000_T4.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD2.00_T2.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD2.00_T2.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi1.400_T0.350_modehadronic:
+WHleptonicpythia_generic_M125.0_MD2.00_T2.83_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi1.400_T0.350_modehadronic.root
-  sample: SUEP_mS125.000_mPhi1.400_T0.350_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD2.00_T2.83_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD2.00_T2.83_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi1.400_T0.700_modehadronic:
+WHleptonicpythia_generic_M125.0_MD2.00_T4.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi1.400_T0.700_modehadronic.root
-  sample: SUEP_mS125.000_mPhi1.400_T0.700_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD2.00_T4.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD2.00_T4.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi1.400_T1.400_modehadronic:
+WHleptonicpythia_generic_M125.0_MD2.00_T5.66_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi1.400_T1.400_modehadronic.root
-  sample: SUEP_mS125.000_mPhi1.400_T1.400_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD2.00_T5.66_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD2.00_T5.66_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi1.400_T2.800_modehadronic:
+WHleptonicpythia_generic_M125.0_MD2.00_T8.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi1.400_T2.800_modehadronic.root
-  sample: SUEP_mS125.000_mPhi1.400_T2.800_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD2.00_T8.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD2.00_T8.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi1.400_T5.600_modehadronic:
+WHleptonicpythia_generic_M125.0_MD3.00_T0.75_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi1.400_T5.600_modehadronic.root
-  sample: SUEP_mS125.000_mPhi1.400_T5.600_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD3.00_T0.75_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD3.00_T0.75_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T0.500_modegeneric:
+WHleptonicpythia_generic_M125.0_MD3.00_T1.06_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T0.500_modegeneric.root
-  sample: SUEP_mS125.000_mPhi2.000_T0.500_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD3.00_T1.06_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD3.00_T1.06_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T0.500_modehadronic:
+WHleptonicpythia_generic_M125.0_MD3.00_T1.50_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T0.500_modehadronic.root
-  sample: SUEP_mS125.000_mPhi2.000_T0.500_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD3.00_T1.50_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD3.00_T1.50_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T0.500_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD3.00_T12.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T0.500_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi2.000_T0.500_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD3.00_T12.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD3.00_T12.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T1.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD3.00_T2.12_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T1.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi2.000_T1.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD3.00_T2.12_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD3.00_T2.12_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T1.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD3.00_T3.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T1.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi2.000_T1.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD3.00_T3.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD3.00_T3.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T1.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD3.00_T4.24_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T1.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi2.000_T1.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD3.00_T4.24_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD3.00_T4.24_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T2.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD3.00_T6.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T2.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi2.000_T2.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD3.00_T6.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD3.00_T6.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T2.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD3.00_T8.49_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T2.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi2.000_T2.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD3.00_T8.49_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD3.00_T8.49_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T2.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD4.00_T1.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T2.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi2.000_T2.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD4.00_T1.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD4.00_T1.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T4.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD4.00_T1.41_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T4.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi2.000_T4.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD4.00_T1.41_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD4.00_T1.41_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T4.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD4.00_T11.31_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T4.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi2.000_T4.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD4.00_T11.31_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD4.00_T11.31_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T4.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD4.00_T16.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T4.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi2.000_T4.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD4.00_T16.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD4.00_T16.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T8.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD4.00_T2.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T8.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi2.000_T8.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD4.00_T2.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD4.00_T2.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T8.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD4.00_T2.83_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T8.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi2.000_T8.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD4.00_T2.83_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD4.00_T2.83_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi2.000_T8.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD4.00_T4.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi2.000_T8.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi2.000_T8.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD4.00_T4.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD4.00_T4.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T0.750_modegeneric:
+WHleptonicpythia_generic_M125.0_MD4.00_T5.66_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T0.750_modegeneric.root
-  sample: SUEP_mS125.000_mPhi3.000_T0.750_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD4.00_T5.66_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD4.00_T5.66_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T0.750_modehadronic:
+WHleptonicpythia_generic_M125.0_MD4.00_T8.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T0.750_modehadronic.root
-  sample: SUEP_mS125.000_mPhi3.000_T0.750_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD4.00_T8.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD4.00_T8.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T0.750_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD5.00_T1.25_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T0.750_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi3.000_T0.750_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD5.00_T1.25_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD5.00_T1.25_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T1.500_modegeneric:
+WHleptonicpythia_generic_M125.0_MD5.00_T1.77_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T1.500_modegeneric.root
-  sample: SUEP_mS125.000_mPhi3.000_T1.500_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD5.00_T1.77_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD5.00_T1.77_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T1.500_modehadronic:
+WHleptonicpythia_generic_M125.0_MD5.00_T10.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T1.500_modehadronic.root
-  sample: SUEP_mS125.000_mPhi3.000_T1.500_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD5.00_T10.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD5.00_T10.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T1.500_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD5.00_T14.14_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T1.500_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi3.000_T1.500_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD5.00_T14.14_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD5.00_T14.14_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T12.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD5.00_T2.50_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T12.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi3.000_T12.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD5.00_T2.50_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD5.00_T2.50_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T12.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD5.00_T20.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T12.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi3.000_T12.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD5.00_T20.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD5.00_T20.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T12.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD5.00_T3.54_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T12.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi3.000_T12.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD5.00_T3.54_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD5.00_T3.54_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T3.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD5.00_T5.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T3.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi3.000_T3.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD5.00_T5.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD5.00_T5.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T3.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD5.00_T7.07_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T3.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi3.000_T3.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD5.00_T7.07_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD5.00_T7.07_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T3.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD6.00_T1.50_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T3.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi3.000_T3.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD6.00_T1.50_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD6.00_T1.50_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T6.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD6.00_T12.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T6.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi3.000_T6.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD6.00_T12.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD6.00_T12.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T6.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD6.00_T16.97_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T6.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi3.000_T6.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD6.00_T16.97_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD6.00_T16.97_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi3.000_T6.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD6.00_T2.12_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi3.000_T6.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi3.000_T6.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD6.00_T2.12_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD6.00_T2.12_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T1.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD6.00_T24.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T1.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi4.000_T1.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD6.00_T24.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD6.00_T24.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T1.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD6.00_T3.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T1.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi4.000_T1.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD6.00_T3.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD6.00_T3.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T1.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD6.00_T4.24_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T1.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi4.000_T1.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD6.00_T4.24_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD6.00_T4.24_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T16.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD6.00_T6.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T16.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi4.000_T16.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD6.00_T6.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD6.00_T6.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T16.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD6.00_T8.49_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T16.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi4.000_T16.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD6.00_T8.49_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD6.00_T8.49_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T16.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD7.00_T1.75_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T16.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi4.000_T16.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD7.00_T1.75_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD7.00_T1.75_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T2.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD7.00_T14.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T2.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi4.000_T2.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD7.00_T14.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD7.00_T14.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T2.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD7.00_T19.80_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T2.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi4.000_T2.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD7.00_T19.80_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD7.00_T19.80_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T2.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD7.00_T2.47_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T2.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi4.000_T2.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD7.00_T2.47_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD7.00_T2.47_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T4.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD7.00_T28.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T4.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi4.000_T4.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD7.00_T28.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD7.00_T28.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T4.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD7.00_T3.50_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T4.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi4.000_T4.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD7.00_T3.50_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD7.00_T3.50_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T4.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD7.00_T4.95_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T4.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi4.000_T4.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD7.00_T4.95_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD7.00_T4.95_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T8.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD7.00_T7.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T8.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi4.000_T8.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD7.00_T7.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD7.00_T7.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T8.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD7.00_T9.90_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T8.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi4.000_T8.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD7.00_T9.90_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD7.00_T9.90_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi4.000_T8.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD8.00_T11.31_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi4.000_T8.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi4.000_T8.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD8.00_T11.31_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD8.00_T11.31_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T16.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD8.00_T16.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T16.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi8.000_T16.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD8.00_T16.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD8.00_T16.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T16.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD8.00_T2.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T16.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi8.000_T16.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD8.00_T2.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD8.00_T2.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T16.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD8.00_T2.83_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T16.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi8.000_T16.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD8.00_T2.83_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD8.00_T2.83_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T2.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD8.00_T22.63_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T2.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi8.000_T2.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD8.00_T22.63_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD8.00_T22.63_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T2.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD8.00_T32.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T2.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi8.000_T2.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD8.00_T32.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD8.00_T32.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T2.000_modeleptonic:
+WHleptonicpythia_generic_M125.0_MD8.00_T4.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T2.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi8.000_T2.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD8.00_T4.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD8.00_T4.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T32.000_modegeneric:
+WHleptonicpythia_generic_M125.0_MD8.00_T5.66_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T32.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi8.000_T32.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD8.00_T5.66_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD8.00_T5.66_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T32.000_modehadronic:
+WHleptonicpythia_generic_M125.0_MD8.00_T8.00_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T32.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi8.000_T32.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_generic_M125.0_MD8.00_T8.00_HT-1_.root
+  sample: WHleptonicpythia_generic_M125.0_MD8.00_T8.00_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T32.000_modeleptonic:
+WHleptonicpythia_hadronic_M125.0_MD1.40_T0.35_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T32.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi8.000_T32.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD1.40_T0.35_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD1.40_T0.35_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T4.000_modegeneric:
+WHleptonicpythia_hadronic_M125.0_MD1.40_T0.49_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T4.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi8.000_T4.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD1.40_T0.49_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD1.40_T0.49_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T4.000_modehadronic:
+WHleptonicpythia_hadronic_M125.0_MD1.40_T0.70_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T4.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi8.000_T4.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD1.40_T0.70_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD1.40_T0.70_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T4.000_modeleptonic:
+WHleptonicpythia_hadronic_M125.0_MD1.40_T0.99_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T4.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi8.000_T4.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD1.40_T0.99_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD1.40_T0.99_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T8.000_modegeneric:
+WHleptonicpythia_hadronic_M125.0_MD1.40_T1.40_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T8.000_modegeneric.root
-  sample: SUEP_mS125.000_mPhi8.000_T8.000_modegeneric
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD1.40_T1.40_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD1.40_T1.40_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T8.000_modehadronic:
+WHleptonicpythia_hadronic_M125.0_MD1.40_T1.98_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T8.000_modehadronic.root
-  sample: SUEP_mS125.000_mPhi8.000_T8.000_modehadronic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD1.40_T1.98_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD1.40_T1.98_HT-1_
   type:
     signal
 
-SUEP_mS125.000_mPhi8.000_T8.000_modeleptonic:
+WHleptonicpythia_hadronic_M125.0_MD1.40_T2.80_HT-1_:
   files:
-    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/WH_1_25_signal_2017_limits/SUEP_mS125.000_mPhi8.000_T8.000_modeleptonic.root
-  sample: SUEP_mS125.000_mPhi8.000_T8.000_modeleptonic
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD1.40_T2.80_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD1.40_T2.80_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD1.40_T3.96_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD1.40_T3.96_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD1.40_T3.96_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD1.40_T5.60_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD1.40_T5.60_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD1.40_T5.60_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD2.00_T0.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD2.00_T0.50_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD2.00_T0.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD2.00_T0.71_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD2.00_T0.71_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD2.00_T0.71_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD2.00_T1.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD2.00_T1.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD2.00_T1.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD2.00_T1.41_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD2.00_T1.41_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD2.00_T1.41_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD2.00_T2.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD2.00_T2.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD2.00_T2.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD2.00_T2.83_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD2.00_T2.83_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD2.00_T2.83_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD2.00_T4.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD2.00_T4.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD2.00_T4.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD2.00_T5.66_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD2.00_T5.66_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD2.00_T5.66_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD2.00_T8.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD2.00_T8.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD2.00_T8.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD3.00_T0.75_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD3.00_T0.75_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD3.00_T0.75_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD3.00_T1.06_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD3.00_T1.06_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD3.00_T1.06_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD3.00_T1.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD3.00_T1.50_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD3.00_T1.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD3.00_T12.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD3.00_T12.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD3.00_T12.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD3.00_T2.12_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD3.00_T2.12_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD3.00_T2.12_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD3.00_T3.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD3.00_T3.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD3.00_T3.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD3.00_T4.24_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD3.00_T4.24_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD3.00_T4.24_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD3.00_T6.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD3.00_T6.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD3.00_T6.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD3.00_T8.49_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD3.00_T8.49_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD3.00_T8.49_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD4.00_T1.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD4.00_T1.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD4.00_T1.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD4.00_T1.41_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD4.00_T1.41_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD4.00_T1.41_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD4.00_T11.31_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD4.00_T11.31_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD4.00_T11.31_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD4.00_T16.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD4.00_T16.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD4.00_T16.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD4.00_T2.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD4.00_T2.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD4.00_T2.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD4.00_T2.83_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD4.00_T2.83_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD4.00_T2.83_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD4.00_T4.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD4.00_T4.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD4.00_T4.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD4.00_T5.66_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD4.00_T5.66_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD4.00_T5.66_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD4.00_T8.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD4.00_T8.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD4.00_T8.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD5.00_T1.25_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD5.00_T1.25_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD5.00_T1.25_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD5.00_T1.77_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD5.00_T1.77_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD5.00_T1.77_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD5.00_T10.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD5.00_T10.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD5.00_T10.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD5.00_T14.14_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD5.00_T14.14_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD5.00_T14.14_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD5.00_T2.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD5.00_T2.50_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD5.00_T2.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD5.00_T20.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD5.00_T20.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD5.00_T20.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD5.00_T3.54_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD5.00_T3.54_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD5.00_T3.54_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD5.00_T5.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD5.00_T5.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD5.00_T5.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD5.00_T7.07_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD5.00_T7.07_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD5.00_T7.07_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD6.00_T1.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD6.00_T1.50_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD6.00_T1.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD6.00_T12.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD6.00_T12.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD6.00_T12.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD6.00_T16.97_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD6.00_T16.97_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD6.00_T16.97_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD6.00_T2.12_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD6.00_T2.12_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD6.00_T2.12_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD6.00_T24.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD6.00_T24.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD6.00_T24.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD6.00_T3.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD6.00_T3.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD6.00_T3.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD6.00_T4.24_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD6.00_T4.24_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD6.00_T4.24_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD6.00_T6.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD6.00_T6.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD6.00_T6.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD6.00_T8.49_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD6.00_T8.49_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD6.00_T8.49_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD7.00_T1.75_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD7.00_T1.75_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD7.00_T1.75_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD7.00_T14.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD7.00_T14.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD7.00_T14.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD7.00_T19.80_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD7.00_T19.80_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD7.00_T19.80_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD7.00_T2.47_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD7.00_T2.47_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD7.00_T2.47_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD7.00_T28.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD7.00_T28.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD7.00_T28.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD7.00_T3.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD7.00_T3.50_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD7.00_T3.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD7.00_T4.95_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD7.00_T4.95_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD7.00_T4.95_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD7.00_T7.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD7.00_T7.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD7.00_T7.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD7.00_T9.90_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD7.00_T9.90_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD7.00_T9.90_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD8.00_T11.31_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD8.00_T11.31_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD8.00_T11.31_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD8.00_T16.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD8.00_T16.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD8.00_T16.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD8.00_T2.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD8.00_T2.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD8.00_T2.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD8.00_T2.83_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD8.00_T2.83_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD8.00_T2.83_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD8.00_T22.63_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD8.00_T22.63_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD8.00_T22.63_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD8.00_T32.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD8.00_T32.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD8.00_T32.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD8.00_T4.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD8.00_T4.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD8.00_T4.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD8.00_T5.66_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD8.00_T5.66_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD8.00_T5.66_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_hadronic_M125.0_MD8.00_T8.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_hadronic_M125.0_MD8.00_T8.00_HT-1_.root
+  sample: WHleptonicpythia_hadronic_M125.0_MD8.00_T8.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD1.00_T0.25_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD1.00_T0.25_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD1.00_T0.25_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD1.00_T0.35_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD1.00_T0.35_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD1.00_T0.35_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD1.00_T0.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD1.00_T0.50_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD1.00_T0.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD1.00_T0.71_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD1.00_T0.71_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD1.00_T0.71_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD1.00_T1.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD1.00_T1.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD1.00_T1.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD1.00_T1.41_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD1.00_T1.41_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD1.00_T1.41_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD1.00_T2.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD1.00_T2.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD1.00_T2.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD1.00_T2.83_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD1.00_T2.83_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD1.00_T2.83_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD1.00_T4.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD1.00_T4.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD1.00_T4.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD2.00_T0.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD2.00_T0.50_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD2.00_T0.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD2.00_T0.71_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD2.00_T0.71_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD2.00_T0.71_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD2.00_T1.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD2.00_T1.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD2.00_T1.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD2.00_T1.41_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD2.00_T1.41_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD2.00_T1.41_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD2.00_T2.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD2.00_T2.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD2.00_T2.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD2.00_T2.83_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD2.00_T2.83_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD2.00_T2.83_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD2.00_T4.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD2.00_T4.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD2.00_T4.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD2.00_T5.66_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD2.00_T5.66_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD2.00_T5.66_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD2.00_T8.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD2.00_T8.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD2.00_T8.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD3.00_T0.75_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD3.00_T0.75_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD3.00_T0.75_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD3.00_T1.06_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD3.00_T1.06_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD3.00_T1.06_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD3.00_T1.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD3.00_T1.50_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD3.00_T1.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD3.00_T12.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD3.00_T12.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD3.00_T12.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD3.00_T2.12_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD3.00_T2.12_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD3.00_T2.12_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD3.00_T3.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD3.00_T3.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD3.00_T3.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD3.00_T4.24_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD3.00_T4.24_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD3.00_T4.24_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD3.00_T6.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD3.00_T6.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD3.00_T6.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD3.00_T8.49_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD3.00_T8.49_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD3.00_T8.49_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD4.00_T1.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD4.00_T1.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD4.00_T1.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD4.00_T1.41_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD4.00_T1.41_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD4.00_T1.41_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD4.00_T11.31_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD4.00_T11.31_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD4.00_T11.31_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD4.00_T16.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD4.00_T16.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD4.00_T16.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD4.00_T2.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD4.00_T2.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD4.00_T2.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD4.00_T2.83_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD4.00_T2.83_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD4.00_T2.83_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD4.00_T4.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD4.00_T4.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD4.00_T4.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD4.00_T5.66_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD4.00_T5.66_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD4.00_T5.66_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD4.00_T8.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD4.00_T8.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD4.00_T8.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD5.00_T1.25_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD5.00_T1.25_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD5.00_T1.25_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD5.00_T1.77_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD5.00_T1.77_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD5.00_T1.77_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD5.00_T10.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD5.00_T10.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD5.00_T10.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD5.00_T14.14_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD5.00_T14.14_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD5.00_T14.14_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD5.00_T2.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD5.00_T2.50_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD5.00_T2.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD5.00_T20.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD5.00_T20.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD5.00_T20.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD5.00_T3.54_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD5.00_T3.54_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD5.00_T3.54_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD5.00_T5.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD5.00_T5.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD5.00_T5.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD5.00_T7.07_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD5.00_T7.07_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD5.00_T7.07_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD6.00_T1.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD6.00_T1.50_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD6.00_T1.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD6.00_T12.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD6.00_T12.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD6.00_T12.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD6.00_T16.97_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD6.00_T16.97_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD6.00_T16.97_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD6.00_T2.12_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD6.00_T2.12_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD6.00_T2.12_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD6.00_T24.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD6.00_T24.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD6.00_T24.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD6.00_T3.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD6.00_T3.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD6.00_T3.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD6.00_T4.24_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD6.00_T4.24_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD6.00_T4.24_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD6.00_T6.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD6.00_T6.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD6.00_T6.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD6.00_T8.49_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD6.00_T8.49_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD6.00_T8.49_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD7.00_T1.75_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD7.00_T1.75_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD7.00_T1.75_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD7.00_T14.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD7.00_T14.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD7.00_T14.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD7.00_T19.80_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD7.00_T19.80_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD7.00_T19.80_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD7.00_T2.47_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD7.00_T2.47_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD7.00_T2.47_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD7.00_T28.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD7.00_T28.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD7.00_T28.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD7.00_T3.50_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD7.00_T3.50_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD7.00_T3.50_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD7.00_T4.95_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD7.00_T4.95_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD7.00_T4.95_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD7.00_T7.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD7.00_T7.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD7.00_T7.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD7.00_T9.90_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD7.00_T9.90_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD7.00_T9.90_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD8.00_T11.31_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD8.00_T11.31_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD8.00_T11.31_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD8.00_T16.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD8.00_T16.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD8.00_T16.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD8.00_T2.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD8.00_T2.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD8.00_T2.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD8.00_T2.83_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD8.00_T2.83_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD8.00_T2.83_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD8.00_T22.63_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD8.00_T22.63_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD8.00_T22.63_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD8.00_T32.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD8.00_T32.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD8.00_T32.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD8.00_T4.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD8.00_T4.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD8.00_T4.00_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD8.00_T5.66_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD8.00_T5.66_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD8.00_T5.66_HT-1_
+  type:
+    signal
+
+WHleptonicpythia_leptonic_M125.0_MD8.00_T8.00_HT-1_:
+  files:
+    - /ceph/submit/data/user/l/lavezzo/SUEP/outputs/private_signal_2017_limits/WHleptonicpythia_leptonic_M125.0_MD8.00_T8.00_HT-1_.root
+  sample: WHleptonicpythia_leptonic_M125.0_MD8.00_T8.00_HT-1_
   type:
     signal
 

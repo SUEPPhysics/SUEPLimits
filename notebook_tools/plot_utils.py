@@ -23,7 +23,8 @@ file = {
     'ggf-offline': "{path}higgsCombineGluGluToSUEP_HT1000_T{tem}_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}_TuneCP5_13TeV-pythia8.{method}.mH125{quant}.root",
     'ggf-scouting': "{path}higgsCombineGluGluToSUEP_HT400_T{tem}_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}_TuneCP5_13TeV-pythia8.{method}.mH125{quant}.root",
     'ggf-tth': "{path}higgsCombinettHpythia_{mode}_M{mS:.1f}_MD{mPhi:.2f}_T{T:.2f}_HT-1.{method}.mH125{quant}.root",
-    'wh': "{path}higgsCombineSUEP_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH125{quant}.root",
+    'wh-old': "{path}higgsCombineSUEP_mS{mS:.3f}_mPhi{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH125{quant}.root",
+    'wh': "{path}higgsCombineWHleptonicpythia_{mode}_M125.0_MD{mPhi:.2f}_T{T:.2f}_HT-1_.{method}.mH125{quant}.root",
     "vh": "{path}higgsCombinecombinedWZ_mD{mPhi:.3f}_T{T:.3f}_mode{mode}.{method}.mH125{quant}.root",
     "zh": "{path}higgsCombineCombinedSRCR_SUEP_{mode}_mS125_mD{mPhi:.1f}_T{T:.2f}.AsymptoticLimits.mH120.root"
 }
@@ -103,6 +104,9 @@ def xs_scale(proc, file="../config/xsections_SUEP.json"):
     assert xsec > 0, "{} has a null cross section!".format(proc)
     return xsec
 
+def interp1d(xx, yy, kind='linear'):
+    lin_interp = interpolate.interp1d(xx, yy, bounds_error=False, fill_value="extrapolate", kind=kind)
+    return lin_interp
 
 def log_interp1d(xx, yy, kind='linear'):
     logx = np.log(xx)
@@ -139,6 +143,8 @@ def get_params_from_sample_name(sample, analysis='ggf-offline'):
         return get_params_from_sample_name_tth(sample)
     elif analysis == 'wh':
         return get_params_from_sample_name_wh(sample)
+    elif analysis == 'wh-old':
+        return get_params_from_sample_name_wh_old(sample)
     elif analysis == 'vh':
         return get_params_from_sample_name_wh(sample)
     elif analysis == 'zh':
@@ -207,7 +213,36 @@ def get_params_from_sample_name_vh(sample):
         return mD, T, mode
     else:
         return None, None, None
+    
 def get_params_from_sample_name_wh(sample, save_mS=True):
+    """
+    Returns mS, mPhi, temp, decay from a sample name.
+    """
+    pattern = r'WHleptonicpythia_(\w+)_M(\d+\.\d+)_MD(\d+\.\d+)_T(\d+\.\d+)_HT-1_'
+
+    # Use re.search to find the first occurrence of the pattern in the sample name
+    match = re.search(pattern, sample)
+
+    if match:
+        # Extract the matched groups and convert them to the appropriate data types
+        temp = float(match.group(4))
+        mPhi = float(match.group(3))
+        mS = float(match.group(2))
+        decay = match.group(1)
+
+        # Return the extracted parameters as a tuple
+        if save_mS:
+            return mS, mPhi, temp, decay
+        else:
+            return mPhi, temp, decay
+    else:
+        # Return None if no match is found
+        if save_mS:
+            return None, None, None, None
+        else:
+            return None, None, None
+    
+def get_params_from_sample_name_wh_old(sample, save_mS=True):
     """
     Returns mS, mPhi, temp, decay from a sample name.
     """
@@ -292,6 +327,8 @@ def get_sample_name_from_params(ms, mphi, temp, decay, analysis='ggf-offline'):
     elif analysis == 'ggf-tth':
         return f"ttHpythia_{decay}_M{ms:.1f}_MD{mphi:.2f}_T{temp:.2f}_HT-1_UL18_NANOAOD"
     elif analysis == 'wh':
+        return f"WHleptonicpythia_{decay}_M{ms:.1f}_MD{mphi:.2f}_T{temp:.2f}_HT-1_"
+    elif analysis == 'wh-old':
         return f"SUEP_mS{ms:.3f}_mPhi{mphi:.3f}_T{temp:.3f}_mode{decay}"
     elif analysis == 'vh':
         return f"SUEP_mS{ms:.3f}_mPhi{mphi:.3f}_T{temp:.3f}_mode{decay}"

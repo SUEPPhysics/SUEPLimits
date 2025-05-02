@@ -21,65 +21,65 @@ lumis = {
 signal_variations = {
     "2018": {
         "CMS_scale_j": ["JES_up", "JES_down"],
-        "CMS_ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
-        "CMS_ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
-        "CMS_tracking": ["track_up", "track_down"],
+        "ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "CMS_EXO24030_tracking": ["track_up", "track_down"],
         "CMS_res_j": ["JER_up", "JER_down"],
         "CMS_pileup": ["puweights_up", "puweights_down"],
         "CMS_eff_e": ["LepSFElUp", "LepSFElDown"],
         "CMS_eff_m": ["LepSFMuUp", "LepSFMuDown"],
-        "CMS_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
-        "CMS_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
-        "CMS_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
-        "CMS_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "CMS_EXO24030_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
         "CMS_EXO23040_trigger_efficiency": ["trigSF_up", "trigSF_down"],
     },
     "2017": {
         "CMS_scale_j": ["JES_up", "JES_down"],
-        "CMS_ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
-        "CMS_ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
-        "CMS_tracking": ["track_up", "track_down"],
+        "ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "CMS_EXO24030_tracking": ["track_up", "track_down"],
         "CMS_l1_ecal_prefiring": ["prefire_up", "prefire_down"],
         "CMS_res_j": ["JER_up", "JER_down"],
         "CMS_pileup": ["puweights_up", "puweights_down"],
         "CMS_eff_e": ["LepSFElUp", "LepSFElDown"],
         "CMS_eff_m": ["LepSFMuUp", "LepSFMuDown"],
-        "CMS_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
-        "CMS_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
-        "CMS_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
-        "CMS_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "CMS_EXO24030_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
         "CMS_EXO23040_trigger_efficiency": ["trigSF_up", "trigSF_down"],
     },
     "2016": {
         "CMS_scale_j": ["JES_up", "JES_down"],
-        "CMS_ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
-        "CMS_ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
-        "CMS_tracking": ["track_up", "track_down"],
+        "ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "CMS_EXO24030_tracking": ["track_up", "track_down"],
         "CMS_l1_ecal_prefiring": ["prefire_up", "prefire_down"],
         "CMS_res_j": ["JER_up", "JER_down"],
         "CMS_pileup": ["puweights_up", "puweights_down"],
         "CMS_eff_e": ["LepSFElUp", "LepSFElDown"],
         "CMS_eff_m": ["LepSFMuUp", "LepSFMuDown"],
-        "CMS_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
-        "CMS_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
-        "CMS_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
-        "CMS_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "CMS_EXO24030_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
         "CMS_EXO23040_trigger_efficiency": ["trigSF_up", "trigSF_down"],
     },
     "2016apv": {
         "CMS_scale_j": ["JES_up", "JES_down"],
-        "CMS_ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
-        "CMS_ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
-        "CMS_tracking": ["track_up", "track_down"],
+        "ps_isr": ["PSWeight_ISR_up", "PSWeight_ISR_down"],
+        "ps_fsr": ["PSWeight_FSR_up", "PSWeight_FSR_down"],
+        "CMS_EXO24030_tracking": ["track_up", "track_down"],
         "CMS_l1_ecal_prefiring": ["prefire_up", "prefire_down"],
         "CMS_res_j": ["JER_up", "JER_down"],
         "CMS_pileup": ["puweights_up", "puweights_down"],
         "CMS_eff_e": ["LepSFElUp", "LepSFElDown"],
         "CMS_eff_m": ["LepSFMuUp", "LepSFMuDown"],
-        "CMS_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
-        "CMS_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
-        "CMS_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
-        "CMS_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_corr": ["bTagWeight_HFcorrelated_Up", "bTagWeight_HFcorrelated_Dn"],
+        "CMS_EXO24030_btag_heavy_uncorr": ["bTagWeight_HFuncorrelated_Up", "bTagWeight_HFuncorrelated_Dn"],
+        "CMS_EXO24030_btag_light_corr": ["bTagWeight_LFcorrelated_Up", "bTagWeight_LFcorrelated_Dn"],
+        "CMS_EXO24030_btag_light_uncorr": ["bTagWeight_LFuncorrelated_Up", "bTagWeight_LFuncorrelated_Dn"],
         "CMS_EXO23040_trigger_efficiency": ["trigSF_up", "trigSF_down"],
     }
 }
@@ -360,16 +360,16 @@ def main():
         card.add_shape_nuisance(name, "CMS_scale_j", p.get("CMS_scale_j"))
         card.add_shape_nuisance(name, "CMS_res_j", p.get("CMS_res_j"))
         card.add_shape_nuisance(name, "CMS_pileup", p.get("CMS_pileup"))
-        card.add_shape_nuisance(name, "CMS_ps_fsr", p.get("CMS_ps_fsr"))
-        card.add_shape_nuisance(name, "CMS_ps_isr", p.get("CMS_ps_isr"))
-        card.add_shape_nuisance(name, "CMS_tracking", p.get("CMS_tracking"))
+        card.add_shape_nuisance(name, "ps_fsr", p.get("ps_fsr"))
+        card.add_shape_nuisance(name, "ps_isr", p.get("ps_isr"))
+        card.add_shape_nuisance(name, "CMS_EXO24030_tracking", p.get("CMS_EXO24030_tracking"))
         card.add_shape_nuisance(name, "CMS_eff_e", p.get("CMS_eff_e"))
         card.add_shape_nuisance(name, "CMS_eff_m", p.get("CMS_eff_m"))
-        card.add_shape_nuisance(name, "CMS_btag_heavy_corr", p.get("CMS_btag_heavy_corr"))
-        card.add_shape_nuisance(name, "CMS_btag_heavy_uncorr", p.get("CMS_btag_heavy_uncorr"))
-        card.add_shape_nuisance(name, "CMS_btag_light_corr", p.get("CMS_btag_light_corr"))
-        card.add_shape_nuisance(name, "CMS_btag_light_uncorr", p.get("CMS_btag_light_uncorr"))
-        card.add_shape_nuisance(name, "CMS_l1_ecal_prefiring", p.get("CMS_l1_ecal_prefiring"))
+        card.add_shape_nuisance(name, "CMS_EXO24030_btag_heavy_corr", p.get("CMS_EXO24030_btag_heavy_corr"))
+        card.add_shape_nuisance(name, "CMS_EXO24030_btag_heavy_uncorr", p.get("CMS_EXO24030_btag_heavy_uncorr"))
+        card.add_shape_nuisance(name, "CMS_EXO24030_btag_light_corr", p.get("CMS_EXO24030_btag_light_corr"))
+        card.add_shape_nuisance(name, "CMS_EXO24030_btag_light_uncorr", p.get("CMS_EXO24030_btag_light_uncorr"))
+        if options.era != "2018": card.add_shape_nuisance(name, "CMS_l1_ecal_prefiring", p.get("CMS_l1_ecal_prefiring"))
         card.add_nuisance(name, "{:<21}  lnN".format("lumi_13TeV"), 1.016)
 
     # add signal yield of 1 for SR in signal agnostic case

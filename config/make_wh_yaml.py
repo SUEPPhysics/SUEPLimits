@@ -12,20 +12,16 @@ import glob
 #### PARAMETERS #########################################################
 # input directory
 histDirectory = '/ceph/submit/data/user/{}/{}/SUEP/outputs/'.format(os.environ['USER'][0], os.environ['USER'])
-signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_signal.txt"
+signalList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_private_signal.txt"
 dataList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_WH.txt"
 #crwjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_WH.txt"
 vrgjList = "/home/submit/lavezzo/SUEP/SUEPCoffea_dask/filelist/WH/list_{}_Data_VRGJ.txt"
 # make a dictionary, keys are years, values are histogram tags
 signalTags = {
-    '2018': 'WH_1_25_signal_2018_limits',
-    '2017': 'WH_1_25_signal_2017_limits',
-    '2016': 'WH_1_25_signal_2016_limits',
-    '2016apv': 'WH_1_25_signal_2016apv_limits'
-    # '2018':     'WH_1_8_signal_2018_limits',
-    # '2017':     'WH_1_8_signal_2017_limits',
-    # '2016':     'WH_1_8_signal_2016_limits',
-    # '2016apv':  'WH_1_8_signal_2016apv_limits',
+    '2018':     'private_signal_2018_limits',
+    '2017':     'private_signal_2017_limits',
+    '2016':     'private_signal_2016_limits',
+    '2016apv':  'private_signal_2016apv_limits'
 }
 dataTags = {
     '2018':     'WH_1_24_Data_2018_limits_SRe_SR',

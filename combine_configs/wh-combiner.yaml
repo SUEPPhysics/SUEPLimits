@@ -1,22 +1,22 @@
 runcards:
   commands:
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_A --variable A_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_A"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_B --variable B_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_B"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_C --variable C_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_C"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_D --variable D_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_D"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_E --variable E_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_E"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_F_Fbin0 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 30 40 --era all --dcname shapes-SR_F_Fbin0"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_F_Fbin1 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 40 50 --era all --dcname shapes-SR_F_Fbin1"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_F_Fbin2 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 50 60 --era all --dcname shapes-SR_F_Fbin2"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_F_Fbin3 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 60 80 --era all --dcname shapes-SR_F_Fbin3"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_F_Fbin4 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 80 2000 --era all --dcname shapes-SR_F_Fbin4"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_G --variable G_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_G"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_H --variable H_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_H"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin0 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 30 40 --era all --dcname shapes-SR_SR_SRbin0"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin1 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 40 50 --era all --dcname shapes-SR_SR_SRbin1"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin2 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 50 60 --era all --dcname shapes-SR_SR_SRbin2"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin3 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 60 80 --era all --dcname shapes-SR_SR_SRbin3"
-    - "python3 cardmakers/makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin4 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 80 2000 --era all --dcname shapes-SR_SR_SRbin4"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_A --variable A_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_A"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_B --variable B_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_B"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_C --variable C_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_C"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_D --variable D_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_D"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_E --variable E_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_E"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin0 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 30 40 --era all --dcname shapes-SR_F_Fbin0"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin1 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 40 50 --era all --dcname shapes-SR_F_Fbin1"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin2 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 50 60 --era all --dcname shapes-SR_F_Fbin2"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin3 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 60 80 --era all --dcname shapes-SR_F_Fbin3"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_F_Fbin4 --variable F_SUEP_nconst_SR --stack {n} bkg obs --bins 80 2000 --era all --dcname shapes-SR_F_Fbin4"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_G --variable G_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_G"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_H --variable H_SUEP_nconst_SR --stack {n} bkg obs --bins 0 2000 --era all --dcname shapes-SR_H"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin0 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 30 40 --era all --dcname shapes-SR_SR_SRbin0"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin1 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 40 50 --era all --dcname shapes-SR_SR_SRbin1"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin2 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 50 60 --era all --dcname shapes-SR_SR_SRbin2"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin3 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 60 80 --era all --dcname shapes-SR_SR_SRbin3"
+    - "python3 makeWHDataCard.py --tag {tag} --channel SR_SR_SRbin4 --variable I_SUEP_nconst_SR --stack {n} bkg obs --bins 80 2000 --era all --dcname shapes-SR_SR_SRbin4"
   samples:
     - SUEP_mS125.000_mPhi2.000_T0.500_modegeneric
     - SUEP_mS125.000_mPhi2.000_T1.000_modegeneric
@@ -112,4 +112,4 @@ runcombine:
     SR_SR_SRbin4=cards-{name}/shapes-SR_SR_SRbin4.dat
     > cards-{name}/combined.dat    
   text2workspace_command: text2workspace.py -m 125 cards-{name}/combined.dat -o cards-{name}/combined.root
-  combine_command: combine  --datacard cards-{name}/combined.root  {combine_method} -m 125 --cl 0.95 --name {name} {options} --rAbsAcc 0.000001 --rRelAcc 0.05  --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH
+  out_file: cards-{name}/combined.root
